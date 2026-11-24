@@ -46,6 +46,21 @@ window.DASH_HUB_BOARDS = [
     ext: false
   },
   {
+    id: "gov",
+    title: L("APAC Government Policy Monitor", "APAC Government Policy Monitor"),
+    pitch: L(
+      "各国<strong>劳动、就业与移民政策</strong>变动追踪（政府来源导向）。",
+      "Government-led tracking of <strong>labour, employment and immigration</strong> policy shifts."
+    ),
+    bullets: [
+      L("政策时间线与官方法规链接", "Policy timeline and official links"),
+      L("多市场筛选与分类", "Multi-market filters and categories"),
+      L("与 ER 办案指南、雇主监测互补使用", "Use alongside the labor guide and employer monitors")
+    ],
+    href: "https://roqianebay.github.io/apac-policy-monitor/",
+    ext: true
+  },
+  {
     id: "ernews",
     title: L("APAC ER News Update V2.0", "APAC ER News Update V2.0"),
     pitch: L(
@@ -73,21 +88,6 @@ window.DASH_HUB_BOARDS = [
       L("中英切换", "ZH/EN toggle")
     ],
     href: "https://roqianebay.github.io/apac-ta-employer-policy-monitor/",
-    ext: true
-  },
-  {
-    id: "gov",
-    title: L("APAC Government Policy Monitor", "APAC Government Policy Monitor"),
-    pitch: L(
-      "各国<strong>劳动、就业与移民政策</strong>变动追踪（政府来源导向）。",
-      "Government-led tracking of <strong>labour, employment and immigration</strong> policy shifts."
-    ),
-    bullets: [
-      L("政策时间线与官方法规链接", "Policy timeline and official links"),
-      L("多市场筛选与分类", "Multi-market filters and categories"),
-      L("与 ER 办案指南、雇主监测互补使用", "Use alongside the labor guide and employer monitors")
-    ],
-    href: "https://roqianebay.github.io/apac-policy-monitor/",
     ext: true
   }
 ];
