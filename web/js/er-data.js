@@ -718,8 +718,8 @@ window.ER_HUB_LINKS = [
     href: "https://roqianebay.github.io/apac-ta-employer-monitor/"
   },
   {
-    title: L("TA Employer Monitor", "TA Employer Monitor"),
-    desc: L("原版 TA / 雇主政策监测", "Original TA & employer policy monitor"),
+    title: L("Talent Employer Monitor", "Talent Employer Monitor"),
+    desc: L("原版 Talent / 雇主政策监测", "Original Talent & employer policy monitor"),
     href: "https://roqianebay.github.io/apac-ta-employer-policy-monitor/"
   },
   {
