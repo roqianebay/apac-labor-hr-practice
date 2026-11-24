@@ -37,15 +37,15 @@ window.ER_UI = {
   dim: L("维度", "Topic"),
   casesH2: L("四类日常案件", "Four day-to-day case types"),
   casesSub: L(
-    "先点选案件类型；上方为泛亚太通用路径，下表为七地关键步骤（展开详策见「国家详策」）。",
-    "Pick a case type. Top: pan-APAC steps. Table: seven-market paths — full flows under Country guides."
+    "先点选案件类型。横条为泛亚太通用路径；下表为七地关键步骤。完整流程图与法规要点见上方「国家详策」。",
+    "Pick a case type. Bar: pan-APAC path; table: seven markets. Full flows and statute detail in Country guides above."
   ),
   tipsH3: L("七地关键路径", "Seven-market path"),
   casesMarketCol: L("市场", "Market"),
   casesStepsCol: L("步骤要点", "Key steps"),
   casesHintDetail: L(
-    "需流程图、法规条文与 ER 路线：在下方「国家详策」切换国家与同类型案件。",
-    "For flowcharts, statute bullets and ER playbooks: use Country guides below."
+    "需分国流程图、法规条文与 ER 路线：在上方「国家详策」切换国家与案件类型。",
+    "For per-country flowcharts, statutes and ER playbooks: use Country guides above."
   ),
   countriesH2: L("各国详细政策", "Country-by-country policy"),
   countriesSub: L(

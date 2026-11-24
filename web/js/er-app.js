@@ -174,7 +174,9 @@
     panel.innerHTML = `
       <p class="cases-intro">${t(c.intro)}</p>
       <h4 class="cases-label">${t(UI.flowGlobal)}</h4>
-      <div class="flow cases-flow-h" role="list">${globalFlow}</div>
+      <div class="cases-flow-track">
+        <div class="flow cases-flow-h" role="list" style="--case-steps:${steps.length}">${globalFlow}</div>
+      </div>
       <h4 class="cases-label">${t(UI.tipsH3)}</h4>
       <div class="table-wrap cases-table-wrap">
         <table class="cases-market-table">
