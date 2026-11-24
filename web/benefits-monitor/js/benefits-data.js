@@ -23,7 +23,7 @@ window.BENEFIT_MARKETS = [
     ],
     items: [
       { cat: "leave_annual", summary: "职工累计工作满1/10/20年 → 年假5/10/15天（法定最低）。", summaryEn: "Statutory annual leave: 5/10/15 days by 1/10/20 years of service." },
-      { cat: "holidays", summary: "国务院公布法定节假日11天+调休安排（年度更新）。", summaryEn: "11 national statutory holidays + annual schedule." },
+      { cat: "holidays", summary: "自2025年起法定节假日13天（国令795）；春节4天、劳动节2天等；年度调休安排另发。", summaryEn: "13 statutory days from 2025 (Order 795); Spring Festival 4, Labour 2; bridge schedule yearly." },
       { cat: "leave_sick", summary: "医疗期按工龄与公司工作年限分档；病假工资通常≥当地最低工资80%（地方细则）。", summaryEn: "Medical treatment period by service; sick pay often ≥80% local minimum (local rules)." },
       { cat: "leave_parental", summary: "产假≥98天（地方可延长）；陪产假各省级规定；育儿假多地试点。", summaryEn: "Maternity ≥98 days (extensions local); paternity & childcare leave vary by province." },
       { cat: "social", summary: "五险：养老、医疗、失业、工伤、生育；住房公积金用人单位与职工强制缴存（比例地方定）。", summaryEn: "Five insurances + mandatory housing fund; rates set locally." },

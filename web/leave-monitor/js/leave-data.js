@@ -16,9 +16,9 @@ window.LEAVE_MARKETS = [
     code: "CN", flag: "🇨🇳", nameZh: "中国大陆", nameEn: "Mainland China",
     sources: [{ title: "人社部", titleEn: "MOHRSS", url: "https://www.mohrss.gov.cn/" }],
     items: [
-      { cat: "public", summary: "国务院公布法定节假日 11 天（含调休安排年度更新）。", summaryEn: "11 national holidays (annual schedule incl. bridge days).",
-        details: ["元旦、春节、清明、劳动、端午、中秋、国庆等", "地方可有少数民族节日（如新疆、西藏）", "法定节假日加班另计 2–3 倍工资"],
-        detailsEn: ["New Year, Spring Festival, Qingming, Labour Day, Dragon Boat, Mid-Autumn, National Day", "Regional ethnic holidays in some provinces", "Holiday work paid at 2–3×"] },
+      { cat: "public", summary: "自 2025-01-01 起法定节假日共 <strong>13 天</strong>（国令第 795 号；此前为 11 天）：元旦 1、春节 4（除夕至初三）、清明 1、劳动 2、端午 1、中秋 1、国庆 3。", summaryEn: "From 1 Jan 2025: <strong>13 statutory days</strong> (Order 795; was 11): NY 1, Spring Festival 4 (eve–day 3), Qingming 1, Labour 2, Dragon Boat 1, Mid-Autumn 1, National Day 3.",
+        details: ["国务院办公厅每年发布放假调休安排（连休天数≠法定天数）", "2024-11 修订《全国年节及纪念日放假办法》", "少数民族地区可另有民族节日", "法定节假日加班付 2–3 倍工资", "官方：https://www.gov.cn/zhengce/zhengceku/202411/content_6986381.htm"],
+        detailsEn: ["State Council annual bridge-holiday schedule (long breaks ≠ statutory days)", "Nov 2024 revision to national holiday rules", "Ethnic festivals in minority regions", "Holiday work at 2–3× pay", "Official: gov.cn Order 795"] },
       { cat: "annual", summary: "累计工作满 1/10/20 年：5/10/15 天带薪年假（法定最低）。", summaryEn: "Statutory annual leave 5/10/15 days by 1/10/20 years of service.",
         details: ["新入职满 1 年者适用最低档", "单位因经营需要可统筹安排", "未休年假可折算或翻倍补偿"],
         detailsEn: ["Applies after first qualifying year", "Employer may schedule collectively", "Unused leave: payout or double pay on termination rules"] },
