@@ -6,6 +6,7 @@ window.ER_UI = {
   brand: L("APAC Labor & HR Practice", "APAC Labor & HR Practice"),
   title: L("APAC Labor Law & HR Practice Guide", "APAC Labor Law & HR Practice Guide"),
   navCompare: L("七地对照", "Compare"),
+  navSources: L("官方索引", "Official sources"),
   navCases: L("四类案件", "Case types"),
   navCountries: L("国家详策", "Country guides"),
   navTools: L("14 国向导与手册", "14-country wizard"),
@@ -22,6 +23,12 @@ window.ER_UI = {
     "本站为 HR/ER 对照工具，不构成法律意见。奖、企业协议、集体合同、工作规则和地方法院口径可能严于或细于下表。处理真实个案请同时核对合同与现行官方文本。",
     "This is an HR/ER comparison tool, not legal advice. Awards, enterprise agreements, collective contracts, work rules and local courts may be stricter or more detailed than the table. For live cases, check the contract and current official texts."
   ),
+  sourcesH2: L("官方法规与权威来源", "Official law and authority links"),
+  sourcesSub: L(
+    "办案前先对照<strong>政府/劳工部门</strong>公开文本。以下为七地直达链接；日韩印印尼越菲等见下方按钮进入 14 国索引。",
+    "Check <strong>government / labour authority</strong> sites before acting. Seven markets below; Japan, Korea, India and others via the 14-market index."
+  ),
+  sourcesMore14: L("14 国/地区完整官方法规索引", "Full official index — 14 markets"),
   compareH2: L("七地对照表", "Seven-jurisdiction matrix"),
   compareSub: L(
     "原稿框架已按现行规则校正：新加坡补列《雇佣法令》；香港有法定遣散费（满24个月裁员）；“无强制、仅有指引”的是新加坡裁员补偿；澳大利亚才是年资阶梯法定 redundancy pay。",
@@ -30,10 +37,16 @@ window.ER_UI = {
   dim: L("维度", "Topic"),
   casesH2: L("四类日常案件", "Four day-to-day case types"),
   casesSub: L(
-    "同一案件类型，各地法定动作完全不同。先选类型，再按步骤收证据、算成本和走程序。",
-    "The same case type requires different statutory steps in each market. Pick the type, then collect evidence, cost the exit and run the process."
+    "先点选案件类型；上方为泛亚太通用路径，下表为七地关键步骤（展开详策见「国家详策」）。",
+    "Pick a case type. Top: pan-APAC steps. Table: seven-market paths — full flows under Country guides."
   ),
-  tipsH3: L("七地操作要点", "What to do in each market"),
+  tipsH3: L("七地关键路径", "Seven-market path"),
+  casesMarketCol: L("市场", "Market"),
+  casesStepsCol: L("步骤要点", "Key steps"),
+  casesHintDetail: L(
+    "需流程图、法规条文与 ER 路线：在下方「国家详策」切换国家与同类型案件。",
+    "For flowcharts, statute bullets and ER playbooks: use Country guides below."
+  ),
   countriesH2: L("各国详细政策", "Country-by-country policy"),
   countriesSub: L(
     "含裁员、绩效、试用期、违纪、争议出口与 ER 操作要点。",

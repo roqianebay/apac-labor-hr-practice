@@ -14,6 +14,7 @@
   const state = {
     lang: localStorage.getItem(KEY) === "en" ? "en" : "zh",
     caseId: "redundancy",
+    casesViewId: "redundancy",
     countryId: "cn"
   };
 
@@ -68,9 +69,13 @@
     document.title = t(UI.title);
     setText("ui-brand", t(UI.brand));
     setText("ui-nav-compare", t(UI.navCompare));
+    setText("ui-nav-sources", t(UI.navSources));
+    setText("ui-sources-h2", t(UI.sourcesH2));
+    setText("ui-sources-sub", t(UI.sourcesSub));
+    setText("ui-sources-more14", t(UI.sourcesMore14));
     setText("ui-nav-cases", t(UI.navCases));
     setText("ui-nav-countries", t(UI.navCountries));
-  setText("ui-nav-tools", t(UI.navTools));
+    setText("ui-nav-tools", t(UI.navTools));
     setText("ui-cases-h2", t(UI.casesH2));
     setText("ui-cases-sub", t(UI.casesSub));
     setText("ui-kicker", t(UI.kicker));
@@ -127,31 +132,75 @@
     return `<div class="block"><h4>${title}</h4>${body}</div>`;
   }
 
-  function countryFlowText(caseId, countryId) {
-    const steps = (C.countryFlows[caseId] || {})[countryId] || [];
-    return steps.map((s) => t(s)).join(" → ");
+  function renderSources() {
+    const el = document.getElementById("sources-grid");
+    if (!el) return;
+    el.innerHTML = D.jurisdictions
+      .map((j) => {
+        const links = j.sources
+          .map(
+            (s) =>
+              `<a class="source-link" href="${s.href}" target="_blank" rel="noopener noreferrer">${t(s.label)}<span class="source-ext" aria-hidden="true">↗</span></a>`
+          )
+          .join("");
+        return `<article class="source-card card">
+          <h3>${t(j.name)}</h3>
+          <p class="meta">${t(j.law)}</p>
+          <div class="source-links">${links}</div>
+        </article>`;
+      })
+      .join("");
+  }
+
+  function renderCasesPanel() {
+    const panel = document.getElementById("cases-panel");
+    if (!panel) return;
+    const c = D.cases.find((x) => x.id === state.casesViewId) || D.cases[0];
+    const steps = c.steps || [];
+    const globalFlow = steps
+      .map((s, i) => {
+        const label = t(s);
+        return `<div class="flow-node process cases-step" title="${label.replace(/"/g, "&quot;")}"><span class="cases-step-n" aria-hidden="true">${i + 1}</span><span class="cases-step-t">${label}</span></div>${i < steps.length - 1 ? arrow() : ""}`;
+      })
+      .join("");
+    const tableRows = COLS.map((id) => {
+      const loc = (C.countryFlows[c.id] || {})[id] || [];
+      const chips = loc
+        .map((s, i) => `<span class="chip-step" title="${t(s).replace(/"/g, "&quot;")}"><b>${i + 1}</b> ${t(s)}</span>`)
+        .join("");
+      return `<tr><td class="dim">${nameOf(id)}</td><td><div class="chip-steps">${chips || "—"}</div></td></tr>`;
+    }).join("");
+
+    panel.innerHTML = `
+      <p class="cases-intro">${t(c.intro)}</p>
+      <h4 class="cases-label">${t(UI.flowGlobal)}</h4>
+      <div class="flow cases-flow-h" role="list">${globalFlow}</div>
+      <h4 class="cases-label">${t(UI.tipsH3)}</h4>
+      <div class="table-wrap cases-table-wrap">
+        <table class="cases-market-table">
+          <thead><tr><th class="dim">${t(UI.casesMarketCol)}</th><th>${t(UI.casesStepsCol)}</th></tr></thead>
+          <tbody>${tableRows}</tbody>
+        </table>
+      </div>
+      <p class="hint cases-hint">${t(UI.casesHintDetail)}</p>`;
   }
 
   function renderCases() {
     const root = document.getElementById("cases-root");
     if (!root) return;
-    root.innerHTML = D.cases
-      .map((c) => {
-        const steps = (c.steps || []).map((s) => `<li>${t(s)}</li>`).join("");
-        const tips = COLS.map(
-          (id) => `<li><strong>${nameOf(id)}</strong> ${countryFlowText(c.id, id)}</li>`
-        ).join("");
-        return `<article class="card">
-          <h3>${t(c.name)}</h3>
-          <p>${t(c.intro)}</p>
-          <h4 style="font-size:14px;margin:14px 0 8px">${t(UI.flowGlobal)}</h4>
-          <ol class="list" style="list-style:decimal">${steps}</ol>
-          <h4 style="font-size:14px;margin:18px 0 8px">${t(UI.tipsH3)}</h4>
-          <ul class="list">${tips}</ul>
-        </article>`;
-      })
-      .join("");
-    root.classList.add("grid");
+    root.innerHTML = `
+      <div class="cases-desk card">
+        <div class="filters cases-type-tabs" id="cases-type-tabs" role="tablist">
+          ${D.cases
+            .map(
+              (c) =>
+                `<button type="button" class="tab${c.id === state.casesViewId ? " active" : ""}" role="tab" aria-selected="${c.id === state.casesViewId}" data-cases-type="${c.id}">${t(c.name)}</button>`
+            )
+            .join("")}
+        </div>
+        <div id="cases-panel" role="tabpanel"></div>
+      </div>`;
+    renderCasesPanel();
   }
 
   function renderCountryTabs() {
@@ -240,6 +289,7 @@
   function render() {
     renderChrome();
     renderMatrix();
+    renderSources();
     renderCases();
     renderCountryTabs();
     renderDesk();
@@ -269,6 +319,18 @@
     const btn = e.target.closest("[data-case]");
     if (!btn) return;
     state.caseId = btn.dataset.case;
+    state.casesViewId = state.caseId;
+    renderDesk();
+    renderCountryTabs();
+    renderCases();
+  });
+
+  document.getElementById("cases-root").addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-cases-type]");
+    if (!btn) return;
+    state.casesViewId = btn.dataset.casesType;
+    state.caseId = state.casesViewId;
+    renderCases();
     renderDesk();
     renderCountryTabs();
   });

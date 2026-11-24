@@ -14,7 +14,16 @@
     openToolsTab(hash.slice(6));
     return;
   }
-  if (["wizard", "investigation", "pip-manual", "checklist", "matrix", "detail", "glossary", "cases", "links"].includes(hash)) {
+  if (hash === "links") {
+    openToolsTab("links");
+    return;
+  }
+  if (["wizard", "investigation", "pip-manual", "checklist", "matrix", "detail", "glossary", "cases"].includes(hash)) {
     document.getElementById("tools-section") && openToolsTab(hash);
   }
+
+  document.getElementById("ui-sources-more14")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    openToolsTab("links");
+  });
 })();
