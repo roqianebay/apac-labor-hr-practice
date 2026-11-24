@@ -1,6 +1,6 @@
 # APAC Labor Law & HR Practice Guide
 
-亚太 ER 劳动法对比与 HR 实务看板（Phase 1：8 国/地区矩阵 + 场景概览）。
+亚太 ER 劳动法对比与 HR 实务看板（Phase 2：14 国/地区 + Case Checklist + CSV 导出）。
 
 **公网：** https://roqianebay.github.io/apac-labor-hr-practice/
 

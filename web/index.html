@@ -47,7 +47,7 @@
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; }
     .card-hd { padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 0.92rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
     .table-wrap { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 1100px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; min-width: 2200px; }
     th, td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; text-align: left; }
     th { background: var(--surface-2); position: sticky; top: 0; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); }
     th.country-col { min-width: 118px; }
@@ -74,7 +74,18 @@
     .case-card li { margin-bottom: 0.35rem; }
     .case-country { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); }
     .footer { max-width: 1440px; margin: 0 auto; padding: 1rem 2rem 2rem; border-top: 1px solid var(--border); font-size: 0.76rem; color: var(--muted); }
-    select { padding: 0.5rem 0.75rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; margin-bottom: 1rem; }
+    select { padding: 0.5rem 0.75rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1rem; }
+    .btn { padding: 0.5rem 0.85rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface-2); color: var(--text); cursor: pointer; font: inherit; font-size: 0.82rem; }
+    .btn:hover { border-color: var(--accent); color: var(--accent-2); }
+    .checklist-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem; margin-bottom: 1rem; }
+    .checklist-card h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .checklist-card h4 { font-size: 0.8rem; color: var(--accent-2); margin: 0.75rem 0 0.35rem; }
+    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; font-size: 0.8rem; color: var(--muted); }
+    @media (max-width: 800px) { .check-grid { grid-template-columns: 1fr; } }
+    .check-grid ul { margin-left: 1.1rem; }
+    .check-grid li { margin-bottom: 0.25rem; }
+    .hub-links a { color: #67e8f9; margin-right: 0.75rem; font-size: 0.8rem; }
   </style>
 </head>
 <body>
@@ -82,11 +93,11 @@
     <div class="header-inner">
       <div>
         <h1>APAC <span>Labor Law &amp; HR Practice</span> Guide</h1>
-        <p class="sub">员工关系日常 Case · 国别劳动法对比 · 裁员 / 绩效 / 试用期 / 违纪 — Phase 1：法规矩阵</p>
+        <p class="sub">员工关系日常 Case · 14 国/地区劳动法对比 · 裁员 / 绩效 / 试用期 / 违纪 Checklist</p>
       </div>
       <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-        <span class="badge phase">Phase 1 · 对比 + 官方法规</span>
-        <span class="badge">8 司法辖区</span>
+        <span class="badge phase">Phase 2</span>
+        <span class="badge">14 司法辖区</span>
       </div>
     </div>
   </header>
@@ -95,20 +106,47 @@
     <div class="banner">
       <strong>免责声明：</strong>本看板为 ER/HR <strong>实务参考与对比摘要</strong>，不构成法律意见。解除、裁员、违纪与绩效个案须以当地现行法规、判例、劳动合同、员工手册及内部政策为准，并咨询当地劳动法律师。
       数值与难度评级为<strong>相对印象</strong>（低/中/高），便于跨区域沟通，不替代个案评估。
+      <div class="hub-links" style="margin-top:0.6rem">
+        配套看板：
+        <a href="https://roqianebay.github.io/apac-labor-hr-practice/" target="_blank" rel="noopener">劳动法（本站）</a>
+        <a href="https://roqianebay.github.io/apac-ta-employer-monitor/" target="_blank" rel="noopener">ER News V2.0</a>
+        <a href="https://roqianebay.github.io/apac-policy-monitor/" target="_blank" rel="noopener">政府政策 Monitor</a>
+        <a href="https://roqianebay.github.io/apac-ta-employer-policy-monitor/" target="_blank" rel="noopener">TA Employer Monitor</a>
+      </div>
     </div>
 
     <nav class="tabs" role="tablist">
       <button type="button" class="tab active" data-tab="matrix">国别对比矩阵</button>
       <button type="button" class="tab" data-tab="detail">各国政策详解</button>
+      <button type="button" class="tab" data-tab="checklist">Case Checklist</button>
       <button type="button" class="tab" data-tab="cases">场景指引（概览）</button>
       <button type="button" class="tab" data-tab="links">官方法规索引</button>
     </nav>
 
     <section class="panel active" id="panel-matrix">
       <div class="card">
-        <div class="card-hd">横向对比（中国大陆 · 香港 · 新加坡 · 澳大利亚 · 新西兰 · 马来西亚 · 泰国）</div>
+        <div class="card-hd">
+          <span>亚太 14 国/地区横向对比（可左右滚动）</span>
+          <button type="button" class="btn" id="exportMatrix">导出 CSV</button>
+        </div>
         <div class="table-wrap" id="matrixTable"></div>
       </div>
+    </section>
+
+    <section class="panel" id="panel-checklist">
+      <div class="toolbar">
+        <label style="font-size:0.85rem;color:var(--muted)">场景</label>
+        <select id="casePick">
+          <option value="rif">裁员 / 重组</option>
+          <option value="pip">绩效解除</option>
+          <option value="prob">试用期</option>
+          <option value="disc">违纪</option>
+        </select>
+        <label style="font-size:0.85rem;color:var(--muted)">国家/地区</label>
+        <select id="checkCountryPick"></select>
+        <button type="button" class="btn" id="printChecklist">打印本清单</button>
+      </div>
+      <div id="checklistBody"></div>
     </section>
 
     <section class="panel" id="panel-detail">
@@ -120,7 +158,7 @@
     </section>
 
     <section class="panel" id="panel-cases">
-      <p style="font-size:0.84rem;color:var(--muted);margin-bottom:1rem;">Phase 1 提供<strong>通用步骤 + 国别差异提示</strong>；Phase 2 可接入 checklist 模板与文书清单。</p>
+      <p style="font-size:0.84rem;color:var(--muted);margin-bottom:1rem;">分国逐步清单见 <strong>Case Checklist</strong> Tab；以下为四类场景通用步骤与国别差异摘要。</p>
       <div class="case-grid" id="caseGuides"></div>
     </section>
 
@@ -130,11 +168,11 @@
   </main>
 
   <footer class="footer">
-    APAC Labor &amp; HR Practice · 与 APAC ER News / Policy Monitor 配套使用 · 更新 2026-11-24
+    APAC Labor &amp; HR Practice Phase 2 · 更新 2026-11-24
   </footer>
 
   <script>
-    const CODES = ["CN", "HK", "SG", "AU", "NZ", "MY", "TH"];
+    const CODES = ["CN", "HK", "SG", "AU", "NZ", "MY", "TH", "JP", "KR", "IN", "ID", "VN", "PH"];
 
     const COUNTRIES = {
       CN: { flag: "🇨🇳", name: "中国大陆", law: "《劳动合同法》《劳动争议调解仲裁法》等", severance: "经济补偿 N：每满 1 年 1 个月工资（6 个月以上不满 1 年按 1 年；不满 6 个月半个月）；封顶 12 年 × 当地社平 3 倍；违法解除 2N", notice: "提前 30 日书面通知或代通知金（第 40、41 条情形）", probation: "试用期解除：证明不符合录用条件 + 说明（第 39 条）；试用期工资有下限", performance: "难", misconduct: "高", arbitration: "极高", massLayoff: "≥20 人或占 10%+ 需程序（报告、方案）", keyNote: "协商解除（N/N+1）普遍；规章制度民主程序与公示至关重要；封口费协议注意个税与社保", refs: [
@@ -164,19 +202,72 @@
       TH: { flag: "🇹🇭", name: "泰国", law: "Labour Protection Act B.E. 2541 + Labour Relations Act", severance: "解雇遣散费：30 / 60 / 90 / 180 / 300 / 400 天工资（按服务年限阶梯）", notice: "至少 1 个薪资支付期提前通知（或代通知金）", probation: "中", performance: "中", misconduct: "中", arbitration: "中低", massLayoff: "大规模关闭留意特别法与劳工部", keyNote: "无正当理由解雇风险高；书面泰文记录、witness、工会（如有）", refs: [
         { t: "Thai Labour — 概要 (DLPW)", u: "https://www.doe.go.th/" },
         { t: "Labour Protection Act 摘要", u: "https://www.ilo.org/dyn/natlex/docs/MONOGRAPH/113907/115291/F1378266037/THA113907.pdf" }
+      ]},
+      JP: { flag: "🇯🇵", name: "日本", law: "労働基準法、労働契約法、労働組合法等", severance: "无统一法定 N；退職金制度（就规）+ 希望退職对价", notice: "解雇预告 30 日前或平均工资 30 日代金", probation: "中", performance: "高", misconduct: "高", arbitration: "中", massLayoff: "规模大时工会交涉 / 希望退職窗口", keyNote: "解雇四要件极严；正規解雇少，多用希望退職；敏感记录与签名", refs: [
+        { t: "厚生労働省 — 雇用・労働", u: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/index.html" },
+        { t: "MHLW — 解雇相关指南", u: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/koyou_roudou_kisoku/index.html" }
+      ]},
+      KR: { flag: "🇰🇷", name: "韩国", law: "근로기준법、独劳法等", severance: "退职金：在职满 1 年以上，每年 30 日平均工资", notice: "解雇预报 30 日前通知或同等预告津贴", probation: "中", performance: "中高", misconduct: "高", arbitration: "中高", massLayoff: "50 人以上 50 天期间事前通知劳动者代表", keyNote: "解雇须有正当理由并书面；集体争议敏感；resignation vs dismissal 分项", refs: [
+        { t: "MOEL — Labor Standards (EN)", u: "https://www.moel.go.kr/english/policy/policyinfo/sl/view.do" },
+        { t: "국가법령 — 근로기준법", u: "https://www.law.go.kr/" }
+      ]},
+      IN: { flag: "🇮🇳", name: "印度", law: "Industrial Disputes Act 1947 + Shops & Establishments + 合同", severance: "Gratuity（≥5 年）；较大 enterprise 终止可能需政府准许", notice: "合同/州法（30–90 天常见）", probation: "低-中", performance: "中", misconduct: "中", arbitration: "高", massLayoff: "雇佣≥100 人 — retrenchment compensation + 可能 prior approval", keyNote: "IT 业多 ex-gratia 谈判；ESIC/PF 结清；non-compete 可执行性有限", refs: [
+        { t: "India Code — Gratuity Act", u: "https://www.indiacode.nic.in/handle/123456789/2188" },
+        { t: "Labour Ministry", u: "https://labour.gov.in/" }
+      ]},
+      ID: { flag: "🇮🇩", name: "印度尼西亚", law: "UU Ketenagakerjaan (Cipta Kerja) + PP", severance: "PKWT 期满 / PHK：PHK腾曲 + hak 按年资", notice: "30 天书面（视合同 & 事由）", probation: "中", performance: "中", misconduct: "中", arbitration: "中", massLayoff: "大规模：两方案（调岗 / 补偿）+ 登记", keyNote: "工会 & bipartite；宗教津贴与 THR；外籍 KITAS", refs: [
+        { t: "Kemnaker — Ketenagakerjaan", u: "https://kemnaker.go.id/" },
+        { t: "ILO Natlex — Indonesia", u: "https://www.ilo.org/dyn/natlex/natlex4.search?p_lang=en&p_country=IDN" }
+      ]},
+      VN: { flag: "🇻🇳", name: "越南", law: "2019 Labor Code + Decrees", severance: "severance allowance 按服务年限（半年一档）", notice: "至少 30 日（或 45 日依情形）", probation: "中", performance: "中", misconduct: "中", arbitration: "中", massLayoff: "经济原因裁员：30 日前工会/职工代表咨询", keyNote: "discipline 依内部规章公示；social insurance 手续", refs: [
+        { t: "MOJ — Labor Code info", u: "https://www.moj.gov.vn/" },
+        { t: "ILO — Vietnam labour", u: "https://www.ilo.org/hanoi" }
+      ]},
+      PH: { flag: "🇵🇭", name: "菲律宾", law: "Labor Code of the Philippines + DOLE rules", severance: "非 just cause：separation pay（半月/一月工资/年，视事由）", notice: "至少 30 日（termination for authorized causes）", probation: "中", performance: "中", misconduct: "中", arbitration: "中", massLayoff: "Authorized causes：报告 DOLE；实名投诉程序", keyNote: "just cause 双通知 + NLRC 听证（security of tenure）", refs: [
+        { t: "DOLE — Labor Code", u: "https://www.dole.gov.ph/" },
+        { t: "NLRC", u: "https://nlrc.dole.gov.ph/" }
       ]}
     };
 
     const MATRIX = [
-      { dim: "主要法律", values: { CN: "劳动合同法+", HK: "雇佣条例", SG: "Employment Act", AU: "Fair Work Act", NZ: "Employment Relations Act", MY: "Employment Act 1955", TH: "劳动保护法 LPA" }},
-      { dim: "法定遣散费 / 终止金", values: { CN: "N 月工资（法定经济补偿）", HK: "LSP/遣散费（条件适用）", SG: "无强制公式（惯例 ex-gratia）", AU: "Redundancy pay 阶梯", NZ: "无一般法定（靠合同）", MY: "10–20 天/年", TH: "30–400 天阶梯" }},
-      { dim: "通知期（法定/惯例）", values: { CN: "30 天或代通知金", HK: "7 天–1 个月", SG: "1 天–4 周 (EA)", AU: "1–5 周 (NES)", NZ: "合理通知", MY: "4–8 周", TH: "≥1 薪资期" }},
-      { dim: "试用期解除", values: { CN: "中-高（举证录用条件）", HK: "中", SG: "中", AU: "低-中", NZ: "中（trial period 合约）", MY: "中", TH: "中" }},
-      { dim: "绩效解除难度", values: { CN: "高", HK: "低", SG: "中高", AU: "中", NZ: "中", MY: "中", TH: "中" }, css: "diff" },
-      { dim: "违纪解除难度", values: { CN: "高", HK: "低-中", SG: "中", AU: "中", NZ: "中", MY: "中", TH: "中" }, css: "diff" },
-      { dim: "仲裁 / 诉讼风险", values: { CN: "极高", HK: "低", SG: "中高", AU: "中", NZ: "中", MY: "中", TH: "中低" }, css: "risk" }},
-      { dim: "裁员/冗员关键词", values: { CN: "经济性裁员程序", HK: "遣散费/LSP", SG: "Retrenchment", AU: "Genuine redundancy", NZ: "Redundancy consultation", MY: "VSS/补偿", TH: "เลิกจ้าง+遣散" }},
+      { dim: "主要法律", values: { CN: "劳动合同法+", HK: "雇佣条例", SG: "Employment Act", AU: "Fair Work Act", NZ: "ERA 2000", MY: "EA 1955", TH: "LPA", JP: "労基法/労契法", KR: "근로기준법", IN: "ID Act + S&E", ID: "UU Cipta Kerja", VN: "Labor Code 2019", PH: "Labor Code" }},
+      { dim: "法定遣散费 / 终止金", values: { CN: "N 月工资", HK: "LSP/Severance", SG: "无公式(惯例)", AU: "Redundancy 阶梯", NZ: "靠合同", MY: "10–20天/年", TH: "30–400天", JP: "退職金/希望退職", KR: "30日/年", IN: "Gratuity等", ID: "PHK 阶梯", VN: "按年限津贴", PH: "Separation pay" }},
+      { dim: "通知期", values: { CN: "30天", HK: "7天–1月", SG: "1天–4周", AU: "1–5周", NZ: "合理通知", MY: "4–8周", TH: "≥1薪期", JP: "30日", KR: "30日", IN: "合同/州法", ID: "30天", VN: "30–45日", PH: "30日" }},
+      { dim: "试用期解除", values: { CN: "高", HK: "中", SG: "中", AU: "低-中", NZ: "中", MY: "中", TH: "中", JP: "中", KR: "中", IN: "低-中", ID: "中", VN: "中", PH: "中" }},
+      { dim: "绩效解除难度", values: { CN: "高", HK: "低", SG: "中高", AU: "中", NZ: "中", MY: "中", TH: "中", JP: "高", KR: "中高", IN: "中", ID: "中", VN: "中", PH: "中" }, css: "diff" },
+      { dim: "违纪解除难度", values: { CN: "高", HK: "低-中", SG: "中", AU: "中", NZ: "中", MY: "中", TH: "中", JP: "高", KR: "高", IN: "中", ID: "中", VN: "中", PH: "中" }, css: "diff" },
+      { dim: "仲裁/诉讼风险", values: { CN: "极高", HK: "低", SG: "中高", AU: "中", NZ: "中", MY: "中", TH: "中低", JP: "中", KR: "中高", IN: "高", ID: "中", VN: "中", PH: "中" }, css: "risk" },
+      { dim: "裁员关键词", values: { CN: "经济性裁员", HK: "遣散/LSP", SG: "Retrenchment", AU: "Redundancy", NZ: "Consultation", MY: "VSS", TH: "เลิกจ้าง", JP: "希望退職", KR: "해고/정리", IN: "Retrenchment", ID: "PHK mass", VN: "thu hẹp", PH: "Redundancy/DOLE" }},
     ];
+
+    const CASE_LABELS = { rif: "裁员/重组", pip: "绩效解除", prob: "试用期", disc: "违纪" };
+
+    const CHECKLISTS = {
+      rif: {
+        CN: { steps: ["业务必要性论证与民主程序（20+/10%）", "向劳动部门报告方案", "selection matrix", "协商解除优先", "N/社保/公积金结清"], docs: ["裁员方案", "工会/职工说明", "解除协议", "离职证明"] },
+        SG: { steps: ["Tripartite retrenchment 实践", "MOM notification（适用时）", "selection & notice", "ex-gratia 计算", "EP cancellation"], docs: ["Retrenchment letter", "Settlement", "IR21 tax"] },
+        AU: { steps: ["Genuine redundancy test", "Consultation（award/EA）", "Notice + redundancy pay", "Modern award 核对", "Final pay"], docs: ["Redundancy letter", "Consultation records", "Separation certificate"] },
+        JP: { steps: ["评估能否希望退職", "社长/工会说明", "退職金算定", "社保脱退", "源泉/visa"], docs: ["希望退職申请书", "合意书", "解雇不可能记录（如裁员）"] },
+        IN: { steps: ["确认 ID Act 适用性", "Retrenchment compensation", "notice period", "Full & final", "Relieving"], docs: ["Termination letter", "FF settlement", "Form 16等"] },
+      },
+      pip: {
+        CN: { steps: ["制度/PIP依据", "培训或调岗", "仍不能胜任举证", "提前30日或代通知", "经济补偿"], docs: ["PIP", "培训记录", "评估", "解除通知"] },
+        HK: { steps: ["合约条款", "书面警告", "合理程序", "代通知金"], docs: ["Warning letters", "Termination notice"] },
+        SG: { steps: ["Policy inquiry", "warning + PIP", "show cause", "notice/payment"], docs: ["PIP", "Inquiry minutes", "Termination"] },
+        AU: { steps: ["Procedural fairness", "Warnings", "Small business code if appl.", "Unfair dismissal 风险评估"], docs: ["Performance plan", "Meeting notes"] },
+      },
+      prob: {
+        CN: { steps: ["试用期条款合法", "录用条件书面", "不符合录用条件说明", "即时解除证据"], docs: ["Offer", "Probation review", "39条解除说明"] },
+        NZ: { steps: ["Trial period 合同条款", "90 day 内", "fair process still"], docs: ["Agreement clause", "Feedback records"] },
+        PH: { steps: [" probation ≤6月", "just cause 标准仍适用", "双通知如适用"], docs: ["Probationary contract", "Notice to explain"] },
+      },
+      disc: {
+        CN: { steps: ["民主程序规章", "调查不出席", "停工留薪", "严重违纪事实", "解除决定"], docs: ["调查报告", "员工陈述", "解除通知书"] },
+        SG: { steps: ["Domestic inquiry", "suspension letter", "show cause", "decision letter"], docs: ["Charge sheet", "Inquiry minutes"] },
+        AU: { steps: ["Investigation", "Show cause", "Serious misconduct?", "Summary vs notice"], docs: ["Investigation report", "Warning history"] },
+        KR: { steps: ["正当理由书面", "30日预报", "工会/代表", "退职金分项"], docs: ["징계委원회 记录", "해고통지"] },
+      }
+    };
 
     const CASES = [
       { id: "rif", title: "裁员 / 重组 (RIF)", steps: [
@@ -276,6 +367,44 @@
       }).join("");
     }
 
+    function defaultChecklist(caseId, code) {
+      const x = COUNTRIES[code];
+      const base = (CASES.find(c => c.id === caseId) || {}).steps || [];
+      return {
+        steps: [...base, `核对 ${x.name}：${x.notice}`, `补偿/遣散：${x.severance.slice(0, 80)}…`],
+        docs: ["劳动合同/手册条款", "书面通知", "解除/结算协议", "离职证明", "签证/社保结清（如适用）"]
+      };
+    }
+
+    function renderChecklist() {
+      const caseId = document.getElementById("casePick").value;
+      const code = document.getElementById("checkCountryPick").value;
+      const x = COUNTRIES[code];
+      const pack = (CHECKLISTS[caseId] && CHECKLISTS[caseId][code]) || defaultChecklist(caseId, code);
+      const hint = (CASES.find(c => c.id === caseId) || {}).hints || {};
+      document.getElementById("checklistBody").innerHTML = `<article class="checklist-card" id="activeChecklist">
+        <h3>${CASE_LABELS[caseId]} · ${x.flag} ${x.name}</h3>
+        <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">${hint[code] || x.keyNote}</p>
+        <div class="check-grid">
+          <div><h4>操作 Checklist</h4><ul>${pack.steps.map(s => `<li>${s}</li>`).join("")}</ul></div>
+          <div><h4>建议文书 / 证据</h4><ul>${pack.docs.map(d => `<li>${d}</li>`).join("")}</ul>
+            <h4>官方法规</h4><div class="refs">${x.refs.map(r => `<a href="${r.u}" target="_blank" rel="noopener">${r.t}</a>`).join("")}</div>
+          </div>
+        </div>
+      </article>`;
+    }
+
+    function exportMatrixCsv() {
+      const header = ["维度", ...CODES.map(c => COUNTRIES[c].name)];
+      const rows = MATRIX.map(row => [row.dim, ...CODES.map(c => row.values[c] || "")]);
+      const csv = [header, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(",")).join("\n");
+      const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "apac-labor-matrix.csv";
+      a.click();
+    }
+
     document.querySelectorAll(".tab").forEach(btn => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
@@ -294,10 +423,31 @@
     });
     pick.addEventListener("change", () => renderDetail(pick.value));
 
+    const checkPick = document.getElementById("checkCountryPick");
+    CODES.forEach(c => {
+      const o = document.createElement("option");
+      o.value = c;
+      o.textContent = COUNTRIES[c].name;
+      checkPick.appendChild(o);
+    });
+    checkPick.value = "SG";
+    document.getElementById("casePick").addEventListener("change", renderChecklist);
+    checkPick.addEventListener("change", renderChecklist);
+    document.getElementById("exportMatrix").addEventListener("click", exportMatrixCsv);
+    document.getElementById("printChecklist").addEventListener("click", () => {
+      const el = document.getElementById("activeChecklist");
+      if (!el) return;
+      const w = window.open("", "_blank");
+      w.document.write(`<html><head><title>ER Checklist</title></head><body style="font-family:sans-serif;padding:20px">${el.innerHTML}</body></html>`);
+      w.document.close();
+      w.print();
+    });
+
     renderMatrix();
     renderDetail("");
     renderCases();
     renderLinks();
+    renderChecklist();
   </script>
 </body>
 </html>
