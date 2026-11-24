@@ -89,5 +89,20 @@ window.DASH_HUB_BOARDS = [
     ],
     href: "https://roqianebay.github.io/apac-ta-employer-policy-monitor/",
     ext: true
+  },
+  {
+    id: "benefits",
+    title: L("APAC Statutory Benefits Monitor", "APAC Statutory Benefits Monitor"),
+    pitch: L(
+      "14 个亚太市场<strong>法定福利</strong>：年假、病假、产假、社保、医保、加班等对照。",
+      "14 APAC markets — <strong>statutory benefits</strong>: leave, social insurance, medical, OT and more."
+    ),
+    bullets: [
+      L("福利对照矩阵 + 分国卡片", "Benefits matrix + country cards"),
+      L("官方法规入口链接", "Official source links"),
+      L("中英切换", "ZH/EN toggle")
+    ],
+    href: "https://roqianebay.github.io/apac-benefits-monitor/",
+    ext: true
   }
 ];

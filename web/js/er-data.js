@@ -732,5 +732,10 @@ window.ER_HUB_LINKS = [
     title: L("政府政策 Monitor", "Government policy monitor"),
     desc: L("亚太政府劳动与就业政策追踪", "APAC government labour & employment tracking"),
     href: "https://roqianebay.github.io/apac-policy-monitor/"
+  },
+  {
+    title: L("APAC Statutory Benefits", "APAC Statutory Benefits"),
+    desc: L("法定福利对照：年假、病假、社保、医保等", "Statutory benefits: leave, insurance, medical, OT"),
+    href: "https://roqianebay.github.io/apac-benefits-monitor/"
   }
 ];
