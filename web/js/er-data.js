@@ -5,17 +5,20 @@ function L(zh, en) {
 window.ER_UI = {
   brand: L("APAC Labor & HR Practice", "APAC Labor & HR Practice"),
   title: L("APAC Labor Law & HR Practice Guide", "APAC Labor Law & HR Practice Guide"),
-  navCompare: L("七地对照", "Compare"),
+  navCompare: L("十地对照", "Compare"),
   navSources: L("官方索引", "Official sources"),
   navCases: L("四类案件", "Case types"),
   navCountries: L("国家详策", "Country guides"),
+  navHub: L("看板互联", "Dashboard hub"),
   navTools: L("14 国向导与手册", "14-country wizard"),
   kicker: L("亚太 ER 劳动关系办案指南", "APAC ER case-handling guide"),
   h1: L("亚太区域各国裁员、绩效解除、试用期、违纪流程。", "APAC processes for redundancy, performance exits, probation, and misconduct."),
   lede: L(
-    "给员工关系团队用的内部工作台。覆盖中国大陆、香港、新加坡、澳大利亚、新西兰、马来西亚、泰国。第一步先把法定底线对齐，避免用中国思路处理普通法司法管辖区，也避免把香港“通知即可”套到内地。",
-    "An internal desk for employee relations teams covering Mainland China, Hong Kong, Singapore, Australia, New Zealand, Malaysia and Thailand. Align statutory floors first: do not run PRC-style cause-based dismissals in common-law markets, and do not treat Hong Kong’s notice-based exit as if it applied on the Mainland."
+    "覆盖中国大陆、香港、新加坡、澳大利亚、新西兰、马来西亚、泰国、日本、韩国、印度（另含印尼越南菲等见下方工具区）。先把法定底线对齐，勿用一国思路套其他国家。",
+    "Covers Mainland China, Hong Kong, Singapore, Australia, New Zealand, Malaysia, Thailand, Japan, Korea and India (plus Indonesia, Vietnam, Philippines and others in the tools section). Align statutory floors first — do not copy one country’s playbook elsewhere."
   ),
+  hubH2: L("亚太 ER 看板互联", "APAC ER dashboard hub"),
+  hubSub: L("同一套亚太员工关系工具，按用途跳转。", "One APAC ER toolkit — jump by purpose."),
   chipDate: L("资料截止 2026-09", "Updated Sep 2026"),
   chipFloor: L("法定底线 ≠ 公司政策", "Statute ≠ company policy"),
   chipCounsel: L("个案仍需当地律师复核", "Local counsel for live cases"),
@@ -25,22 +28,22 @@ window.ER_UI = {
   ),
   sourcesH2: L("官方法规与权威来源", "Official law and authority links"),
   sourcesSub: L(
-    "办案前先对照<strong>政府/劳工部门</strong>公开文本。以下为七地直达链接；日韩印印尼越菲等见下方按钮进入 14 国索引。",
-    "Check <strong>government / labour authority</strong> sites before acting. Seven markets below; Japan, Korea, India and others via the 14-market index."
+    "办案前先对照<strong>政府/劳工部门</strong>公开文本。十地直达如下；印尼/越南/菲等见 14 国索引按钮。",
+    "Check <strong>government / labour authority</strong> sites before acting. Ten markets below; ID, VN, PH etc. via the 14-market index."
   ),
   sourcesMore14: L("14 国/地区完整官方法规索引", "Full official index — 14 markets"),
-  compareH2: L("七地对照表", "Seven-jurisdiction matrix"),
+  compareH2: L("十地对照表", "Ten-market matrix"),
   compareSub: L(
-    "原稿框架已按现行规则校正：新加坡补列《雇佣法令》；香港有法定遣散费（满24个月裁员）；“无强制、仅有指引”的是新加坡裁员补偿；澳大利亚才是年资阶梯法定 redundancy pay。",
-    "The original framework is corrected to current rules: Singapore’s Employment Act is listed separately; Hong Kong has statutory severance after 24 months on redundancy; “no mandatory payment, guidance only” is Singapore retrenchment benefit; Australia is the NES redundancy-pay scale."
+    "中港台新澳新马泰日韩印核心指标一览。点表头国家可跳转详策。印尼/越南/菲等见下方 14 国工具区。",
+    "Core metrics for CN, HK, SG, AU, NZ, MY, TH, JP, KR and IN. Click a header for that desk. ID, VN, PH and others: 14-country tools below."
   ),
   dim: L("维度", "Topic"),
   casesH2: L("四类日常案件", "Four day-to-day case types"),
   casesSub: L(
-    "先点选案件类型。横条为泛亚太通用路径；下表为七地关键步骤。完整流程图与法规要点见上方「国家详策」。",
-    "Pick a case type. Bar: pan-APAC path; table: seven markets. Full flows and statute detail in Country guides above."
+    "先点选案件类型。横条为泛亚太通用路径；下表为十地关键步骤。完整流程图与法规要点见上方「国家详策」。",
+    "Pick a case type. Bar: pan-APAC path; table: ten markets. Full flows and statute detail in Country guides above."
   ),
-  tipsH3: L("七地关键路径", "Seven-market path"),
+  tipsH3: L("十地关键路径", "Ten-market path"),
   casesMarketCol: L("市场", "Market"),
   casesStepsCol: L("步骤要点", "Key steps"),
   casesHintDetail: L(
@@ -61,8 +64,8 @@ window.ER_UI = {
   blockDispute: L("争议与风险", "Disputes and risk"),
   blockSources: L("主要公开来源", "Primary public sources"),
   footer: L(
-    "APAC Labor & HR Practice Guide · 单页整合：七地详策 + 14 国工具（本页 #tools）· <a href=\"https://roqianebay.github.io/apac-ta-employer-monitor/\" target=\"_blank\" rel=\"noopener\">ER News</a> · 不构成法律意见",
-    "APAC Labor & HR Practice Guide · One page: seven-market desk + 14-country tools (#tools) · <a href=\"https://roqianebay.github.io/apac-ta-employer-monitor/\" target=\"_blank\" rel=\"noopener\">ER News</a> · Not legal advice"
+    "APAC Labor & HR Practice Guide · 十地详策 + 14 国工具 · 看板互联见页首 · 不构成法律意见",
+    "APAC Labor & HR Practice Guide · 10-market desk + 14-country tools · Hub at top · Not legal advice"
   ),
   deskIntro: L("遣散与通知（法定底线）", "Severance and notice (statutory floor)"),
   deskDispute: L("争议出口与仲裁风险", "Disputes and arbitration"),
@@ -701,3 +704,27 @@ window.ER_DATA = {
     }
   ]
 };
+
+window.ER_HUB_LINKS = [
+  {
+    title: L("劳动法 & HR 办案指南", "Labor law & HR practice"),
+    desc: L("十地详策 · 官方索引 · 14 国向导（当前）", "10-market desk · sources · 14-country tools (you are here)"),
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/",
+    current: true
+  },
+  {
+    title: L("ER News V2.0", "ER News V2.0"),
+    desc: L("裁员、补偿、企业 ER 动态与来源链接", "Layoffs, severance, ER news with source links"),
+    href: "https://roqianebay.github.io/apac-ta-employer-monitor/"
+  },
+  {
+    title: L("TA Employer Monitor", "TA Employer Monitor"),
+    desc: L("原版 TA / 雇主政策监测", "Original TA & employer policy monitor"),
+    href: "https://roqianebay.github.io/apac-ta-employer-policy-monitor/"
+  },
+  {
+    title: L("政府政策 Monitor", "Government policy monitor"),
+    desc: L("亚太政府劳动与就业政策追踪", "APAC government labour & employment tracking"),
+    href: "https://roqianebay.github.io/apac-policy-monitor/"
+  }
+];

@@ -68,6 +68,9 @@
     document.documentElement.lang = state.lang === "en" ? "en" : "zh-CN";
     document.title = t(UI.title);
     setText("ui-brand", t(UI.brand));
+    setText("ui-nav-hub", t(UI.navHub));
+    setText("ui-hub-h2", t(UI.hubH2));
+    setText("ui-hub-sub", t(UI.hubSub));
     setText("ui-nav-compare", t(UI.navCompare));
     setText("ui-nav-sources", t(UI.navSources));
     setText("ui-sources-h2", t(UI.sourcesH2));
@@ -130,6 +133,21 @@
       ? `<p>${t(items)}</p>`
       : `<ul class="list">${items.map((i) => `<li>${t(i)}</li>`).join("")}</ul>`;
     return `<div class="block"><h4>${title}</h4>${body}</div>`;
+  }
+
+  function renderHub() {
+    const el = document.getElementById("hub-grid");
+    const list = window.ER_HUB_LINKS || [];
+    if (!el) return;
+    el.innerHTML = list
+      .map((item) => {
+        const tag = item.current ? `<span class="hub-now">${state.lang === "en" ? "Current" : "当前"}</span>` : "";
+        if (item.current) {
+          return `<article class="hub-card is-current card"><h3>${t(item.title)} ${tag}</h3><p class="meta">${t(item.desc)}</p></article>`;
+        }
+        return `<a class="hub-card card" href="${item.href}" target="_blank" rel="noopener noreferrer"><h3>${t(item.title)}<span class="source-ext" aria-hidden="true">↗</span></h3><p class="meta">${t(item.desc)}</p></a>`;
+      })
+      .join("");
   }
 
   function renderSources() {
@@ -290,6 +308,7 @@
 
   function render() {
     renderChrome();
+    renderHub();
     renderMatrix();
     renderSources();
     renderCases();
