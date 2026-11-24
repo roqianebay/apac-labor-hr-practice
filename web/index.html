@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APAC Labor Law &amp; HR Practice Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0c1218;
+      --surface: #151d28;
+      --surface-2: #1e2a3a;
+      --border: #2a3a50;
+      --text: #e8edf4;
+      --muted: #8b9cb3;
+      --accent: #0d9488;
+      --accent-2: #2dd4bf;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --radius: 10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "DM Sans", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; min-height: 100vh; }
+    .header {
+      background: linear-gradient(120deg, #042f2e 0%, #0c1218 60%);
+      border-bottom: 1px solid var(--border);
+      padding: 1.4rem 2rem;
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);
+    }
+    .header-inner { max-width: 1440px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: flex-start; }
+    h1 { font-size: 1.3rem; } h1 span { color: var(--accent-2); }
+    .sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.25rem; }
+    .badge { font-size: 0.72rem; padding: 0.3rem 0.65rem; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+    .badge.phase { border-color: rgba(45,212,191,0.4); color: var(--accent-2); }
+    .container { max-width: 1440px; margin: 0 auto; padding: 1.25rem 2rem 3rem; }
+    .banner {
+      background: rgba(13,148,136,0.08); border: 1px solid rgba(45,212,191,0.25);
+      border-radius: var(--radius); padding: 1rem 1.2rem; font-size: 0.84rem; color: var(--muted); margin-bottom: 1.25rem;
+    }
+  .banner strong { color: var(--text); }
+    .tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .tab { padding: 0.6rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: transparent; color: var(--text); cursor: pointer; font: inherit; font-size: 0.85rem; }
+    .tab:hover { background: var(--surface-2); }
+    .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .panel { display: none; } .panel.active { display: block; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; }
+    .card-hd { padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 0.92rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 1100px; }
+    th, td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; text-align: left; }
+    th { background: var(--surface-2); position: sticky; top: 0; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); }
+    th.country-col { min-width: 118px; }
+    tr.dim-row td:first-child { font-weight: 600; color: var(--accent-2); background: rgba(13,148,136,0.06); position: sticky; left: 0; z-index: 1; }
+    .risk-high { color: #fca5a5; font-weight: 600; }
+    .risk-mid { color: #fcd34d; }
+    .risk-low { color: #86efac; }
+    .diff-high { color: #fca5a5; }
+    .diff-low { color: #86efac; }
+    .country-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem; }
+    .country-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.15rem; }
+    .country-card h3 { font-size: 1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .country-card ul { list-style: none; font-size: 0.82rem; color: var(--muted); }
+    .country-card li { padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
+    .country-card li strong { color: var(--text); display: inline-block; min-width: 7.5rem; }
+    .refs { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.3rem; }
+    .refs a { font-size: 0.76rem; color: #67e8f9; text-decoration: none; }
+    .refs a:hover { text-decoration: underline; }
+    .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 900px) { .case-grid { grid-template-columns: 1fr; } }
+    .case-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+    .case-card h3 { font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--accent-2); }
+    .case-card ol { margin-left: 1.2rem; font-size: 0.82rem; color: var(--muted); }
+    .case-card li { margin-bottom: 0.35rem; }
+    .case-country { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); }
+    .footer { max-width: 1440px; margin: 0 auto; padding: 1rem 2rem 2rem; border-top: 1px solid var(--border); font-size: 0.76rem; color: var(--muted); }
+    select { padding: 0.5rem 0.75rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div>
+        <h1>APAC <span>Labor Law &amp; HR Practice</span> Guide</h1>
+        <p class="sub">员工关系日常 Case · 国别劳动法对比 · 裁员 / 绩效 / 试用期 / 违纪 — Phase 1：法规矩阵</p>
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <span class="badge phase">Phase 1 · 对比 + 官方法规</span>
+        <span class="badge">8 司法辖区</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="banner">
+      <strong>免责声明：</strong>本看板为 ER/HR <strong>实务参考与对比摘要</strong>，不构成法律意见。解除、裁员、违纪与绩效个案须以当地现行法规、判例、劳动合同、员工手册及内部政策为准，并咨询当地劳动法律师。
+      数值与难度评级为<strong>相对印象</strong>（低/中/高），便于跨区域沟通，不替代个案评估。
+    </div>
+
+    <nav class="tabs" role="tablist">
+      <button type="button" class="tab active" data-tab="matrix">国别对比矩阵</button>
+      <button type="button" class="tab" data-tab="detail">各国政策详解</button>
+      <button type="button" class="tab" data-tab="cases">场景指引（概览）</button>
+      <button type="button" class="tab" data-tab="links">官方法规索引</button>
+    </nav>
+
+    <section class="panel active" id="panel-matrix">
+      <div class="card">
+        <div class="card-hd">横向对比（中国大陆 · 香港 · 新加坡 · 澳大利亚 · 新西兰 · 马来西亚 · 泰国）</div>
+        <div class="table-wrap" id="matrixTable"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-detail">
+      <label for="countryPick" style="font-size:0.85rem;color:var(--muted)">筛选国家：</label>
+      <select id="countryPick">
+        <option value="">全部</option>
+      </select>
+      <div class="country-grid" id="countryDetail"></div>
+    </section>
+
+    <section class="panel" id="panel-cases">
+      <p style="font-size:0.84rem;color:var(--muted);margin-bottom:1rem;">Phase 1 提供<strong>通用步骤 + 国别差异提示</strong>；Phase 2 可接入 checklist 模板与文书清单。</p>
+      <div class="case-grid" id="caseGuides"></div>
+    </section>
+
+    <section class="panel" id="panel-links">
+      <div class="country-grid" id="linkIndex"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    APAC Labor &amp; HR Practice · 与 APAC ER News / Policy Monitor 配套使用 · 更新 2026-11-24
+  </footer>
+
+  <script>
+    const CODES = ["CN", "HK", "SG", "AU", "NZ", "MY", "TH"];
+
+    const COUNTRIES = {
+      CN: { flag: "🇨🇳", name: "中国大陆", law: "《劳动合同法》《劳动争议调解仲裁法》等", severance: "经济补偿 N：每满 1 年 1 个月工资（6 个月以上不满 1 年按 1 年；不满 6 个月半个月）；封顶 12 年 × 当地社平 3 倍；违法解除 2N", notice: "提前 30 日书面通知或代通知金（第 40、41 条情形）", probation: "试用期解除：证明不符合录用条件 + 说明（第 39 条）；试用期工资有下限", performance: "难", misconduct: "高", arbitration: "极高", massLayoff: "≥20 人或占 10%+ 需程序（报告、方案）", keyNote: "协商解除（N/N+1）普遍；规章制度民主程序与公示至关重要；封口费协议注意个税与社保", refs: [
+        { t: "中国政府网 — 劳动合同法", u: "https://www.gov.cn/zhengce/2009-12/25/content_1627471.htm" },
+        { t: "人社部 — 政策服务", u: "https://www.mohrss.gov.cn/" }
+      ]},
+      HK: { flag: "🇭🇰", name: "香港", law: "《雇佣条例》(Employment Ordinance) + 普通法", severance: "长期服务金 LSP / 遣散费 Severance（满足条件时）；法定遣散非「N 月」大陆模式；无一般强制法定 severance package 如 Australia", notice: "57 条：按雇用长短 7 天–1 个月预告期或代通知金（与连续性合约期相关）", probation: "中", performance: "低", misconduct: "低-中", arbitration: "低", massLayoff: "无欧盟式集体磋商法；留意《裁员实务守则》及合约", keyNote: "随即解雇（summary dismissal）限于严重违纪；倘有争议多走劳资审裁处/Labour Tribunal", refs: [
+        { t: "劳工处 — Employment Ordinance 概要", u: "https://www.labour.gov.hk/eng/legislat/contentA.htm" },
+        { t: "劳工处 — 终止雇佣", u: "https://www.labour.gov.hk/eng/public/wcp/ConciseGuide/terminate.htm" }
+      ]},
+      SG: { flag: "🇸🇬", name: "新加坡", law: "Employment Act（核心雇员）+ 普通法/合约", severance: "无一般法定 severance 公式；行业惯例 ex-gratia（常按年资周数）；MOM 指引Retrenchment", notice: "EA：citizen/PR 满 3 个月 — 通知 1 天至 4 周（按服务年限）；EP 持有人另须 MOM/ICA", probation: "中", performance: "中", misconduct: "中高", misconductNote: "misconduct 调查程序", arbitration: "中高", massLayoff: "MOM Tripartite Guidelines on Fair Employment — 非核心员工 retrenchment 实践", keyNote: "Wrongful dismissal 可索赔；调查听证会、书面警告链重要；外籍雇员 pass 与时间线", refs: [
+        { t: "MOM — Termination", u: "https://www.mom.gov.sg/employment-practices/termination-of-employment" },
+        { t: "MOM — Retrenchment", u: "https://www.mom.gov.sg/employment-practices/retrenchment" }
+      ]},
+      AU: { flag: "🇦🇺", name: "澳大利亚", law: "Fair Work Act 2009 + National Employment Standards (NES)", severance: "法定 Redundancy pay：按连续服务年限阶梯（最高 16 周，小雇主例外）", notice: "NES 通知期 1–5 周（按年限）；可与 garden leave 结合", probation: "低-中", performance: "中", misconduct: "中", arbitration: "中", massLayoff: "genuine redundancy + consultation（部分 modern award/enterprise agreement 要求）", keyNote: "unfair dismissal 适用人群有最低雇用门槛；小生意雇主规则不同；严重 misconduct 可即时解雇", refs: [
+        { t: "Fair Work — Redundancy", u: "https://www.fairwork.gov.au/ending-employment/redundancy" },
+        { t: "Fair Work — Notice & redundancy pay", u: "https://www.fairwork.gov.au/tools-and-resources/fact-sheets/minimum-workplace-entitlements/redundancy-pay-and-notice" }
+      ]},
+      NZ: { flag: "🇳🇿", name: "新西兰", law: "Employment Relations Act 2000 (ERA)", severance: "无强制 statutory redundancy payment（除非合同/CBA 约定）；侧重程序公正", notice: "合理通知 (reasonable notice)，无固定周数表；看合约、年限、惯例", probation: "中", performance: "中", misconduct: "中", arbitration: "中", massLayoff: "重组需 good faith consultation；大规模留意沟通与选址", keyNote: "personal grievance 常见；90 天试用（trial period，员工≤20 人雇主特殊规则已变）须合同明确", refs: [
+        { t: "Employment NZ — Ending employment", u: "https://www.employment.govt.nz/resolving-problems/types-of-problems/good-employer/end-employment/" },
+        { t: "ERA 2000 (legislation)", u: "https://www.legislation.govt.nz/act/public/2000/0024/latest/DLM58317.html" }
+      ]},
+      MY: { flag: "🇲🇾", name: "马来西亚", law: "Employment Act 1955（2022 修订扩大适用）", severance: "终止/裁员补偿：按服务年限 10 / 15 / 20 天工资/年（不同年限档）", notice: "4–8 周书面通知（视合约与 EA 规定）", probation: "中", performance: "中", misconduct: "中", arbitration: "中", massLayoff: "大规模留意 Industrial Relations Act 与部門指导", keyNote: "外籍雇员 work permit 与 passport；EA 外人员仍受一般合同法约束", refs: [
+        { t: "HRD Corp / MOHR — Employment Act", u: "https://www.mohr.gov.my/index.php/en/employee/employment-act-1955" },
+        { t: "Department of Labour", u: "https://jtksm.mohr.gov.my/" }
+      ]},
+      TH: { flag: "🇹🇭", name: "泰国", law: "Labour Protection Act B.E. 2541 + Labour Relations Act", severance: "解雇遣散费：30 / 60 / 90 / 180 / 300 / 400 天工资（按服务年限阶梯）", notice: "至少 1 个薪资支付期提前通知（或代通知金）", probation: "中", performance: "中", misconduct: "中", arbitration: "中低", massLayoff: "大规模关闭留意特别法与劳工部", keyNote: "无正当理由解雇风险高；书面泰文记录、witness、工会（如有）", refs: [
+        { t: "Thai Labour — 概要 (DLPW)", u: "https://www.doe.go.th/" },
+        { t: "Labour Protection Act 摘要", u: "https://www.ilo.org/dyn/natlex/docs/MONOGRAPH/113907/115291/F1378266037/THA113907.pdf" }
+      ]}
+    };
+
+    const MATRIX = [
+      { dim: "主要法律", values: { CN: "劳动合同法+", HK: "雇佣条例", SG: "Employment Act", AU: "Fair Work Act", NZ: "Employment Relations Act", MY: "Employment Act 1955", TH: "劳动保护法 LPA" }},
+      { dim: "法定遣散费 / 终止金", values: { CN: "N 月工资（法定经济补偿）", HK: "LSP/遣散费（条件适用）", SG: "无强制公式（惯例 ex-gratia）", AU: "Redundancy pay 阶梯", NZ: "无一般法定（靠合同）", MY: "10–20 天/年", TH: "30–400 天阶梯" }},
+      { dim: "通知期（法定/惯例）", values: { CN: "30 天或代通知金", HK: "7 天–1 个月", SG: "1 天–4 周 (EA)", AU: "1–5 周 (NES)", NZ: "合理通知", MY: "4–8 周", TH: "≥1 薪资期" }},
+      { dim: "试用期解除", values: { CN: "中-高（举证录用条件）", HK: "中", SG: "中", AU: "低-中", NZ: "中（trial period 合约）", MY: "中", TH: "中" }},
+      { dim: "绩效解除难度", values: { CN: "高", HK: "低", SG: "中高", AU: "中", NZ: "中", MY: "中", TH: "中" }, css: "diff" },
+      { dim: "违纪解除难度", values: { CN: "高", HK: "低-中", SG: "中", AU: "中", NZ: "中", MY: "中", TH: "中" }, css: "diff" },
+      { dim: "仲裁 / 诉讼风险", values: { CN: "极高", HK: "低", SG: "中高", AU: "中", NZ: "中", MY: "中", TH: "中低" }, css: "risk" }},
+      { dim: "裁员/冗员关键词", values: { CN: "经济性裁员程序", HK: "遣散费/LSP", SG: "Retrenchment", AU: "Genuine redundancy", NZ: "Redundancy consultation", MY: "VSS/补偿", TH: "เลิกจ้าง+遣散" }},
+    ];
+
+    const CASES = [
+      { id: "rif", title: "裁员 / 重组 (RIF)", steps: [
+        "确认业务理由与 headcount 批准（非歧视）",
+        "国别：是否触发 collective consultation / MOM retrenchment / CN 裁员报告",
+        "选定标准（职能/地点/层級）与 selection matrix",
+        "individual / group 沟通日程序与 FAQ",
+        "计算：statutory + company severance + 年假/奖金 pro-rata",
+        "解除协议、保密、竞业、设备归还、签证/社保公积金"
+      ], hints: { CN: "20+ 或 10% 程序；协商 N/N+1", SG: "MOM retrenchment notification（一定规模）", AU: "Genuine redundancy + consultation", HK: "LSP/Severance 资格核对", MY: "EA 补偿天数", TH: "遣散费阶梯" }},
+      { id: "pip", title: "绩效不佳解除", steps: [
+        "合同/政策中的绩效管理与 PIP 条款",
+        "书面 PIP：目标、辅导、复评节点（建议 ≥30–90 天）",
+        "记录 coaching、criteria、员工反馈",
+        "国别：是否允许无过失解除或须支付代通知/补偿",
+        "解除面谈与见证人；保留完整档案"
+      ], hints: { CN: "第 40 条不能胜任 + 培训/调岗仍不能胜任；举证重", HK: "合约 termination clause + 合理程序", SG: "无过失解除通常给 notice/payment", AU: "unfair dismissal risk — 程序公正" }},
+      { id: "prob", title: "试用期", steps: [
+        "确认书面试用期长度合法上限",
+        "录用条件与 KPI 入职时明确",
+        "试用期评估表与中期反馈",
+        "不符合录用条件：书面说明（CN 尤重要）",
+        "解除通知期（可能短于正式期）"
+      ], hints: { CN: "39 条：不符合录用条件；勿混淆与 40 条", NZ: "Trial period 须在雇佣协议载明", AU: "Minimum employment period 影响 unfair dismissal" }},
+      { id: "disc", title: "违纪 / Misconduct", steps: [
+        "暂停职务调查（paid suspension 视国别）",
+        "指控书、证据链、面谈记录、代表权（工会）",
+        "分级处分：警告 → 最后警告 → 解除",
+        "严重违纪：是否允许 summary dismissal",
+        "解除决定书面化；申诉渠道"
+      ], hints: { CN: "规章制度民主程序 + 严重性举证", HK: "summary dismissal 仅限严重", SG: "inquiry 程序降低 wrongful dismissal", AU: "serious misconduct 可即时解雇" }}
+    ];
+
+    function cssClass(val, type) {
+      if (type === "risk") {
+        if (/极高|高/.test(val) && !/中高|中低/.test(val)) return "risk-high";
+        if (/中/.test(val)) return "risk-mid";
+        return "risk-low";
+      }
+      if (type === "diff") {
+        if (/高/.test(val)) return "diff-high";
+        if (/低/.test(val)) return "diff-low";
+        return "";
+      }
+      return "";
+    }
+
+    function renderMatrix() {
+      const hdr = CODES.map(c => `<th class="country-col">${COUNTRIES[c].flag} ${COUNTRIES[c].name}</th>`).join("");
+      const rows = MATRIX.map(row => {
+        const cells = CODES.map(c => {
+          const v = row.values[c] || "—";
+          const cls = row.css ? cssClass(v, row.css) : "";
+          return `<td class="${cls}">${v}</td>`;
+        }).join("");
+        return `<tr class="dim-row"><td>${row.dim}</td>${cells}</tr>`;
+      }).join("");
+      document.getElementById("matrixTable").innerHTML =
+        `<table><thead><tr><th>维度</th>${hdr}</tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    function renderDetail(filter) {
+      document.getElementById("countryDetail").innerHTML = CODES.filter(c => !filter || c === filter).map(c => {
+        const x = COUNTRIES[c];
+        const refs = x.refs.map(r => `<a href="${r.u}" target="_blank" rel="noopener">${r.t}</a>`).join("");
+        return `<article class="country-card" data-code="${c}">
+          <h3>${x.flag} ${x.name}</h3>
+          <ul>
+            <li><strong>主要法律</strong>${x.law}</li>
+            <li><strong>法定遣散/补偿</strong>${x.severance}</li>
+            <li><strong>通知期</strong>${x.notice}</li>
+            <li><strong>试用期</strong>难度 ${typeof x.probation === "string" ? x.probation : "见政策"}</li>
+            <li><strong>绩效解除</strong>相对难度 <span class="${cssClass(x.performance, "diff")}">${x.performance}</span></li>
+            <li><strong>违纪解除</strong>相对难度 <span class="${cssClass(x.misconduct, "diff")}">${x.misconduct}</span></li>
+            <li><strong>仲裁/争议风险</strong><span class="${cssClass(x.arbitration, "risk")}">${x.arbitration}</span></li>
+            <li><strong>批量裁员</strong>${x.massLayoff}</li>
+            <li><strong>ER 实务要点</strong>${x.keyNote}</li>
+          </ul>
+          <div class="refs">${refs}</div>
+        </article>`;
+      }).join("");
+    }
+
+    function renderCases() {
+      document.getElementById("caseGuides").innerHTML = CASES.map(cs => {
+        const hints = CODES.map(c => `${COUNTRIES[c].flag} ${COUNTRIES[c].name}：${cs.hints[c] || "依合约与当地法"}`).join("<br>");
+        const steps = cs.steps.map(s => `<li>${s}</li>`).join("");
+        return `<article class="case-card"><h3>${cs.title}</h3><ol>${steps}</ol><div class="case-country"><strong>国别差异提示</strong><br>${hints}</div></article>`;
+      }).join("");
+    }
+
+    function renderLinks() {
+      document.getElementById("linkIndex").innerHTML = CODES.map(c => {
+        const x = COUNTRIES[c];
+        const refs = x.refs.map(r => `<a href="${r.u}" target="_blank" rel="noopener">${r.t}</a>`).join("");
+        return `<article class="country-card"><h3>${x.flag} ${x.name}</h3><div class="refs">${refs}</div></article>`;
+      }).join("");
+    }
+
+    document.querySelectorAll(".tab").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("panel-" + btn.dataset.tab).classList.add("active");
+      });
+    });
+
+    const pick = document.getElementById("countryPick");
+    CODES.forEach(c => {
+      const o = document.createElement("option");
+      o.value = c;
+      o.textContent = COUNTRIES[c].name;
+      pick.appendChild(o);
+    });
+    pick.addEventListener("change", () => renderDetail(pick.value));
+
+    renderMatrix();
+    renderDetail("");
+    renderCases();
+    renderLinks();
+  </script>
+</body>
+</html>
