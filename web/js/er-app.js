@@ -68,6 +68,7 @@
     document.documentElement.lang = state.lang === "en" ? "en" : "zh-CN";
     document.title = t(UI.title);
     setText("ui-brand", t(UI.brand));
+    setText("ui-nav-index", t(UI.navIndex));
     setText("ui-nav-hub", t(UI.navHub));
     setText("ui-hub-h2", t(UI.hubH2));
     setText("ui-hub-sub", t(UI.hubSub));

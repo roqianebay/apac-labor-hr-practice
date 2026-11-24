@@ -205,6 +205,10 @@ th .th-link.is-on, td.is-on { background: #f3eee3; }
 .chip-step b { color: var(--accent); margin-right: 2px; }
 .cases-hint { margin: 12px 0 0; }
 
+.nav-home {
+  font-weight: 600;
+  color: var(--accent) !important;
+}
 .hub-section { padding-top: 8px; }
 .hub-grid {
   display: grid; gap: 14px;

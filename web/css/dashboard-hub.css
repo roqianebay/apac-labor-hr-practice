@@ -1,0 +1,96 @@
+.dash-hero {
+  padding: 28px 0 8px;
+}
+.dash-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(1.65rem, 3vw, 2.15rem);
+  margin: 0.35rem 0 0.75rem;
+  letter-spacing: -0.02em;
+}
+.dash-section { padding: 12px 0 48px; }
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+.dash-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 1.25rem 1.35rem;
+  min-height: 100%;
+}
+.dash-card.is-primary {
+  border: 2px solid var(--accent-2);
+  background: linear-gradient(165deg, #f0faf7 0%, var(--card) 55%);
+  grid-column: 1 / -1;
+}
+@media (min-width: 900px) {
+  .dash-card.is-primary {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .dash-card.is-primary .dash-pitch,
+  .dash-card.is-primary .dash-list { flex: 1 1 45%; }
+  .dash-card.is-primary .dash-cta { margin-left: auto; align-self: flex-end; }
+}
+.dash-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.dash-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.dash-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--ink-soft);
+}
+.dash-badge.primary {
+  background: var(--accent-2);
+  color: #fff;
+}
+.dash-pitch {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+.dash-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+.dash-list li { margin-bottom: 0.35rem; }
+.dash-cta {
+  display: inline-block;
+  margin-top: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: var(--accent-2);
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  width: fit-content;
+}
+.dash-cta:hover { filter: brightness(1.06); }
+.dash-ext { font-size: 0.85em; opacity: 0.7; }
+.nav-home {
+  font-weight: 600;
+  color: var(--accent) !important;
+}
+.topbar .nav a.nav-current {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

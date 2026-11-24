@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>APAC ER 看板总索引</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/dashboard-hub.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand"><span class="mark"></span><span id="ui-brand">APAC ER Toolkit</span></div>
+      <div class="top-actions">
+        <nav class="nav">
+          <a href="./er-dashboards.html" class="nav-current" id="ui-nav-index">总索引</a>
+          <a href="./index.html" id="ui-nav-labor">流程与劳动法</a>
+        </nav>
+        <div class="lang-switch" role="group" id="lang-switch" aria-label="Language">
+          <button type="button" data-lang="zh" class="active">中文</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="dash-hero">
+      <div class="kicker" id="ui-kicker"></div>
+      <h1 id="ui-title"></h1>
+      <p class="lede" id="ui-lede"></p>
+    </section>
+
+    <p class="notice" id="ui-notice"></p>
+
+    <section class="dash-section">
+      <h2 id="ui-section-h2"></h2>
+      <p class="sub" id="ui-section-sub"></p>
+      <div class="dash-grid" id="dash-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p id="ui-foot"></p>
+  </footer>
+
+  <script src="js/dashboard-hub-data.js"></script>
+  <script src="js/dashboard-hub-app.js"></script>
+</body>
+</html>

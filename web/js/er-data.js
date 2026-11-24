@@ -9,6 +9,7 @@ window.ER_UI = {
   navSources: L("官方索引", "Official sources"),
   navCases: L("四类案件", "Case types"),
   navCountries: L("国家详策", "Country guides"),
+  navIndex: L("总索引", "Index"),
   navHub: L("看板互联", "Dashboard hub"),
   navTools: L("14 国向导与手册", "14-country wizard"),
   kicker: L("亚太 ER 劳动关系办案指南", "APAC ER case-handling guide"),
@@ -707,8 +708,13 @@ window.ER_DATA = {
 
 window.ER_HUB_LINKS = [
   {
-    title: L("劳动法 & HR 办案指南", "Labor law & HR practice"),
-    desc: L("十地详策 · 官方索引 · 14 国向导（当前）", "10-market desk · sources · 14-country tools (you are here)"),
+    title: L("看板总索引", "Dashboard index"),
+    desc: L("介绍各看板用途与跳转（推荐入口）", "What each board does — recommended entry"),
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/er-dashboards.html"
+  },
+  {
+    title: L("APAC ER Process & Labor Law", "APAC ER Process & Labor Law"),
+    desc: L("十地详策 · 官方法规 · 14 国向导（当前）", "10-market desk · official sources · 14-country tools (you are here)"),
     href: "https://roqianebay.github.io/apac-labor-hr-practice/",
     current: true
   },
