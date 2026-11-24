@@ -736,6 +736,6 @@ window.ER_HUB_LINKS = [
   {
     title: L("APAC Statutory Benefits", "APAC Statutory Benefits"),
     desc: L("法定福利对照：年假、病假、社保、医保等", "Statutory benefits: leave, insurance, medical, OT"),
-    href: "https://roqianebay.github.io/apac-benefits-monitor/"
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/"
   }
 ];

@@ -102,7 +102,7 @@ window.DASH_HUB_BOARDS = [
       L("官方法规入口链接", "Official source links"),
       L("中英切换", "ZH/EN toggle")
     ],
-    href: "https://roqianebay.github.io/apac-benefits-monitor/",
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/",
     ext: true
   }
 ];
