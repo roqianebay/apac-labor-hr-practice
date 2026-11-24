@@ -1,6 +1,6 @@
 # APAC Labor Law & HR Practice Guide
 
-亚太 ER 劳动法对比与 HR 实务看板（Phase 2：14 国/地区 + Case Checklist + CSV 导出）。
+亚太 ER 劳动法与 HR 办案看板（Phase 3：办案向导、违纪调查手册、PIP 手册、14 国 + Checklist）。
 
 **公网：** https://roqianebay.github.io/apac-labor-hr-practice/
 

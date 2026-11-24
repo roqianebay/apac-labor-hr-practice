@@ -86,6 +86,17 @@
     .check-grid ul { margin-left: 1.1rem; }
     .check-grid li { margin-bottom: 0.25rem; }
     .hub-links a { color: #67e8f9; margin-right: 0.75rem; font-size: 0.8rem; }
+    .plain-intro { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; line-height: 1.55; }
+    .phase-block { background: var(--surface-2); border-radius: 8px; padding: 0.85rem; margin-bottom: 0.65rem; border-left: 3px solid var(--accent); }
+    .phase-head { font-size: 0.88rem; margin-bottom: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+    .phase-days { font-size: 0.72rem; color: var(--muted); font-family: "JetBrains Mono", monospace; }
+    .role-tag { font-size: 0.68rem; padding: 0.15rem 0.45rem; border-radius: 4px; background: rgba(13,148,136,0.2); color: var(--accent-2); }
+    .warn-box { font-size: 0.78rem; color: #fcd34d; margin-top: 0.4rem; padding: 0.4rem 0.5rem; background: rgba(245,158,11,0.08); border-radius: 6px; }
+    .legal-hint { font-size: 0.78rem; color: #fca5a5; margin-top: 0.35rem; }
+    .country-addon { margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border); }
+    .big-list { margin-left: 1.2rem; font-size: 0.85rem; color: var(--muted); }
+    .big-list li { margin-bottom: 0.35rem; }
+    .tab.highlight { border-color: var(--accent-2); }
   </style>
 </head>
 <body>
@@ -93,10 +104,10 @@
     <div class="header-inner">
       <div>
         <h1>APAC <span>Labor Law &amp; HR Practice</span> Guide</h1>
-        <p class="sub">员工关系日常 Case · 14 国/地区劳动法对比 · 裁员 / 绩效 / 试用期 / 违纪 Checklist</p>
+        <p class="sub">不懂各国法律也能跟流程 · 调查 / PIP / 裁员 / 试用 / 违纪 · 14 国逐步指引</p>
       </div>
       <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-        <span class="badge phase">Phase 2</span>
+        <span class="badge phase">Phase 3 · HR 办案版</span>
         <span class="badge">14 司法辖区</span>
       </div>
     </div>
@@ -106,6 +117,7 @@
     <div class="banner">
       <strong>免责声明：</strong>本看板为 ER/HR <strong>实务参考与对比摘要</strong>，不构成法律意见。解除、裁员、违纪与绩效个案须以当地现行法规、判例、劳动合同、员工手册及内部政策为准，并咨询当地劳动法律师。
       数值与难度评级为<strong>相对印象</strong>（低/中/高），便于跨区域沟通，不替代个案评估。
+      建议从 <strong>「HR 办案向导」</strong> 选国家 + 场景，按步骤执行；违纪与绩效请用专用调查 / PIP 手册。
       <div class="hub-links" style="margin-top:0.6rem">
         配套看板：
         <a href="https://roqianebay.github.io/apac-labor-hr-practice/" target="_blank" rel="noopener">劳动法（本站）</a>
@@ -116,14 +128,50 @@
     </div>
 
     <nav class="tabs" role="tablist">
-      <button type="button" class="tab active" data-tab="matrix">国别对比矩阵</button>
-      <button type="button" class="tab" data-tab="detail">各国政策详解</button>
+      <button type="button" class="tab active highlight" data-tab="wizard">HR 办案向导</button>
+      <button type="button" class="tab highlight" data-tab="investigation">违纪调查手册</button>
+      <button type="button" class="tab highlight" data-tab="pip-manual">绩效 PIP 手册</button>
       <button type="button" class="tab" data-tab="checklist">Case Checklist</button>
-      <button type="button" class="tab" data-tab="cases">场景指引（概览）</button>
+      <button type="button" class="tab" data-tab="matrix">国别对比矩阵</button>
+      <button type="button" class="tab" data-tab="detail">各国政策详解</button>
+      <button type="button" class="tab" data-tab="glossary">名词白话</button>
+      <button type="button" class="tab" data-tab="cases">四类场景概览</button>
       <button type="button" class="tab" data-tab="links">官方法规索引</button>
     </nav>
 
-    <section class="panel active" id="panel-matrix">
+    <section class="panel active" id="panel-wizard">
+      <p class="plain-intro">第一步：选择<strong>员工所在国家/地区</strong>和<strong>你在办的事</strong>，系统会给出「先做什么、谁负责、何时找律师」。</p>
+      <div class="toolbar">
+        <label style="font-size:0.85rem;color:var(--muted)">国家/地区</label>
+        <select id="wizardCountry"></select>
+        <label style="font-size:0.85rem;color:var(--muted)">场景</label>
+        <select id="wizardCase">
+          <option value="disc">违纪 / 调查 / 解除</option>
+          <option value="pip">绩效不佳 / PIP</option>
+          <option value="rif">裁员 / 重组</option>
+          <option value="prob">试用期解除</option>
+        </select>
+      </div>
+      <div id="wizardBody"></div>
+    </section>
+
+    <section class="panel" id="panel-investigation">
+      <p class="plain-intro">完整 <strong>Investigation</strong>：从举报到决定，含证据、面谈、处分梯度。先选国家叠加当地要求。</p>
+      <div class="toolbar"><label style="font-size:0.85rem;color:var(--muted)">国家</label><select id="invCountry"></select></div>
+      <div id="invBody"></div>
+    </section>
+
+    <section class="panel" id="panel-pip-manual">
+      <p class="plain-intro">完整 <strong>绩效管理 + PIP</strong>：避免「突然解雇」印象，降低仲裁风险。</p>
+      <div class="toolbar"><label style="font-size:0.85rem;color:var(--muted)">国家</label><select id="pipCountry"></select></div>
+      <div id="pipBody"></div>
+    </section>
+
+    <section class="panel" id="panel-glossary">
+      <div class="country-grid" id="glossaryBody"></div>
+    </section>
+
+    <section class="panel" id="panel-matrix">
       <div class="card">
         <div class="card-hd">
           <span>亚太 14 国/地区横向对比（可左右滚动）</span>
@@ -168,7 +216,7 @@
   </main>
 
   <footer class="footer">
-    APAC Labor &amp; HR Practice Phase 2 · 更新 2026-11-24
+    APAC Labor &amp; HR Practice Phase 3 · 更新 2026-11-24
   </footer>
 
   <script>
@@ -382,7 +430,7 @@
       const x = COUNTRIES[code];
       const pack = (CHECKLISTS[caseId] && CHECKLISTS[caseId][code]) || defaultChecklist(caseId, code);
       const hint = (CASES.find(c => c.id === caseId) || {}).hints || {};
-      document.getElementById("checklistBody").innerHTML = `<article class="checklist-card" id="activeChecklist">
+      let html = `<article class="checklist-card" id="activeChecklist">
         <h3>${CASE_LABELS[caseId]} · ${x.flag} ${x.name}</h3>
         <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">${hint[code] || x.keyNote}</p>
         <div class="check-grid">
@@ -392,6 +440,8 @@
           </div>
         </div>
       </article>`;
+      if (window.enrichChecklist) html = enrichChecklist(html, caseId, code);
+      document.getElementById("checklistBody").innerHTML = html;
     }
 
     function exportMatrixCsv() {
@@ -449,5 +499,7 @@
     renderLinks();
     renderChecklist();
   </script>
+  <script src="er-playbooks.js"></script>
+  <script>initPlaybooks();</script>
 </body>
 </html>
