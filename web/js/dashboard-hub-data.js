@@ -104,5 +104,20 @@ window.DASH_HUB_BOARDS = [
     ],
     href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/",
     ext: true
+  },
+  {
+    id: "leave",
+    title: L("APAC Leave &amp; Holidays Monitor", "APAC Leave &amp; Holidays Monitor"),
+    pitch: L(
+      "法定公休 · 年假 · 病假及各类休假<strong>分国分栏详表</strong>。",
+      "Public holidays · annual &amp; sick leave · <strong>per-country detail</strong>."
+    ),
+    bullets: [
+      L("总览矩阵 + 分国展开 + 分类对照", "Overview matrix · country detail · by category"),
+      L("14 个亚太市场", "14 APAC markets"),
+      L("中英切换", "ZH/EN toggle")
+    ],
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/leave-monitor/",
+    ext: true
   }
 ];

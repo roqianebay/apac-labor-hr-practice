@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APAC Leave &amp; Holidays Monitor</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1419; --surface: #1a2332; --surface-2: #243044; --border: #2d3a4f;
+      --text: #e8edf4; --text-muted: #8b9cb3; --accent: #6366f1; --accent-light: #a5b4fc;
+      --green: #22c55e; --radius: 10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "DM Sans", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
+    .header { background: linear-gradient(135deg, #12102a 0%, #2a2850 50%, #0f1419 100%); border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; position: sticky; top: 0; z-index: 50; }
+    .header-inner { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+    .logo-block h1 { font-size: 1.35rem; font-weight: 700; }
+    .logo-block h1 span { color: var(--accent-light); }
+    .logo-block p { color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem; }
+    .header-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .badge { font-size: 0.75rem; padding: 0.35rem 0.75rem; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-muted); }
+    .badge.live { color: var(--green); }
+    .lang-switch { display: flex; gap: 4px; border: 1px solid var(--border); border-radius: 999px; padding: 2px; background: var(--surface-2); }
+    .lang-switch button { border: 0; background: transparent; color: var(--text-muted); font: inherit; font-size: 0.75rem; padding: 0.35rem 0.65rem; border-radius: 999px; cursor: pointer; }
+    .lang-switch button.active { background: var(--accent); color: #fff; font-weight: 600; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
+    .intro-banner { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; font-size: 0.84rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+    .stat-card .label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; }
+    .stat-card .value { font-size: 1.5rem; font-weight: 700; color: var(--accent-light); }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
+    .toolbar input, .toolbar select { background: var(--surface-2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 0.5rem 0.75rem; font: inherit; font-size: 0.85rem; }
+    .toolbar input { flex: 1; min-width: 180px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .tab-btn { border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); padding: 0.5rem 1rem; border-radius: 999px; cursor: pointer; font: inherit; font-size: 0.85rem; }
+    .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; }
+    .card-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
+    .card-header h2 { font-size: 1rem; }
+    .card-header .sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+    th, td { border-bottom: 1px solid var(--border); padding: 0.5rem; vertical-align: top; }
+    th { background: var(--surface-2); color: var(--text-muted); font-weight: 600; position: sticky; top: 0; }
+    tr.hidden { display: none; }
+    .topic-col { min-width: 120px; font-weight: 600; color: var(--accent-light); }
+    .table-wrap { overflow: auto; max-height: 70vh; }
+    .country-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; padding: 1.25rem; }
+    .country-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: var(--surface-2); }
+    .country-card.hidden { display: none; }
+    .country-card h3 { font-size: 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .leave-block { margin-bottom: 1rem; font-size: 0.82rem; }
+    .leave-block h4 { font-size: 0.78rem; color: var(--accent-light); margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.03em; }
+    .leave-block .sum { color: var(--text); margin-bottom: 0.35rem; }
+    .leave-block ul { margin-left: 1.1rem; color: var(--text-muted); font-size: 0.8rem; }
+    .leave-block li { margin-bottom: 0.2rem; }
+    .cat-panel { padding: 1.25rem; }
+    .cat-block { margin-bottom: 1.5rem; }
+    .cat-block h3 { font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--accent-light); }
+    .cat-row { display: grid; grid-template-columns: 140px 1fr; gap: 0.5rem 1rem; font-size: 0.82rem; padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
+    .cat-row.hidden { display: none; }
+    .cat-row .m { font-weight: 600; color: var(--text); }
+    .cat-row .v { color: var(--text-muted); }
+    .source-links { padding: 1.25rem; font-size: 0.84rem; }
+    .source-links a { color: var(--accent-light); display: block; margin-bottom: 0.35rem; }
+    .footer { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--text-muted); }
+    .hub-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
+    .hub-footer a { color: var(--accent-light); }
+  </style>
+  <script src="js/leave-lang.js"></script>
+  <script src="js/leave-data.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo-block">
+        <h1>APAC <span>Leave &amp; Holidays</span> Monitor</h1>
+        <p id="ui-subtitle"></p>
+      </div>
+      <div class="header-meta">
+        <div class="lang-switch" id="lang-switch" role="group">
+          <button type="button" data-lang="zh" class="active">中文</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+        <span class="badge live" id="ui-live"></span>
+        <span class="badge">2026-11-24</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="intro-banner" id="ui-intro"></div>
+    <section class="stats-grid" id="statsGrid"></section>
+    <div class="toolbar">
+      <input type="search" id="searchInput" />
+      <select id="countryFilter"><option value=""></option></select>
+      <select id="categoryFilter"><option value=""></option></select>
+    </div>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="overview" id="ui-tab-overview"></button>
+      <button class="tab-btn" data-tab="countries" id="ui-tab-countries"></button>
+      <button class="tab-btn" data-tab="categories" id="ui-tab-categories"></button>
+      <button class="tab-btn" data-tab="sources" id="ui-tab-sources"></button>
+    </nav>
+
+    <section class="panel active" id="panel-overview">
+      <div class="card">
+        <div class="card-header">
+          <h2 id="ui-overview-h2"></h2>
+          <p class="sub" id="ui-overview-sub"></p>
+        </div>
+        <div class="table-wrap">
+          <table><thead id="matrixHead"></thead><tbody id="matrixBody"></tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-countries">
+      <div class="card">
+        <div class="card-header"><h2 id="ui-countries-h2"></h2></div>
+        <div class="country-grid" id="countryGrid"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-categories">
+      <div class="card">
+        <div class="card-header"><h2 id="ui-categories-h2"></h2></div>
+        <div class="cat-panel" id="categoryPanel"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-sources">
+      <div class="card">
+        <div class="card-header"><h2 id="ui-sources-h2"></h2></div>
+        <div class="source-links" id="sourcePanel"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span id="ui-foot"></span>
+    <div class="hub-footer">
+      <a href="../er-dashboards.html" id="ui-hub-index">总索引</a>
+      <a href="../index.html" id="ui-hub-labor">流程与劳动法</a>
+      <a href="../benefits-monitor/" id="ui-hub-benefits">法定福利</a>
+    </div>
+  </footer>
+
+  <script>
+    const MARKETS = window.LEAVE_MARKETS;
+    const CATS = window.LEAVE_CATEGORIES;
+
+    function getFilter() {
+      return {
+        q: (document.getElementById("searchInput").value || "").trim().toLowerCase(),
+        country: document.getElementById("countryFilter").value,
+        category: document.getElementById("categoryFilter").value
+      };
+    }
+
+    function detailBullets(item) {
+      const LL = window.LeaveLang;
+      const list = LL && LL.lang === "en" && item.detailsEn ? item.detailsEn : item.details;
+      return (list || []).map((x) => `<li>${x}</li>`).join("");
+    }
+
+    function renderLeaveStats() {
+      const LL = window.LeaveLang;
+      document.getElementById("statsGrid").innerHTML = `
+        <div class="stat-card"><div class="label">${LL ? LL.t(LL.UI.statMarkets) : "Markets"}</div><div class="value">${MARKETS.length}</div></div>
+        <div class="stat-card"><div class="label">${LL ? LL.t(LL.UI.statCats) : "Types"}</div><div class="value">${CATS.length}</div></div>`;
+    }
+
+    function fillLeaveFilters() {
+      const LL = window.LeaveLang;
+      const cf = document.getElementById("countryFilter");
+      const catf = document.getElementById("categoryFilter");
+      const cv = cf.value;
+      const catv = catf.value;
+      cf.innerHTML = `<option value="">${LL ? LL.t(LL.UI.filterMarket) : "All"}</option>` +
+        MARKETS.map((m) => `<option value="${m.code}">${LL ? LL.marketName(m) : m.nameZh}</option>`).join("");
+      catf.innerHTML = `<option value="">${LL ? LL.t(LL.UI.filterCat) : "All"}</option>` +
+        CATS.map((c) => `<option value="${c.id}">${LL ? LL.t(c.label) : c.id}</option>`).join("");
+      cf.value = cv;
+      catf.value = catv;
+    }
+    window.fillLeaveFilters = fillLeaveFilters;
+
+    function renderMatrix(f) {
+      const LL = window.LeaveLang;
+      const col = LL ? LL.t(LL.UI.colType) : "Type";
+      document.getElementById("matrixHead").innerHTML =
+        `<tr><th class="topic-col">${col}</th>${MARKETS.map((m) =>
+          `<th>${m.flag} ${LL ? LL.marketName(m) : m.nameZh}</th>`).join("")}</tr>`;
+      document.getElementById("matrixBody").innerHTML = CATS.map((cat) => {
+        const rowText = MARKETS.map((m) => {
+          const it = m.items.find((x) => x.cat === cat.id);
+          return it ? (LL ? LL.itemField(it, "summary") : it.summary) : "";
+        }).join(" ");
+        const hide = (f.category && f.category !== cat.id) || (f.q && !rowText.toLowerCase().includes(f.q));
+        const cells = MARKETS.map((m) => {
+          if (f.country && f.country !== m.code) return "<td>—</td>";
+          const it = m.items.find((x) => x.cat === cat.id);
+          if (!it) return "<td>—</td>";
+          return `<td>${LL ? LL.itemField(it, "summary") : it.summary}</td>`;
+        }).join("");
+        return `<tr class="${hide ? "hidden" : ""}"><td class="topic-col">${LL ? LL.catLabel(cat.id) : cat.id}</td>${cells}</tr>`;
+      }).join("");
+    }
+
+    function renderCountries(f) {
+      const LL = window.LeaveLang;
+      document.getElementById("countryGrid").innerHTML = MARKETS.map((m) => {
+        const blob = JSON.stringify(m).toLowerCase();
+        const matchC = !f.country || f.country === m.code;
+        const matchQ = !f.q || blob.includes(f.q);
+        if (!matchC || !matchQ) return `<article class="country-card hidden"></article>`;
+        const blocks = m.items.filter((it) => !f.category || f.category === it.cat).map((it) => `
+          <div class="leave-block">
+            <h4>${LL ? LL.catLabel(it.cat) : it.cat}</h4>
+            <div class="sum">${LL ? LL.itemField(it, "summary") : it.summary}</div>
+            <ul>${detailBullets(it)}</ul>
+          </div>`).join("");
+        return `<article class="country-card"><h3>${m.flag} ${LL ? LL.marketName(m) : m.nameZh}</h3>${blocks}</article>`;
+      }).join("");
+    }
+
+    function renderCategories(f) {
+      const LL = window.LeaveLang;
+      document.getElementById("categoryPanel").innerHTML = CATS.filter((cat) => !f.category || f.category === cat.id).map((cat) => {
+        const rows = MARKETS.map((m) => {
+          const it = m.items.find((x) => x.cat === cat.id);
+          if (!it) return "";
+          const text = (LL ? LL.itemField(it, "summary") : it.summary) + detailBullets(it);
+          const hide = (f.country && f.country !== m.code) || (f.q && !text.toLowerCase().includes(f.q));
+          return `<div class="cat-row ${hide ? "hidden" : ""}"><span class="m">${m.flag} ${LL ? LL.marketName(m) : m.nameZh}</span><span class="v">${LL ? LL.itemField(it, "summary") : it.summary}</span></div>`;
+        }).join("");
+        return `<div class="cat-block"><h3>${LL ? LL.catLabel(cat.id) : cat.id}</h3>${rows}</div>`;
+      }).join("");
+    }
+
+    function renderLeaveSources() {
+      const LL = window.LeaveLang;
+      document.getElementById("sourcePanel").innerHTML = MARKETS.map((m) =>
+        `<div style="margin-bottom:1rem"><strong>${m.flag} ${LL ? LL.marketName(m) : m.nameZh}</strong>` +
+        (m.sources || []).map((s) => {
+          const t = LL && LL.lang === "en" && s.titleEn ? s.titleEn : s.title;
+          return `<a href="${s.url}" target="_blank" rel="noopener noreferrer">${t}</a>`;
+        }).join("") + "</div>"
+      ).join("");
+    }
+    window.renderLeaveSources = renderLeaveSources;
+
+    function applyLeaveFilters() {
+      const f = getFilter();
+      renderMatrix(f);
+      renderCountries(f);
+      renderCategories(f);
+    }
+    window.applyLeaveFilters = applyLeaveFilters;
+    window.renderLeaveStats = renderLeaveStats;
+
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+        document.querySelectorAll(".panel").forEach((p) => p.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("panel-" + btn.dataset.tab).classList.add("active");
+      });
+    });
+    ["searchInput", "countryFilter", "categoryFilter"].forEach((id) => {
+      const el = document.getElementById(id);
+      el.addEventListener("input", applyLeaveFilters);
+      el.addEventListener("change", applyLeaveFilters);
+    });
+
+    fillLeaveFilters();
+    if (window.LeaveLang) LeaveLang.init();
+    else { renderLeaveStats(); applyLeaveFilters(); renderLeaveSources(); }
+  </script>
+</body>
+</html>
