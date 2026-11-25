@@ -102,7 +102,7 @@ window.DASH_HUB_BOARDS = [
       L("页面索引（搜索/芯片）· 默认总览 + EN", "Page index (search/chips) · default Overview + EN"),
       L("社保 · 医保 · 退休 · 加班等 9 大类", "9 topics: social insurance, medical, pension, OT, etc.")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261126-benefits",
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261126-benefits2",
     ext: true
   },
   {
