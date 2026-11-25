@@ -2,11 +2,23 @@ function L(zh, en) {
   return { zh, en };
 }
 
-window.LEAVE_DATA_VERSION = "2026-11-26-matrix-focus";
+window.LEAVE_DATA_VERSION = "2026-11-26-matrix-split";
 
-/** Overview matrix columns only (VN/ID excluded); order = priority for eBay APAC footprint */
-window.LEAVE_MATRIX_CODES = ["CN", "AU", "SG", "MY", "HK", "NZ", "TW", "JP", "KR", "TH", "PH", "IN"];
-window.LEAVE_MATRIX_FOCUS = ["CN", "AU", "SG", "MY"];
+/** Overview: two matrix tables (see leave-monitor/index.html) */
+window.LEAVE_MATRIX_GROUPS = [
+  {
+    id: "set1",
+    title: L("亚太国家第一部分", "APAC markets (part 1)"),
+    codes: ["CN", "HK", "TW", "SG", "AU", "NZ"]
+  },
+  {
+    id: "set2",
+    title: L("其他亚太国家", "Other APAC markets"),
+    codes: ["JP", "KR", "IN", "ID", "VN", "PH"]
+  }
+];
+window.LEAVE_MATRIX_CODES = ["CN", "HK", "TW", "SG", "AU", "NZ", "JP", "KR", "IN", "ID", "VN", "PH"];
+window.LEAVE_MATRIX_FOCUS = ["CN", "AU", "SG"];
 
 window.POLICY_SPOTLIGHTS = [
   {

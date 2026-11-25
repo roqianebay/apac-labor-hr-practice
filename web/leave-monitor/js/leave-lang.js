@@ -27,12 +27,12 @@
     tabSources: L("官方来源", "Official sources"),
     overviewH2: L("休假类型对照矩阵", "Leave-type comparison matrix"),
     overviewSub: L(
-      "矩阵<strong>不含越南、印尼</strong>；列顺序突出<strong>中国大陆、澳大利亚、新加坡、马来西亚</strong>，并含港台日韩等对照。完整表述见「分国详表」。",
-      "Matrix <strong>excludes Vietnam and Indonesia</strong>; columns prioritise <strong>China, Australia, Singapore and Malaysia</strong>, plus HK, NZ, TW, JP, KR, TH, PH and IN. Full detail in By country."
+      "下表分两块：<strong>亚太国家第一部分</strong>为中国大陆、香港、台湾、新加坡、澳大利亚、新西兰；<strong>其他亚太国家</strong>为日本、韩国、印度、印尼、越南、菲律宾。完整表述见「分国详表」（马来西亚、泰国等亦在详表）。",
+      "Two tables: <strong>APAC set 1</strong> (CN, HK, TW, SG, AU, NZ) and <strong>other APAC</strong> (JP, KR, IN, ID, VN, PH). Malaysia, Thailand and others under By country."
     ),
     matrixHint: L(
-      "提示：矩阵为简写；高亮列为核心市场。公共假日请以分国卡片及官方年度历为准。越南/印尼数据仅在分国详表。",
-      "Tip: matrix is abbreviated; highlighted columns are core markets. Use country cards for official calendars. Vietnam/Indonesia appear only under By country."
+      "提示：矩阵为简写；中国大陆、澳大利亚、新加坡列高亮。公共假日请以分国卡片及官方年度历为准。",
+      "Tip: matrix cells are abbreviated; CN, AU and SG columns are highlighted. Use country cards for official annual calendars."
     ),
     spotlightLink: L("国务院令全文", "State Council text"),
     countriesH2: L("各国休假详表", "Country leave detail"),

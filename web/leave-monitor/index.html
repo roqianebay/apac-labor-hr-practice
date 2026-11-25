@@ -54,7 +54,7 @@
     .hub-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
     .hub-footer a { color: var(--accent-light); }
   </style>
-  <link rel="stylesheet" href="css/leave-monitor.css?v=20261126-matrix" />
+  <link rel="stylesheet" href="css/leave-monitor.css?v=20261126-split" />
 </head>
 <body>
   <header class="header">
@@ -97,9 +97,7 @@
         </div>
         <div id="policySpotlight" class="policy-spotlight" aria-live="polite"></div>
         <p class="matrix-note" id="ui-matrix-hint"></p>
-        <div class="table-wrap">
-          <table class="matrix-table"><thead id="matrixHead"></thead><tbody id="matrixBody"></tbody></table>
-        </div>
+        <div class="matrix-stack" id="matrixStack" aria-live="polite"></div>
       </div>
     </section>
 
@@ -141,12 +139,9 @@
     function cats() {
       return window.LEAVE_CATEGORIES || [];
     }
-    function matrixMarkets() {
-      const codes = window.LEAVE_MATRIX_CODES;
-      const all = markets();
-      if (!codes || !codes.length) return all;
-      const byCode = Object.fromEntries(all.map((m) => [m.code, m]));
-      return codes.map((c) => byCode[c]).filter(Boolean);
+    function marketsByCodes(codes) {
+      const byCode = Object.fromEntries(markets().map((m) => [m.code, m]));
+      return (codes || []).map((c) => byCode[c]).filter(Boolean);
     }
     function matrixFocusSet() {
       return new Set(window.LEAVE_MATRIX_FOCUS || ["CN", "AU", "SG", "MY"]);
@@ -227,17 +222,17 @@
     }
     window.fillLeaveFilters = fillLeaveFilters;
 
-    function renderMatrix(f) {
-      const LL = window.LeaveLang;
+    function renderMatrixTable(headId, bodyId, cols, f, LL, focus) {
       const col = LL ? LL.t(LL.UI.colType) : "Type";
-      const cols = matrixMarkets();
-      const focus = matrixFocusSet();
-      document.getElementById("matrixHead").innerHTML =
+      const head = document.getElementById(headId);
+      const body = document.getElementById(bodyId);
+      if (!head || !body) return;
+      head.innerHTML =
         `<tr><th class="topic-col">${col}</th>${cols.map((m) => {
           const foc = focus.has(m.code) ? " matrix-th-focus" : "";
           return `<th class="${foc.trim()}">${m.flag} ${LL ? LL.marketName(m) : m.nameZh}</th>`;
         }).join("")}</tr>`;
-      document.getElementById("matrixBody").innerHTML = cats().map((cat) => {
+      body.innerHTML = cats().map((cat) => {
         const rowText = cols.map((m) => {
           const it = m.items.find((x) => x.cat === cat.id);
           return it ? itemShortText(it, LL) + " " + (LL ? LL.itemField(it, "summary") : it.summary) : "";
@@ -253,6 +248,28 @@
         }).join("");
         return `<tr class="${hide ? "hidden" : ""}"><td class="topic-col">${LL ? LL.catLabel(cat.id) : cat.id}</td>${cells}</tr>`;
       }).join("");
+    }
+
+    function renderMatrix(f) {
+      const LL = window.LeaveLang;
+      const focus = matrixFocusSet();
+      const host = document.getElementById("matrixStack");
+      const groups = window.LEAVE_MATRIX_GROUPS || [];
+      if (!host) return;
+      host.innerHTML = groups.map((g) => {
+        const title = g.title && typeof g.title === "object" ? (LL ? LL.t(g.title) : g.title.zh) : g.title;
+        return (
+          `<section class="matrix-block">` +
+          `<h3 class="matrix-block-title">${title}</h3>` +
+          `<div class="table-wrap">` +
+          `<table class="matrix-table"><thead id="matrixHead-${g.id}"></thead><tbody id="matrixBody-${g.id}"></tbody></table>` +
+          `</div></section>`
+        );
+      }).join("");
+      groups.forEach((g) => {
+        const cols = marketsByCodes(g.codes);
+        renderMatrixTable(`matrixHead-${g.id}`, `matrixBody-${g.id}`, cols, f, LL, focus);
+      });
     }
 
     function renderCountries(f) {
@@ -334,8 +351,8 @@
     });
 
   </script>
-  <script src="js/leave-lang.js?v=20261126-matrix"></script>
-  <script src="js/leave-data.js?v=20261126-matrix"></script>
+  <script src="js/leave-lang.js?v=20261126-split"></script>
+  <script src="js/leave-data.js?v=20261126-split"></script>
   <script>
     (function bootLeaveMonitor() {
       const verBadge = document.getElementById("ui-data-version");
