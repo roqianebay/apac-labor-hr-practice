@@ -117,7 +117,7 @@ window.DASH_HUB_BOARDS = [
       L("总览矩阵 + 分国详表（默认）", "Overview matrix · country detail (default tab)"),
       L("中英切换", "ZH/EN toggle")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/leave-monitor/?v=20261126-region2",
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/leave-monitor/?v=20261126-row",
     ext: true
   }
 ];
