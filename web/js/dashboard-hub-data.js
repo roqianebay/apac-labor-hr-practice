@@ -91,6 +91,21 @@ window.DASH_HUB_BOARDS = [
     ext: true
   },
   {
+    id: "employer-benefits",
+    title: L("APAC Employer Benefits Summary", "APAC Employer Benefits Summary"),
+    pitch: L(
+      "2026 Benefit Summary：<strong>8 个亚太市场</strong>雇主医疗、休假、收入保障与差旅对照。",
+      "2026 Benefit Summary — <strong>8 APAC markets</strong>: employer medical, leave, income & travel."
+    ),
+    bullets: [
+      L("两段总览矩阵（与 Leave Monitor 同序）+ 分市场手风琴", "Two stacked matrices (Leave Monitor order) + market accordion"),
+      L("CN/HK/SG/AU/MY/TH/NZ/IN · 7 大福利模块", "CN/HK/SG/AU/MY/TH/NZ/IN · seven benefit modules"),
+      L("亮点：CN 12 天病假、SG 年假 25 天、AU GU Health", "Spotlights: CN sick leave, SG 25-day AL cap, AU GU Health")
+    ],
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/employer-benefits-summary/?v=202601-apac8",
+    ext: true
+  },
+  {
     id: "benefits",
     title: L("APAC Statutory Benefits Monitor", "APAC Statutory Benefits Monitor"),
     pitch: L(
