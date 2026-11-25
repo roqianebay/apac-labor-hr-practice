@@ -719,7 +719,7 @@ window.ER_HUB_LINKS = [
     current: true
   },
   {
-    title: L("ER News V2.0", "ER News V2.0"),
+    title: L("ER News", "ER News"),
     desc: L("裁员、补偿、企业 ER 动态与来源链接", "Layoffs, severance, ER news with source links"),
     href: "https://roqianebay.github.io/apac-ta-employer-monitor/"
   },

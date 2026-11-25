@@ -65,7 +65,7 @@ window.DASH_HUB_BOARDS = [
   {
     id: "ernews",
     hubRow: 1,
-    title: L("APAC ER News Update V2.0", "APAC ER News Update V2.0"),
+    title: L("APAC ER News Update", "APAC ER News Update"),
     pitch: L(
       "亚太<strong>裁员、组织优化与补偿</strong>动态；500 强外企与知名企业档案。",
       "APAC <strong>layoffs, restructure and severance</strong> intel; F500 and notable employer profiles."
