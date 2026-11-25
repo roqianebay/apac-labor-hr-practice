@@ -2,7 +2,11 @@ function L(zh, en) {
   return { zh, en };
 }
 
-window.LEAVE_DATA_VERSION = "2026-11-26-policy-fix";
+window.LEAVE_DATA_VERSION = "2026-11-26-matrix-focus";
+
+/** Overview matrix columns only (VN/ID excluded); order = priority for eBay APAC footprint */
+window.LEAVE_MATRIX_CODES = ["CN", "AU", "SG", "MY", "HK", "NZ", "TW", "JP", "KR", "TH", "PH", "IN"];
+window.LEAVE_MATRIX_FOCUS = ["CN", "AU", "SG", "MY"];
 
 window.POLICY_SPOTLIGHTS = [
   {
@@ -35,28 +39,28 @@ window.POLICY_SPOTLIGHTS = [
     href: "https://www.labour.gov.hk/eng/news/latest_holidays2026.htm"
   },
   {
-    code: "ID",
-    title: L("印尼 · 2026 国定假与 cuti bersama", "Indonesia · 2026 national & collective leave"),
-    headline: L("17 + 8", "17 + 8"),
-    sub: L("三部长 SKB 2025-09-19", "Tri-minister SKB 19 Sep 2025"),
+    code: "MY",
+    title: L("马来西亚 · 联邦假日与育儿假", "Malaysia · federal holidays & parental leave"),
+    headline: L("11 天", "11 days"),
+    sub: L("2026 联邦全国假日 + 州假", "2026 federal national + state days"),
     body: L(
-      "<strong>2026</strong>：<strong>17 天</strong>国定假 + <strong>8 天</strong>cuti bersama（含开斋连休约 20–24/3/2026）。私营部门是否全员适用 cuti bersama 依雇主政策，常与年假抵扣衔接。",
-      "<strong>2026</strong>: <strong>17</strong> national holidays + <strong>8</strong> collective leave days (Eid bridge ~20–24 Mar 2026). Private employers may differ on collective leave — often offset against annual leave."
+      "2026 年联邦层面 <strong>11 个</strong>全国假日，沙巴/砂拉越自 2025-05 起适用修订雇佣法令；年假 8–16 天、产假 98 天、陪产假 7 天（2023 起）。",
+      "<strong>2026</strong>: <strong>11</strong> federal national holidays; Sabah/Sarawak ordinances from May 2025 — EA annual 8–16 days, 98-day maternity, 7-day paternity (from 2023)."
     ),
-    pills: [L("开斋连休", "Eid bridge"), L("Kemnaker SKB", "Ministerial SKB"), L("2026 执行", "2026 in force")],
-    href: "https://kemnaker.go.id/"
+    pills: [L("核心市场", "Core market"), L("州假另计", "State holidays extra"), L("EA 年假", "EA annual leave")],
+    href: "https://www.mohr.gov.my/"
   },
   {
-    code: "VN",
-    title: L("越南 · 产假 2026 二孩调整", "Vietnam · second-child maternity from 2026"),
-    headline: L("7 个月", "7 months"),
-    sub: L("自 2026-07-01 起（二孩）", "From 1 Jul 2026 (second child)"),
+    code: "AU",
+    title: L("澳大利亚 · 灵活育婴假 2026", "Australia · flexible parental leave 2026"),
+    headline: L("130 天", "130 days"),
+    sub: L("自 2026-07 起上限", "Cap from Jul 2026"),
     body: L(
-      "社会保险法 41/2024 已自 2025-07 实施首胎产假 6 个月；<strong>2026-07-01</strong> 起二孩母亲产假 <strong>7 个月</strong>、父亲陪产 <strong>10 天</strong>（参保条件依社保部门指引）。",
-      "Social Insurance Law 41/2024: 6 months maternity from Jul 2025; <strong>from 1 Jul 2026</strong> second child: <strong>7 months</strong> maternity and <strong>10 days</strong> paternity (insured eligibility per MOLISA)."
+      "NES 无薪育婴假最长 12–24 个月；<strong>灵活育婴假</strong> 2025-07 至 2026-06 最多 120 天，<strong>2026-07 起</strong>提升至 <strong>130 天</strong>，与联邦 Paid Parental Leave 并行核对 Fair Work 与雇主政策。",
+      "NES unpaid parental leave up to 12–24 months; <strong>flexible parental leave</strong> cap rises to <strong>130 days from Jul 2026</strong> (was 120 in FY25-26); check Fair Work and employer schemes."
     ),
-    pills: [L("2026-07 生效", "Effective Jul 2026"), L("二孩", "Second child"), L("陪产 10 天", "10-day paternity")],
-    href: "https://www.molisa.gov.vn/"
+    pills: [L("核心市场", "Core market"), L("Fair Work", "Fair Work"), L("州级公休", "State public holidays")],
+    href: "https://www.fairwork.gov.au/leave"
   }
 ];
 
