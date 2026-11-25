@@ -100,9 +100,9 @@ window.DASH_HUB_BOARDS = [
     bullets: [
       L("两段总览矩阵 + 分国/地区手风琴详表", "Two stacked overview matrices + country/region accordion"),
       L("页面索引（搜索/芯片）· 默认总览 + EN", "Page index (search/chips) · default Overview + EN"),
-      L("社保 · 医保 · 退休 · 加班等 9 大类", "9 topics: social insurance, medical, pension, OT, etc.")
+      L("含<strong>最低工资</strong>、<strong>病假工资</strong>等 11 类福利维度", "11 topics incl. <strong>minimum wage</strong> & <strong>sick leave pay</strong>")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261126-benefits2",
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261126-wage",
     ext: true
   },
   {

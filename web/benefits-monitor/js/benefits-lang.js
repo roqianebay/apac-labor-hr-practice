@@ -8,8 +8,8 @@
   const UI = {
     pageTitle: L("APAC Statutory Benefits Monitor", "APAC Statutory Benefits Monitor"),
     subtitle: L(
-      "亚太法定福利汇总 · 年假 · 社保 · 医保 · 退休 · 加班",
-      "APAC statutory benefits · leave · social insurance · medical · retirement · OT"
+      "亚太法定福利汇总 · 最低工资 · 病假工资 · 社保 · 年假 · 加班",
+      "APAC statutory benefits · minimum wage · sick pay · social insurance · leave · OT"
     ),
     live: L("法定福利对照", "Statutory benefits"),
     intro: L(
@@ -48,7 +48,7 @@
     indexCatsLabel: L("福利类别", "Benefit types"),
     indexHitsTitle: L("搜索结果", "Search results"),
     indexNoHits: L("无匹配条目，请换关键词或浏览国家/地区列表。", "No matches — try another keyword or browse the list."),
-    indexSearchPh: L("关键词：社保、年假、产假、公积金…（输入后点搜索）", "Keywords: social insurance, annual leave, maternity… then click Search"),
+    indexSearchPh: L("关键词：最低工资、病假工资、社保、年假…（输入后点搜索）", "Keywords: minimum wage, sick pay, social insurance, annual leave… then click Search"),
     countriesH2: L("各国家/地区法定福利详表", "Statutory detail by country/region"),
     countriesSub: L("点击行展开查看各类福利要点；无筛选时中国大陆、澳大利亚、新加坡、马来西亚默认展开。", "Click a row to expand benefit topics; CN, AU, SG and MY open by default when not filtering."),
     accordionChevron: L("▾", "▾"),
