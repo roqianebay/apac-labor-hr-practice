@@ -419,7 +419,37 @@ details.country-accordion[open] .acc-chevron { transform: rotate(180deg); }
   border-bottom: 1px solid var(--border);
 }
 .cat-block h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+.policy-ref {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--accent-light);
+  text-decoration: none;
+  word-break: break-word;
+}
+.policy-ref:hover {
+  text-decoration: underline;
+  color: var(--accent-light);
+}
+.cell-summary {
+  display: block;
+}
+a.policy-ref.cell-ref {
+  margin-top: 0.3rem;
+  font-size: 0.68rem;
+}
+.policy-ref.block-ref {
+  margin: 0.35rem 0 0.5rem;
+}
+.policy-ref.cat-row-ref {
+  display: block;
+  margin-top: 0.45rem;
+}
+
 .cat-row {
+  display: grid;
   grid-template-columns: 11rem 1fr;
   font-size: var(--lm-font-sm);
   padding: 0.85rem 0;

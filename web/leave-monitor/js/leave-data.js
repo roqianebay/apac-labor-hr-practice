@@ -2,7 +2,7 @@ function L(zh, en) {
   return { zh, en };
 }
 
-window.LEAVE_DATA_VERSION = "2026-11-26-region-matrix-v2";
+window.LEAVE_DATA_VERSION = "2026-11-26-refs-v1";
 
 /** Overview: two matrix tables — countries & regions (see index.html) */
 window.LEAVE_MATRIX_GROUPS = [
@@ -108,6 +108,10 @@ window.LEAVE_MARKETS = [
         shortSummary: "法定 13 天（2025 起）",
         shortSummaryEn: "13 statutory days (2025+)",
         summary: "自 2025-01-01 起法定节假日共 <strong>13 天</strong>（国令第 795 号；此前为 11 天）：元旦 1、春节 4（除夕至初三）、清明 1、劳动 2、端午 1、中秋 1、国庆 3。", summaryEn: "From 1 Jan 2025: <strong>13 statutory days</strong> (Order 795; was 11): NY 1, Spring Festival 4 (eve–day 3), Qingming 1, Labour 2, Dragon Boat 1, Mid-Autumn 1, National Day 3.",
+        ref: {
+          url: "https://www.gov.cn/zhengce/zhengceku/202411/content_6986381.htm",
+          title: L("国务院令第795号", "State Council Order 795")
+        },
         details: ["<strong>2026</strong> 年连休以国务院办公厅年度放假通知为准", "法定 13 天框架不因调休增减", "少数民族地区可另有民族节日", "法定节假日加班付 2–3 倍工资", "官方：https://www.gov.cn/zhengce/zhengceku/202411/content_6986381.htm"],
         detailsEn: ["<strong>2026</strong> bridge schedule: annual State Council notice", "13 statutory days fixed; bridge days separate", "Ethnic festivals in minority regions", "Holiday work at 2–3× pay", "Official: gov.cn Order 795"] },
       { cat: "annual", summary: "累计工作满 1/10/20 年：5/10/15 天带薪年假（法定最低）。", summaryEn: "Statutory annual leave 5/10/15 days by 1/10/20 years of service.",

@@ -118,6 +118,38 @@
     return plain.length > 88 ? plain.slice(0, 86) + "…" : plain;
   }
 
+  function categoryRefMap() {
+    return global.LEAVE_CATEGORY_REFS || {};
+  }
+
+  function resolvePolicyRef(m, catId, item) {
+    if (item?.ref?.url) return item.ref;
+    const mapped = categoryRefMap()[m.code]?.[catId];
+    if (mapped?.url) return mapped;
+    return null;
+  }
+
+  function matrixPolicyRef(m, catId, item) {
+    if (item?.ref?.url) return item.ref;
+    const mapped = categoryRefMap()[m.code]?.[catId];
+    if (mapped?.url) return mapped;
+    return null;
+  }
+
+  function formatPolicyRef(ref, LL, className, short) {
+    if (!ref?.url) return "";
+    const label =
+      ref.title && (ref.title.zh || ref.title.en)
+        ? LL
+          ? LL.t(ref.title)
+          : ref.title.zh || ref.title.en
+        : LL
+          ? LL.t(LL.UI.policyRefShort)
+          : "Official";
+    const text = short && label.length > 22 ? (LL ? LL.t(LL.UI.policyRefShort) : "Official ↗") : `${label} ↗`;
+    return `<a class="${className}" href="${ref.url}" target="_blank" rel="noopener noreferrer" title="${label}">${text}</a>`;
+  }
+
   function detailBullets(item, LL) {
     const list = LL && LL.lang === "en" && item.detailsEn ? item.detailsEn : item.details;
     return (list || []).map((x) => `<li>${x}</li>`).join("");
@@ -316,7 +348,9 @@
             if (!it) return "<td>—</td>";
             let extra = m.code === "CN" && cat.id === "public" ? " cell-cn-public" : "";
             if (focus.has(m.code)) extra += " cell-matrix-focus";
-            return `<td class="cell-short${extra}">${itemShortText(it, LL)}</td>`;
+            const ref = matrixPolicyRef(m, cat.id, it);
+            const refHtml = ref ? formatPolicyRef(ref, LL, "policy-ref cell-ref", true) : "";
+            return `<td class="cell-short${extra}"><div class="cell-summary">${itemShortText(it, LL)}</div>${refHtml}</td>`;
           })
           .join("");
         return `<tr class="${hide ? "hidden" : ""}"><td class="topic-col">${LL ? LL.catLabel(cat.id) : cat.id}</td>${cells}</tr>`;
@@ -384,12 +418,17 @@
         const blocks = m.items
           .filter((it) => !f.category || f.category === it.cat)
           .map(
-            (it) => `
+            (it) => {
+              const ref = resolvePolicyRef(m, it.cat, it);
+              const refHtml = ref ? formatPolicyRef(ref, LL, "policy-ref block-ref", false) : "";
+              return `
           <div class="leave-block" id="leave-${m.code}-${it.cat}">
             <h4>${LL ? LL.catLabel(it.cat) : it.cat}</h4>
             <div class="sum">${LL ? LL.itemField(it, "summary") : it.summary}</div>
+            ${refHtml}
             <ul>${detailBullets(it, LL)}</ul>
-          </div>`
+          </div>`;
+            }
           )
           .join("");
         const bodyInner =
@@ -431,9 +470,14 @@
             const hide =
               (f.country && f.country !== m.code) ||
               (f.q && !marketMatchesQuery(m, f.q, LL));
-            return `<div class="cat-row ${hide ? "hidden" : ""}"><span class="m">${m.flag} ${
-              LL ? LL.marketName(m) : m.nameZh
-            }</span><span class="v">${LL ? LL.itemField(it, "summary") : it.summary}</span></div>`;
+            const ref = resolvePolicyRef(m, cat.id, it);
+            const refHtml = ref ? formatPolicyRef(ref, LL, "policy-ref cat-row-ref", false) : "";
+            return (
+              `<div class="cat-row ${hide ? "hidden" : ""}">` +
+              `<span class="m">${m.flag} ${LL ? LL.marketName(m) : m.nameZh}</span>` +
+              `<span class="v">${LL ? LL.itemField(it, "summary") : it.summary}${refHtml}</span>` +
+              `</div>`
+            );
           })
           .join("");
         return `<div class="cat-block"><h3>${LL ? LL.catLabel(cat.id) : cat.id}</h3>${rows}</div>`;

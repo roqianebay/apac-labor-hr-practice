@@ -2,7 +2,7 @@ function L(zh, en) {
   return { zh, en };
 }
 
-window.BENEFITS_DATA_VERSION = "2026-11-26-wage-v1";
+window.BENEFITS_DATA_VERSION = "2026-11-26-refs-v1";
 
 window.BENEFIT_MATRIX_GROUPS = [
   {
@@ -44,7 +44,15 @@ window.BENEFIT_MARKETS = [
     ],
     items: [
       { cat: "leave_annual", summary: "职工累计工作满1/10/20年 → 年假5/10/15天（法定最低）。", summaryEn: "Statutory annual leave: 5/10/15 days by 1/10/20 years of service." },
-      { cat: "holidays", summary: "自2025年起法定节假日13天（国令795）；春节4天、劳动节2天等；年度调休安排另发。", summaryEn: "13 statutory days from 2025 (Order 795); Spring Festival 4, Labour 2; bridge schedule yearly." },
+      {
+        cat: "holidays",
+        summary: "自2025年起法定节假日13天（国令795）；春节4天、劳动节2天等；年度调休安排另发。",
+        summaryEn: "13 statutory days from 2025 (Order 795); Spring Festival 4, Labour 2; bridge schedule yearly.",
+        ref: {
+          url: "https://www.gov.cn/zhengce/zhengceku/202411/content_6986381.htm",
+          title: L("国务院令第795号", "State Council Order 795")
+        }
+      },
       { cat: "leave_sick", summary: "医疗期按工龄与司龄分档（常见3～24个月）；须医疗机构证明。", summaryEn: "Medical treatment period tiers by service (often 3–24 months); medical proof required." },
       { cat: "sick_pay", summary: "病假工资不低于当地最低工资80%为通行法定底线；医疗期内分段计发依地方与用人单位规章。", summaryEn: "Statutory floor often ≥80% local minimum wage; tiered pay in medical period per local rules." },
       { cat: "leave_parental", summary: "产假≥98天（地方可延长）；陪产假各省级规定；育儿假多地试点。", summaryEn: "Maternity ≥98 days (extensions local); paternity & childcare leave vary by province." },

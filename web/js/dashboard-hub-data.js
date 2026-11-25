@@ -102,7 +102,7 @@ window.DASH_HUB_BOARDS = [
       L("页面索引（搜索/芯片）· 默认总览 + EN", "Page index (search/chips) · default Overview + EN"),
       L("含<strong>最低工资</strong>、<strong>病假工资</strong>等 11 类福利维度", "11 topics incl. <strong>minimum wage</strong> & <strong>sick leave pay</strong>")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261126-wage",
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261126-refs",
     ext: true
   },
   {

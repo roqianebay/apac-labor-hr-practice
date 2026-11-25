@@ -55,6 +55,7 @@
     categoriesH2: L("按类别横向对照", "Cross-market by category"),
     sourcesH2: L("官方法规与权威来源", "Official law and guidance"),
     colType: L("类别", "Category"),
+    policyRefShort: L("官方政策", "Official policy"),
     hubIndex: L("APAC People Policy Dictionary", "APAC People Policy Dictionary"),
     hubLabor: L("流程与劳动法", "Process & labor law"),
     hubLeave: L("法定休假", "Leave & holidays"),
