@@ -336,6 +336,12 @@ table.matrix-table tbody .topic-col {
   transition: background 0.15s, border-color 0.15s;
 }
 .index-chip:hover { border-color: var(--accent); color: var(--accent-light); }
+.index-chip.active {
+  border-color: var(--accent);
+  background: rgba(99, 102, 241, 0.18);
+  color: var(--accent-light);
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.35);
+}
 .index-chip.is-focus {
   border-color: rgba(13, 148, 136, 0.55);
   box-shadow: 0 0 0 1px rgba(13, 148, 136, 0.25);

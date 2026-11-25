@@ -311,6 +311,12 @@ table.matrix-table tbody .topic-col {
   border-color: rgba(99, 102, 241, 0.55);
   box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.25);
 }
+.index-chip.active {
+  border-color: var(--accent);
+  background: rgba(99, 102, 241, 0.18);
+  color: var(--accent-light);
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.35);
+}
 .index-hits-wrap { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
 .index-hits-title { font-size: var(--lm-font-sm); color: var(--accent-light); margin-bottom: 0.65rem; }
 .index-hits { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }

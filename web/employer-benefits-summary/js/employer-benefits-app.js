@@ -1,5 +1,41 @@
 (function (global) {
-  let appliedBenefitFilter = { q: "", country: "", category: "" };
+  let appliedBenefitFilter = { q: "", country: "", category: "", countries: [], categories: [] };
+
+  function normalizeFilter(f) {
+    const countries = f.countries?.length ? f.countries : f.country ? [f.country] : [];
+    const categories = f.categories?.length ? f.categories : f.category ? [f.category] : [];
+    return { ...f, countries, categories };
+  }
+
+  function matchCountry(code, f) {
+    const { countries } = normalizeFilter(f);
+    return !countries.length || countries.includes(code);
+  }
+
+  function matchCategory(catId, f) {
+    const { categories } = normalizeFilter(f);
+    return !categories.length || categories.includes(catId);
+  }
+
+  function syncFilterDropdowns() {
+    const { countries, categories } = normalizeFilter(getFilter());
+    const cf = document.getElementById("countryFilter");
+    const catf = document.getElementById("categoryFilter");
+    if (cf) cf.value = countries.length === 1 ? countries[0] : "";
+    if (catf) catf.value = categories.length === 1 ? categories[0] : "";
+  }
+
+  function syncChipActiveStates() {
+    const { countries, categories } = normalizeFilter(getFilter());
+    const countrySet = new Set(countries);
+    const catSet = new Set(categories);
+    document.querySelectorAll("#indexMarketChips [data-country]").forEach((btn) => {
+      btn.classList.toggle("active", countrySet.has(btn.dataset.country));
+    });
+    document.querySelectorAll("#indexCatChips [data-cat]").forEach((btn) => {
+      btn.classList.toggle("active", catSet.has(btn.dataset.cat));
+    });
+  }
 
   function markets() {
     return global.BENEFIT_MARKETS || [];
@@ -21,10 +57,21 @@
 
   function readDraftFilter() {
     const raw = document.getElementById("searchInput")?.value || "";
+    const q = String(raw).trim().toLowerCase();
+    const cf = document.getElementById("countryFilter")?.value || "";
+    const catf = document.getElementById("categoryFilter")?.value || "";
+    let countries = [...(appliedBenefitFilter.countries || [])];
+    let categories = [...(appliedBenefitFilter.categories || [])];
+    if (cf) countries = [cf];
+    else if (!countries.length && appliedBenefitFilter.country) countries = [appliedBenefitFilter.country];
+    if (catf) categories = [catf];
+    else if (!categories.length && appliedBenefitFilter.category) categories = [appliedBenefitFilter.category];
     return {
-      q: String(raw).trim().toLowerCase(),
-      country: document.getElementById("countryFilter")?.value || "",
-      category: document.getElementById("categoryFilter")?.value || ""
+      q,
+      country: cf || (countries.length === 1 ? countries[0] : ""),
+      category: catf || (categories.length === 1 ? categories[0] : ""),
+      countries,
+      categories
     };
   }
 
@@ -60,7 +107,7 @@
     const catf = document.getElementById("categoryFilter");
     if (cf) cf.value = "";
     if (catf) catf.value = "";
-    appliedBenefitFilter = { q: "", country: "", category: "" };
+    appliedBenefitFilter = { q: "", country: "", category: "", countries: [], categories: [] };
     applyBenefitViews();
   }
 
@@ -75,11 +122,6 @@
 
   function goToCountry(code) {
     activateTab("countries");
-    if (!appliedBenefitFilter.q && !appliedBenefitFilter.country && !appliedBenefitFilter.category) {
-      applyBenefitViews();
-    } else {
-      resetBenefitSearch();
-    }
     requestAnimationFrame(() => {
       const el = document.getElementById("benefit-country-" + code);
       if (el && el.tagName === "DETAILS") el.open = true;
@@ -87,11 +129,40 @@
     });
   }
 
-  function goToCategory(catId) {
-    const catf = document.getElementById("categoryFilter");
-    if (catf) catf.value = catId;
+  function toggleFilterCountry(code) {
     activateTab("countries");
-    runBenefitSearch();
+    const { countries } = normalizeFilter(getFilter());
+    const set = new Set(countries);
+    if (set.has(code)) set.delete(code);
+    else set.add(code);
+    appliedBenefitFilter = {
+      ...appliedBenefitFilter,
+      countries: [...set],
+      country: set.size === 1 ? [...set][0] : ""
+    };
+    syncFilterDropdowns();
+    applyBenefitViews();
+    if (set.has(code)) {
+      requestAnimationFrame(() => {
+        const el = document.getElementById("benefit-country-" + code);
+        if (el?.tagName === "DETAILS") el.open = true;
+      });
+    }
+  }
+
+  function toggleFilterCategory(catId) {
+    const { categories } = normalizeFilter(getFilter());
+    const set = new Set(categories);
+    if (set.has(catId)) set.delete(catId);
+    else set.add(catId);
+    appliedBenefitFilter = {
+      ...appliedBenefitFilter,
+      categories: [...set],
+      category: set.size === 1 ? [...set][0] : ""
+    };
+    syncFilterDropdowns();
+    activateTab("countries");
+    applyBenefitViews();
     requestAnimationFrame(() => {
       document.getElementById("panel-countries")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
@@ -103,7 +174,8 @@
 
   function openCountryCodes(f) {
     const LL = lang();
-    if (f.country) return new Set([f.country]);
+    const { countries } = normalizeFilter(f);
+    if (countries.length) return new Set(countries);
     if (f.q) {
       const open = new Set();
       markets().forEach((m) => {
@@ -223,6 +295,8 @@
         })
         .join("");
     }
+
+    syncChipActiveStates();
 
     const f = getFilter();
     const wrap = document.getElementById("indexHitsWrap");
@@ -358,10 +432,11 @@
             return it ? itemShortText(it, LL) + " " + (LL ? LL.itemField(it, "summary") : it.summary) : "";
           })
           .join(" ");
-        const hide = (f.category && f.category !== cat.id) || (f.q && !rowText.toLowerCase().includes(f.q));
+        const hide =
+          !matchCategory(cat.id, f) || (f.q && !rowText.toLowerCase().includes(f.q));
         const cells = cols
           .map((m) => {
-            if (f.country && f.country !== m.code) return "<td>—</td>";
+            if (!matchCountry(m.code, f)) return "<td>—</td>";
             const it = m.items.find((x) => x.cat === cat.id);
             if (!it) return "<td>—</td>";
             let extra = m.code === "CN" && cat.id === "holidays" ? " cell-cn-public" : "";
@@ -428,11 +503,11 @@
 
     const html = ordered
       .map((m) => {
-        const matchC = !f.country || f.country === m.code;
+        const matchC = matchCountry(m.code, f);
         const matchQ = marketMatchesQuery(m, f.q, LL);
         if (!matchC || !matchQ) return "";
         const blocks = m.items
-          .filter((it) => !f.category || f.category === it.cat)
+          .filter((it) => matchCategory(it.cat, f))
           .map(
             (it) => {
               const ref = resolvePolicyRef(m, it.cat, it);
@@ -476,7 +551,7 @@
     const host = document.getElementById("categoryPanel");
     if (!host) return;
     host.innerHTML = cats()
-      .filter((cat) => !f.category || f.category === cat.id)
+      .filter((cat) => matchCategory(cat.id, f))
       .map((cat) => {
         const rows = markets()
           .map((m) => {
@@ -484,7 +559,7 @@
             if (!it) return "";
             const text = (LL ? LL.itemField(it, "summary") : it.summary) + detailBullets(it, LL);
             const hide =
-              (f.country && f.country !== m.code) ||
+              !matchCountry(m.code, f) ||
               (f.q && !marketMatchesQuery(m, f.q, LL));
             const ref = resolvePolicyRef(m, cat.id, it);
             const refHtml = ref ? formatPolicyRef(ref, LL, "policy-ref cat-row-ref", false) : "";
@@ -575,11 +650,12 @@
       }
       const countryBtn = e.target.closest("[data-country]");
       if (countryBtn?.dataset.country) {
-        goToCountry(countryBtn.dataset.country);
+        if (countryBtn.classList.contains("index-hit")) goToCountry(countryBtn.dataset.country);
+        else toggleFilterCountry(countryBtn.dataset.country);
         return;
       }
       const catBtn = e.target.closest("[data-cat]");
-      if (catBtn?.dataset.cat) goToCategory(catBtn.dataset.cat);
+      if (catBtn?.dataset.cat) toggleFilterCategory(catBtn.dataset.cat);
     });
   }
 
