@@ -3,27 +3,27 @@ function L(zh, en) {
 }
 
 window.DASH_HUB_UI = {
-  brand: L("APAC ER Toolkit", "APAC ER Toolkit"),
-  title: L("亚太 ER 看板总索引", "APAC ER dashboard index"),
-  kicker: L("一页看清 · 按用途进入", "One page · pick your board"),
+  brand: L("APAC People Policy Dictionary", "APAC People Policy Dictionary"),
+  title: L("APAC People Policy Dictionary", "APAC People Policy Dictionary"),
+  kicker: L("一页导航 · 按主题进入", "One page · browse by topic"),
   lede: L(
-    "下列看板为同一套亚太员工关系工具集。<strong>流程与劳动法正文</strong>集中在「APAC ER Process &amp; Labor Law」看板；本页只做<strong>介绍与跳转</strong>，不替代各看板内数据。",
-    "These boards are one APAC ER toolkit. <strong>Process and labour-law content</strong> lives in the APAC ER Process &amp; Labor Law board; this page only <strong>introduces and links</strong> — it does not replace in-board data."
+    "汇总亚太人力与员工关系相关<strong>政策工具与监测看板</strong>。<strong>流程与劳动法正文</strong>在「APAC ER Process &amp; Labor Law」模块；本页为<strong>词典式索引与跳转</strong>，不替代各模块内数据。",
+    "A curated index of APAC <strong>people-policy tools and monitors</strong>. <strong>Process and labour-law content</strong> lives in APAC ER Process &amp; Labor Law; this page is the <strong>dictionary home</strong> — links only, not a data substitute."
   ),
   notice: L(
     "所有看板均为 HR/ER 内部参考与人工整理索引，不构成法律意见。个案请以合同、员工手册与当地律师意见为准。",
     "All boards are internal HR/ER reference and curated indexes, not legal advice. Live cases: contracts, policies and local counsel."
   ),
-  sectionH2: L("看板一览", "Board directory"),
-  sectionSub: L("点击卡片进入对应站点（新标签打开）。", "Open a card to visit that site (new tab)."),
+  sectionH2: L("模块一览", "Module directory"),
+  sectionSub: L("点击卡片进入对应工具（新标签打开）。", "Open a card to visit that tool (new tab)."),
   openBoard: L("进入看板", "Open board"),
   primaryBadge: L("核心 · 流程与法规", "Core · process & law"),
   foot: L(
-    "APAC ER Dashboard Index · 与劳动法办案指南同仓库部署 · 不覆盖各看板原有页面",
-    "APAC ER Dashboard Index · deployed with the labor guide repo · does not replace existing boards"
+    "APAC People Policy Dictionary · 与劳动法办案指南同仓库部署 · 不覆盖各工具原有页面",
+    "APAC People Policy Dictionary · deployed with the labor guide repo · does not replace existing tools"
   ),
   langAria: L("切换语言", "Switch language"),
-  navIndex: L("总索引", "Index"),
+  navIndex: L("Policy Dictionary", "Policy Dictionary"),
   navLabor: L("流程与劳动法", "Process &amp; law")
 };
 

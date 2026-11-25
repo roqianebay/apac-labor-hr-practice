@@ -40,7 +40,7 @@
 
   function applyChrome() {
     document.documentElement.lang = state.lang === "en" ? "en" : "zh-CN";
-    document.title = t(UI.title) + " · " + t(UI.brand);
+    document.title = t(UI.title);
     setText("ui-brand", t(UI.brand));
     setText("ui-kicker", t(UI.kicker));
     setText("ui-title", t(UI.title));

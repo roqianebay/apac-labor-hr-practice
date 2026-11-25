@@ -9,8 +9,8 @@ window.ER_UI = {
   navSources: L("官方索引", "Official sources"),
   navCases: L("四类案件", "Case types"),
   navCountries: L("国家详策", "Country guides"),
-  navIndex: L("总索引", "Index"),
-  navHub: L("看板互联", "Dashboard hub"),
+  navIndex: L("Policy Dictionary", "Policy Dictionary"),
+  navHub: L("Policy Dictionary", "Policy Dictionary"),
   navTools: L("14 国向导与手册", "14-country wizard"),
   kicker: L("亚太 ER 劳动关系办案指南", "APAC ER case-handling guide"),
   h1: L("亚太区域各国裁员、绩效解除、试用期、违纪流程。", "APAC processes for redundancy, performance exits, probation, and misconduct."),
@@ -18,8 +18,8 @@ window.ER_UI = {
     "覆盖中国大陆、香港、新加坡、澳大利亚、新西兰、马来西亚、泰国、日本、韩国、印度（另含印尼越南菲等见下方工具区）。先把法定底线对齐，勿用一国思路套其他国家。",
     "Covers Mainland China, Hong Kong, Singapore, Australia, New Zealand, Malaysia, Thailand, Japan, Korea and India (plus Indonesia, Vietnam, Philippines and others in the tools section). Align statutory floors first — do not copy one country’s playbook elsewhere."
   ),
-  hubH2: L("亚太 ER 看板互联", "APAC ER dashboard hub"),
-  hubSub: L("同一套亚太员工关系工具，按用途跳转。", "One APAC ER toolkit — jump by purpose."),
+  hubH2: L("APAC People Policy Dictionary", "APAC People Policy Dictionary"),
+  hubSub: L("亚太人力政策工具索引，按主题跳转。", "APAC people-policy tools — jump by topic."),
   chipDate: L("资料截止 2026-09", "Updated Sep 2026"),
   chipFloor: L("法定底线 ≠ 公司政策", "Statute ≠ company policy"),
   chipCounsel: L("个案仍需当地律师复核", "Local counsel for live cases"),
@@ -65,8 +65,8 @@ window.ER_UI = {
   blockDispute: L("争议与风险", "Disputes and risk"),
   blockSources: L("主要公开来源", "Primary public sources"),
   footer: L(
-    "APAC Labor & HR Practice Guide · 十地详策 + 14 国工具 · 看板互联见页首 · 不构成法律意见",
-    "APAC Labor & HR Practice Guide · 10-market desk + 14-country tools · Hub at top · Not legal advice"
+    "APAC Labor & HR Practice Guide · 十地详策 + 14 国工具 · Policy Dictionary 见页首 · 不构成法律意见",
+    "APAC Labor & HR Practice Guide · 10-market desk + 14-country tools · Policy Dictionary at top · Not legal advice"
   ),
   deskIntro: L("遣散与通知（法定底线）", "Severance and notice (statutory floor)"),
   deskDispute: L("争议出口与仲裁风险", "Disputes and arbitration"),
@@ -708,8 +708,8 @@ window.ER_DATA = {
 
 window.ER_HUB_LINKS = [
   {
-    title: L("看板总索引", "Dashboard index"),
-    desc: L("介绍各看板用途与跳转（推荐入口）", "What each board does — recommended entry"),
+    title: L("APAC People Policy Dictionary", "APAC People Policy Dictionary"),
+    desc: L("各人力政策工具介绍与跳转（推荐入口）", "People-policy tools — recommended entry"),
     href: "https://roqianebay.github.io/apac-labor-hr-practice/er-dashboards.html"
   },
   {

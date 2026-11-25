@@ -2,7 +2,7 @@
 
 亚太 ER 劳动法与 HR 办案看板。**单页公网**整合：七地详策办案台 + 14 国向导 / Checklist / 调查 & PIP 手册（页内 `#tools`）。
 
-**看板总索引（推荐入口）：** https://roqianebay.github.io/apac-labor-hr-practice/er-dashboards.html  
+**APAC People Policy Dictionary（推荐入口）：** https://roqianebay.github.io/apac-labor-hr-practice/er-dashboards.html  
 
 **流程与劳动法主看板：** https://roqianebay.github.io/apac-labor-hr-practice/
 

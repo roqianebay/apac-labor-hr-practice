@@ -32,7 +32,7 @@
     sourcesH2: L("官方法规与权威来源", "Official law and guidance"),
     refLabel: L("官方链接", "Official links"),
     colTopic: L("类别", "Category"),
-    hubIndex: L("看板总索引", "Dashboard index"),
+    hubIndex: L("APAC People Policy Dictionary", "APAC People Policy Dictionary"),
     hubLabor: L("流程与劳动法", "Process & labor law"),
     foot: L(
       "APAC Statutory Benefits Monitor · HR/ER 内部参考 · 不构成法律意见",

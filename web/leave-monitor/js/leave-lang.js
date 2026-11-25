@@ -34,7 +34,7 @@
     sourcesH2: L("官方法规链接", "Official links"),
     colType: L("类别", "Category"),
     openDetail: L("见分国详表", "See country detail"),
-    hubIndex: L("看板总索引", "Dashboard index"),
+    hubIndex: L("APAC People Policy Dictionary", "APAC People Policy Dictionary"),
     hubLabor: L("流程与劳动法", "Process & labor law"),
     hubBenefits: L("法定福利", "Statutory benefits"),
     foot: L(
