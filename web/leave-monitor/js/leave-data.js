@@ -2,23 +2,25 @@ function L(zh, en) {
   return { zh, en };
 }
 
-window.LEAVE_DATA_VERSION = "2026-11-26-search-btn-fix";
+window.LEAVE_DATA_VERSION = "2026-11-26-region-matrix";
 
-/** Overview: two matrix tables (see leave-monitor/index.html) */
+/** Overview: two matrix tables — countries & regions (see index.html) */
 window.LEAVE_MATRIX_GROUPS = [
   {
     id: "set1",
-    title: L("亚太国家第一部分", "APAC markets (part 1)"),
-    codes: ["CN", "HK", "TW", "SG", "AU", "NZ"]
+    title: L("亚太国家及地区（第一部分）", "APAC countries & regions (part 1)"),
+    codes: ["CN", "HK", "SG", "AU", "MY", "TH", "NZ"]
   },
   {
     id: "set2",
-    title: L("其他亚太国家", "Other APAC markets"),
-    codes: ["JP", "KR", "IN", "ID", "VN", "PH"]
+    title: L("其他亚太国家及地区", "Other APAC countries & regions"),
+    codes: ["JP", "KR", "IN", "TW", "ID", "VN", "PH"]
   }
 ];
-window.LEAVE_MATRIX_CODES = ["CN", "HK", "TW", "SG", "AU", "NZ", "JP", "KR", "IN", "ID", "VN", "PH"];
-window.LEAVE_MATRIX_FOCUS = ["CN", "AU", "SG"];
+window.LEAVE_MATRIX_CODES = [
+  "CN", "HK", "SG", "AU", "MY", "TH", "NZ", "JP", "KR", "IN", "TW", "ID", "VN", "PH"
+];
+window.LEAVE_MATRIX_FOCUS = ["CN", "AU", "SG", "MY"];
 
 window.POLICY_SPOTLIGHTS = [
   {
@@ -73,6 +75,18 @@ window.POLICY_SPOTLIGHTS = [
     ),
     pills: [L("核心市场", "Core market"), L("Fair Work", "Fair Work"), L("州级公休", "State public holidays")],
     href: "https://www.fairwork.gov.au/leave"
+  },
+  {
+    code: "TH",
+    title: L("泰国 · 2026 法定假日历", "Thailand · 2026 public holiday calendar"),
+    headline: L("约 16 天", "~16 days"),
+    sub: L("皇家公告年度调整", "Royal gazette annual list"),
+    body: L(
+      "<strong>2026</strong> 依皇家公告通常含宋干、水灯、国王诞辰等约 <strong>16 个</strong>法定假日；法定带薪年假梯级及 98 天产假与 SSO 分担规则维持，个案以 MOL 现行文本为准。",
+      "<strong>2026</strong> royal calendar lists ~<strong>16</strong> paid public holidays (Songkran, Loy Krathong, etc.); annual-leave tiers and 98-day maternity split unchanged — confirm MOL gazette."
+    ),
+    pills: [L("2026 宋干", "2026 Songkran"), L("带薪公休", "Paid public holidays"), L("MOL 年度历", "MOL annual list")],
+    href: "https://www.mol.go.th/"
   }
 ];
 
@@ -94,8 +108,8 @@ window.LEAVE_MARKETS = [
         shortSummary: "法定 13 天（2025 起）",
         shortSummaryEn: "13 statutory days (2025+)",
         summary: "自 2025-01-01 起法定节假日共 <strong>13 天</strong>（国令第 795 号；此前为 11 天）：元旦 1、春节 4（除夕至初三）、清明 1、劳动 2、端午 1、中秋 1、国庆 3。", summaryEn: "From 1 Jan 2025: <strong>13 statutory days</strong> (Order 795; was 11): NY 1, Spring Festival 4 (eve–day 3), Qingming 1, Labour 2, Dragon Boat 1, Mid-Autumn 1, National Day 3.",
-        details: ["2026 年连休以国务院办公厅年度放假通知为准", "法定 13 天框架不因调休增减", "少数民族地区可另有民族节日", "法定节假日加班付 2–3 倍工资", "官方：https://www.gov.cn/zhengce/zhengceku/202411/content_6986381.htm"],
-        detailsEn: ["2026 bridge schedule: annual State Council notice", "13 statutory days fixed; bridge days separate", "Ethnic festivals in minority regions", "Holiday work at 2–3× pay", "Official: gov.cn Order 795"] },
+        details: ["<strong>2026</strong> 年连休以国务院办公厅年度放假通知为准", "法定 13 天框架不因调休增减", "少数民族地区可另有民族节日", "法定节假日加班付 2–3 倍工资", "官方：https://www.gov.cn/zhengce/zhengceku/202411/content_6986381.htm"],
+        detailsEn: ["<strong>2026</strong> bridge schedule: annual State Council notice", "13 statutory days fixed; bridge days separate", "Ethnic festivals in minority regions", "Holiday work at 2–3× pay", "Official: gov.cn Order 795"] },
       { cat: "annual", summary: "累计工作满 1/10/20 年：5/10/15 天带薪年假（法定最低）。", summaryEn: "Statutory annual leave 5/10/15 days by 1/10/20 years of service.",
         details: ["新入职满 1 年者适用最低档", "单位因经营需要可统筹安排", "未休年假可折算或翻倍补偿"],
         detailsEn: ["Applies after first qualifying year", "Employer may schedule collectively", "Unused leave: payout or double pay on termination rules"] },
@@ -150,9 +164,9 @@ window.LEAVE_MARKETS = [
       { cat: "public",
         shortSummary: "国定+调休（年度公告）",
         shortSummaryEn: "National + bridge (annual)",
-        summary: "纪念日、民俗节日及调休放假；<strong>2026 年</strong>由行政院统一公布月历（含春节、228、清明、端午、中秋、国庆连休等）。", summaryEn: "National commemorations, folk holidays and bridge days; <strong>2026</strong> unified calendar from the Executive Yuan.",
-        details: ["劳动部节假日刊物", "调休形成连假", "出勤工资依劳基法节假日条款"],
-        detailsEn: ["MOL holiday gazette", "Bridge long weekends", "Pay per LSA holiday rules"] },
+        summary: "纪念日、民俗节日及调休放假；<strong>2026 年</strong>由行政院统一公布月历（春节、228、清明、端午、中秋、国庆等连休）。", summaryEn: "National commemorations, folk holidays and bridge days; <strong>2026</strong> Executive Yuan calendar (CNY, 228, Dragon Boat, National Day bridges).",
+        details: ["劳动部节假日刊物（2026）", "调休形成连假", "出勤工资依劳基法节假日条款", "硅谷/科技业常见优于法定之特休办法"],
+        detailsEn: ["MOL 2026 holiday gazette", "Bridge long weekends", "Pay per LSA holiday rules", "Tech employers often exceed statutory minimums"] },
       { cat: "annual", summary: "特休 3～30 天按年资（劳基法第 38 条）。", summaryEn: "Special leave 3–30 days by seniority (LSA Art. 38).",
         details: ["6 个月至未满 1 年：3 天", "逐年增加至上限", "未休可折现"],
         detailsEn: ["6 months to <1 year: 3 days", "Increases to cap", "Unused paid out on exit"] },
@@ -201,9 +215,12 @@ window.LEAVE_MARKETS = [
     code: "AU", flag: "🇦🇺", nameZh: "澳大利亚", nameEn: "Australia",
     sources: [{ title: "Fair Work", titleEn: "Fair Work", url: "https://www.fairwork.gov.au/leave" }],
     items: [
-      { cat: "public", summary: "州级公共假日表不同；全国统一国庆等。", summaryEn: "State public holiday lists; national days.",
-        details: ["各州 Easter、杯赛日等", "假日工作 Award 罚金", "乳品区州假日差异"],
-        detailsEn: ["State-specific days", "Award penalties on work", "Regional variation"] },
+      { cat: "public",
+        shortSummary: "州别 2026 历表",
+        shortSummaryEn: "State 2026 lists",
+        summary: "<strong>2026</strong> 各州/领地公布当年公共假日表（国庆、澳新军团日、英王诞辰、嘉年华等）；全国统一日一致性高、各州杯赛日/劳动节月不同。", summaryEn: "<strong>2026</strong> each state/territory publishes its public holiday list (Australia Day, ANZAC, King's Birthday, regional show days, etc.).",
+        details: ["各州 Easter、杯赛日等", "假日工作 Award 罚金", "兼职/临时工多数无薪公休（见 NES）", "Fair Work 年度提醒核对所在州"],
+        detailsEn: ["State Easter/show days", "Award penalties if worked", "Many casuals unpaid on PH", "Check Fair Work for your state"] },
       { cat: "annual", summary: "NES 4 周年假（全职累积）。", summaryEn: "NES: 4 weeks annual leave (accrues).",
         details: ["可按 Award 为 5 周（如 shift worker）", "生病可用年假", "离职折现"],
         detailsEn: ["5 weeks for some awards", "Can take for sickness", "Payout on termination"] },
@@ -252,9 +269,12 @@ window.LEAVE_MARKETS = [
     code: "JP", flag: "🇯🇵", nameZh: "日本", nameEn: "Japan",
     sources: [{ title: "厚生労働省", titleEn: "MHLW", url: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/index.html" }],
     items: [
-      { cat: "public", summary: "约 16 个国民祝日 + 公司年终年末。", summaryEn: "~16 national holidays plus company year-end.",
-        details: ["海の日、体育の日等", "施行日按年份调整", "假日工作需 35%+ 等"],
-        detailsEn: ["Marine Day, Sports Day, etc.", "Dates shift by year", "Holiday work premiums"] },
+      { cat: "public",
+        shortSummary: "2026 祝日约 16 天",
+        shortSummaryEn: "~16 nat. hols. 2026",
+        summary: "<strong>2026 年</strong> 内阁府公布国民祝日约 <strong>16 天</strong>（元日、成人の日、海の日、山の日、スポーツの日、秋冬三連休等；祝日法「代替休日」适用）。", summaryEn: "<strong>2026</strong> Cabinet Office national holidays ~<strong>16</strong> (NY Day, Coming of Age, Marine/Mountain/Sports days; substitute holiday rules apply).",
+        details: ["海の日、体育の日等", "施行日按年份调整", "假日工作需 35%+ 等", "年末年始多为公司惯例非全部法定"],
+        detailsEn: ["Marine Day, Sports Day, etc.", "Dates shift by year", "Holiday work premiums", "Year-end closures often company policy"] },
       { cat: "annual", summary: "有給休暇：半年出勤≥80% 起 10 日，最高 20 日。", summaryEn: "Paid annual: from 10 days at 6 months (80% attendance), up to 20.",
         details: ["强制 5 日/年取得义务（2020）", "未使用可部分前两年结转", "离职一般不给付未休"],
         detailsEn: ["Must use 5 days/year (2020 rule)", "Limited carryover", "Unused rarely paid on exit"] },
@@ -276,9 +296,12 @@ window.LEAVE_MARKETS = [
     code: "KR", flag: "🇰🇷", nameZh: "韩国", nameEn: "Korea",
     sources: [{ title: "MOEL", titleEn: "MOEL", url: "https://www.moel.go.kr/" }],
     items: [
-      { cat: "public", summary: "公休日带薪；春节中秋长假。", summaryEn: "Paid public holidays; Lunar NY/Chuseok blocks.",
-        details: ["宪法纪念日等", "替代休日制", "假日上班工资加成"],
-        detailsEn: ["Constitution Day, etc.", "Substitute holiday system", "Holiday work premium"] },
+      { cat: "public",
+        shortSummary: "2026 公休+替代休",
+        shortSummaryEn: "2026 paid PH",
+        summary: "<strong>2026 年</strong> 法定公休带薪；春节、中秋等依「公休日」与<strong>替代公休日制</strong>形成长假，具体日期以 MOEL/政府年度公告为准。", summaryEn: "<strong>2026</strong> paid statutory public holidays; Lunar New Year/Chuseok blocks per substitute-holiday rules — check annual MOEL notice.",
+        details: ["宪法纪念日等", "替代休日制", "假日上班工资加成", "企业惯例可多于法定"],
+        detailsEn: ["Constitution Day, etc.", "Substitute holiday system", "Holiday work premium", "Employers may exceed statute"] },
       { cat: "annual", summary: "满 1 年 15 天；每 2 年 +1 至 25 天上限。", summaryEn: "15 days after 1 year; +1 per 2 years to 25 max.",
         details: ["未满 1 年按月比例", "雇主可指定使用时段", "离职折现部分争议"],
         detailsEn: ["Pro-rata first year", "Employer may designate timing", "Payout rules on exit"] },
@@ -300,9 +323,12 @@ window.LEAVE_MARKETS = [
     code: "IN", flag: "🇮🇳", nameZh: "印度", nameEn: "India",
     sources: [{ title: "Labour codes / state acts", titleEn: "India Labour", url: "https://labour.gov.in/" }],
     items: [
-      { cat: "public", summary: "国定假 + 邦假清单；商店旅馆法各异。", summaryEn: "National + state lists; shop acts vary.",
-        details: ["共和国日、独立日、甘地诞等", "印地教、穆斯林节日", "换班员工补假"],
-        detailsEn: ["Republic Day, Independence Day", "Religious holidays", "Shift worker substitution"] },
+      { cat: "public",
+        shortSummary: "国定 + 邦假 2026",
+        shortSummaryEn: "Central + state 2026",
+        summary: "<strong>2026 年</strong> 全国性节日（共和国日、独立日、甘地诞辰等）+ 各邦假日清单；商店与工厂法下排班与带薪假适用对象因邦别和雇佣类型而异。", summaryEn: "<strong>2026</strong> national days plus state lists; shop/factory acts vary by state and employment type.",
+        details: ["Republic Day、Independence Day、Diwali 等", "IT/跨国常见 15–21 天年假合同", "换班员工补假", "四大劳动法典落地进度因邦不同"],
+        detailsEn: ["Republic Day, Independence, Diwali", "IT contracts often 15–21 AL", "Shift substitution", "Labour code rollout varies by state"] },
       { cat: "annual", summary: "常见 12–24 天年假（邦/行业法）。", summaryEn: "Often 12–24 annual leave days (state/industry).",
         details: ["IT 合同常 15–21 天", "累积上限常见", " encashment 政策"],
         detailsEn: ["IT contracts often 15–21", "Accrual caps", "Encashment policies"] },
@@ -327,9 +353,9 @@ window.LEAVE_MARKETS = [
       { cat: "public",
         shortSummary: "联邦 11+ 公休",
         shortSummaryEn: "11+ federal holidays",
-        summary: "2026 年联邦层面 <strong>11 个</strong>全国假日 + 各州额外假日（2025-05 起沙巴/砂拉越适用修订雇佣法令，与半岛规则并行核对）。", summaryEn: "2026: <strong>11</strong> federal national holidays + state days (Sabah/Sarawak ordinances aligned from May 2025 — check local EA).",
-        details: [" Hari Merdeka、开斋等", "雇主义务付薪或放假", "休息日遇假日补假"],
-        detailsEn: ["Merdeka, Hari Raya, etc.", "Pay or off in lieu", "Substitute if on rest day"] },
+        summary: "<strong>2026 年</strong> 联邦 <strong>11 个</strong>全国假日 + 各州额外假日；沙巴/砂拉越自 2025-05 起修订雇佣法令与半岛并行，年假、病假、产假规则须分辖区核对。", summaryEn: "<strong>2026</strong>: <strong>11</strong> federal holidays + state days; Sabah/Sarawak EA from May 2025 — annual/sick/maternity differ by region.",
+        details: ["Hari Merdeka、Hari Raya、屠妖节等", "雇主义务付薪或放假", "休息日遇假日补假", "EA 2022 年假 8–16 天已普遍适用"],
+        detailsEn: ["Merdeka, Hari Raya, Deepavali", "Pay or off in lieu", "Substitute if on rest day", "EA 2022 annual 8–16 days"] },
       { cat: "annual", summary: "Employment Act 年假 8–16 天（服务年限）。", summaryEn: "EA annual leave 8–16 days by tenure.",
         details: ["满 12 个月", "可到 16 天", "未休离职折现"],
         detailsEn: ["After 12 months", "Up to 16 days", "Pay unused on exit"] },
@@ -354,9 +380,9 @@ window.LEAVE_MARKETS = [
       { cat: "public",
         shortSummary: "2026 约 16 天",
         shortSummaryEn: "~16 days in 2026",
-        summary: "<strong>2026</strong> 官方日历通常含宋干、水灯等约 <strong>16 个</strong>法定假日（依皇家公告年度调整）。", summaryEn: "<strong>2026</strong> royal gazette calendar typically lists ~<strong>16</strong> public holidays (Songkran, Loy Krathong, etc.).",
-        details: ["泼水节、水灯节", "假日工作双倍起", "穆斯林节日南部"],
-        detailsEn: ["Songkran, Loy Krathong", "Double pay on holiday work", "Muslim holidays in south"] },
+        summary: "<strong>2026 年</strong> 皇家公告日历通常含宋干（4/13–15）、水灯、国王诞辰等约 <strong>16 个</strong>带薪法定假日。", summaryEn: "<strong>2026</strong> royal gazette: Songkran (~13–15 Apr), Loy Krathong, King's Birthday, etc. — ~<strong>16</strong> paid public holidays.",
+        details: ["泼水节、水灯节", "假日工作双倍起", "南部穆斯林节日另有安排", "劳动部年度公告发布后发正式历"],
+        detailsEn: ["Songkran, Loy Krathong", "Double pay on holiday work", "Muslim south regional days", "Confirm when MOL posts annual list"] },
       { cat: "annual", summary: "满 1 年：6 天起，3 年 10 天，6 年 14 天…", summaryEn: "After 1 year: from 6 days, 10 at 3 years, 14 at 6 years…",
         details: ["离职折现", "可协商合并公休", "每年须使用"],
         detailsEn: ["Pay on termination", "May combine with holidays by policy", "Annual use"] },
@@ -408,9 +434,9 @@ window.LEAVE_MARKETS = [
       { cat: "public",
         shortSummary: "国假 11 天框架",
         shortSummaryEn: "11-day holiday framework",
-        summary: "劳动法列明 <strong>11 天</strong>国定假；实际连休因春节、国庆等年度政府通知延长（带薪公休）。", summaryEn: "<strong>11</strong> national holidays listed in Labour Code; Tet/National Day breaks lengthened per annual government notice.",
-        details: ["国庆、雄王节", "假日工作或补休", "少数民族节日"],
-        detailsEn: ["National Day, Hung Kings", "Work or compensatory rest", "Ethnic holidays"] },
+        summary: "<strong>2026 年</strong> 劳动法框架 <strong>11 天</strong>国定假；春节、国庆等依政府年度通知形成连休（带薪公休）。", summaryEn: "<strong>2026</strong>: Labour Code <strong>11</strong> national holidays; Tet/National Day bridges per annual government notice.",
+        details: ["国庆、雄王节、五一", "假日工作或补休", "少数民族节日", "外商依劳动许可与集体合同核对"],
+        detailsEn: ["National Day, Hung Kings, Labour Day", "Work or compensatory rest", "Ethnic holidays", "FIEs: check permits & contracts"] },
       { cat: "annual", summary: "12–14 天年假（工龄与条件）。", summaryEn: "12–14 annual leave days by service.",
         details: ["有害工种增加", "离职折现", "可提前休完"],
         detailsEn: ["Extra for hazardous jobs", "Payout on exit", "Advance leave"] },
@@ -432,9 +458,12 @@ window.LEAVE_MARKETS = [
     code: "PH", flag: "🇵🇭", nameZh: "菲律宾", nameEn: "Philippines",
     sources: [{ title: "DOLE", titleEn: "DOLE", url: "https://www.dole.gov.ph/" }],
     items: [
-      { cat: "public", summary: "Regular 与 Special 非工作日规则不同。", summaryEn: "Regular vs special non-working day rules differ.",
-        details: ["Holy Week、独立日", "Special day 无工无薪", "Worked holiday premium"],
-        detailsEn: ["Holy Week, Independence", "Special non-working rules", "Holiday premiums"] },
+      { cat: "public",
+        shortSummary: "2026 总统公告历",
+        shortSummaryEn: "2026 proclamations",
+        summary: "<strong>2026 年</strong> 依总统府公告之 Regular holidays 与 Special non-working days；薪酬规则区分「未工作无薪 / 工作加倍或额外津贴」。", summaryEn: "<strong>2026</strong> regular vs special non-working days per presidential proclamations; pay rules differ for worked vs unworked.",
+        details: ["Holy Week、独立日、诸圣节前后", "Special day 常无薪不上班", "Worked holiday premium", "BPO 排班须核对 DOLE 顾问"],
+        detailsEn: ["Holy Week, Independence", "Special days often unpaid", "Holiday premiums if worked", "BPO shifts: verify DOLE rules"] },
       { cat: "annual", summary: "Service Incentive Leave 5 天/年（满 1 年）。", summaryEn: "5 days SIL after 1 year.",
         details: ["可病事并用", "少于 10 人雇主有例外", "累积或年度依雇规"],
         detailsEn: ["Multi-purpose", "Small employer exceptions", "Accrual per rules"] },
