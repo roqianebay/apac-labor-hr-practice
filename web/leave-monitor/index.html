@@ -42,36 +42,19 @@
     .card-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
     .card-header h2 { font-size: 1rem; }
     .card-header .sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
-    th, td { border-bottom: 1px solid var(--border); padding: 0.5rem; vertical-align: top; }
-    th { background: var(--surface-2); color: var(--text-muted); font-weight: 600; position: sticky; top: 0; }
+    table.matrix-table { width: 100%; border-collapse: collapse; }
+    table.matrix-table th, table.matrix-table td { border-bottom: 1px solid var(--border); vertical-align: top; }
+    table.matrix-table th { background: var(--surface-2); color: var(--text-muted); font-weight: 600; position: sticky; top: 0; }
     tr.hidden { display: none; }
-    .topic-col { min-width: 120px; font-weight: 600; color: var(--accent-light); }
     .table-wrap { overflow: auto; max-height: 70vh; }
-    .country-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; padding: 1.25rem; }
-    .country-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: var(--surface-2); }
     .country-card.hidden { display: none; }
-    .country-card h3 { font-size: 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
-    .leave-block { margin-bottom: 1rem; font-size: 0.82rem; }
-    .leave-block h4 { font-size: 0.78rem; color: var(--accent-light); margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.03em; }
-    .leave-block .sum { color: var(--text); margin-bottom: 0.35rem; }
-    .leave-block ul { margin-left: 1.1rem; color: var(--text-muted); font-size: 0.8rem; }
-    .leave-block li { margin-bottom: 0.2rem; }
-    .cat-panel { padding: 1.25rem; }
-    .cat-block { margin-bottom: 1.5rem; }
-    .cat-block h3 { font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--accent-light); }
-    .cat-row { display: grid; grid-template-columns: 140px 1fr; gap: 0.5rem 1rem; font-size: 0.82rem; padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
-    .cat-row.hidden { display: none; }
-    .cat-row .m { font-weight: 600; color: var(--text); }
-    .cat-row .v { color: var(--text-muted); }
-    .source-links { padding: 1.25rem; font-size: 0.84rem; }
+    .source-links { padding: 1.25rem; }
     .source-links a { color: var(--accent-light); display: block; margin-bottom: 0.35rem; }
     .footer { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--text-muted); }
     .hub-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
     .hub-footer a { color: var(--accent-light); }
   </style>
-  <script src="js/leave-lang.js"></script>
-  <script src="js/leave-data.js"></script>
+  <link rel="stylesheet" href="css/leave-monitor.css?v=20261125" />
 </head>
 <body>
   <header class="header">
@@ -86,7 +69,7 @@
           <button type="button" data-lang="en">EN</button>
         </div>
         <span class="badge live" id="ui-live"></span>
-        <span class="badge">2026-11-24</span>
+        <span class="badge" id="ui-data-version" title="Data snapshot">2025-11-24</span>
       </div>
     </div>
   </header>
@@ -100,25 +83,27 @@
       <select id="categoryFilter"><option value=""></option></select>
     </div>
     <nav class="tabs">
-      <button class="tab-btn active" data-tab="overview" id="ui-tab-overview"></button>
-      <button class="tab-btn" data-tab="countries" id="ui-tab-countries"></button>
+      <button class="tab-btn" data-tab="overview" id="ui-tab-overview"></button>
+      <button class="tab-btn active" data-tab="countries" id="ui-tab-countries"></button>
       <button class="tab-btn" data-tab="categories" id="ui-tab-categories"></button>
       <button class="tab-btn" data-tab="sources" id="ui-tab-sources"></button>
     </nav>
 
-    <section class="panel active" id="panel-overview">
+    <section class="panel" id="panel-overview">
       <div class="card">
         <div class="card-header">
           <h2 id="ui-overview-h2"></h2>
           <p class="sub" id="ui-overview-sub"></p>
         </div>
+        <div id="policySpotlight" class="policy-spotlight" aria-live="polite"></div>
+        <p class="matrix-note" id="ui-matrix-hint"></p>
         <div class="table-wrap">
-          <table><thead id="matrixHead"></thead><tbody id="matrixBody"></tbody></table>
+          <table class="matrix-table"><thead id="matrixHead"></thead><tbody id="matrixBody"></tbody></table>
         </div>
       </div>
     </section>
 
-    <section class="panel" id="panel-countries">
+    <section class="panel active" id="panel-countries">
       <div class="card">
         <div class="card-header"><h2 id="ui-countries-h2"></h2></div>
         <div class="country-grid" id="countryGrid"></div>
@@ -167,6 +152,41 @@
       return (list || []).map((x) => `<li>${x}</li>`).join("");
     }
 
+    function itemShortText(item, LL) {
+      if (LL && item.shortSummary) return LL.itemField(item, "shortSummary");
+      if (item.shortSummary) return item.shortSummary;
+      const full = LL ? LL.itemField(item, "summary") : item.summary;
+      const plain = String(full).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+      return plain.length > 88 ? plain.slice(0, 86) + "…" : plain;
+    }
+
+    function renderPolicySpotlight() {
+      const LL = window.LeaveLang;
+      const host = document.getElementById("policySpotlight");
+      const spots = window.POLICY_SPOTLIGHTS || [];
+      if (!host || !spots.length) {
+        if (host) host.innerHTML = "";
+        return;
+      }
+      const s = spots[0];
+      const title = s.title && (s.title.zh ? LL.t(s.title) : s.title);
+      const headline = s.headline && (s.headline.zh ? LL.t(s.headline) : s.headline);
+      const sub = s.sub && (s.sub.zh ? LL.t(s.sub) : s.sub);
+      const body = s.body && (s.body.zh ? LL.t(s.body) : s.body);
+      const pills = (s.pills || []).map((p) => {
+        const label = p && p.zh ? LL.t(p) : p;
+        return `<span class="pill">${label}</span>`;
+      }).join("");
+      const linkLabel = LL ? LL.t(LL.UI.spotlightLink) : "Source";
+      host.innerHTML =
+        `<h3>${title}</h3>` +
+        `<div class="big">${headline}<small>${sub || ""}</small></div>` +
+        `<p>${body}</p>` +
+        `<div class="pill-row">${pills}</div>` +
+        (s.href ? `<p style="margin-top:0.75rem"><a href="${s.href}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-light)">${linkLabel} →</a></p>` : "");
+    }
+    window.renderPolicySpotlight = renderPolicySpotlight;
+
     function renderLeaveStats() {
       const LL = window.LeaveLang;
       document.getElementById("statsGrid").innerHTML = `
@@ -198,14 +218,15 @@
       document.getElementById("matrixBody").innerHTML = CATS.map((cat) => {
         const rowText = MARKETS.map((m) => {
           const it = m.items.find((x) => x.cat === cat.id);
-          return it ? (LL ? LL.itemField(it, "summary") : it.summary) : "";
+          return it ? itemShortText(it, LL) + " " + (LL ? LL.itemField(it, "summary") : it.summary) : "";
         }).join(" ");
         const hide = (f.category && f.category !== cat.id) || (f.q && !rowText.toLowerCase().includes(f.q));
         const cells = MARKETS.map((m) => {
           if (f.country && f.country !== m.code) return "<td>—</td>";
           const it = m.items.find((x) => x.cat === cat.id);
           if (!it) return "<td>—</td>";
-          return `<td>${LL ? LL.itemField(it, "summary") : it.summary}</td>`;
+          const extra = m.code === "CN" && cat.id === "public" ? " cell-cn-public" : "";
+          return `<td class="cell-short${extra}">${itemShortText(it, LL)}</td>`;
         }).join("");
         return `<tr class="${hide ? "hidden" : ""}"><td class="topic-col">${LL ? LL.catLabel(cat.id) : cat.id}</td>${cells}</tr>`;
       }).join("");
@@ -213,7 +234,8 @@
 
     function renderCountries(f) {
       const LL = window.LeaveLang;
-      document.getElementById("countryGrid").innerHTML = MARKETS.map((m) => {
+      const ordered = [...MARKETS].sort((a, b) => (a.code === "CN" ? -1 : b.code === "CN" ? 1 : 0));
+      document.getElementById("countryGrid").innerHTML = ordered.map((m) => {
         const blob = JSON.stringify(m).toLowerCase();
         const matchC = !f.country || f.country === m.code;
         const matchQ = !f.q || blob.includes(f.q);
@@ -224,7 +246,8 @@
             <div class="sum">${LL ? LL.itemField(it, "summary") : it.summary}</div>
             <ul>${detailBullets(it)}</ul>
           </div>`).join("");
-        return `<article class="country-card"><h3>${m.flag} ${LL ? LL.marketName(m) : m.nameZh}</h3>${blocks}</article>`;
+        const feat = m.code === "CN" ? " is-featured" : "";
+        return `<article class="country-card${feat}"><h3>${m.flag} ${LL ? LL.marketName(m) : m.nameZh}</h3>${blocks}</article>`;
       }).join("");
     }
 
@@ -277,9 +300,16 @@
       el.addEventListener("change", applyLeaveFilters);
     });
 
+    const verBadge = document.getElementById("ui-data-version");
+    if (verBadge && window.LEAVE_DATA_VERSION) verBadge.textContent = window.LEAVE_DATA_VERSION;
+
     fillLeaveFilters();
+  </script>
+  <script src="js/leave-lang.js?v=20261125"></script>
+  <script src="js/leave-data.js?v=20261125"></script>
+  <script>
     if (window.LeaveLang) LeaveLang.init();
-    else { renderLeaveStats(); applyLeaveFilters(); renderLeaveSources(); }
+    else { renderLeaveStats(); applyLeaveFilters(); renderLeaveSources(); renderPolicySpotlight(); }
   </script>
 </body>
 </html>

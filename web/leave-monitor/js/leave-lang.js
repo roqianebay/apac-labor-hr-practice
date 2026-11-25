@@ -13,8 +13,8 @@
     ),
     live: L("法定休假对照", "Statutory leave"),
     intro: L(
-      "<strong>用途：</strong>汇总各国/地区<strong>法律规定的休假</strong>（公共假日、带薪年假、病假、产假/陪产假等）。为对照摘要，非法律意见；具体天数可能因行业、集体合同、服务年限而异，请以官方文本与合同为准。",
-      "<strong>Purpose:</strong> Compare <strong>legally mandated leave</strong> by market. Illustrative HR summary — not legal advice; check official rules and contracts for live cases."
+      "<strong>用途：</strong>汇总各国/地区<strong>法律规定的休假</strong>（公共假日、带薪年假、病假、产假/陪产假等）。数据快照：<strong>2026-11-25</strong>（含中国 13 天、香港 2026 起 15 天法定假、新马菲新育儿假近期修订等）。为对照摘要，非法律意见；请以官方法令、年度放假历与合同为准。",
+      "<strong>Purpose:</strong> Compare <strong>legally mandated leave</strong> by market. Data snapshot <strong>25 Nov 2026</strong> (e.g. China 13 public days, HK 15 from 2026, recent parental-leave reforms). Illustrative — not legal advice; rely on official gazettes, annual calendars and contracts."
     ),
     statMarkets: L("覆盖市场", "Markets"),
     statCats: L("休假类别", "Leave types"),
@@ -26,7 +26,9 @@
     tabCategories: L("分类对照", "By category"),
     tabSources: L("官方来源", "Official sources"),
     overviewH2: L("休假类型对照矩阵", "Leave-type comparison matrix"),
-    overviewSub: L("单元格为法定底线摘要；详细条文见「分国详表」。", "Cells are statutory floor summaries; see country tabs for detail."),
+    overviewSub: L("矩阵为一句话摘要；完整表述与要点见「分国详表」。", "Matrix shows one-line summaries; see country tab for full detail."),
+    matrixHint: L("提示：矩阵为简写；公共假日请以分国卡片及官方年度历为准。数据快照 2026-11-25。", "Tip: matrix cells are abbreviated; use country cards and official annual calendars. Snapshot 2026-11-25."),
+    spotlightLink: L("国务院令全文", "State Council text"),
     countriesH2: L("各国休假详表", "Country leave detail"),
     categoriesH2: L("按类别横向对照", "Cross-market by category"),
     sourcesH2: L("官方法规链接", "Official links"),
@@ -83,6 +85,7 @@
     });
     setText("ui-overview-h2", t(UI.overviewH2));
     setText("ui-overview-sub", t(UI.overviewSub));
+    setText("ui-matrix-hint", t(UI.matrixHint));
     setText("ui-countries-h2", t(UI.countriesH2));
     setText("ui-categories-h2", t(UI.categoriesH2));
     setText("ui-sources-h2", t(UI.sourcesH2));
@@ -99,6 +102,7 @@
     if (typeof global.renderLeaveStats === "function") global.renderLeaveStats();
     if (typeof global.applyLeaveFilters === "function") global.applyLeaveFilters();
     if (typeof global.renderLeaveSources === "function") global.renderLeaveSources();
+    if (typeof global.renderPolicySpotlight === "function") global.renderPolicySpotlight();
   }
 
   function init() {

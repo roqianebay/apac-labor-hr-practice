@@ -102,7 +102,7 @@ window.DASH_HUB_BOARDS = [
       L("官方法规入口链接", "Official source links"),
       L("中英切换", "ZH/EN toggle")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/",
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261125",
     ext: true
   },
   {
@@ -113,11 +113,11 @@ window.DASH_HUB_BOARDS = [
       "Public holidays · annual &amp; sick leave · <strong>per-country detail</strong>."
     ),
     bullets: [
-      L("总览矩阵 + 分国展开 + 分类对照", "Overview matrix · country detail · by category"),
-      L("14 个亚太市场", "14 APAC markets"),
+      L("中国大陆 2025 起法定公休 <strong>13 天</strong>（国令第 795）", "Mainland China <strong>13</strong> statutory public days from 2025 (Order 795)"),
+      L("总览矩阵 + 分国详表（默认）", "Overview matrix · country detail (default tab)"),
       L("中英切换", "ZH/EN toggle")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/leave-monitor/",
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/leave-monitor/?v=20261125",
     ext: true
   }
 ];

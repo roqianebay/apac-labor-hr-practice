@@ -2,6 +2,8 @@ function L(zh, en) {
   return { zh, en };
 }
 
+window.BENEFITS_DATA_VERSION = "2026-11-25";
+
 window.BENEFIT_CATEGORIES = [
   { id: "leave_annual", label: L("年假/带薪假", "Annual / paid leave") },
   { id: "holidays", label: L("公共假日", "Public holidays") },
@@ -38,7 +40,7 @@ window.BENEFIT_MARKETS = [
     sources: [{ title: "劳工处", titleEn: "Labour Department", url: "https://www.labour.gov.hk/" }],
     items: [
       { cat: "leave_annual", summary: "雇佣条例：按受雇年资7/14/14天年假阶梯（可高于合约）。", summaryEn: "EO statutory annual leave 7–14 days by service (contract may exceed)." },
-      { cat: "holidays", summary: "12天法定假期（雇主须另付工资或放假）。", summaryEn: "12 statutory holidays — paid time off or pay in lieu." },
+      { cat: "holidays", summary: "2026年起15天法定假期（新增复活节星期一；2028/2030再增）。", summaryEn: "15 statutory holidays from 2026 (Easter Monday added; more from 2028/2030)." },
       { cat: "leave_sick", summary: "连续合约满12周：病假有薪累计按2/4条递减递增规则。", summaryEn: "Paid sick leave accumulation for continuous employees (12 weeks+)." },
       { cat: "leave_parental", summary: "产假14周（雇主可向政府索取部分）；陪产假5天（2023起法定）。", summaryEn: "14 weeks maternity (partial reimbursement); 5 days paternity." },
       { cat: "social", summary: "强积金MPF：雇主及雇员各5%（下限/上限依条例）。", summaryEn: "MPF: employer/employee 5% each (caps apply)." },
@@ -70,7 +72,7 @@ window.BENEFIT_MARKETS = [
       { cat: "leave_annual", summary: "入职满3个月：第1年起7–14天（按年资阶梯，Employment Act Part IV）。", summaryEn: "7–14 days annual leave by service (EA Part IV, after 3 months)." },
       { cat: "holidays", summary: "11天法定公众假期；受薪雇员须付节日薪酬或补假。", summaryEn: "11 public holidays — pay or off in lieu." },
       { cat: "leave_sick", summary: "门诊14天+住院60天 paid sick（须MC，年资门槛）。", summaryEn: "14 outpatient + 60 hospitalisation paid sick (MC, eligibility)." },
-      { cat: "leave_parental", summary: "产假16周（公民儿童 MOM 补贴部分雇主成本）；陪产假4周（2024扩）。", summaryEn: "16 weeks maternity (gov reimbursement); paternity 4 weeks." },
+      { cat: "leave_parental", summary: "产假16周；2025-04起陪产假法定4周GPPL；育儿假6天GPCL+ECL2天（公民子女）。", summaryEn: "16 weeks maternity; 4 weeks GPPL paternity from Apr 2025; 6 days GPCL + 2 days ECL (SC children)." },
       { cat: "social", summary: "CPF：雇主+雇员缴至中央公积金（费率分龄档）。", summaryEn: "Central Provident Fund contributions by age bands." },
       { cat: "retirement", summary: "55岁提领部分CPF；会后 Full Retirement Sum 规则。", summaryEn: "CPF withdrawals from 55; FRS rules apply." },
       { cat: "medical", summary: "Work Injury Compensation Act；雇主须买WICA保险。", summaryEn: "WICA mandatory insurance for work injuries." },
@@ -85,7 +87,7 @@ window.BENEFIT_MARKETS = [
       { cat: "leave_annual", summary: "NES：全职每年4周年假（累积，解雇时折现）。", summaryEn: "NES: 4 weeks paid annual leave (accrues, paid out on termination)." },
       { cat: "holidays", summary: "国民各州公共假日表不同（雇主义务一致为带薪假或补薪）。", summaryEn: "State-based public holidays — paid leave or loading." },
       { cat: "leave_sick", summary: "个人/护理假10天/年累积（全职）；可含无损期（Fair Work）。", summaryEn: "10 days personal/carer's leave per year (accrual)." },
-      { cat: "leave_parental", summary: "政府Paid Parental Leave Scheme + 雇主无薪/带薪育儿假看AEA。", summaryEn: "Gov PPL scheme + employer parental per award/EA." },
+      { cat: "leave_parental", summary: "政府PPL+NES无薪育婴假；灵活育婴假2025-07至2026-06最多120天、2026-07起130天。", summaryEn: "Gov PPL + NES unpaid parental leave; flexible parental leave cap 120 days (to Jun 2026), 130 from Jul 2026." },
       { cat: "social", summary: "无中国型五险一金；Medicare levy税+养老金Super。", summaryEn: "No CN-style bundle; Medicare levy + compulsory super." },
       { cat: "retirement", summary: "Super Guarantee雇主缴费比例法定上调轨道（2025约11.5%+）。", summaryEn: "Super Guarantee employer rate on statutory schedule." },
       { cat: "medical", summary: "Workers' compensation各州工伤险强制。", summaryEn: "Mandatory workers' compensation (state schemes)." },
@@ -130,7 +132,7 @@ window.BENEFIT_MARKETS = [
       { cat: "leave_annual", summary: "1年以上：15天有薪年假；每2年+1天至25天上限。", summaryEn: "15 days paid leave after 1 year; +1 per 2 years to 25." },
       { cat: "holidays", summary: "公休日劳动者工资法定支付或补休。", summaryEn: "Paid wages or substitute rest on public holidays." },
       { cat: "leave_sick", summary: "有薪病假非法定普遍；雇主依社员规人请假（可不适）。", summaryEn: "No general statutory paid sick; employer rules apply." },
-      { cat: "leave_parental", summary: "产假90天（雇主50%+雇用保险补贴）；抚养费休假父母各可取得。", summaryEn: "90 days maternity (shared cost); parental leave for parents." },
+      { cat: "leave_parental", summary: "产假90天；2025育儿津贴上调；2026-08起1–2周短期育儿假；配偶陪产假窗口2026-09扩大。", summaryEn: "90-day maternity; 2025 benefit uplift; short parental leave 1–2 weeks from Aug 2026; spouse birth leave expanded Sep 2026." },
       { cat: "social", summary: "国民年金·健康保险·雇用保险·工伤雇主扣缴缴纳。", summaryEn: "National pension, health, employment, industrial accident." },
       { cat: "retirement", summary: "满60岁年金领取（逐步上调）；退职金DC/DB义务化路径。", summaryEn: "Pension from 60 (rising); severance pay system." },
       { cat: "medical", summary: "산재보험涵盖职业伤病医疗与康复。", summaryEn: "Industrial accident insurance for treatment and rehab." },
@@ -145,7 +147,7 @@ window.BENEFIT_MARKETS = [
       { cat: "leave_annual", summary: "州法与商店Establishment法各异：常见12～24天年假。", summaryEn: "State/establishment acts: often 12–24 annual leave days." },
       { cat: "holidays", summary: "国民假日+各邦假日清单（雇主必须放假或加班费）。", summaryEn: "National + state lists; holiday or overtime pay." },
       { cat: "leave_sick", summary: "部分州/medical leave法：带薪病假配额。", summaryEn: "Some states: paid sickness entitlement." },
-      { cat: "leave_parental", summary: "Maternity Benefit Act：26周（特定条件下）；陪产假法制度推进中。", summaryEn: "26 weeks maternity (conditions); paternity evolving." },
+      { cat: "leave_parental", summary: "Maternity Benefit Act：26周；陪产假15天（符合条件雇员）。", summaryEn: "26 weeks maternity (Maternity Benefit Act); 15 days paternity." },
       { cat: "social", summary: "EPF（雇员公积金）+ ESIC（薪资门槛内医保）。", summaryEn: "EPF + ESIC for eligible wage bands." },
       { cat: "retirement", summary: "EPF满年限领取/部分提取。", summaryEn: "EPF withdrawal rules at retirement age." },
       { cat: "medical", summary: "ESIC诊疗+工伤Employer's liability。", summaryEn: "ESIC care; employer liability for injury." },
@@ -188,7 +190,7 @@ window.BENEFIT_MARKETS = [
     sources: [{ title: "Kemnaker", titleEn: "Ministry of Manpower", url: "https://kemnaker.go.id/" }],
     items: [
       { cat: "leave_annual", summary: "工作连续满12个月12天年假。", summaryEn: "12 days annual leave after 12 months." },
-      { cat: "holidays", summary: "共同假日与宗教节日（总统令年度）。", summaryEn: "Joint holidays and religious days (annual decree)." },
+      { cat: "holidays", summary: "2026年17天国假+8天共同休假（三部长SKB 2025-09）。", summaryEn: "2026: 17 national holidays + 8 collective leave days (Sep 2025 SKB)." },
       { cat: "leave_sick", summary: "医生证明病假薪资按百分比递减给付规则。", summaryEn: "Paid sick with declining % by duration (medical proof)." },
       { cat: "leave_parental", summary: "产假3个月；近年父亲陪产假扩展至数日（法改）。", summaryEn: "3 months maternity; paternity days expanded by reform." },
       { cat: "social", summary: "BPJS Ketenagakerjaan（工伤、养老、死亡）+ BPJS Kesehatan医保强制。", summaryEn: "BPJS Employment + Health mandatory." },
@@ -205,7 +207,7 @@ window.BENEFIT_MARKETS = [
       { cat: "leave_annual", summary: "12～14天年假按工龄与劳动条件。", summaryEn: "12–14 annual leave days by conditions." },
       { cat: "holidays", summary: "春节长假等国定假日带薪。", summaryEn: "Tet and national holidays — paid." },
       { cat: "leave_sick", summary: "社保缴纳者病假医保付+雇主补差。", summaryEn: "Social insurance sick benefits for insured workers." },
-      { cat: "leave_parental", summary: "产假6个月（可延长）；父亲陪产假5～14天（法规更新）。", summaryEn: "6 months maternity; paternity 5–14 days (updates)." },
+      { cat: "leave_parental", summary: "产假6个月（社保法41/2024，2025-07起）；父亲陪产5–14工作日；2026-07二孩延至7个月/陪产10天。", summaryEn: "6 months maternity (SIL Law from Jul 2025); paternity 5–14 working days; 2nd child: 7 months / 10 days from Jul 2026." },
       { cat: "social", summary: "BHXH养老、BHYT医疗、BHTN失业雇主劳方分摊。", summaryEn: "Social, health, unemployment insurance split." },
       { cat: "retirement", summary: "男60女55退休（逐步上调方案）。", summaryEn: "Retirement ages 60/55 (phasing up)." },
       { cat: "medical", summary: "职业病与工作事故社保给付。", summaryEn: "Occupational disease and accident benefits." },
@@ -220,7 +222,7 @@ window.BENEFIT_MARKETS = [
       { cat: "leave_annual", summary: "5天Service Incentive Leave（满1年，可含病事假合并）。", summaryEn: "5 days SIL after 1 year (may combine purposes)." },
       { cat: "holidays", summary: "Regular + special non-working holidays薪酬规则区分。", summaryEn: "Regular vs special holiday pay rules differ." },
       { cat: "leave_sick", summary: "无普遍法定长期带薪病假；SSS sickness benefit有限额。", summaryEn: "Limited SSS sickness benefit; no broad paid sick statute." },
-      { cat: "leave_parental", summary: "产假105天（单胎）可延长；solo parent加15天。", summaryEn: "105 days maternity; solo parent +15." },
+      { cat: "leave_parental", summary: "产假105天；solo parent加15天；陪产假7天（RA 8187）。", summaryEn: "105 days maternity; solo parent +15; 7 days paternity (RA 8187)." },
       { cat: "social", summary: "SSS、PhilHealth、Pag-IBIG强制。", summaryEn: "SSS, PhilHealth, Pag-IBIG mandatory." },
       { cat: "retirement", summary: "SSS养老金60岁；Pag-IBIG MP2可选。", summaryEn: "SSS pension at 60; Pag-IBIG savings." },
       { cat: "medical", summary: "ECC/PhilHealth工伤与工作病。", summaryEn: "ECC and PhilHealth for work-related cases." },

@@ -1,0 +1,140 @@
+:root {
+  --lm-font: 1rem;
+  --lm-font-sm: 0.92rem;
+  --lm-font-xs: 0.85rem;
+  --lm-line: 1.65;
+}
+
+body { font-size: var(--lm-font); line-height: var(--lm-line); }
+
+.intro-banner { font-size: var(--lm-font-sm); padding: 1.15rem 1.35rem; line-height: var(--lm-line); }
+
+.stat-card .value { font-size: 1.75rem; }
+.stat-card .label { font-size: 0.8rem; }
+
+.toolbar input, .toolbar select { font-size: var(--lm-font-sm); padding: 0.65rem 0.9rem; }
+
+.tab-btn { font-size: var(--lm-font-sm); padding: 0.55rem 1.15rem; }
+
+.card-header h2 { font-size: 1.15rem; }
+.card-header .sub { font-size: var(--lm-font-sm); line-height: var(--lm-line); }
+
+.policy-spotlight {
+  margin: 0 1.25rem 1.25rem;
+  padding: 1.25rem 1.35rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(99, 102, 241, 0.45);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(30, 41, 59, 0.6));
+}
+.policy-spotlight h3 { font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--accent-light); }
+.policy-spotlight .big { font-size: 2rem; font-weight: 800; color: #fff; line-height: 1.2; }
+.policy-spotlight .big small { font-size: 1rem; font-weight: 600; color: var(--text-muted); margin-left: 0.35rem; }
+.policy-spotlight p { font-size: var(--lm-font-sm); color: var(--text-muted); margin-top: 0.65rem; max-width: 72ch; }
+.policy-spotlight .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.85rem; }
+.policy-spotlight .pill {
+  font-size: var(--lm-font-xs);
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.matrix-note {
+  padding: 0 1.25rem 0.75rem;
+  font-size: var(--lm-font-xs);
+  color: var(--text-muted);
+}
+
+table.matrix-table { font-size: var(--lm-font-xs); }
+table.matrix-table th,
+table.matrix-table td { padding: 0.75rem 0.65rem; line-height: 1.45; }
+table.matrix-table td.cell-short {
+  max-width: 11rem;
+  color: var(--text-muted);
+}
+table.matrix-table td.cell-cn-public {
+  color: var(--text);
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.08);
+}
+table.matrix-table .topic-col {
+  font-size: var(--lm-font-sm);
+  min-width: 9.5rem;
+  position: sticky;
+  left: 0;
+  background: var(--surface-2);
+  z-index: 2;
+}
+
+.country-grid {
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 1.35rem;
+  padding: 1.35rem;
+}
+
+.country-card {
+  padding: 1.35rem 1.4rem;
+  border-radius: 12px;
+}
+.country-card.is-featured {
+  border-color: rgba(99, 102, 241, 0.55);
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2);
+}
+.country-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.leave-block {
+  margin-bottom: 1.35rem;
+  padding: 1rem 1rem 1rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 0 8px 8px 0;
+}
+.leave-block:last-child { margin-bottom: 0; }
+.leave-block h4 {
+  font-size: var(--lm-font-sm);
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--accent-light);
+}
+.leave-block .sum {
+  font-size: var(--lm-font);
+  line-height: var(--lm-line);
+  color: var(--text);
+  margin-bottom: 0.65rem;
+}
+.leave-block .sum strong { color: #fff; }
+.leave-block ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: var(--lm-font-sm);
+  line-height: var(--lm-line);
+  color: var(--text-muted);
+}
+.leave-block li { margin-bottom: 0.45rem; }
+
+.cat-panel { padding: 1.35rem; }
+.cat-block {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.cat-block h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+.cat-row {
+  grid-template-columns: 11rem 1fr;
+  font-size: var(--lm-font-sm);
+  padding: 0.85rem 0;
+  align-items: start;
+  gap: 1rem;
+}
+.cat-row .v { line-height: var(--lm-line); color: var(--text); }
+.cat-row .m { font-size: var(--lm-font-sm); }
+
+.source-links { font-size: var(--lm-font-sm); line-height: var(--lm-line); }
