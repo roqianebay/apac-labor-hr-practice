@@ -2,7 +2,7 @@ function L(zh, en) {
   return { zh, en };
 }
 
-window.LEAVE_DATA_VERSION = "2026-11-25-policy-refresh";
+window.LEAVE_DATA_VERSION = "2026-11-26-policy-fix";
 
 window.POLICY_SPOTLIGHTS = [
   {
@@ -11,16 +11,52 @@ window.POLICY_SPOTLIGHTS = [
     headline: L("13 天", "13 days"),
     sub: L("自 2025-01-01 起（国令第 795 号）", "From 1 Jan 2025 (State Council Order 795)"),
     body: L(
-      "元旦1 + 春节4（除夕至初三）+ 清明1 + 劳动2 + 端午1 + 中秋1 + 国庆3。国务院办公厅另行发布<strong>调休连休</strong>安排，连休天数不等于法定 13 天。",
-      "1 NY + 4 Spring Festival + 1 Qingming + 2 Labour + 1 Dragon Boat + 1 Mid-Autumn + 3 National Day. The State Council also publishes <strong>bridge holiday</strong> schedules — long breaks are not the same as the 13 statutory days."
+      "元旦1 + 春节4（除夕至初三）+ 清明1 + 劳动2 + 端午1 + 中秋1 + 国庆3。<strong>2026</strong> 年连休以国务院办公厅年度放假通知为准；调休连休天数不等于法定 13 天。",
+      "1 NY + 4 Spring Festival + 1 Qingming + 2 Labour + 1 Dragon Boat + 1 Mid-Autumn + 3 National Day. <strong>2026</strong> bridge schedule per annual State Council notice — long breaks ≠ 13 statutory days."
     ),
     pills: [
       L("2024-11 修法", "Nov 2024 amendment"),
-      L("原 11 天", "Previously 11 days"),
+      L("2026 放假历", "2026 holiday calendar"),
       L("春节 +1", "Spring Festival +1"),
       L("劳动节 +1", "Labour Day +1")
     ],
     href: "https://www.gov.cn/zhengce/zhengceku/202411/content_6986381.htm"
+  },
+  {
+    code: "HK",
+    title: L("香港 · 法定假期渐进增加", "Hong Kong · phased statutory holidays"),
+    headline: L("15 天", "15 days"),
+    sub: L("自 2026-01-01 起（+复活节星期一）", "From 1 Jan 2026 (+Easter Monday)"),
+    body: L(
+      "2026 年起增至 <strong>15 天</strong>；2028 起加 Good Friday 至 16 天；2030 起再增 1 天至 17 天。劳工处发布 <strong>2026</strong> 法定假日表，雇员法定假遇休息日须补假。",
+      "From 2026: <strong>15</strong> statutory holidays; 16 from 2028 (+Good Friday); 17 from 2030. Labour Department <strong>2026</strong> table — substitute rest day if holiday falls on rest day."
+    ),
+    pills: [L("2026 日历", "2026 calendar"), L("复活节星期一", "Easter Monday"), L("2030→17天", "17 days by 2030")],
+    href: "https://www.labour.gov.hk/eng/news/latest_holidays2026.htm"
+  },
+  {
+    code: "ID",
+    title: L("印尼 · 2026 国定假与 cuti bersama", "Indonesia · 2026 national & collective leave"),
+    headline: L("17 + 8", "17 + 8"),
+    sub: L("三部长 SKB 2025-09-19", "Tri-minister SKB 19 Sep 2025"),
+    body: L(
+      "<strong>2026</strong>：<strong>17 天</strong>国定假 + <strong>8 天</strong>cuti bersama（含开斋连休约 20–24/3/2026）。私营部门是否全员适用 cuti bersama 依雇主政策，常与年假抵扣衔接。",
+      "<strong>2026</strong>: <strong>17</strong> national holidays + <strong>8</strong> collective leave days (Eid bridge ~20–24 Mar 2026). Private employers may differ on collective leave — often offset against annual leave."
+    ),
+    pills: [L("开斋连休", "Eid bridge"), L("Kemnaker SKB", "Ministerial SKB"), L("2026 执行", "2026 in force")],
+    href: "https://kemnaker.go.id/"
+  },
+  {
+    code: "VN",
+    title: L("越南 · 产假 2026 二孩调整", "Vietnam · second-child maternity from 2026"),
+    headline: L("7 个月", "7 months"),
+    sub: L("自 2026-07-01 起（二孩）", "From 1 Jul 2026 (second child)"),
+    body: L(
+      "社会保险法 41/2024 已自 2025-07 实施首胎产假 6 个月；<strong>2026-07-01</strong> 起二孩母亲产假 <strong>7 个月</strong>、父亲陪产 <strong>10 天</strong>（参保条件依社保部门指引）。",
+      "Social Insurance Law 41/2024: 6 months maternity from Jul 2025; <strong>from 1 Jul 2026</strong> second child: <strong>7 months</strong> maternity and <strong>10 days</strong> paternity (insured eligibility per MOLISA)."
+    ),
+    pills: [L("2026-07 生效", "Effective Jul 2026"), L("二孩", "Second child"), L("陪产 10 天", "10-day paternity")],
+    href: "https://www.molisa.gov.vn/"
   }
 ];
 

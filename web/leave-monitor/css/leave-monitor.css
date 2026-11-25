@@ -21,16 +21,29 @@ body { font-size: var(--lm-font); line-height: var(--lm-line); }
 
 .policy-spotlight {
   margin: 0 1.25rem 1.25rem;
-  padding: 1.25rem 1.35rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1rem;
+}
+.policy-spotlight .policy-spot {
+  padding: 1.15rem 1.25rem;
   border-radius: var(--radius);
   border: 1px solid rgba(99, 102, 241, 0.45);
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(30, 41, 59, 0.6));
 }
+.policy-spotlight .spot-code {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent-light);
+  opacity: 0.85;
+}
 .policy-spotlight h3 { font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--accent-light); }
-.policy-spotlight .big { font-size: 2rem; font-weight: 800; color: #fff; line-height: 1.2; }
-.policy-spotlight .big small { font-size: 1rem; font-weight: 600; color: var(--text-muted); margin-left: 0.35rem; }
-.policy-spotlight p { font-size: var(--lm-font-sm); color: var(--text-muted); margin-top: 0.65rem; max-width: 72ch; }
+.policy-spotlight .big { font-size: 1.75rem; font-weight: 800; color: #fff; line-height: 1.2; }
+.policy-spotlight .big small { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); margin-left: 0.35rem; display: inline-block; }
+.policy-spotlight p { font-size: var(--lm-font-sm); color: var(--text-muted); margin-top: 0.65rem; }
 .policy-spotlight .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.85rem; }
+.policy-spotlight .spot-link { margin-top: 0.75rem; font-size: var(--lm-font-xs); }
 .policy-spotlight .pill {
   font-size: var(--lm-font-xs);
   padding: 0.35rem 0.7rem;

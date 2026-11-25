@@ -54,7 +54,7 @@
     .hub-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
     .hub-footer a { color: var(--accent-light); }
   </style>
-  <link rel="stylesheet" href="css/leave-monitor.css?v=20261125" />
+  <link rel="stylesheet" href="css/leave-monitor.css?v=20261126" />
 </head>
 <body>
   <header class="header">
@@ -135,8 +135,12 @@
   </footer>
 
   <script>
-    const MARKETS = window.LEAVE_MARKETS;
-    const CATS = window.LEAVE_CATEGORIES;
+    function markets() {
+      return window.LEAVE_MARKETS || [];
+    }
+    function cats() {
+      return window.LEAVE_CATEGORIES || [];
+    }
 
     function getFilter() {
       return {
@@ -168,30 +172,34 @@
         if (host) host.innerHTML = "";
         return;
       }
-      const s = spots[0];
-      const title = s.title && (s.title.zh ? LL.t(s.title) : s.title);
-      const headline = s.headline && (s.headline.zh ? LL.t(s.headline) : s.headline);
-      const sub = s.sub && (s.sub.zh ? LL.t(s.sub) : s.sub);
-      const body = s.body && (s.body.zh ? LL.t(s.body) : s.body);
-      const pills = (s.pills || []).map((p) => {
-        const label = p && p.zh ? LL.t(p) : p;
-        return `<span class="pill">${label}</span>`;
-      }).join("");
       const linkLabel = LL ? LL.t(LL.UI.spotlightLink) : "Source";
-      host.innerHTML =
-        `<h3>${title}</h3>` +
-        `<div class="big">${headline}<small>${sub || ""}</small></div>` +
-        `<p>${body}</p>` +
-        `<div class="pill-row">${pills}</div>` +
-        (s.href ? `<p style="margin-top:0.75rem"><a href="${s.href}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-light)">${linkLabel} →</a></p>` : "");
+      host.innerHTML = spots.map((s) => {
+        const title = s.title && (s.title.zh ? LL.t(s.title) : s.title);
+        const headline = s.headline && (s.headline.zh ? LL.t(s.headline) : s.headline);
+        const sub = s.sub && (s.sub.zh ? LL.t(s.sub) : s.sub);
+        const body = s.body && (s.body.zh ? LL.t(s.body) : s.body);
+        const pills = (s.pills || []).map((p) => {
+          const label = p && p.zh ? LL.t(p) : p;
+          return `<span class="pill">${label}</span>`;
+        }).join("");
+        return (
+          `<article class="policy-spot">${s.code ? `<span class="spot-code">${s.code}</span>` : ""}` +
+          `<h3>${title}</h3>` +
+          `<div class="big">${headline}<small>${sub || ""}</small></div>` +
+          `<p>${body}</p>` +
+          `<div class="pill-row">${pills}</div>` +
+          (s.href ? `<p class="spot-link"><a href="${s.href}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-light)">${linkLabel} →</a></p>` : "") +
+          `</article>`
+        );
+      }).join("");
     }
     window.renderPolicySpotlight = renderPolicySpotlight;
 
     function renderLeaveStats() {
       const LL = window.LeaveLang;
       document.getElementById("statsGrid").innerHTML = `
-        <div class="stat-card"><div class="label">${LL ? LL.t(LL.UI.statMarkets) : "Markets"}</div><div class="value">${MARKETS.length}</div></div>
-        <div class="stat-card"><div class="label">${LL ? LL.t(LL.UI.statCats) : "Types"}</div><div class="value">${CATS.length}</div></div>`;
+        <div class="stat-card"><div class="label">${LL ? LL.t(LL.UI.statMarkets) : "Markets"}</div><div class="value">${markets().length}</div></div>
+        <div class="stat-card"><div class="label">${LL ? LL.t(LL.UI.statCats) : "Types"}</div><div class="value">${cats().length}</div></div>`;
     }
 
     function fillLeaveFilters() {
@@ -201,9 +209,9 @@
       const cv = cf.value;
       const catv = catf.value;
       cf.innerHTML = `<option value="">${LL ? LL.t(LL.UI.filterMarket) : "All"}</option>` +
-        MARKETS.map((m) => `<option value="${m.code}">${LL ? LL.marketName(m) : m.nameZh}</option>`).join("");
+        markets().map((m) => `<option value="${m.code}">${LL ? LL.marketName(m) : m.nameZh}</option>`).join("");
       catf.innerHTML = `<option value="">${LL ? LL.t(LL.UI.filterCat) : "All"}</option>` +
-        CATS.map((c) => `<option value="${c.id}">${LL ? LL.t(c.label) : c.id}</option>`).join("");
+        cats().map((c) => `<option value="${c.id}">${LL ? LL.t(c.label) : c.id}</option>`).join("");
       cf.value = cv;
       catf.value = catv;
     }
@@ -213,15 +221,15 @@
       const LL = window.LeaveLang;
       const col = LL ? LL.t(LL.UI.colType) : "Type";
       document.getElementById("matrixHead").innerHTML =
-        `<tr><th class="topic-col">${col}</th>${MARKETS.map((m) =>
+        `<tr><th class="topic-col">${col}</th>${markets().map((m) =>
           `<th>${m.flag} ${LL ? LL.marketName(m) : m.nameZh}</th>`).join("")}</tr>`;
-      document.getElementById("matrixBody").innerHTML = CATS.map((cat) => {
-        const rowText = MARKETS.map((m) => {
+      document.getElementById("matrixBody").innerHTML = cats().map((cat) => {
+        const rowText = markets().map((m) => {
           const it = m.items.find((x) => x.cat === cat.id);
           return it ? itemShortText(it, LL) + " " + (LL ? LL.itemField(it, "summary") : it.summary) : "";
         }).join(" ");
         const hide = (f.category && f.category !== cat.id) || (f.q && !rowText.toLowerCase().includes(f.q));
-        const cells = MARKETS.map((m) => {
+        const cells = markets().map((m) => {
           if (f.country && f.country !== m.code) return "<td>—</td>";
           const it = m.items.find((x) => x.cat === cat.id);
           if (!it) return "<td>—</td>";
@@ -234,7 +242,7 @@
 
     function renderCountries(f) {
       const LL = window.LeaveLang;
-      const ordered = [...MARKETS].sort((a, b) => (a.code === "CN" ? -1 : b.code === "CN" ? 1 : 0));
+      const ordered = [...markets()].sort((a, b) => (a.code === "CN" ? -1 : b.code === "CN" ? 1 : 0));
       document.getElementById("countryGrid").innerHTML = ordered.map((m) => {
         const blob = JSON.stringify(m).toLowerCase();
         const matchC = !f.country || f.country === m.code;
@@ -253,8 +261,8 @@
 
     function renderCategories(f) {
       const LL = window.LeaveLang;
-      document.getElementById("categoryPanel").innerHTML = CATS.filter((cat) => !f.category || f.category === cat.id).map((cat) => {
-        const rows = MARKETS.map((m) => {
+      document.getElementById("categoryPanel").innerHTML = cats().filter((cat) => !f.category || f.category === cat.id).map((cat) => {
+        const rows = markets().map((m) => {
           const it = m.items.find((x) => x.cat === cat.id);
           if (!it) return "";
           const text = (LL ? LL.itemField(it, "summary") : it.summary) + detailBullets(it);
@@ -267,7 +275,7 @@
 
     function renderLeaveSources() {
       const LL = window.LeaveLang;
-      document.getElementById("sourcePanel").innerHTML = MARKETS.map((m) =>
+      document.getElementById("sourcePanel").innerHTML = markets().map((m) =>
         `<div style="margin-bottom:1rem"><strong>${m.flag} ${LL ? LL.marketName(m) : m.nameZh}</strong>` +
         (m.sources || []).map((s) => {
           const t = LL && LL.lang === "en" && s.titleEn ? s.titleEn : s.title;
@@ -300,16 +308,22 @@
       el.addEventListener("change", applyLeaveFilters);
     });
 
-    const verBadge = document.getElementById("ui-data-version");
-    if (verBadge && window.LEAVE_DATA_VERSION) verBadge.textContent = window.LEAVE_DATA_VERSION;
-
-    fillLeaveFilters();
   </script>
-  <script src="js/leave-lang.js?v=20261125"></script>
-  <script src="js/leave-data.js?v=20261125"></script>
+  <script src="js/leave-lang.js?v=20261126"></script>
+  <script src="js/leave-data.js?v=20261126"></script>
   <script>
-    if (window.LeaveLang) LeaveLang.init();
-    else { renderLeaveStats(); applyLeaveFilters(); renderLeaveSources(); renderPolicySpotlight(); }
+    (function bootLeaveMonitor() {
+      const verBadge = document.getElementById("ui-data-version");
+      if (verBadge && window.LEAVE_DATA_VERSION) verBadge.textContent = window.LEAVE_DATA_VERSION;
+      if (window.LeaveLang) LeaveLang.init();
+      else {
+        renderLeaveStats();
+        fillLeaveFilters();
+        applyLeaveFilters();
+        renderLeaveSources();
+        renderPolicySpotlight();
+      }
+    })();
   </script>
 </body>
 </html>
