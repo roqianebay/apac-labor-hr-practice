@@ -24,7 +24,12 @@ window.DASH_HUB_UI = {
   ),
   langAria: L("切换语言", "Switch language"),
   navIndex: L("Policy Dictionary", "Policy Dictionary"),
-  navLabor: L("流程与劳动法", "Process &amp; law")
+  navLabor: L("流程与劳动法", "Process &amp; law"),
+  row1Title: L("核心履职与政策雷达", "Core ER &amp; policy radar"),
+  row1Sub: L("办案流程 · 政府政策 · 市场动态", "Case playbooks · government policy · market intel"),
+  row2Title: L("雇主与法定福利监测", "Employer &amp; statutory monitors"),
+  row2Sub: L("招聘与雇主计划 · 2026 福利 · 法定底线 · 休假日历", "Hiring &amp; employer plans · 2026 benefits · legal floors · leave calendars"),
+  moduleCount: L("政策工具", "Policy tools")
 };
 
 /** @type {Array<{id:string,hubRow?:1|2,title:L,pitch:L,bullets:L[],href:string,primary?:boolean,ext?:boolean}>} */

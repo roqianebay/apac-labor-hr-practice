@@ -1,5 +1,6 @@
-/* APAC People Policy Dictionary — PREVIEW layout (test only) */
+/* APAC People Policy Dictionary — premium hub layout */
 
+.dash-hub-page.dash-hub-premium,
 .dash-hub-page.dash-hub-preview {
   font-family: "DM Sans", var(--sans);
   --hub-ink: #1a2332;
@@ -16,6 +17,7 @@
   --hub-card-shadow: 0 2px 4px rgba(26, 35, 50, 0.04), 0 12px 32px rgba(26, 35, 50, 0.07);
 }
 
+body.dash-hub-premium,
 body.dash-hub-preview {
   background:
     radial-gradient(ellipse 100% 60% at 50% -10%, rgba(30, 90, 74, 0.08), transparent 50%),
@@ -24,6 +26,7 @@ body.dash-hub-preview {
   min-height: 100vh;
 }
 
+.dash-hub-premium .dash-main,
 .dash-hub-preview .dash-main {
   background: linear-gradient(
     180deg,
@@ -36,11 +39,15 @@ body.dash-hub-preview {
   padding-bottom: 0.5rem;
 }
 
+.dash-hub-premium .topbar,
 .dash-hub-preview .topbar {
   background: rgba(255, 253, 248, 0.94);
   border-bottom-color: rgba(12, 18, 32, 0.08);
 }
 
+.dash-hub-premium main.wrap,
+.dash-hub-premium .topbar .wrap,
+.dash-hub-premium .footer.wrap,
 .dash-hub-preview main.wrap,
 .dash-hub-preview .topbar .wrap,
 .dash-hub-preview .footer.wrap {
@@ -234,6 +241,7 @@ body.dash-hub-preview {
   .dash-grid--row2 { grid-template-columns: 1fr; }
 }
 
+.dash-hub-premium .dash-card.card,
 .dash-hub-preview .dash-card.card {
   position: relative;
   display: flex;
@@ -259,6 +267,7 @@ body.dash-hub-preview {
   background: linear-gradient(90deg, var(--hub-teal), var(--hub-teal-light));
 }
 
+.dash-hub-premium .dash-card:hover,
 .dash-hub-preview .dash-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(12, 18, 32, 0.08), 0 24px 48px rgba(12, 18, 32, 0.1) !important;
@@ -302,6 +311,7 @@ body.dash-hub-preview {
   padding: 0 1.1rem;
 }
 
+.dash-hub-premium .dash-card h3,
 .dash-hub-preview .dash-card h3 {
   font-family: "Instrument Sans", var(--sans) !important;
   font-size: clamp(0.86rem, 1vw + 0.68rem, 1rem) !important;
@@ -392,10 +402,12 @@ body.dash-hub-preview {
   background: linear-gradient(135deg, rgba(61, 154, 135, 0.18) 0%, rgba(255, 252, 247, 0.5) 100%);
 }
 
+.dash-hub-premium h1,
 .dash-hub-preview h1 {
   font-family: "Instrument Sans", var(--sans);
 }
 
+.dash-hub-premium .topbar .nav a.nav-current,
 .dash-hub-preview .topbar .nav a.nav-current {
   text-decoration: none;
   color: var(--hub-teal) !important;
