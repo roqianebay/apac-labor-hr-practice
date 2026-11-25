@@ -35,7 +35,20 @@
       "Tip: matrix cells are abbreviated; CN, AU and SG columns are highlighted. Use country cards for official annual calendars."
     ),
     spotlightLink: L("国务院令全文", "State Council text"),
+    indexH2: L("页面索引", "Page index"),
+    indexSub: L(
+      "搜索关键词、点国家/类别快速跳转，或切换下方模块。搜索框与筛选栏联动。",
+      "Search keywords, jump by country or leave type, or open a section below. Search syncs with the filter bar."
+    ),
+    indexSectionsLabel: L("模块", "Sections"),
+    indexMarketsLabel: L("国家/地区", "Markets"),
+    indexCatsLabel: L("休假类别", "Leave types"),
+    indexHitsTitle: L("搜索结果", "Search results"),
+    indexNoHits: L("无匹配条目，请换关键词或浏览国家列表。", "No matches — try another keyword or browse countries."),
+    indexSearchPh: L("在索引中搜索：国家、产假、年假、法定假日…", "Search index: country, maternity, annual leave, public holidays…"),
     countriesH2: L("各国休假详表", "Country leave detail"),
+    countriesSub: L("点击国家行展开/收起；默认折叠，搜索或筛选时自动展开匹配项。", "Click a row to expand or collapse. Collapsed by default; search or filters auto-expand matches."),
+    accordionChevron: L("▾", "▾"),
     categoriesH2: L("按类别横向对照", "Cross-market by category"),
     sourcesH2: L("官方法规链接", "Official links"),
     colType: L("类别", "Category"),
@@ -92,7 +105,16 @@
     setText("ui-overview-h2", t(UI.overviewH2));
     setText("ui-overview-sub", t(UI.overviewSub));
     setText("ui-matrix-hint", t(UI.matrixHint));
+    setText("ui-index-h2", t(UI.indexH2));
+    setText("ui-index-sub", t(UI.indexSub));
+    setText("ui-index-sections-label", t(UI.indexSectionsLabel));
+    setText("ui-index-markets-label", t(UI.indexMarketsLabel));
+    setText("ui-index-cats-label", t(UI.indexCatsLabel));
+    setText("ui-index-hits-title", t(UI.indexHitsTitle));
+    const indexSearch = document.getElementById("indexQuickSearch");
+    if (indexSearch) indexSearch.placeholder = t(UI.indexSearchPh);
     setText("ui-countries-h2", t(UI.countriesH2));
+    setText("ui-countries-sub", t(UI.countriesSub));
     setText("ui-categories-h2", t(UI.categoriesH2));
     setText("ui-sources-h2", t(UI.sourcesH2));
     setText("ui-foot", t(UI.foot));
@@ -109,6 +131,7 @@
     if (typeof global.applyLeaveFilters === "function") global.applyLeaveFilters();
     if (typeof global.renderLeaveSources === "function") global.renderLeaveSources();
     if (typeof global.renderPolicySpotlight === "function") global.renderPolicySpotlight();
+    if (typeof global.renderHomeIndex === "function") global.renderHomeIndex();
   }
 
   function init() {
