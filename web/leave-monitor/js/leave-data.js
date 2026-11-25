@@ -2,7 +2,7 @@ function L(zh, en) {
   return { zh, en };
 }
 
-window.LEAVE_DATA_VERSION = "2026-11-26-region-matrix";
+window.LEAVE_DATA_VERSION = "2026-11-26-region-matrix-v2";
 
 /** Overview: two matrix tables — countries & regions (see index.html) */
 window.LEAVE_MATRIX_GROUPS = [

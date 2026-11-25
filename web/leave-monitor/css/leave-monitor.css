@@ -58,8 +58,14 @@ body { font-size: var(--lm-font); line-height: var(--lm-line); }
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--accent-light);
-  margin: 0 0 0.65rem;
+  margin: 0 0 0.35rem;
   letter-spacing: 0.02em;
+}
+.matrix-block-members {
+  font-size: var(--lm-font-xs);
+  color: var(--text-muted);
+  margin: 0 0 0.65rem;
+  line-height: 1.5;
 }
 .matrix-block .table-wrap { margin: 0; }
 

@@ -333,9 +333,14 @@
     host.innerHTML = groups
       .map((g) => {
         const title = g.title && typeof g.title === "object" ? (LL ? LL.t(g.title) : g.title.zh) : g.title;
+        const cols = marketsByCodes(g.codes);
+        const memberLine = cols
+          .map((m) => `${m.flag} ${LL ? LL.marketName(m) : m.nameZh}`)
+          .join(" · ");
         return (
           `<section class="matrix-block">` +
           `<h3 class="matrix-block-title">${title}</h3>` +
+          `<p class="matrix-block-members">${memberLine}</p>` +
           `<div class="table-wrap">` +
           `<table class="matrix-table"><thead id="matrixHead-${g.id}"></thead><tbody id="matrixBody-${g.id}"></tbody></table>` +
           `</div></section>`
