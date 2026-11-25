@@ -66,7 +66,8 @@
     )
   };
 
-  const state = { lang: localStorage.getItem(KEY) === "en" ? "en" : "zh" };
+  const savedLang = localStorage.getItem(KEY);
+  const state = { lang: savedLang === "zh" ? "zh" : "en" };
 
   function t(v) {
     if (v && typeof v === "object" && ("zh" in v || "en" in v)) return v[state.lang] || v.zh || v.en || "";

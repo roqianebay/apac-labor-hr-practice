@@ -331,18 +331,22 @@
     const groups = global.LEAVE_MATRIX_GROUPS || [];
     if (!host) return;
     host.innerHTML = groups
-      .map((g) => {
+      .map((g, idx) => {
         const title = g.title && typeof g.title === "object" ? (LL ? LL.t(g.title) : g.title.zh) : g.title;
         const cols = marketsByCodes(g.codes);
         const memberLine = cols
           .map((m) => `${m.flag} ${LL ? LL.marketName(m) : m.nameZh}`)
           .join(" · ");
+        const divider = idx > 0 ? '<hr class="matrix-divider" aria-hidden="true" />' : "";
         return (
+          divider +
           `<section class="matrix-block matrix-block--${g.id}">` +
           `<h3 class="matrix-block-title">${title}</h3>` +
           `<p class="matrix-block-members">${memberLine}</p>` +
           `<div class="table-wrap">` +
-          `<table class="matrix-table"><thead id="matrixHead-${g.id}"></thead><tbody id="matrixBody-${g.id}"></tbody></table>` +
+          `<table class="matrix-table">` +
+          `<colgroup><col class="col-topic" /><col span="${g.codes.length}" class="col-market" /></colgroup>` +
+          `<thead id="matrixHead-${g.id}"></thead><tbody id="matrixBody-${g.id}"></tbody></table>` +
           `</div></section>`
         );
       })

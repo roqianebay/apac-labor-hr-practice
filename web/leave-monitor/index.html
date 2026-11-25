@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -53,8 +53,22 @@
     .footer { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--text-muted); }
     .hub-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
     .hub-footer a { color: var(--accent-light); }
+    /* Force two overview matrices stacked (part 1 above, part 2 below) */
+    .matrix-stack {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) !important;
+      grid-auto-flow: row;
+      gap: 1.75rem;
+      width: 100%;
+    }
+    .matrix-stack .matrix-block {
+      grid-column: 1;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0;
+    }
   </style>
-  <link rel="stylesheet" href="css/leave-monitor.css?v=20261126-matrix" />
+  <link rel="stylesheet" href="css/leave-monitor.css?v=20261126-hub" />
 </head>
 <body>
   <header class="header">
@@ -65,8 +79,8 @@
       </div>
       <div class="header-meta">
         <div class="lang-switch" id="lang-switch" role="group">
-          <button type="button" data-lang="zh" class="active">中文</button>
-          <button type="button" data-lang="en">EN</button>
+          <button type="button" data-lang="zh">中文</button>
+          <button type="button" data-lang="en" class="active">EN</button>
         </div>
         <span class="badge live" id="ui-live"></span>
         <span class="badge" id="ui-data-version" title="Data snapshot">2025-11-24</span>
@@ -111,13 +125,13 @@
 
     <section class="stats-grid" id="statsGrid"></section>
     <nav class="tabs">
-      <button class="tab-btn" data-tab="overview" id="ui-tab-overview"></button>
-      <button class="tab-btn active" data-tab="countries" id="ui-tab-countries"></button>
+      <button class="tab-btn active" data-tab="overview" id="ui-tab-overview"></button>
+      <button class="tab-btn" data-tab="countries" id="ui-tab-countries"></button>
       <button class="tab-btn" data-tab="categories" id="ui-tab-categories"></button>
       <button class="tab-btn" data-tab="sources" id="ui-tab-sources"></button>
     </nav>
 
-    <section class="panel" id="panel-overview">
+    <section class="panel active" id="panel-overview">
       <div class="card">
         <div class="card-header">
           <h2 id="ui-overview-h2"></h2>
@@ -129,7 +143,7 @@
       </div>
     </section>
 
-    <section class="panel active" id="panel-countries">
+    <section class="panel" id="panel-countries">
       <div class="card">
         <div class="card-header">
           <h2 id="ui-countries-h2"></h2>
@@ -163,9 +177,9 @@
     </div>
   </footer>
 
-  <script src="js/leave-data.js?v=20261126-matrix"></script>
-  <script src="js/leave-lang.js?v=20261126-matrix"></script>
-  <script src="js/leave-app.js?v=20261126-matrix"></script>
+  <script src="js/leave-data.js?v=20261126-hub"></script>
+  <script src="js/leave-lang.js?v=20261126-hub"></script>
+  <script src="js/leave-app.js?v=20261126-hub"></script>
   <script>
     (function bootLeaveMonitor() {
       const verBadge = document.getElementById("ui-data-version");
