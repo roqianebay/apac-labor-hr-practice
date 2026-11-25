@@ -87,21 +87,7 @@ body { font-size: var(--lm-font); line-height: var(--lm-line); }
   padding: 0 1.25rem 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 1.35rem;
-}
-@media (min-width: 1280px) {
-  .matrix-stack {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-  .matrix-stack .matrix-block {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-  .matrix-stack .table-wrap {
-    max-height: 75vh;
-  }
+  gap: 1.75rem;
 }
 .matrix-block-title {
   font-size: 0.95rem;
@@ -114,9 +100,25 @@ body { font-size: var(--lm-font); line-height: var(--lm-line); }
   font-size: var(--lm-font-xs);
   color: var(--text-muted);
   margin: 0 0 0.65rem;
-  line-height: 1.5;
+  line-height: 1.55;
+  max-width: 72rem;
 }
-.matrix-block .table-wrap { margin: 0; }
+.matrix-block .table-wrap {
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: visible;
+  max-height: none;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.08);
+}
+.matrix-block .table-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+.matrix-block--set2 .matrix-block-members {
+  line-height: 1.65;
+}
 
 .matrix-note {
   padding: 0 1.25rem 0.75rem;
@@ -124,12 +126,42 @@ body { font-size: var(--lm-font); line-height: var(--lm-line); }
   color: var(--text-muted);
 }
 
-table.matrix-table { font-size: var(--lm-font-xs); }
+table.matrix-table {
+  font-size: var(--lm-font-xs);
+  width: 100%;
+  min-width: max(100%, 52rem);
+  table-layout: fixed;
+}
+.matrix-block--set2 table.matrix-table {
+  min-width: max(100%, 58rem);
+}
 table.matrix-table th,
-table.matrix-table td { padding: 0.75rem 0.65rem; line-height: 1.45; }
+table.matrix-table td {
+  padding: 0.7rem 0.75rem;
+  line-height: 1.5;
+  vertical-align: top;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+table.matrix-table th:not(.topic-col),
+table.matrix-table td:not(.topic-col) {
+  min-width: 6.75rem;
+  width: 8.5rem;
+}
+.matrix-block--set2 table.matrix-table th:not(.topic-col),
+.matrix-block--set2 table.matrix-table td:not(.topic-col) {
+  min-width: 7.25rem;
+  width: 9rem;
+}
 table.matrix-table td.cell-short {
-  max-width: 11rem;
+  max-width: none;
   color: var(--text-muted);
+}
+table.matrix-table th {
+  white-space: normal;
+  font-size: 0.8rem;
+  line-height: 1.35;
 }
 table.matrix-table th.matrix-th-focus {
   color: var(--accent-light);

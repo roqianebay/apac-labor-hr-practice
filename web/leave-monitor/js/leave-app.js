@@ -338,7 +338,7 @@
           .map((m) => `${m.flag} ${LL ? LL.marketName(m) : m.nameZh}`)
           .join(" · ");
         return (
-          `<section class="matrix-block">` +
+          `<section class="matrix-block matrix-block--${g.id}">` +
           `<h3 class="matrix-block-title">${title}</h3>` +
           `<p class="matrix-block-members">${memberLine}</p>` +
           `<div class="table-wrap">` +
