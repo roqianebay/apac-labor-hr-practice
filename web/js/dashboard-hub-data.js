@@ -79,15 +79,15 @@ window.DASH_HUB_BOARDS = [
     id: "talent",
     title: L("Talent Employer Policy Monitor", "Talent Employer Policy Monitor"),
     pitch: L(
-      "人才招聘视角的<strong>竞品雇主、签证与薪酬</strong>监测。",
-      "TA lens on <strong>peer employers, visas and compensation</strong>."
+      "互联网<strong>扩招 · 开放职位 · 中国市场</strong>；薪酬对标与竞品矩阵（裁员见 ER News）。",
+      "Internet <strong>hiring, open roles, China market</strong>; comp & peer matrix (layoffs on ER News)."
     ),
     bullets: [
-      L("雇主动态时间线与 18 家对标公司档案", "Employer timeline and 18 benchmark profiles"),
-      L("签证政策卡片、薪酬对标表、竞品矩阵", "Visa cards, comp table, peer matrix"),
+      L("Talent Intel V3 · 招聘动态与中国市场专页", "Talent Intel V3 · hiring feed & China tab"),
+      L("薪酬对标 · 竞品矩阵（无裁员条目）", "Comp benchmarks · peer matrix (no layoffs)"),
       L("中英切换", "ZH/EN toggle")
     ],
-    href: "https://roqianebay.github.io/apac-ta-employer-policy-monitor/",
+    href: "https://roqianebay.github.io/apac-ta-employer-policy-monitor/?v=20261125",
     ext: true
   },
   {
