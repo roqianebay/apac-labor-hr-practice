@@ -27,10 +27,11 @@ window.DASH_HUB_UI = {
   navLabor: L("流程与劳动法", "Process &amp; law")
 };
 
-/** @type {Array<{id:string,title:L,pitch:L,bullets:L[],href:string,primary?:boolean,ext?:boolean}>} */
+/** @type {Array<{id:string,hubRow?:1|2,title:L,pitch:L,bullets:L[],href:string,primary?:boolean,ext?:boolean}>} */
 window.DASH_HUB_BOARDS = [
   {
     id: "labor",
+    hubRow: 1,
     primary: true,
     title: L("APAC ER Process &amp; Labor Law", "APAC ER Process &amp; Labor Law"),
     pitch: L(
@@ -47,6 +48,7 @@ window.DASH_HUB_BOARDS = [
   },
   {
     id: "gov",
+    hubRow: 1,
     title: L("APAC Government Policy Monitor", "APAC Government Policy Monitor"),
     pitch: L(
       "各国<strong>劳动、就业与移民政策</strong>变动追踪（政府来源导向）。",
@@ -62,6 +64,7 @@ window.DASH_HUB_BOARDS = [
   },
   {
     id: "ernews",
+    hubRow: 1,
     title: L("APAC ER News Update V2.0", "APAC ER News Update V2.0"),
     pitch: L(
       "亚太<strong>裁员、组织优化与补偿</strong>动态；500 强外企与知名企业档案。",
@@ -77,6 +80,7 @@ window.DASH_HUB_BOARDS = [
   },
   {
     id: "talent",
+    hubRow: 2,
     title: L("Talent Employer Policy Monitor", "Talent Employer Policy Monitor"),
     pitch: L(
       "互联网<strong>扩招 · 开放职位 · 中国市场</strong>；薪酬对标与竞品矩阵（裁员见 ER News）。",
@@ -92,21 +96,23 @@ window.DASH_HUB_BOARDS = [
   },
   {
     id: "employer-benefits",
+    hubRow: 2,
     title: L("APAC Employer Benefits Summary", "APAC Employer Benefits Summary"),
     pitch: L(
       "2026 Benefit Summary：<strong>8 个亚太市场</strong>雇主医疗、休假、收入保障与差旅对照。",
       "2026 Benefit Summary — <strong>8 APAC markets</strong>: employer medical, leave, income & travel."
     ),
     bullets: [
-      L("两段总览矩阵（与 Leave Monitor 同序）+ 分市场手风琴", "Two stacked matrices (Leave Monitor order) + market accordion"),
+      L("一张总览表（含印度）· 单元格内完整要点", "Single overview matrix (incl. India) · inline cell detail"),
       L("CN/HK/SG/AU/MY/TH/NZ/IN · 7 大福利模块", "CN/HK/SG/AU/MY/TH/NZ/IN · seven benefit modules"),
       L("亮点：CN 12 天病假、SG 年假 25 天、AU GU Health", "Spotlights: CN sick leave, SG 25-day AL cap, AU GU Health")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/employer-benefits-summary/?v=202601-apac8",
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/employer-benefits-summary/?v=202601-inline8",
     ext: true
   },
   {
     id: "benefits",
+    hubRow: 2,
     title: L("APAC Statutory Benefits Monitor", "APAC Statutory Benefits Monitor"),
     pitch: L(
       "14 个亚太市场<strong>法定福利</strong>：年假、病假、产假、社保、医保、加班等对照。",
@@ -122,6 +128,7 @@ window.DASH_HUB_BOARDS = [
   },
   {
     id: "leave",
+    hubRow: 2,
     title: L("APAC Leave &amp; Holidays Monitor", "APAC Leave &amp; Holidays Monitor"),
     pitch: L(
       "法定公休 · 年假 · 病假及各类休假<strong>分国分栏详表</strong>。",

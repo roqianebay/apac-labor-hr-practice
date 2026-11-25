@@ -15,10 +15,7 @@
     if (el) el.innerHTML = html;
   }
 
-  function renderBoards() {
-    const grid = document.getElementById("dash-grid");
-    if (!grid) return;
-    grid.innerHTML = BOARDS.map((b) => {
+  function boardCardHtml(b) {
       const bullets = b.bullets.map((x) => `<li>${t(x)}</li>`).join("");
       const primary = b.primary
         ? `<span class="dash-badge primary">${t(UI.primaryBadge)}</span>`
@@ -35,7 +32,22 @@
           <ul class="dash-list">${bullets}</ul>
           <a class="dash-cta" href="${b.href}"${rel}>${t(UI.openBoard)}</a>
         </article>`;
-    }).join("");
+  }
+
+  function renderBoards() {
+    const row1 = document.getElementById("dash-grid-row1");
+    const row2 = document.getElementById("dash-grid-row2");
+    const legacy = document.getElementById("dash-grid");
+    const renderList = (boards, host) => {
+      if (!host) return;
+      host.innerHTML = boards.map((b) => boardCardHtml(b)).join("");
+    };
+    if (row1 && row2) {
+      renderList(BOARDS.filter((b) => (b.hubRow || 1) === 1), row1);
+      renderList(BOARDS.filter((b) => b.hubRow === 2), row2);
+    } else if (legacy) {
+      legacy.innerHTML = BOARDS.map((b) => boardCardHtml(b)).join("");
+    }
   }
 
   function applyChrome() {
