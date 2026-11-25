@@ -736,11 +736,11 @@ window.ER_HUB_LINKS = [
   {
     title: L("APAC Statutory Benefits", "APAC Statutory Benefits"),
     desc: L("法定福利对照：年假、病假、社保、医保等", "Statutory benefits: leave, insurance, medical, OT"),
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261126-wage"
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261126-refs"
   },
   {
     title: L("APAC Leave & Holidays", "APAC Leave & Holidays"),
     desc: L("法定假期、年假、病假等分国对照", "Public holidays, annual & sick leave by market"),
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/leave-monitor/?v=20261126-hub"
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/leave-monitor/?v=20261126-refs"
   }
 ];
