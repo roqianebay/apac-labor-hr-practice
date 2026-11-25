@@ -37,17 +37,21 @@
     spotlightLink: L("国务院令全文", "State Council text"),
     indexH2: L("页面索引", "Page index"),
     indexSub: L(
-      "搜索关键词、点国家/类别快速跳转，或切换下方模块。搜索框与筛选栏联动。",
-      "Search keywords, jump by country or leave type, or open a section below. Search syncs with the filter bar."
+      "先选<strong>市场 / 休假类别</strong>、输入关键词，再点<strong>搜索</strong>；或点下面芯片快速跳转。默认展示全部国家（中国/澳/新默认展开）。",
+      "Pick <strong>market / leave type</strong>, enter keywords, then click <strong>Search</strong>. Chips jump quickly. All countries shown by default (CN/AU/SG expanded)."
     ),
+    searchApply: L("搜索", "Search"),
+    searchReset: L("重置", "Reset"),
+    noCountryMatch: L("没有符合筛选的国家，请点「重置」恢复全部列表。", "No countries match — click Reset to show all."),
+    noBlocksInFilter: L("当前类别筛选下无条目，请调整类别或重置。", "No items for this category — change category or reset."),
     indexSectionsLabel: L("模块", "Sections"),
     indexMarketsLabel: L("国家/地区", "Markets"),
     indexCatsLabel: L("休假类别", "Leave types"),
     indexHitsTitle: L("搜索结果", "Search results"),
     indexNoHits: L("无匹配条目，请换关键词或浏览国家列表。", "No matches — try another keyword or browse countries."),
-    indexSearchPh: L("在索引中搜索：国家、产假、年假、法定假日…", "Search index: country, maternity, annual leave, public holidays…"),
+    indexSearchPh: L("关键词：国家、产假、年假、法定假日…（输入后点搜索）", "Keywords: country, maternity, annual leave… then click Search"),
     countriesH2: L("各国休假详表", "Country leave detail"),
-    countriesSub: L("点击国家行展开/收起；默认折叠，搜索或筛选时自动展开匹配项。", "Click a row to expand or collapse. Collapsed by default; search or filters auto-expand matches."),
+    countriesSub: L("点击国家行展开查看六大类休假要点；无筛选时中国、澳大利亚、新加坡默认展开。", "Click a country row to expand six leave types; CN, AU and SG open by default when not filtering."),
     accordionChevron: L("▾", "▾"),
     categoriesH2: L("按类别横向对照", "Cross-market by category"),
     sourcesH2: L("官方法规链接", "Official links"),
@@ -122,16 +126,19 @@
     setText("ui-hub-labor", t(UI.hubLabor));
     setText("ui-hub-benefits", t(UI.hubBenefits));
     const search = document.getElementById("searchInput");
-    if (search) search.placeholder = t(UI.searchPh);
+    if (search) search.placeholder = t(UI.indexSearchPh);
+    const applyBtn = document.getElementById("searchApplyBtn");
+    if (applyBtn) applyBtn.textContent = t(UI.searchApply);
+    const resetBtn = document.getElementById("searchResetBtn");
+    if (resetBtn) resetBtn.textContent = t(UI.searchReset);
     document.querySelectorAll("#lang-switch button").forEach((btn) => {
       btn.classList.toggle("active", btn.dataset.lang === state.lang);
     });
     if (typeof global.fillLeaveFilters === "function") global.fillLeaveFilters();
     if (typeof global.renderLeaveStats === "function") global.renderLeaveStats();
-    if (typeof global.applyLeaveFilters === "function") global.applyLeaveFilters();
     if (typeof global.renderLeaveSources === "function") global.renderLeaveSources();
     if (typeof global.renderPolicySpotlight === "function") global.renderPolicySpotlight();
-    if (typeof global.renderHomeIndex === "function") global.renderHomeIndex();
+    if (typeof global.applyLeaveViews === "function") global.applyLeaveViews();
   }
 
   function init() {

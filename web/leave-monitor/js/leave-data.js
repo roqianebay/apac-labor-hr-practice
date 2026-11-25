@@ -2,7 +2,7 @@ function L(zh, en) {
   return { zh, en };
 }
 
-window.LEAVE_DATA_VERSION = "2026-11-26-index-accordion";
+window.LEAVE_DATA_VERSION = "2026-11-26-search-btn-fix";
 
 /** Overview: two matrix tables (see leave-monitor/index.html) */
 window.LEAVE_MATRIX_GROUPS = [
