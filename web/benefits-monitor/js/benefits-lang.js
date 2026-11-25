@@ -8,76 +8,86 @@
   const UI = {
     pageTitle: L("APAC Statutory Benefits Monitor", "APAC Statutory Benefits Monitor"),
     subtitle: L(
-      "亚太地区法定福利汇总 · 年假 · 病假 · 产假/陪产假 · 社保 · 退休金 · 医保",
-      "APAC statutory benefits · annual/sick/parental leave · social security · retirement · medical"
+      "亚太法定福利汇总 · 年假 · 社保 · 医保 · 退休 · 加班",
+      "APAC statutory benefits · leave · social insurance · medical · retirement · OT"
     ),
-    live: L("法定底线对照", "Statutory floor"),
-    updated: L("更新", "Updated"),
+    live: L("法定福利对照", "Statutory benefits"),
     intro: L(
-      "<strong>用途：</strong>对照各市场<strong>法律规定的最低福利</strong>（非公司额外政策）。内容为公开法规摘要，<strong>非自动爬虫</strong>；个案以劳动合同、集体协议及官方文本为准。",
-      "<strong>Purpose:</strong> Compare <strong>legal minimum benefits</strong> (not voluntary perks). Curated public-law summaries — <strong>not a live crawler</strong>; verify contracts and official texts for live cases."
+      "<strong>用途：</strong>对照各<strong>国家及地区</strong>法律规定的最低福利（非公司额外政策）。为公开法规摘要，非法律意见；请以合同、集体协议及官方文本为准。",
+      "<strong>Purpose:</strong> Compare <strong>legal minimum benefits</strong> by country or region (not voluntary perks). Curated summaries — not legal advice; verify contracts and official texts."
     ),
-    statMarkets: L("覆盖市场", "Markets"),
-    statTopics: L("福利维度", "Benefit topics"),
-    statRows: L("条目汇总", "Data rows"),
-    searchPh: L("搜索国家、类别、关键词…", "Search country, category, keyword…"),
-    filterMarket: L("全部市场", "All markets"),
+    statMarkets: L("覆盖国家/地区", "Countries & regions"),
+    statCats: L("福利维度", "Benefit topics"),
+    searchPh: L("搜索国家/地区、类别、关键词…", "Search country/region, category, keyword…"),
+    filterMarket: L("全部国家/地区", "All countries & regions"),
     filterCat: L("全部类别", "All categories"),
-    tabMatrix: L("对照矩阵", "Comparison matrix"),
-    tabMarkets: L("分国卡片", "By market"),
+    tabOverview: L("总览汇总", "Overview"),
+    tabCountries: L("分国/地区详表", "By country/region"),
+    tabCategories: L("分类对照", "By category"),
     tabSources: L("官方来源", "Official sources"),
-    matrixH2: L("法定福利对照矩阵", "Statutory benefits matrix"),
-    matrixSub: L("行为福利类别，列为市场；点击表头国别可筛选。完整表述见「分国卡片」。", "Rows = benefit types, columns = markets. Use country cards for detail."),
-    marketsH2: L("各市场法定福利明细", "Per-market statutory detail"),
+    overviewH2: L("法定福利对照矩阵", "Statutory benefits matrix"),
+    overviewSub: L(
+      "<strong>第一部分</strong>：中国大陆、香港、新加坡、澳大利亚、马来西亚、泰国、新西兰；<strong>其他亚太国家及地区</strong>：日本、韩国、印度、台湾、印尼、越南、菲律宾。详表含全部 14 个国家/地区。",
+      "<strong>Part 1</strong>: CN, HK, SG, AU, MY, TH, NZ. <strong>Other APAC</strong>: JP, KR, IN, TW, ID, VN, PH. Detail tab lists all 14 countries & regions."
+    ),
+    matrixHint: L(
+      "提示：矩阵为简写；中国大陆、澳大利亚、新加坡、马来西亚列高亮。完整表述见分国/地区详表。",
+      "Tip: matrix abbreviated; CN, AU, SG, MY highlighted. See country/region detail for full text."
+    ),
+    indexH2: L("页面索引", "Page index"),
+    indexSub: L(
+      "先选<strong>国家/地区 / 福利类别</strong>、输入关键词，再点<strong>搜索</strong>；或点下面芯片快速跳转。默认展示全部条目（中国大陆、澳大利亚、新加坡、马来西亚默认展开）。",
+      "Pick <strong>country/region / benefit type</strong>, enter keywords, then click <strong>Search</strong>. Chips jump quickly. All regions shown by default (CN/AU/SG/MY expanded)."
+    ),
+    searchApply: L("搜索", "Search"),
+    searchReset: L("重置", "Reset"),
+    noCountryMatch: L("没有符合筛选的国家/地区，请点「重置」恢复全部列表。", "No matches — click Reset to show all countries & regions."),
+    noBlocksInFilter: L("当前类别筛选下无条目，请调整类别或重置。", "No items for this category — change category or reset."),
+    indexSectionsLabel: L("模块", "Sections"),
+    indexMarketsLabel: L("国家及地区", "Countries & regions"),
+    indexCatsLabel: L("福利类别", "Benefit types"),
+    indexHitsTitle: L("搜索结果", "Search results"),
+    indexNoHits: L("无匹配条目，请换关键词或浏览国家/地区列表。", "No matches — try another keyword or browse the list."),
+    indexSearchPh: L("关键词：社保、年假、产假、公积金…（输入后点搜索）", "Keywords: social insurance, annual leave, maternity… then click Search"),
+    countriesH2: L("各国家/地区法定福利详表", "Statutory detail by country/region"),
+    countriesSub: L("点击行展开查看各类福利要点；无筛选时中国大陆、澳大利亚、新加坡、马来西亚默认展开。", "Click a row to expand benefit topics; CN, AU, SG and MY open by default when not filtering."),
+    accordionChevron: L("▾", "▾"),
+    categoriesH2: L("按类别横向对照", "Cross-market by category"),
     sourcesH2: L("官方法规与权威来源", "Official law and guidance"),
-    refLabel: L("官方链接", "Official links"),
-    colTopic: L("类别", "Category"),
+    colType: L("类别", "Category"),
     hubIndex: L("APAC People Policy Dictionary", "APAC People Policy Dictionary"),
     hubLabor: L("流程与劳动法", "Process & labor law"),
+    hubLeave: L("法定休假", "Leave & holidays"),
     foot: L(
       "APAC Statutory Benefits Monitor · HR/ER 内部参考 · 不构成法律意见",
       "APAC Statutory Benefits Monitor · internal HR/ER reference · not legal advice"
     )
   };
 
-  const CAT_ZH = {
-    leave_annual: "年假/带薪假",
-    holidays: "公共假日",
-    leave_sick: "病假",
-    leave_parental: "产假/陪产假/育儿假",
-    social: "社会保险/公积金",
-    retirement: "退休/养老金",
-    medical: "医疗/工伤保险",
-    overtime: "加班与工时",
-    other: "其他法定福利"
-  };
-
-  const state = { lang: localStorage.getItem(KEY) === "en" ? "en" : "zh" };
+  const savedLang = localStorage.getItem(KEY);
+  const state = { lang: savedLang === "zh" ? "zh" : "en" };
 
   function t(v) {
     if (v && typeof v === "object" && ("zh" in v || "en" in v)) return v[state.lang] || v.zh || v.en || "";
     return v == null ? "" : String(v);
   }
 
+  function itemField(item, key) {
+    const enKey = key + "En";
+    if (state.lang === "en" && item && item[enKey]) return item[enKey];
+    return item ? item[key] : "";
+  }
+
   function catLabel(id) {
-    if (state.lang === "en") {
-      const cats = global.BENEFIT_CATEGORIES || [];
-      const c = cats.find((x) => x.id === id);
-      return c ? t(c.label) : id;
-    }
-    return CAT_ZH[id] || id;
+    const cats = global.BENEFIT_CATEGORIES || [];
+    const c = cats.find((x) => x.id === id);
+    return c ? t(c.label) : id;
   }
 
   function marketName(m) {
     if (!m) return "";
     if (state.lang === "en" && m.nameEn) return m.nameEn;
     return m.nameZh || m.code;
-  }
-
-  function itemField(item, key) {
-    const enKey = key + "En";
-    if (state.lang === "en" && item[enKey]) return item[enKey];
-    return item[key];
   }
 
   function setText(id, html) {
@@ -91,29 +101,41 @@
     setText("ui-subtitle", t(UI.subtitle));
     setText("ui-live", t(UI.live));
     setText("ui-intro", t(UI.intro));
-    setText("ui-tab-matrix", t(UI.tabMatrix));
-    setText("ui-tab-markets", t(UI.tabMarkets));
-    setText("ui-tab-sources", t(UI.tabSources));
-    setText("ui-matrix-h2", t(UI.matrixH2));
-    setText("ui-matrix-sub", t(UI.matrixSub));
-    setText("ui-markets-h2", t(UI.marketsH2));
+    ["ui-tab-overview", "ui-tab-countries", "ui-tab-categories", "ui-tab-sources"].forEach((id, i) => {
+      const keys = [UI.tabOverview, UI.tabCountries, UI.tabCategories, UI.tabSources];
+      setText(id, t(keys[i]));
+    });
+    setText("ui-overview-h2", t(UI.overviewH2));
+    setText("ui-overview-sub", t(UI.overviewSub));
+    setText("ui-matrix-hint", t(UI.matrixHint));
+    setText("ui-index-h2", t(UI.indexH2));
+    setText("ui-index-sub", t(UI.indexSub));
+    setText("ui-index-sections-label", t(UI.indexSectionsLabel));
+    setText("ui-index-markets-label", t(UI.indexMarketsLabel));
+    setText("ui-index-cats-label", t(UI.indexCatsLabel));
+    setText("ui-index-hits-title", t(UI.indexHitsTitle));
+    setText("ui-countries-h2", t(UI.countriesH2));
+    setText("ui-countries-sub", t(UI.countriesSub));
+    setText("ui-categories-h2", t(UI.categoriesH2));
     setText("ui-sources-h2", t(UI.sourcesH2));
     setText("ui-foot", t(UI.foot));
     setText("ui-hub-index", t(UI.hubIndex));
     setText("ui-hub-labor", t(UI.hubLabor));
+    setText("ui-hub-leave", t(UI.hubLeave));
     const search = document.getElementById("searchInput");
-    if (search) search.placeholder = t(UI.searchPh);
-    const cf = document.getElementById("countryFilter");
-    if (cf && cf.options[0]) cf.options[0].textContent = t(UI.filterMarket);
-    const catf = document.getElementById("categoryFilter");
-    if (catf && catf.options[0]) catf.options[0].textContent = t(UI.filterCat);
-    if (typeof global.renderStats === "function") global.renderStats();
-    if (typeof global.applyFilters === "function") global.applyFilters();
-    if (typeof global.renderSources === "function") global.renderSources();
-    if (typeof global.fillBenefitFilters === "function") global.fillBenefitFilters();
+    if (search) search.placeholder = t(UI.indexSearchPh);
+    const applyBtn = document.getElementById("searchApplyBtn");
+    if (applyBtn) applyBtn.textContent = t(UI.searchApply);
+    const resetBtn = document.getElementById("searchResetBtn");
+    if (resetBtn) resetBtn.textContent = t(UI.searchReset);
     document.querySelectorAll("#lang-switch button").forEach((btn) => {
       btn.classList.toggle("active", btn.dataset.lang === state.lang);
     });
+    if (typeof global.fillBenefitFilters === "function") global.fillBenefitFilters();
+    if (typeof global.renderBenefitStats === "function") global.renderBenefitStats();
+    if (typeof global.renderBenefitSources === "function") global.renderBenefitSources();
+    if (typeof global.renderPolicySpotlight === "function") global.renderPolicySpotlight();
+    if (typeof global.applyBenefitViews === "function") global.applyBenefitViews();
   }
 
   function init() {
@@ -127,5 +149,5 @@
     applyChrome();
   }
 
-  global.BenefitsLang = { UI, t, catLabel, marketName, itemField, init, get lang() { return state.lang; } };
+  global.BenefitsLang = { UI, t, itemField, catLabel, marketName, init, get lang() { return state.lang; } };
 })(window);

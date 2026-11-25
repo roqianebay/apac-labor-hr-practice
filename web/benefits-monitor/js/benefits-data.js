@@ -2,7 +2,24 @@ function L(zh, en) {
   return { zh, en };
 }
 
-window.BENEFITS_DATA_VERSION = "2026-11-25";
+window.BENEFITS_DATA_VERSION = "2026-11-26-index-v2";
+
+window.BENEFIT_MATRIX_GROUPS = [
+  {
+    id: "set1",
+    title: L("亚太国家及地区（第一部分）", "APAC countries & regions (part 1)"),
+    codes: ["CN", "HK", "SG", "AU", "MY", "TH", "NZ"]
+  },
+  {
+    id: "set2",
+    title: L("其他亚太国家及地区", "Other APAC countries & regions"),
+    codes: ["JP", "KR", "IN", "TW", "ID", "VN", "PH"]
+  }
+];
+window.BENEFIT_MATRIX_CODES = [
+  "CN", "HK", "SG", "AU", "MY", "TH", "NZ", "JP", "KR", "IN", "TW", "ID", "VN", "PH"
+];
+window.BENEFIT_MATRIX_FOCUS = ["CN", "AU", "SG", "MY"];
 
 window.BENEFIT_CATEGORIES = [
   { id: "leave_annual", label: L("年假/带薪假", "Annual / paid leave") },

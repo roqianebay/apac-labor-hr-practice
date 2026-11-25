@@ -98,11 +98,11 @@ window.DASH_HUB_BOARDS = [
       "14 APAC markets — <strong>statutory benefits</strong>: leave, social insurance, medical, OT and more."
     ),
     bullets: [
-      L("福利对照矩阵 + 分国卡片", "Benefits matrix + country cards"),
-      L("官方法规入口链接", "Official source links"),
-      L("中英切换", "ZH/EN toggle")
+      L("两段总览矩阵 + 分国/地区手风琴详表", "Two stacked overview matrices + country/region accordion"),
+      L("页面索引（搜索/芯片）· 默认总览 + EN", "Page index (search/chips) · default Overview + EN"),
+      L("社保 · 医保 · 退休 · 加班等 9 大类", "9 topics: social insurance, medical, pension, OT, etc.")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261125",
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261126-benefits",
     ext: true
   },
   {
