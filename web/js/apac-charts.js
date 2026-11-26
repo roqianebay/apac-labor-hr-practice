@@ -53,8 +53,17 @@
     host.style.width = "100%";
   }
 
-  function baseGrid() {
-    return { left: 8, right: 28, top: 12, bottom: 8, containLabel: true };
+  function baseGrid(opts) {
+    const yW = opts?.yLabelWidth ?? 0;
+    const right = opts?.gridRight ?? (opts?.showBarLabels === false ? 20 : 72);
+    const left = yW > 0 ? yW + 16 : 8;
+    return {
+      left,
+      right,
+      top: 12,
+      bottom: 8,
+      containLabel: yW <= 0
+    };
   }
 
   function gradientBar(color, isLight) {
@@ -78,6 +87,15 @@
     return chart;
   }
 
+  const DEFAULT_BAR_HEADROOM = 1.14;
+
+  function barAxisMax(rows, opts) {
+    const dataPeak = Math.max(...rows.map((r) => r.value), 1);
+    const scalePeak = opts?.max ?? dataPeak;
+    const headroom = opts?.headroom ?? DEFAULT_BAR_HEADROOM;
+    return scalePeak * headroom;
+  }
+
   function renderBar(host, rows, opts) {
     if (!host) return Promise.resolve(false);
     if (!rows || !rows.length) {
@@ -89,15 +107,19 @@
     return ensureEcharts()
       .then((ec) => {
         const T = readTheme();
-        const peak = opts?.max ?? Math.max(...rows.map((r) => r.value), 1);
+        const axisMax = barAxisMax(rows, opts);
         const names = rows.map((r) => r.name);
         const values = rows.map((r) => r.value);
         const colors = rows.map((r) => r.color || T.accent);
+        const showLabels = opts.showBarLabels !== false;
+        const labelSize = opts.labelFontSize ?? 12;
+        const yFont = opts.yLabelFontSize ?? 11;
+        const yW = opts.yLabelWidth ?? 0;
         const chart = initChart(host, ec);
         chart.setOption({
           animationDuration: 720,
           animationEasing: "cubicOut",
-          grid: baseGrid(),
+          grid: baseGrid(opts),
           tooltip: {
             trigger: "axis",
             axisPointer: { type: "shadow" },
@@ -108,16 +130,17 @@
               const p = params[0];
               const row = rows[p.dataIndex];
               const val =
-                opts?.format?.(row) ??
-                `${row.value}${row.suffix ?? ""}${row.est ? "*" : ""}`;
+                row.labelText ??
+                (opts?.format?.(row) ??
+                  `${row.value}${row.suffix ?? ""}${row.est ? "*" : ""}`);
               return `<strong>${p.name}</strong><br/>${val}`;
             }
           },
           xAxis: {
             type: "value",
-            max: peak,
+            max: axisMax,
             splitLine: { lineStyle: { color: T.border, opacity: 0.45 } },
-            axisLabel: { color: T.muted, fontSize: 11 },
+            axisLabel: { show: opts.hideValueAxis !== true, color: T.muted, fontSize: 11 },
             axisLine: { show: false }
           },
           yAxis: {
@@ -125,7 +148,10 @@
             data: names.slice().reverse(),
             axisLabel: {
               color: T.text,
-              fontSize: 11
+              fontSize: yFont,
+              width: yW > 0 ? yW : undefined,
+              overflow: yW > 0 ? "truncate" : "break",
+              lineHeight: yFont + 4
             },
             axisTick: { show: false },
             axisLine: { lineStyle: { color: T.border } }
@@ -139,6 +165,11 @@
                 .map((v, i) => {
                   const row = rows[rows.length - 1 - i];
                   const c = colors[rows.length - 1 - i];
+                  const labelText =
+                    row.labelText ??
+                    (opts?.format?.(row) ??
+                      `${row.value}${row.suffix ?? ""}${row.est ? "*" : ""}`);
+                  const labelPos = opts.labelPosition ?? "right";
                   return {
                     value: v,
                     itemStyle: {
@@ -151,17 +182,17 @@
                       shadowColor: row.highlight ? c + "88" : "transparent"
                     },
                     label: {
-                      show: true,
-                      position: "right",
-                      color: row.highlight ? c : T.muted,
-                      fontWeight: row.highlight ? 700 : 500,
-                      formatter: () =>
-                        opts?.format?.(row) ??
-                        `${row.value}${row.suffix ?? ""}${row.est ? "*" : ""}`
+                      show: showLabels,
+                      position: labelPos,
+                      distance: labelPos === "right" ? 6 : 8,
+                      color: labelPos === "insideRight" ? "#fff" : row.highlight ? c : T.text,
+                      fontWeight: row.highlight ? 700 : 600,
+                      fontSize: labelSize,
+                      formatter: () => labelText
                     }
                   };
                 }),
-              barMaxWidth: 22,
+              barMaxWidth: opts.barMaxWidth ?? 22,
               emphasis: {
                 itemStyle: { shadowBlur: 18, shadowColor: "rgba(0,0,0,0.25)" }
               }
@@ -268,8 +299,10 @@
         const chart = initChart(host, ec);
         const { xLabels, yLabels, data, cellLabels } = matrix;
         const vals = data.map((d) => d[2]).filter((v) => v != null && !Number.isNaN(v));
-        const vmin = Math.min(...vals, 0);
-        const vmax = Math.max(...vals, 1);
+        const vmin = opts?.scaleMin ?? Math.min(...vals, 0);
+        const vmax = opts?.scaleMax ?? Math.max(...vals, 1);
+        const labelFont = opts?.labelFontSize ?? 9;
+        const gridLeft = opts?.gridLeft ?? 88;
         const labelAt = (xi, yi) => {
           const key = yi + ":" + xi;
           if (cellLabels && cellLabels[key] != null) return cellLabels[key];
@@ -285,21 +318,25 @@
             formatter: (p) => {
               const y = yLabels[p.data[1]];
               const x = xLabels[p.data[0]];
-              return `<strong>${y}</strong> · ${x}<br/>${labelAt(p.data[0], p.data[1])}`;
+              const extra =
+                typeof opts?.tooltipExtra === "function"
+                  ? opts.tooltipExtra(p.data[0], p.data[1])
+                  : "";
+              return `<strong>${y}</strong> · ${x}<br/>${labelAt(p.data[0], p.data[1])}${extra || ""}`;
             }
           },
-          grid: { left: 88, right: 16, top: 8, bottom: 64 },
+          grid: { left: gridLeft, right: 16, top: 12, bottom: opts?.scaleMin != null ? 72 : 64 },
           xAxis: {
             type: "category",
             data: xLabels,
             splitArea: { show: false },
-            axisLabel: { color: T.muted, fontSize: 10, rotate: 28 },
+            axisLabel: { color: T.muted, fontSize: 11, rotate: opts?.xLabelRotate ?? 28 },
             axisLine: { lineStyle: { color: T.border } }
           },
           yAxis: {
             type: "category",
             data: yLabels,
-            axisLabel: { color: T.text, fontSize: 11 },
+            axisLabel: { color: T.text, fontSize: 12 },
             axisLine: { lineStyle: { color: T.border } }
           },
           visualMap: {
@@ -311,11 +348,14 @@
             bottom: 4,
             itemWidth: 12,
             itemHeight: 80,
+            text: opts?.visualMapText ?? [],
             textStyle: { color: T.muted, fontSize: 10 },
             inRange: {
-              color: T.isLight
-                ? ["#f7f4ee", "#c4e8de", "#1e5a4a"]
-                : ["#1a2332", "#334155", "#14b8a6"]
+              color: opts?.heatColors
+                ? opts.heatColors
+                : T.isLight
+                  ? ["#f7f4ee", "#c4e8de", "#1e5a4a"]
+                  : ["#1e293b", "#334155", "#2dd4bf"]
             }
           },
           series: [
@@ -325,7 +365,8 @@
               label: {
                 show: true,
                 color: T.isLight ? "#1a2332" : "#e8edf4",
-                fontSize: 9,
+                fontSize: labelFont,
+                fontWeight: 600,
                 formatter: (p) => String(labelAt(p.data[0], p.data[1]))
               },
               emphasis: {
@@ -393,6 +434,8 @@
   global.ApacCharts = {
     ensureEcharts,
     renderBar,
+    barAxisMax,
+    DEFAULT_BAR_HEADROOM,
     renderScatter,
     renderHeatmap,
     renderRadar,

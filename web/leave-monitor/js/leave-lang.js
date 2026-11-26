@@ -18,11 +18,6 @@
     ),
     statMarkets: L("覆盖国家/地区", "Countries & regions"),
     statCats: L("休假类别", "Leave types"),
-    chartAnnualTitle: L("法定年假下限（天）", "Statutory annual leave floor (days)"),
-    chartAnnualSub: L(
-      "各市场法律规定的带薪年假<strong>最低</strong>档位示意；合同/集体约定可更高。",
-      "Illustrative <strong>legal minimum</strong> paid annual leave by market; contracts may exceed."
-    ),
     searchPh: L("搜索国家/地区、类别、关键词…", "Search country/region, category, keyword…"),
     filterMarket: L("全部国家/地区", "All countries & regions"),
     filterCat: L("全部类别", "All categories"),
@@ -127,8 +122,6 @@
     setText("ui-countries-h2", t(UI.countriesH2));
     setText("ui-countries-sub", t(UI.countriesSub));
     setText("ui-categories-h2", t(UI.categoriesH2));
-    setText("ui-chart-annual-title", t(UI.chartAnnualTitle));
-    setText("ui-chart-annual-sub", t(UI.chartAnnualSub));
     setText("ui-sources-h2", t(UI.sourcesH2));
     setText("ui-foot", t(UI.foot));
     setText("ui-hub-index", t(UI.hubIndex));
@@ -145,7 +138,6 @@
     });
     if (typeof global.fillLeaveFilters === "function") global.fillLeaveFilters();
     if (typeof global.renderLeaveStats === "function") global.renderLeaveStats();
-    if (typeof global.renderLeaveInsightCharts === "function") global.renderLeaveInsightCharts();
     if (typeof global.renderLeaveSources === "function") global.renderLeaveSources();
     if (typeof global.renderPolicySpotlight === "function") global.renderPolicySpotlight();
     if (typeof global.applyLeaveViews === "function") global.applyLeaveViews();

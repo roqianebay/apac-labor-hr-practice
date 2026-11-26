@@ -131,24 +131,33 @@
     apacChartTitle: L("亚太布局指数（各国均值）", "APAC footprint index (avg)"),
     apacChartNote: L("与下方矩阵对照；数值越高布局越强。", "Pairs with matrix below; higher = stronger footprint."),
     logisticsChartTitle: L("物流能力对比（1–5）", "Logistics comparison (1–5)"),
-    logisticsChartNote: L("速度 / 成本友好 / 亚太适配 — 定性评分。", "Speed / cost / APAC fit — qualitative scores."),
+    logisticsChartNote: L(
+      "热力格：行=物流方案，列=速度 / 成本友好 / 亚太适配；色越深分数越高（定性 1–5）。",
+      "Heat grid: rows = fulfilment model; columns = speed / cost / APAC fit; darker = higher (qualitative 1–5)."
+    ),
     logisticsSpeed: L("时效", "Speed"),
     logisticsCost: L("成本", "Cost"),
     logisticsApac: L("亚太", "APAC"),
     hiringTitle: L("中国及亚太在招方向（公开）", "China & APAC hiring (public)"),
     hiringNote: L(
-      "岗位数为<strong>估计</strong>，仅反映招聘主题；请以各公司官网为准。",
-      "Role counts are <strong>estimates</strong> — themes only; verify on careers sites."
+      "热力格：<strong>行=公司、列=国家/地区</strong>，格内为在招数（估）*；空项表示该市场无收录。请以各公司官网为准。",
+      "Heat grid: <strong>row = company, column = market</strong>; cell = est. open roles *; blank = not in snapshot. Verify on careers sites."
     ),
     hiringListTitle: L("分公司招聘快照", "Hiring snapshot by company"),
     hiringOpenEst: L("在招（估）", "Open roles (est.)"),
     hiringRoles: L("主要工种", "Key functions"),
     hiringCareers: L("招聘入口", "Careers"),
-    layoffScaleTitle: L("近期裁员规模（报道口径）", "Recent layoff scale (press basis)"),
-    layoffScaleNote: L("近月公开报道整理；规模为人次估计。", "Recent press roundup; headcount approximate."),
+    layoffScaleTitle: L("2025 年裁员规模（报道口径）", "2025 layoff scale (press basis)"),
+    layoffScaleNote: L(
+      "以 <strong>2025 年</strong>公开报道为主（条形左侧为报道年月，如 2025-10）；规模为估算人次，少数条目跨 2024–25。",
+      "Primarily <strong>2025</strong> press reports (YYYY-MM on the left of each bar); headcount approximate; some spans 2024–25."
+    ),
     layoffReasonTitle: L("裁员动因分布（行业归纳）", "Layoff drivers (sector rollup)"),
     layoffEventsTitle: L("裁员事件清单", "Layoff event list"),
-    layoffEventsNote: L("含原因与亚太补偿模式摘要；个案以法律意见为准。", "Reasons & APAC severance briefs; cases need legal review."),
+    layoffEventsNote: L(
+      "清单与上图均为 <strong>2025 年口径</strong>报道快照；含原因与亚太补偿摘要，个案以法律意见为准。",
+      "<strong>2025-basis</strong> press snapshot aligned with chart above; severance briefs illustrative — legal review per case."
+    ),
     layoffRegion: L("区域", "Region"),
     layoffReason: L("原因", "Reason"),
     layoffSeverance: L("亚太补偿模式", "APAC severance pattern"),

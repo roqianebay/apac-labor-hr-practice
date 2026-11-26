@@ -357,7 +357,13 @@ table.apac-table th { background: var(--surface-2); color: var(--text-muted); fo
 table.apac-table th.sticky-col, table.apac-table td.sticky-col,
 table.apac-table th.sticky-col { text-align: left; position: sticky; left: 0; background: var(--surface); z-index: 2; }
 table.apac-table th.col-ebay { color: var(--mi-accent-light); }
-.fp { font-weight: 700; font-variant-numeric: tabular-nums; }
+.fp {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.12rem;
+  line-height: 1.35;
+  text-align: center;
+}
 .fp-0 { color: var(--text-muted); opacity: 0.45; }
 .fp-1 { color: #64748b; }
 .fp-2 { color: #38bdf8; }
@@ -623,6 +629,11 @@ table.heatmap-table .sticky-col { text-align: left; position: sticky; left: 0; b
 .hrbp-list strong { color: var(--text); display: block; margin-bottom: 0.15rem; font-size: 0.78rem; }
 
 .bar-track-sm { height: 6px; }
+#logisticsScoreChart.echart-host,
+#hiringMarketChart.echart-host {
+  min-height: 300px;
+}
+
 .log-score-card {
   background: var(--surface-2);
   border: 1px solid var(--border);

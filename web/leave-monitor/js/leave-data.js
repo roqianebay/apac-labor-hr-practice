@@ -22,24 +22,6 @@ window.LEAVE_MATRIX_CODES = [
 ];
 window.LEAVE_MATRIX_FOCUS = ["CN", "AU", "SG", "MY"];
 
-/** Statutory annual-leave floors (days) for overview chart — illustrative legal minimums */
-window.LEAVE_CHART_ANNUAL_DAYS = [
-  { code: "CN", days: 5 },
-  { code: "HK", days: 7 },
-  { code: "SG", days: 7 },
-  { code: "AU", days: 20 },
-  { code: "MY", days: 8 },
-  { code: "TH", days: 6 },
-  { code: "NZ", days: 20 },
-  { code: "JP", days: 10 },
-  { code: "KR", days: 15 },
-  { code: "IN", days: 12 },
-  { code: "TW", days: 3 },
-  { code: "ID", days: 12 },
-  { code: "VN", days: 12 },
-  { code: "PH", days: 5 }
-];
-
 window.POLICY_SPOTLIGHTS = [
   {
     code: "CN",

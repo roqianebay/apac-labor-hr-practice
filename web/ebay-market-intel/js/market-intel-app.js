@@ -33,10 +33,12 @@
       if (host) host.innerHTML = "";
       return;
     }
-    const peak = opts.max ?? Math.max(...rows.map((r) => r.value), 1);
+    const headroom = opts.headroom ?? (global.ApacCharts?.DEFAULT_BAR_HEADROOM ?? 1.14);
+    const scalePeak = opts.max ?? Math.max(...rows.map((r) => r.value), 1);
+    const axisMax = scalePeak * headroom;
     host.innerHTML = rows
       .map((row) => {
-        const pct = Math.round((row.value / peak) * 100);
+        const pct = Math.min(99, Math.round((row.value / axisMax) * 100));
         const cls =
           "bar-row" +
           (row.highlight ? " is-ebay" : "") +
@@ -140,15 +142,20 @@
     const host = document.getElementById(hostId);
     if (!host) return;
     const rows = (global.MI_APAC_REGION_BARS || []).map((row) => ({
-      name: `${t(row.name)} · ${LL().lang === "zh" ? "跨境" : "CB"} ${row.cbIntensity}`,
+      name: t(row.name),
       value: row.ebayRole,
+      cbIntensity: row.cbIntensity,
       color: row.color,
       highlight: !!row.highlight,
-      apac: true
+      apac: true,
+      labelText: `${row.ebayRole}/5 · ${LL().lang === "zh" ? "跨境" : "CB"} ${row.cbIntensity}/5`
     }));
     renderSimpleBarChart(host, rows, {
       max: 5,
-      format: (row) => `${row.value}/5`
+      yLabelWidth: 132,
+      gridRight: 88,
+      labelFontSize: 12,
+      yLabelFontSize: 11
     });
   }
 
@@ -197,8 +204,20 @@
       highlight: row.highlight,
       suffix: "%"
     }));
-    renderSimpleBarChart(host, rows);
+    renderSimpleBarChart(host, rows, {
+      yLabelWidth: 116,
+      gridRight: 52,
+      labelFontSize: 12
+    });
   }
+
+  const KPI_VISUAL_CAP = {
+    gmv: 85,
+    intl: 55,
+    xb: 28,
+    buyers: 150,
+    "xb-share": 8
+  };
 
   function kpiChartSuffix(k) {
     if (k.id === "gmv") return "B";
@@ -215,16 +234,28 @@
     const host = document.getElementById("overviewKpiChart");
     const rows = orderedKpis()
       .filter((k) => k.chartNum != null)
-      .map((k) => ({
-        name: t(k.label),
-        value: k.chartNum,
-        apac: false,
-        highlight: k.id === "gmv",
-        est: k.id === "xb" || k.id === "xb-share",
-        suffix: kpiChartSuffix(k),
-        color: "#14b8a6"
-      }));
-    renderSimpleBarChart(host, rows);
+      .map((k) => {
+        const cap = KPI_VISUAL_CAP[k.id] ?? Math.max(k.chartNum, 1);
+        return {
+          name: t(k.label),
+          value: (k.chartNum / cap) * 100,
+          chartNum: k.chartNum,
+          apac: false,
+          highlight: k.id === "buyers" || k.id === "gmv",
+          est: k.id === "xb" || k.id === "xb-share",
+          suffix: kpiChartSuffix(k),
+          labelText: k.value,
+          color: k.id === "buyers" ? "#38bdf8" : "#14b8a6"
+        };
+      });
+    renderSimpleBarChart(host, rows, {
+      max: 100,
+      yLabelWidth: 148,
+      gridRight: 64,
+      labelFontSize: 12,
+      labelPosition: "right",
+      hideValueAxis: true
+    });
   }
 
   function renderCompetitorSummary() {
@@ -299,7 +330,7 @@
       }))
       .filter((r) => r.value > 0)
       .sort((a, b) => b.value - a.value);
-    renderSimpleBarChart(host, rows, { max: 4 });
+    renderSimpleBarChart(host, rows, { max: 4, showBarLabels: false });
   }
 
   function renderLogisticsScoreChart() {
@@ -307,20 +338,41 @@
     if (!host) return;
     const U = LL().UI;
     const scores = global.MI_LOGISTICS_SCORES || [];
-    const indicators = [
-      { name: t(U.logisticsSpeed), max: 5 },
-      { name: t(U.logisticsCost), max: 5 },
-      { name: t(U.logisticsApac), max: 5 }
-    ];
-    const series = scores.map((s) => ({
-      name: t(s.label),
-      values: [s.speed, s.cost, s.apacFit],
-      color: s.highlight ? "#22d3ee" : s.color || "#64748b",
-      highlight: !!s.highlight
-    }));
+    const xLabels = [t(U.logisticsSpeed), t(U.logisticsCost), t(U.logisticsApac)];
+    const yLabels = scores.map((s) => (s.highlight ? "★ " : "") + t(s.label));
+    const highlightRows = scores.map((s, i) => (s.highlight ? i : -1)).filter((i) => i >= 0);
+    const data = [];
+    const cellLabels = {};
+    scores.forEach((s, yi) => {
+      [
+        { xi: 0, val: s.speed },
+        { xi: 1, val: s.cost },
+        { xi: 2, val: s.apacFit }
+      ].forEach(({ xi, val }) => {
+        data.push([xi, yi, val]);
+        cellLabels[yi + ":" + xi] = `${val}/5`;
+      });
+    });
     host.classList.add("echart-host");
-    if (global.ApacCharts) {
-      global.ApacCharts.renderRadar(host, series, indicators, { height: 400 }).then((ok) => {
+    if (global.ApacCharts && data.length) {
+      global.ApacCharts.renderHeatmap(
+        host,
+        { xLabels, yLabels, data, cellLabels },
+        {
+          height: Math.max(300, scores.length * 52 + 96),
+          scaleMin: 1,
+          scaleMax: 5,
+          labelFontSize: 14,
+          gridLeft: 108,
+          xLabelRotate: 0,
+          highlightRows,
+          visualMapText:
+            LL().lang === "zh"
+              ? ["低", "高"]
+              : ["Low", "High"],
+          heatColors: ["#1e293b", "#475569", "#0d9488", "#2dd4bf", "#5eead4"]
+        }
+      ).then((ok) => {
         if (!ok) renderLogisticsScoreChartFallback(host, scores, U);
       });
       return;
@@ -355,26 +407,67 @@
   function renderHiring() {
     const chartHost = document.getElementById("hiringMarketChart");
     const listHost = document.getElementById("hiringPanel");
-    const byMarket = {};
-    (global.MI_APAC_OPEN_ROLES || []).forEach((co) => {
+    const companies = global.MI_APAC_OPEN_ROLES || [];
+    const marketTotals = new Map();
+    companies.forEach((co) => {
       (co.markets || []).forEach((m) => {
         const key = t(m.market);
-        if (!byMarket[key]) byMarket[key] = { name: key, flag: m.flag, value: 0 };
-        byMarket[key].value += m.rolesEst || 0;
+        if (!marketTotals.has(key)) {
+          marketTotals.set(key, { name: key, flag: m.flag, total: 0 });
+        }
+        marketTotals.get(key).total += m.rolesEst || 0;
       });
     });
-    const rows = Object.values(byMarket)
-      .sort((a, b) => b.value - a.value)
-      .map((r) => ({
-        name: `${r.flag} ${r.name}`,
-        value: r.value,
-        est: true,
-        color: "#38bdf8"
-      }));
-    renderSimpleBarChart(chartHost, rows);
+    const marketsSorted = [...marketTotals.values()].sort((a, b) => b.total - a.total);
+    const xLabels = marketsSorted.map((m) => `${m.flag} ${m.name}`);
+    const yLabels = companies.map((co) => `${co.highlight ? "★ " : ""}${t(co.company)}`);
+    const data = [];
+    const cellLabels = {};
+    const cellFocus = {};
+    let peak = 0;
+    companies.forEach((co, yi) => {
+      marketsSorted.forEach((mkt, xi) => {
+        const hit = (co.markets || []).find((mm) => t(mm.market) === mkt.name);
+        if (!hit || !hit.rolesEst) return;
+        peak = Math.max(peak, hit.rolesEst);
+        data.push([xi, yi, hit.rolesEst]);
+        const key = yi + ":" + xi;
+        cellLabels[key] = `${hit.rolesEst}*`;
+        cellFocus[key] = t(hit.focus);
+      });
+    });
+
+    if (chartHost) {
+      chartHost.classList.add("echart-host");
+      if (global.ApacCharts && data.length) {
+        const zh = LL().lang === "zh";
+        global.ApacCharts.renderHeatmap(
+          chartHost,
+          { xLabels, yLabels, data, cellLabels },
+          {
+            height: Math.max(320, companies.length * 48 + 108),
+            scaleMin: 0,
+            scaleMax: Math.max(peak, 50),
+            labelFontSize: 13,
+            gridLeft: 132,
+            xLabelRotate: 28,
+            visualMapText: zh ? ["少", "多"] : ["Fewer", "More"],
+            heatColors: ["#1e293b", "#334155", "#0e7490", "#14b8a6", "#5eead4"],
+            tooltipExtra: (xi, yi) => {
+              const focus = cellFocus[yi + ":" + xi];
+              return focus ? `<br/><span style="opacity:.85">${focus}</span>` : "";
+            }
+          }
+        ).then((ok) => {
+          if (!ok) renderHiringChartFallback(chartHost, companies, marketsSorted);
+        });
+      } else {
+        renderHiringChartFallback(chartHost, companies, marketsSorted);
+      }
+    }
 
     if (!listHost) return;
-    listHost.innerHTML = (global.MI_APAC_OPEN_ROLES || [])
+    listHost.innerHTML = companies
       .map((co) => {
         const markets = (co.markets || [])
           .map(
@@ -398,19 +491,66 @@
       .join("");
   }
 
+  function renderHiringChartFallback(chartHost, companies, marketsSorted) {
+    if (!chartHost) return;
+    const rows = [];
+    companies.forEach((co) => {
+      (co.markets || []).forEach((m) => {
+        const name = `${co.highlight ? "★ " : ""}${t(co.company)} · ${m.flag} ${t(m.market)}`;
+        rows.push({
+          name,
+          value: m.rolesEst || 0,
+          est: true,
+          highlight: !!co.highlight,
+          color: co.highlight ? "#22d3ee" : "#64748b",
+          labelText: `${m.rolesEst}*`
+        });
+      });
+    });
+    rows.sort((a, b) => b.value - a.value);
+    renderSimpleBarChart(chartHost, rows, {
+      yLabelWidth: 200,
+      gridRight: 52,
+      labelFontSize: 11,
+      labelPosition: "right"
+    });
+  }
+
+  function layoffChartPeriod(date) {
+    if (!date) return LL().lang === "zh" ? "2025" : "2025";
+    if (date === "2024-2025") return LL().lang === "zh" ? "2024–25" : "2024–25";
+    const m = String(date).match(/^(\d{4}-\d{2})/);
+    return m ? m[1] : String(date).slice(0, 7);
+  }
+
   function renderLayoffs() {
     const events = global.MI_RECENT_LAYOFFS || [];
     const scaleRows = [...events]
       .filter((e) => e.scaleNum > 0)
-      .sort((a, b) => b.scaleNum - a.scaleNum)
-      .map((e) => ({
-        name: t(e.company),
-        value: e.scaleNum,
-        highlight: e.highlight,
-        est: true,
-        color: "#f87171"
-      }));
-    renderSimpleBarChart(document.getElementById("layoffScaleChart"), scaleRows);
+      .sort((a, b) => {
+        const da = a.date || "";
+        const db = b.date || "";
+        if (da !== db) return db.localeCompare(da);
+        return b.scaleNum - a.scaleNum;
+      })
+      .map((e) => {
+        const period = layoffChartPeriod(e.date);
+        const company = t(e.company);
+        return {
+          name: `${period} · ${company}`,
+          value: e.scaleNum,
+          highlight: !!e.highlight,
+          est: true,
+          color: e.highlight ? "#fb7185" : "#f87171",
+          labelText: `${e.scaleNum}* · ${period}`,
+          snapshotYear: global.MI_LAYOFF_SNAPSHOT_YEAR || "2025"
+        };
+      });
+    renderSimpleBarChart(document.getElementById("layoffScaleChart"), scaleRows, {
+      yLabelWidth: 168,
+      gridRight: 72,
+      labelFontSize: 11
+    });
 
     const reasonRows = (global.MI_LAYOFF_REASONS || []).map((r) => ({
       name: t(r.label),
@@ -426,7 +566,7 @@
         .map(
           (e) =>
             `<article class="layoff-event${e.highlight ? " is-ebay" : ""}">` +
-            `<header><span class="layoff-date">${esc(e.date)}</span> <strong>${t(e.company)}</strong></header>` +
+            `<header><span class="layoff-date">${esc(layoffChartPeriod(e.date))}</span> <strong>${t(e.company)}</strong></header>` +
             `<p><strong>${LL().lang === "zh" ? "规模" : "Scale"}:</strong> ${t(e.scale)}</p>` +
             `<p><strong>${t(LL().UI.layoffRegion)}:</strong> ${t(e.region)}</p>` +
             `<p><strong>${t(LL().UI.layoffReason)}:</strong> ${t(e.reason)}</p>` +
@@ -1045,9 +1185,9 @@
   };
 
   function footprintCell(level) {
-    const labels = ["·", "₁", "₂", "₃", "₄"];
+    const labels = ["0", "1", "2", "3", "4"];
     const cls = `fp fp-${level}`;
-    return `<td class="${cls}" title="${level}">${labels[level] ?? "·"}</td>`;
+    return `<td class="${cls}" title="${level}">${labels[level] ?? "0"}</td>`;
   }
 
   function renderApac() {

@@ -84,7 +84,8 @@
     }
   ];
 
-  /** Recent public layoff/restructure reports — APAC or global with APAC impact (snapshot) */
+  /** Recent public layoff/restructure reports — APAC or global with APAC impact (2025 press snapshot) */
+  window.MI_LAYOFF_SNAPSHOT_YEAR = "2025";
   window.MI_RECENT_LAYOFFS = [
     {
       date: "2025-10",
