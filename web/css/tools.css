@@ -1,29 +1,29 @@
 #tools-section {
   font-family: "DM Sans", system-ui, sans-serif;
-  background: #0c1218;
-  color: #e8edf4;
+  background: #f2f7f5;
+  color: #1a2332;
   line-height: 1.55;
   border-top: 3px solid #1e5a4a;
   margin-top: 2rem;
 }
 
     #tools-section {
-      --bg: #0c1218;
-      --surface: #151d28;
-      --surface-2: #1e2a3a;
-      --border: #2a3a50;
-      --text: #e8edf4;
-      --muted: #8b9cb3;
+      --bg: #f2f7f5;
+      --surface: #ffffff;
+      --surface-2: #e9f1ee;
+      --border: #c5d4ce;
+      --text: #1a2332;
+      --muted: #4f6275;
       --accent: #0d9488;
-      --accent-2: #2dd4bf;
-      --warn: #f59e0b;
-      --danger: #ef4444;
+      --accent-2: #0f766e;
+      --warn: #b45309;
+      --danger: #dc2626;
       --radius: 10px;
     }
     #tools-section * { box-sizing: border-box; }
     #tools-section { font-family: "DM Sans", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; min-height: 100vh; }
     .er14-tools-head {
-      background: linear-gradient(120deg, #042f2e 0%, #0c1218 60%);
+      background: linear-gradient(120deg, #ecf7f4 0%, #f5faf8 60%);
       border-bottom: 1px solid var(--border);
       padding: 1.4rem 2rem;
       position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);
@@ -64,7 +64,7 @@
     .er14-country-card li { padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
     .er14-country-card li strong { color: var(--text); display: inline-block; min-width: 7.5rem; }
     .refs { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.3rem; }
-    .refs a { font-size: 0.76rem; color: #67e8f9; text-decoration: none; }
+    .refs a { font-size: 0.76rem; color: #0f766e; text-decoration: none; }
     .refs a:hover { text-decoration: underline; }
     .er14-case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 900px) { .er14-case-grid { grid-template-columns: 1fr; } }
@@ -85,7 +85,7 @@
     @media (max-width: 800px) { .er14-check-grid { grid-template-columns: 1fr; } }
     .er14-check-grid ul { margin-left: 1.1rem; }
     .er14-check-grid li { margin-bottom: 0.25rem; }
-    .er14-hub-links a { color: #67e8f9; margin-right: 0.75rem; font-size: 0.8rem; }
+    .er14-hub-links a { color: #0f766e; margin-right: 0.75rem; font-size: 0.8rem; }
     .er14-plain-intro { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; line-height: 1.55; }
     .er14-phase-block { background: var(--surface-2); border-radius: 8px; padding: 0.85rem; margin-bottom: 0.65rem; border-left: 3px solid var(--accent); }
     .er14-phase-head { font-size: 0.88rem; margin-bottom: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }

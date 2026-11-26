@@ -67,8 +67,8 @@ window.DASH_HUB_BOARDS = [
       L("亚太招聘 / 裁员 / HR 视角分栏", "APAC hiring, layoffs & HR lens tabs"),
       L("竞争对手汇总 · 多图对比", "Competitor summary · multi-chart compare")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/ebay-market-intel/?v=20261126-sourced",
-    ext: true
+    href: "./ebay-market-intel/index.html?v=20261126-light",
+    ext: false
   },
   {
     id: "gov",
@@ -135,8 +135,8 @@ window.DASH_HUB_BOARDS = [
       L("CN/HK/SG/AU/MY/TH/NZ/IN · 7 大福利模块", "CN/HK/SG/AU/MY/TH/NZ/IN · seven benefit modules"),
       L("亮点：CN 12 天病假、SG 年假 25 天、AU GU Health", "Spotlights: CN sick leave, SG 25-day AL cap, AU GU Health")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/employer-benefits-summary/?v=202601-inline8",
-    ext: true
+    href: "./employer-benefits-summary/index.html?v=20261126-light",
+    ext: false
   },
   {
     id: "benefits",
@@ -152,8 +152,8 @@ window.DASH_HUB_BOARDS = [
       L("页面索引（搜索/芯片）· 默认总览 + EN", "Page index (search/chips) · default Overview + EN"),
       L("含<strong>最低工资</strong>、<strong>病假工资</strong>等 11 类福利维度", "11 topics incl. <strong>minimum wage</strong> & <strong>sick leave pay</strong>")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/benefits-monitor/?v=20261126-refs",
-    ext: true
+    href: "./benefits-monitor/index.html?v=20261126-light",
+    ext: false
   },
   {
     id: "leave",
@@ -169,7 +169,7 @@ window.DASH_HUB_BOARDS = [
       L("默认<strong>总览</strong>标签 · 默认 <strong>EN</strong>", "Default <strong>Overview</strong> tab · default <strong>EN</strong>"),
       L("中国大陆 2025 起法定公休 <strong>13 天</strong>", "Mainland China <strong>13</strong> statutory public days from 2025")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/leave-monitor/?v=20261126-hub",
-    ext: true
+    href: "./leave-monitor/index.html?v=20261126-light",
+    ext: false
   }
 ];

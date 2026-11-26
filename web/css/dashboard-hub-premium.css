@@ -4,14 +4,14 @@
 .dash-hub-page.dash-hub-preview {
   font-family: "DM Sans", var(--sans);
   --hub-ink: #1a2332;
-  --hub-ink-soft: #4d5d73;
+  --hub-ink-soft: #56657a;
   --hub-teal: #1e5a4a;
   --hub-teal-mid: #2a6f5f;
   --hub-teal-light: #3d9a87;
-  --hub-sage: #e8f2ef;
-  --hub-sage-deep: #dce8e4;
-  --hub-ivory: #faf7f1;
-  --hub-warm: #f3ebe0;
+  --hub-sage: #f0f6f3;
+  --hub-sage-deep: #e6f0eb;
+  --hub-ivory: #fcfbf8;
+  --hub-warm: #f8f4ed;
   --hub-panel: linear-gradient(128deg, var(--hub-sage) 0%, var(--hub-ivory) 52%, var(--hub-warm) 100%);
   --hub-radius: 16px;
   --hub-card-shadow: 0 2px 4px rgba(26, 35, 50, 0.04), 0 12px 32px rgba(26, 35, 50, 0.07);
@@ -20,9 +20,9 @@
 body.dash-hub-premium,
 body.dash-hub-preview {
   background:
-    radial-gradient(ellipse 100% 60% at 50% -10%, rgba(30, 90, 74, 0.08), transparent 50%),
-    radial-gradient(ellipse 70% 50% at 100% 20%, rgba(196, 163, 90, 0.06), transparent 45%),
-    linear-gradient(180deg, var(--hub-ivory) 0%, var(--paper) 35%, var(--hub-sage) 100%);
+    radial-gradient(ellipse 100% 60% at 50% -10%, rgba(30, 90, 74, 0.05), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 100% 20%, rgba(196, 163, 90, 0.04), transparent 45%),
+    linear-gradient(180deg, #ffffff 0%, var(--hub-ivory) 28%, #f4f8f6 100%);
   min-height: 100vh;
 }
 
@@ -31,8 +31,8 @@ body.dash-hub-preview {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(232, 242, 239, 0.35) 12%,
-    rgba(232, 242, 239, 0.55) 100%
+    rgba(255, 255, 255, 0.4) 12%,
+    rgba(240, 246, 243, 0.35) 100%
   );
   border-radius: 0 0 24px 24px;
   margin-bottom: 1.5rem;
@@ -186,8 +186,8 @@ body.dash-hub-preview {
   margin-bottom: 1.5rem;
   padding: 1.2rem 1.25rem 1.35rem;
   border-radius: var(--hub-radius);
-  background: linear-gradient(180deg, rgba(255, 252, 247, 0.95) 0%, rgba(236, 244, 241, 0.85) 100%);
-  border: 1px solid rgba(30, 90, 74, 0.1);
+  background: linear-gradient(180deg, #ffffff 0%, rgba(248, 251, 249, 0.98) 100%);
+  border: 1px solid rgba(30, 90, 74, 0.08);
   box-shadow: var(--hub-card-shadow);
 }
 
@@ -250,7 +250,7 @@ body.dash-hub-preview {
   padding: 0 0 1rem !important;
   min-height: 100%;
   border-radius: 14px !important;
-  background: linear-gradient(180deg, #fffcf8 0%, #f9f6f0 100%) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #faf8f4 100%) !important;
   border: 1px solid rgba(30, 90, 74, 0.1) !important;
   box-shadow: 0 1px 2px rgba(26, 35, 50, 0.04) !important;
   overflow: hidden;

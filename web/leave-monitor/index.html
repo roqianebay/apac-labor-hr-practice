@@ -7,13 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0f1419; --surface: #1a2332; --surface-2: #243044; --border: #2d3a4f;
-      --text: #e8edf4; --text-muted: #8b9cb3; --accent: #6366f1; --accent-light: #a5b4fc;
-      --green: #22c55e; --radius: 10px;
+      --bg: #f2f7f5; --surface: #ffffff; --surface-2: #e9f1ee; --border: #c5d4ce;
+      --text: #1a2332; --text-muted: #4f6275; --accent: #6366f1; --accent-light: #4f46e5;
+      --green: #16a34a; --radius: 10px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: "DM Sans", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
-    .header { background: linear-gradient(135deg, #12102a 0%, #2a2850 50%, #0f1419 100%); border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; position: sticky; top: 0; z-index: 50; }
+    .header { border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; position: sticky; top: 0; z-index: 50; }
     .header-inner { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
     .logo-block h1 { font-size: 1.35rem; font-weight: 700; }
     .logo-block h1 span { color: var(--accent-light); }
@@ -68,7 +68,8 @@
       min-width: 0;
     }
   </style>
-  <link rel="stylesheet" href="css/leave-monitor.css?v=20261126-refs" />
+  <link rel="stylesheet" href="../css/monitor-light-shell.css?v=20261126-light" />
+  <link rel="stylesheet" href="css/leave-monitor.css?v=20261126-light" />
 </head>
 <body>
   <header class="header">
