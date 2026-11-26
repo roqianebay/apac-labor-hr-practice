@@ -118,7 +118,6 @@
     document.querySelectorAll(".panel").forEach((p) => p.classList.remove("active"));
     btn.classList.add("active");
     document.getElementById("panel-" + tab)?.classList.add("active");
-    requestAnimationFrame(() => global.ApacCharts?.resizeAll?.());
   }
 
   function goToCountry(code) {
@@ -395,24 +394,6 @@
   }
   global.renderBenefitStats = renderBenefitStats;
 
-  function renderEmployerInsightCharts() {
-    const host = document.getElementById("employerModulesChart");
-    const LL = lang();
-    if (!host || !global.ApacCharts) return;
-    const rows = markets()
-      .map((m) => ({
-        name: LL ? LL.marketName(m) : m.nameZh,
-        value: (m.items || []).length,
-        highlight: m.code === "CN" || m.code === "SG",
-        color: "#a5b4fc"
-      }))
-      .sort((a, b) => b.value - a.value);
-    global.ApacCharts.ensureEcharts().then(() =>
-      global.ApacCharts.renderBar(host, rows, { height: 280 }).then(() => global.ApacCharts.resizeAll())
-    );
-  }
-  global.renderEmployerInsightCharts = renderEmployerInsightCharts;
-
   function fillBenefitFilters() {
     const LL = lang();
     const cf = document.getElementById("countryFilter");
@@ -648,7 +629,6 @@
         document.querySelectorAll(".panel").forEach((p) => p.classList.remove("active"));
         btn.classList.add("active");
         document.getElementById("panel-" + btn.dataset.tab)?.classList.add("active");
-        requestAnimationFrame(() => global.ApacCharts?.resizeAll?.());
       });
     });
 

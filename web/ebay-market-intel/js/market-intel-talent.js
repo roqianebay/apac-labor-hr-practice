@@ -156,13 +156,13 @@
       date: "2024-2025",
       companyId: "ebay",
       company: L("eBay", "eBay"),
-      scaleNum: 80,
-      scale: L("小比例周期精简（相对同业温和）", "Smaller cyclical trims vs peers"),
-      region: L("全球含美国", "Global incl. U.S."),
-      reason: L("效率与组合管理；非大规模裁员潮。", "Efficiency & portfolio; not mega-wave."),
+      scaleNum: 0,
+      scale: L("无单项公开「裁员 N 人」披露；见 10-K/业绩会效率表述（不设条形图规模）", "No single public “N layoffs” disclosure; see 10-K/earnings efficiency commentary (excluded from scale chart)"),
+      region: L("全球", "Global"),
+      reason: L("组合与效率管理（公开表述）；具体影响以 People 为准。", "Portfolio & efficiency (public commentary); impacts via official People channels."),
       severanceApac: L(
-        "亚太各国 office：通常<strong>当地法+公司政策</strong>；eBay 整体裁员规模小于超大规模同行。",
-        "APAC offices: <strong>local law + policy</strong>; eBay trims smaller than mega-cap peers."
+        "亚太 office：<strong>当地法 + 公司政策</strong>；勿与媒体报道的其他公司规模直接类比。",
+        "APAC offices: <strong>local law + policy</strong>; do not equate with press-reported peer headcount events."
       ),
       highlight: true
     }

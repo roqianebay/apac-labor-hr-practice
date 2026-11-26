@@ -20,6 +20,7 @@
       growthPct: 7,
       growthEst: false,
       strength: 68,
+      strengthEst: true,
       threat: 0,
       crossBorderPct: 5,
       crossBorderEst: false
@@ -384,7 +385,10 @@
       items: [
         {
           title: L("行业裁员周期", "Sector layoff cycles"),
-          body: L("互联网 2022–2024 大平台裁员；eBay 相对克制。对标 Amazon/阿里/Sea 时员工易焦虑。", "2022–24 big-tech cuts; eBay more restrained. Amazon/Alibaba/Sea news drives anxiety.")
+          body: L(
+            "2022–2024 多家平台调整编制；<strong>eBay 具体影响以 People / 10-K 与官方沟通为准</strong>，勿与媒体报道的其他公司规模直接类比。",
+            "2022–24 multiple platforms resized; <strong>eBay impacts per People, 10-K & official channels</strong> — do not equate with press-reported peer counts."
+          )
         },
         {
           title: L("外包与零工", "Vendors & gig"),
@@ -404,7 +408,10 @@
       items: [
         {
           title: L("为什么谈跨境", "Why cross-border matters"),
-          body: L("eBay ~20% GMV 跨境；Temu/Amazon 占跨境最近一单各约 24% — 业务在<em>渗透</em>不在<em>垄断</em>。", "~20% eBay GMV cross-border; Temu/Amazon ~24% latest CB order each — about <em>share</em> not <em>monopoly</em>.")
+          body: L(
+            "eBay 跨境 GMV 占比约 <strong>~20%</strong>（管理层公开表述，见 KPI）；Temu/Amazon「最近一单」各约 24% 为 <strong>Statista 等调查</strong>，与 GMV 口径不同。",
+            "eBay cross-border GMV ~<strong>20%</strong> (management commentary — see KPIs); Temu/Amazon ~24% latest order share is <strong>survey-based (e.g. Statista)</strong>, not GMV."
+          )
         },
         {
           title: L("为什么谈爱好者品类", "Why enthusiasts"),

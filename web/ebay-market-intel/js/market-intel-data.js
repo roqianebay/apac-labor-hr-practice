@@ -85,8 +85,8 @@ window.MI_APAC_GMV_NOTE = {
 /** APAC-first brief for overview & cross-border tabs */
 window.MI_APAC_FOCUS = {
   headline: L(
-    "亚太是 eBay 国际 GMV 与跨境卖家的<strong>主战场</strong>",
-    "APAC is the <strong>primary theater</strong> for eBay intl. GMV & cross-border sellers"
+    "亚太：跨境卖家、eIS/SpeedPAK 与区域竞争（<strong>公司未单独披露亚太 GMV</strong>）",
+    "APAC: cross-border sellers, eIS/SpeedPAK & regional rivalry (<strong>no separate APAC GMV disclosure</strong>)"
   ),
   lede: L(
     "本看板<strong>默认亚太视角</strong>：澳新、东北亚、东南亚、中国出口供给与监管动态；欧美数据仅作参照。",
@@ -127,13 +127,13 @@ window.MI_APAC_CB_INSIGHTS = [
     title: L("对亚太 HR 的含义", "Implications for APAC HR"),
     sources: [{ title: L("eBay 公司介绍", "eBay company"), url: "https://www.ebayinc.com/company/" }],
     body: L(
-      "编制分布在<strong>新加坡/澳洲区域协调</strong>、<strong>中国技术与卖家支持</strong>、<strong>各国 Trust/CS</strong>；员工常感知「全球裁员新闻」但更应以<strong>亚太 GMV 与跨境项目</strong>讨论优先级。",
-      "Roles split across <strong>SG/AU coordination</strong>, <strong>China tech & seller support</strong>, <strong>country trust/CS</strong>; global layoff news ≠ always APAC cuts — anchor talks in <strong>APAC GMV & CB programs</strong>."
+      "以下为<strong>公开材料归纳的讨论角度</strong>（非 eBay 编制或组织官方口径）：区域协调、跨境卖家支持、Trust/CS 等。具体人数与重组请以<strong>People / 业务负责人</strong>正式沟通为准。",
+      "<strong>Discussion angles from public materials only</strong> (not official headcount or org data): regional coordination, cross-border seller support, trust/CS, etc. Rely on <strong>People and business leadership</strong> for actual staffing decisions."
     )
   }
 ];
 
-/** APAC sub-region role for eBay (qualitative 1–5) */
+/** APAC sub-region role — editorial qualitative 1–5 for briefing (not eBay internal scorecard) */
 window.MI_APAC_REGION_BARS = [
   { id: "anz", name: L("澳新 ANZ", "ANZ"), ebayRole: 5, cbIntensity: 4, color: "#14b8a6", highlight: true },
   { id: "jpkr", name: L("日本 / 韩国", "Japan / Korea"), ebayRole: 4, cbIntensity: 4, color: "#38bdf8" },
@@ -442,14 +442,14 @@ window.MI_COMPETITORS = [
   },
   {
     id: "ebay",
-    name: L("eBay（本公司）", "eBay (home company)"),
+    name: L("eBay", "eBay"),
     badge: L("第三方市场", "3P marketplace"),
     model: L("C2C/B2C 平台 · 无自营库存", "C2C/B2C platform · no 1P inventory"),
     revenue: L("FY2025 营收约 <strong>111 亿</strong> 美元；GMV <strong>796 亿</strong>（年报）", "FY2025 revenue ~<strong>$11.1B</strong>; GMV <strong>$79.6B</strong> (annual report)"),
     trend: L("爱好者品类 + 广告 + 跨境托管物流（业绩会 / 年报）", "Enthusiasts + ads + managed intl. shipping (earnings / annual report)"),
     strategy: L("三大支柱：相关体验、可扩展方案、创新体验；AI 与直播。", "Three pillars: relevant experiences, scalable solutions, magical innovations; AI & live."),
     logistics: L("eBay International Shipping、SpeedPAK、端到端关税与退运托管。", "eIS, SpeedPAK, duties/returns managed end-to-end."),
-    talent: L("相对克制裁员；投资 AI、信任与安全、产品。", "Relatively disciplined workforce; invest in AI, trust & product."),
+    talent: L("年报/业绩会强调 AI、信任与安全、产品；人员变动以官方披露与 People 沟通为准。", "Earnings/annual report emphasis on AI, trust & product; workforce changes per official disclosures and People communications."),
     apac: L("澳日强买家；中国出口卖家；东南亚为跨境目的地。", "Strong AU/JP buyers; China export sellers; SEA as destinations."),
     competitiveness: 68,
     threat: 0,
@@ -469,8 +469,8 @@ window.MI_COMPETITOR_SUMMARY = {
     "In APAC, peers group by <strong>fulfillment model</strong>; charts below pair with the detail cards."
   ),
   ebayNote: L(
-    "eBay 锚点：<strong>C2C 长尾 + 托管跨境（eIS/SpeedPAK）</strong>；在低价全托管与超本地之间取差异化。",
-    "eBay anchor: <strong>C2C long-tail + managed cross-border (eIS/SpeedPAK)</strong>; differentiated vs discounters & hyper-local apps."
+    "eBay（看板主体）公开叙事摘要：<strong>C2C 长尾 + 托管跨境（eIS/SpeedPAK）</strong>；与低价全托管/超本地赛道的差异见年报与投资者材料，<strong>非管理层指引</strong>。",
+    "eBay (monitor subject) — <strong>public narrative summary</strong>: C2C long-tail + managed cross-border (eIS/SpeedPAK). Differentiation vs discounters/hyper-local apps per annual report & IR; <strong>not management guidance</strong>."
   ),
   clusters: [
     {
@@ -543,7 +543,7 @@ window.MI_APAC_FOOTPRINT = {
   TW: { ebay: 2, amazon: 3, temu: 3, shein: 3, aliexpress: 2, shopee: 3, lazada: 1, rakuten: 2, coupang: 3, jd: 2, tiktokshop: 3 }
 };
 
-/** Logistics comparison 1–5 scores for chart (internal qualitative) */
+/** Logistics comparison 1–5 — editorial qualitative only (not vendor benchmarks) */
 window.MI_LOGISTICS_SCORES = [
   { id: "ebay", label: L("eBay", "eBay"), speed: 3, cost: 4, apacFit: 4, highlight: true, color: "#14b8a6" },
   { id: "amazon", label: L("Amazon FBA", "Amazon FBA"), speed: 5, cost: 2, apacFit: 4, color: "#f59e0b" },

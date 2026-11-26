@@ -42,8 +42,8 @@
         "Marketplace take rate + payments + 1P ads; no 1P inventory; enthusiasts & managed cross-border."
       ),
       marketShare: L(
-        "全球第三方 C2C 领先；跨境「最近一单」约 5%（2025–26 调查），低于 Amazon/Temu。",
-        "Leading global C2C marketplace; ~5% latest cross-border order share (2025–26 survey), below Amazon/Temu."
+        "第三方 C2C 主要参与者之一（公司公开定位）；跨境「最近一单」约 5%（<strong>Statista 等第三方调查</strong>，非 GMV），低于 Amazon/Temu。",
+        "Major third-party C2C marketplace (per public positioning); ~5% latest cross-border order share (<strong>third-party survey e.g. Statista</strong>, not GMV), below Amazon/Temu."
       ),
       milestones: [
         { year: 1995, text: L("AuctionWeb 上线", "AuctionWeb launches") },

@@ -13,8 +13,8 @@
     ),
     badge: L("公开来源 · 可点击原文", "Public sources · linked"),
     intro: L(
-      "<strong>默认视角：整个亚太地区。</strong>数字以 <strong>eBay 年报/10-K、投资者关系、Statista 等可点击原文</strong>为主；未披露项（如分地区 GMV）不展示推算。竞品与定性指数供内部对照。<strong>非投资建议。</strong> 快照 <strong>2026-11-26</strong>。",
-      "<strong>Default lens: Asia-Pacific.</strong> Figures prioritise <strong>clickable sources</strong> (eBay annual report/10-K, IR, Statista, etc.); undisclosed items (e.g. regional GMV) are not modelled. Peer/qualitative indices for internal context. <strong>Not investment advice.</strong> Snapshot <strong>26 Nov 2026</strong>."
+      "<strong>默认视角：整个亚太地区。</strong>eBay 数字以 <strong>年报/10-K/IR 可点击原文</strong>为准；未披露项（如亚太 GMV）<strong>不做推算</strong>。竞品对比、威胁度、物流/区域 1–5、招聘「估」等为<strong>编辑部草拟对照</strong>，非 eBay 管理层数据。<strong>对领导汇报前请核对原文与人事官方口径。</strong> 快照 <strong>2026-11-26</strong>。",
+      "<strong>Default lens: Asia-Pacific.</strong> eBay figures follow <strong>clickable annual report/10-K/IR</strong>; undisclosed items (e.g. APAC GMV) are <strong>not modelled</strong>. Peer charts, threat scores, logistics/region 1–5, hiring “est.” are <strong>editorial briefing aids</strong>, not eBay management data. <strong>Validate against sources and People before leadership reviews.</strong> Snapshot <strong>26 Nov 2026</strong>."
     ),
     tabOverview: L("总览", "Overview"),
     tabHr: L("HR 视角", "HR lens"),
@@ -36,8 +36,11 @@
       "<strong>Buyers</strong> in ANZ/JP/KR + China <strong>export sellers</strong> + SEA as <strong>CB destination</strong>; managed logistics (eIS/SpeedPAK) & trust/auth vs Temu/Shopee price shock."
     ),
     apacCbTitle: L("亚太跨境电商要点", "APAC cross-border essentials"),
-    apacRegionChartTitle: L("eBay 亚太子区域角色（定性 1–5）", "eBay APAC sub-region role (1–5)"),
-    apacRegionChartNote: L("左轴：eBay 区域角色；条形为跨境强度。", "Bars: eBay regional role; depth = cross-border intensity."),
+    apacRegionChartTitle: L("子区域角色草图（定性 1–5，非官方）", "Sub-region role sketch (qualitative 1–5, non-official)"),
+    apacRegionChartNote: L(
+      "编辑部根据公开业务重心整理；<strong>非 eBay 内部分数</strong>。高亮行=看板主体 eBay。",
+      "Editorial rollup from public business focus; <strong>not an eBay internal scorecard</strong>. Highlighted row = monitor subject eBay."
+    ),
     barTitle: L("亚太视角：全球跨境「最近一单」份额", "APAC lens: latest cross-border order share (global survey)"),
     barNote: L(
       "调查覆盖 37 国含大量亚太受访者；亚太消费者同样倾向 Temu/Amazon。<strong>非 GMV</strong>。",
@@ -48,9 +51,15 @@
     compSummaryTitle: L("亚太竞争对手汇总", "APAC competitor landscape"),
     compSummaryNote: L("三类竞合关系 · 内部整理", "Three coopetition clusters · internal"),
     compCompareTitle: L("多指标对比（可切换）", "Multi-metric comparison (switchable)"),
-    compCompareNote: L("默认亚太布局指数；可切威胁度、GMV、增长等。eBay 行高亮。", "Default APAC footprint index; switch threat, GMV, growth, etc. eBay row highlighted."),
+    compCompareNote: L(
+      "默认亚太布局指数为<strong>编辑部推算</strong>；可切换指标。高亮=看板主体 eBay；带 * 为第三方估计。",
+      "Default APAC footprint index is an <strong>editorial rollup</strong>; switch metrics. Highlight = monitor subject eBay; * = third-party estimate."
+    ),
     compDualTitle: L("威胁度 vs 竞争力", "Threat vs strength"),
-    compDualNote: L("0–100 内部指数；不含 eBay 自身。", "0–100 internal index; excludes eBay."),
+    compDualNote: L(
+      "0–100 <strong>编辑部对照</strong>；竞品威胁/竞争力不含 eBay 自身。",
+      "0–100 <strong>editorial comparison</strong>; peer threat/strength excludes eBay itself."
+    ),
     compDualThreat: L("威胁", "Threat"),
     compDualStrength: L("竞争力", "Strength"),
     compScatterTitle: L("增长 vs 对 eBay 威胁", "Growth vs threat to eBay"),
@@ -114,8 +123,8 @@
     scatterX: L("增长 →", "Growth →"),
     scatterY: L("对 eBay 威胁 ↑", "Threat to eBay ↑"),
     scatterCaption: L(
-      "右上：高增长高威胁（如 Temu）；左下：低增长低威胁。eBay 标于左下。",
-      "Top-right: high growth & threat (e.g. Temu); bottom-left: low. eBay bottom-left."
+      "增长/威胁指数为<strong>编辑部对照</strong>，非预测。eBay 点位仅作看板主体参照。",
+      "Growth/threat indices are <strong>editorial comparison</strong>, not forecasts. eBay dot marks the monitor subject only."
     ),
     tableToggleLabel: L("显示文字对照表", "Show text comparison table"),
     hrTitle: L("HR 业务理解手册", "HR business playbook"),
@@ -149,8 +158,8 @@
     hiringCareers: L("招聘入口", "Careers"),
     layoffScaleTitle: L("2025 年裁员规模（报道口径）", "2025 layoff scale (press basis)"),
     layoffScaleNote: L(
-      "以 <strong>2025 年</strong>公开报道为主（条形左侧为报道年月，如 2025-10）；规模为估算人次，少数条目跨 2024–25。",
-      "Primarily <strong>2025</strong> press reports (YYYY-MM on the left of each bar); headcount approximate; some spans 2024–25."
+      "以 <strong>2025 年</strong>媒体报道为主（左侧年月）；规模为媒体估算，<strong>不含 eBay 未披露项</strong>。eBay 见下方事件说明。",
+      "Primarily <strong>2025</strong> media (YYYY-MM on left); scales are press estimates — <strong>eBay excluded if not publicly quantified</strong>. See eBay event note below."
     ),
     layoffReasonTitle: L("裁员动因分布（行业归纳）", "Layoff drivers (sector rollup)"),
     layoffEventsTitle: L("裁员事件清单", "Layoff event list"),

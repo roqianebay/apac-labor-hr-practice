@@ -67,7 +67,6 @@
   </style>
   <link rel="stylesheet" href="../css/monitor-business-dark.css?v=20261126-er-news-tone" />
   <link rel="stylesheet" href="css/benefits-monitor.css?v=20261126-er-news-tone" />
-  <link rel="stylesheet" href="../css/apac-charts.css?v=20261126-echarts" />
   <script src="../js/theme-draft-boot.js?v=20261126-light-default"></script>
 </head>
 <body>
@@ -124,15 +123,6 @@
     </section>
 
     <section class="stats-grid" id="statsGrid"></section>
-    <div class="monitor-insight-charts">
-      <article class="card">
-        <div class="card-header">
-          <h2 id="ui-chart-coverage-title"></h2>
-          <p class="sub" id="ui-chart-coverage-sub"></p>
-        </div>
-        <div class="card-body"><div id="benefitsCoverageChart" class="echart-host"></div></div>
-      </article>
-    </div>
     <nav class="tabs">
       <button class="tab-btn active" data-tab="overview" id="ui-tab-overview"></button>
       <button class="tab-btn" data-tab="countries" id="ui-tab-countries"></button>
@@ -187,11 +177,10 @@
     </div>
   </footer>
 
-  <script src="../js/apac-charts.js?v=20261126-chart-resize"></script>
   <script src="js/benefits-data.js?v=20261126-refs"></script>
   <script src="js/benefits-policy-refs.js?v=20261126-refs"></script>
-  <script src="js/benefits-lang.js?v=20261126-refs"></script>
-  <script src="js/benefits-app.js?v=20261126-refs"></script>
+  <script src="js/benefits-lang.js?v=20261126-no-coverage-chart"></script>
+  <script src="js/benefits-app.js?v=20261126-no-coverage-chart"></script>
   <script>
     (function bootBenefitsMonitor() {
       const verBadge = document.getElementById("ui-data-version");

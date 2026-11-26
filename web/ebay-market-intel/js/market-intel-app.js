@@ -339,7 +339,7 @@
     const U = LL().UI;
     const scores = global.MI_LOGISTICS_SCORES || [];
     const xLabels = [t(U.logisticsSpeed), t(U.logisticsCost), t(U.logisticsApac)];
-    const yLabels = scores.map((s) => (s.highlight ? "★ " : "") + t(s.label));
+    const yLabels = scores.map((s) => t(s.label));
     const highlightRows = scores.map((s, i) => (s.highlight ? i : -1)).filter((i) => i >= 0);
     const data = [];
     const cellLabels = {};
@@ -420,7 +420,7 @@
     });
     const marketsSorted = [...marketTotals.values()].sort((a, b) => b.total - a.total);
     const xLabels = marketsSorted.map((m) => `${m.flag} ${m.name}`);
-    const yLabels = companies.map((co) => `${co.highlight ? "★ " : ""}${t(co.company)}`);
+    const yLabels = companies.map((co) => t(co.company));
     const data = [];
     const cellLabels = {};
     const cellFocus = {};
@@ -496,7 +496,7 @@
     const rows = [];
     companies.forEach((co) => {
       (co.markets || []).forEach((m) => {
-        const name = `${co.highlight ? "★ " : ""}${t(co.company)} · ${m.flag} ${t(m.market)}`;
+        const name = `${t(co.company)} · ${m.flag} ${t(m.market)}`;
         rows.push({
           name,
           value: m.rolesEst || 0,
