@@ -178,7 +178,7 @@
 }
 .tl-event p { color: var(--text-muted); }
 
-.bar-chart { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.75rem; }
+.bar-chart:not(.echart-host) { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.75rem; }
 .bar-row.is-ebay .bar-name { color: var(--mi-accent-light); font-weight: 700; }
 .bar-meta { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.2rem; }
 .bar-pct { color: var(--text-muted); font-variant-numeric: tabular-nums; }

@@ -18,6 +18,11 @@
     ),
     statMarkets: L("已收录市场", "Markets indexed"),
     statCats: L("福利模块", "Benefit modules"),
+    chartModulesTitle: L("Benefit Summary 模块覆盖", "Benefit Summary module coverage"),
+    chartModulesSub: L(
+      "各市场在本看板中展开的<strong>福利模块</strong>数量（2026 年 1 月摘要）。",
+      "Number of <strong>benefit modules</strong> expanded per market (Jan 2026 summary)."
+    ),
     searchPh: L("搜索市场、类别、关键词…", "Search market, category, keyword…"),
     filterMarket: L("全部市场", "All markets"),
     filterCat: L("全部类别", "All categories"),
@@ -118,6 +123,8 @@
     setText("ui-index-markets-label", t(UI.indexMarketsLabel));
     setText("ui-index-cats-label", t(UI.indexCatsLabel));
     setText("ui-index-hits-title", t(UI.indexHitsTitle));
+    setText("ui-chart-modules-title", t(UI.chartModulesTitle));
+    setText("ui-chart-modules-sub", t(UI.chartModulesSub));
     setText("ui-countries-h2", t(UI.countriesH2));
     setText("ui-countries-sub", t(UI.countriesSub));
     setText("ui-categories-h2", t(UI.categoriesH2));
@@ -138,6 +145,7 @@
     });
     if (typeof global.fillBenefitFilters === "function") global.fillBenefitFilters();
     if (typeof global.renderBenefitStats === "function") global.renderBenefitStats();
+    if (typeof global.renderEmployerInsightCharts === "function") global.renderEmployerInsightCharts();
     if (typeof global.renderBenefitSources === "function") global.renderBenefitSources();
     if (typeof global.renderPolicySpotlight === "function") global.renderPolicySpotlight();
     if (typeof global.applyBenefitViews === "function") global.applyBenefitViews();

@@ -302,6 +302,23 @@
   }
   global.renderBenefitStats = renderBenefitStats;
 
+  function renderBenefitInsightCharts() {
+    const host = document.getElementById("benefitsCoverageChart");
+    const LL = lang();
+    if (!host || !global.ApacCharts) return;
+    const focus = matrixFocusSet();
+    const rows = markets()
+      .map((m) => ({
+        name: LL ? LL.marketName(m) : m.nameZh,
+        value: (m.items || []).length,
+        highlight: focus.has(m.code),
+        color: focus.has(m.code) ? "#14b8a6" : "#6366f1"
+      }))
+      .sort((a, b) => b.value - a.value);
+    global.ApacCharts.renderBar(host, rows, { height: 320 });
+  }
+  global.renderBenefitInsightCharts = renderBenefitInsightCharts;
+
   function fillBenefitFilters() {
     const LL = lang();
     const cf = document.getElementById("countryFilter");

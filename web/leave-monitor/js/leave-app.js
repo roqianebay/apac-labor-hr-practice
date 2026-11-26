@@ -376,6 +376,33 @@
   }
   global.renderLeaveStats = renderLeaveStats;
 
+  function renderLeaveInsightCharts() {
+    const host = document.getElementById("leaveAnnualChart");
+    const LL = lang();
+    const series = global.LEAVE_CHART_ANNUAL_DAYS || [];
+    if (!host || !series.length || !global.ApacCharts) return;
+    const focus = matrixFocusSet();
+    const byCode = Object.fromEntries(markets().map((m) => [m.code, m]));
+    const rows = series
+      .map((row) => {
+        const m = byCode[row.code];
+        const name = m ? (LL ? LL.marketName(m) : m.nameZh) : row.code;
+        return {
+          name,
+          value: row.days,
+          suffix: LL?.lang === "zh" ? " 天" : " d",
+          highlight: focus.has(row.code),
+          color: focus.has(row.code) ? "#1e5a4a" : "#2a6f5f"
+        };
+      })
+      .sort((a, b) => b.value - a.value);
+    global.ApacCharts.renderBar(host, rows, {
+      max: Math.max(...rows.map((r) => r.value), 1) * 1.08,
+      height: 300
+    });
+  }
+  global.renderLeaveInsightCharts = renderLeaveInsightCharts;
+
   function fillLeaveFilters() {
     const LL = lang();
     const cf = document.getElementById("countryFilter");

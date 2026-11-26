@@ -67,6 +67,7 @@
   </style>
   <link rel="stylesheet" href="../css/monitor-business-dark.css?v=20261126-er-news-tone" />
   <link rel="stylesheet" href="css/employer-benefits.css?v=20261126-er-news-tone" />
+  <link rel="stylesheet" href="../css/apac-charts.css?v=20261126-echarts" />
   <script src="../js/theme-draft-boot.js?v=20261126-light-default"></script>
 </head>
 <body>
@@ -123,6 +124,15 @@
     </section>
 
     <section class="stats-grid" id="statsGrid"></section>
+    <div class="monitor-insight-charts">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-chart-modules-title"></h2>
+          <p class="sub" id="ui-chart-modules-sub"></p>
+        </div>
+        <div class="card-body"><div id="employerModulesChart" class="echart-host"></div></div>
+      </article>
+    </div>
     <nav class="tabs">
       <button class="tab-btn active" data-tab="overview" id="ui-tab-overview"></button>
       <button class="tab-btn" data-tab="countries" id="ui-tab-countries"></button>
@@ -177,6 +187,7 @@
     </div>
   </footer>
 
+  <script src="../js/apac-charts.js?v=20261126-echarts"></script>
   <script src="js/employer-benefits-data.js?v=202601-inline8"></script>
   <script src="js/employer-benefits-policy-refs.js?v=202601-inline8"></script>
   <script src="js/employer-benefits-lang.js?v=202601-inline8"></script>

@@ -1,0 +1,38 @@
+.echart-host {
+  width: 100%;
+  min-height: 200px;
+}
+
+.bar-chart.echart-host,
+.compare-chart.echart-host,
+.dual-metric-chart.echart-host {
+  display: block;
+  flex-direction: unset;
+  gap: 0;
+  margin-top: 0.35rem;
+}
+
+#scatterChart.echart-host,
+#compScatterChart.echart-host,
+#metricHeatmap.echart-host,
+#compMetricHeatmap.echart-host,
+#logisticsScoreChart.echart-host {
+  margin-top: 0.5rem;
+}
+
+.monitor-insight-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.monitor-insight-charts .card-body {
+  padding: 0.75rem 1rem 1rem;
+}
+
+.scatter-caption {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}

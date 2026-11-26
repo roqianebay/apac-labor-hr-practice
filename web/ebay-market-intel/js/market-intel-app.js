@@ -28,7 +28,7 @@
   }
 
   /** @param {HTMLElement|null} host @param {{name:string,value:number,color?:string,highlight?:boolean,est?:boolean,suffix?:string}[]} rows */
-  function renderSimpleBarChart(host, rows, opts = {}) {
+  function renderSimpleBarChartFallback(host, rows, opts = {}) {
     if (!host || !rows.length) {
       if (host) host.innerHTML = "";
       return;
@@ -54,6 +54,22 @@
         );
       })
       .join("");
+  }
+
+  function renderSimpleBarChart(host, rows, opts = {}) {
+    if (!host || !rows.length) {
+      if (host) host.innerHTML = "";
+      return;
+    }
+  host.classList.add("echart-host");
+    const AC = global.ApacCharts;
+    if (AC) {
+      AC.renderBar(host, rows, opts).then((ok) => {
+        if (!ok) renderSimpleBarChartFallback(host, rows, opts);
+      });
+      return;
+    }
+    renderSimpleBarChartFallback(host, rows, opts);
   }
 
   function kpiCardHtml(k) {
@@ -291,6 +307,28 @@
     if (!host) return;
     const U = LL().UI;
     const scores = global.MI_LOGISTICS_SCORES || [];
+    const indicators = [
+      { name: t(U.logisticsSpeed), max: 5 },
+      { name: t(U.logisticsCost), max: 5 },
+      { name: t(U.logisticsApac), max: 5 }
+    ];
+    const series = scores.map((s) => ({
+      name: t(s.label),
+      values: [s.speed, s.cost, s.apacFit],
+      color: s.highlight ? "#22d3ee" : s.color || "#64748b",
+      highlight: !!s.highlight
+    }));
+    host.classList.add("echart-host");
+    if (global.ApacCharts) {
+      global.ApacCharts.renderRadar(host, series, indicators, { height: 400 }).then((ok) => {
+        if (!ok) renderLogisticsScoreChartFallback(host, scores, U);
+      });
+      return;
+    }
+    renderLogisticsScoreChartFallback(host, scores, U);
+  }
+
+  function renderLogisticsScoreChartFallback(host, scores, U) {
     host.innerHTML = scores
       .map((s) => {
         const mk = (val, label, color) => {
@@ -618,25 +656,24 @@
       else max = Math.max(max, v);
     });
     if (max <= 0) max = 1;
-    host.innerHTML = rows
-      .map((m) => {
-        const v = metricRaw(m, chartMetric);
-        const est = metricEstFlag(m, chartMetric);
-        let pct;
-        if (chartMetric === "headcount") pct = Math.round((Math.log10(Math.max(v, 1)) / max) * 100);
-        else pct = Math.round((v / max) * 100);
-        const isEbay = m.id === "ebay";
-        const cls = "bar-row" + (isEbay ? " is-ebay" : "") + (est ? " is-est" : "");
-        const color = m.color || "var(--mi-accent)";
-        return (
-          `<div class="${cls}">` +
-          `<div class="bar-meta"><span class="bar-name">${esc(compName(m.id))}</span>` +
-          `<span class="bar-pct">${formatMetricValue(chartMetric, v, est)}</span></div>` +
-          `<div class="bar-track"><span class="bar-fill" style="width:${pct}%;background:${color}"></span></div>` +
-          `</div>`
-        );
-      })
-      .join("");
+    const barRows = rows.map((m) => {
+      const v = metricRaw(m, chartMetric);
+      const est = metricEstFlag(m, chartMetric);
+      const plotVal = chartMetric === "headcount" ? Math.log10(Math.max(v, 1)) : v;
+      return {
+        name: compName(m.id),
+        value: plotVal,
+        color: m.color || "var(--mi-accent)",
+        highlight: m.id === "ebay",
+        est,
+        raw: v,
+        suffix: chartMetric === "headcount" ? "" : def?.unit || ""
+      };
+    });
+    renderSimpleBarChart(host, barRows, {
+      max,
+      format: (row) => formatMetricValue(chartMetric, row.raw, row.est)
+    });
   }
 
   function renderMainMetricCharts() {
@@ -652,24 +689,60 @@
 
   function paintScatterChart(host) {
     if (!host) return;
-    const rows = enrichedMetrics().filter((m) => m.growthPct != null && m.threat != null && m.id !== "ebay");
-    const ebay = enrichedMetrics().find((m) => m.id === "ebay");
-    const maxG = Math.max(...rows.map((m) => m.growthPct), ebay?.growthPct || 0, 1);
-    const maxT = Math.max(...rows.map((m) => m.threat), 1);
+    const all = enrichedMetrics().filter((m) => m.growthPct != null && m.threat != null);
+    const points = all.map((m) => ({
+      name: compName(m.id),
+      short: m.id === "ebay" ? "eBay" : m.id.slice(0, 2).toUpperCase(),
+      growth: m.growthPct,
+      threat: m.threat,
+      color: m.color || "#64748b",
+      highlight: m.id === "ebay"
+    }));
+    host.classList.add("echart-host");
+    if (host.nextElementSibling?.classList?.contains("scatter-caption")) {
+      host.nextElementSibling.remove();
+    }
+    const cap = document.createElement("p");
+    cap.className = "scatter-caption";
+    cap.textContent = t(LL().UI.scatterCaption);
+    if (global.ApacCharts) {
+      global.ApacCharts
+        .renderScatter(host, points, {
+          height: 340,
+          xName: t(LL().UI.scatterX),
+          yName: t(LL().UI.scatterY),
+          xLabel: LL().lang === "zh" ? "增长" : "Growth",
+          yLabel: LL().lang === "zh" ? "威胁" : "Threat"
+        })
+        .then((ok) => {
+          if (!ok) paintScatterChartFallback(host, points);
+          else if (!host.nextElementSibling?.classList?.contains("scatter-caption")) {
+            host.insertAdjacentElement("afterend", cap);
+          }
+        });
+      return;
+    }
+    paintScatterChartFallback(host, points);
+  }
+
+  function paintScatterChartFallback(host, points) {
+    const rows = points.filter((p) => !p.highlight);
+    const ebay = points.find((p) => p.highlight);
+    const maxG = Math.max(...points.map((p) => p.growth), 1);
+    const maxT = Math.max(...points.map((p) => p.threat), 1);
     const dots = rows
-      .map((m) => {
-        const left = Math.min(98, Math.max(2, (m.growthPct / maxG) * 100));
-        const bottom = Math.min(98, Math.max(2, (m.threat / maxT) * 100));
-        const short = m.id.slice(0, 2).toUpperCase();
-        return `<button type="button" class="scatter-dot" style="left:${left}%;bottom:${bottom}%;background:${m.color}" title="${esc(
-          compName(m.id)
-        )}: ${m.growthPct}% / ${m.threat}">${short}</button>`;
+      .map((p) => {
+        const left = Math.min(98, Math.max(2, (p.growth / maxG) * 100));
+        const bottom = Math.min(98, Math.max(2, (p.threat / maxT) * 100));
+        return `<button type="button" class="scatter-dot" style="left:${left}%;bottom:${bottom}%;background:${p.color}" title="${esc(
+          p.name
+        )}: ${p.growth}% / ${p.threat}">${p.short}</button>`;
       })
       .join("");
     const ebayDot = ebay
       ? `<button type="button" class="scatter-dot is-ebay" style="left:${Math.min(
           98,
-          (ebay.growthPct / maxG) * 100
+          (ebay.growth / maxG) * 100
         )}%;bottom:2%;" title="eBay">eBay</button>`
       : "";
     host.innerHTML =
@@ -706,6 +779,41 @@
       const min = Math.min(...vals, 0);
       norms[k] = { max, min, span: max - min || 1 };
     });
+    const xLabels = keys.map((k) => labels[k]);
+    const yLabels = metrics.map((m) => compName(m.id));
+    const data = [];
+    const cellLabels = {};
+    metrics.forEach((m, yi) => {
+      keys.forEach((k, xi) => {
+        const v = metricRaw(m, k);
+        if (v == null) return;
+        let intensity;
+        if (k === "headcount") {
+          intensity =
+            (Math.log10(Math.max(v, 1)) - Math.log10(1000)) / (Math.log10(2.1e6) - Math.log10(1000));
+        } else {
+          intensity = (v - norms[k].min) / norms[k].span;
+        }
+        intensity = Math.min(1, Math.max(0.08, intensity));
+        data.push([xi, yi, intensity]);
+        cellLabels[yi + ":" + xi] = formatMetricValue(k, v, metricEstFlag(m, k));
+      });
+    });
+    host.classList.add("echart-host");
+    if (global.ApacCharts && data.length) {
+      global.ApacCharts.renderHeatmap(
+        host,
+        { xLabels, yLabels, data, cellLabels },
+        { height: Math.max(320, yLabels.length * 28 + 80) }
+      ).then((ok) => {
+        if (!ok) paintMetricHeatmapTable(host, metrics, keys, labels, norms);
+      });
+      return;
+    }
+    paintMetricHeatmapTable(host, metrics, keys, labels, norms);
+  }
+
+  function paintMetricHeatmapTable(host, metrics, keys, labels, norms) {
     const head =
       `<tr><th class="sticky-col">${LL().lang === "zh" ? "公司" : "Co."}</th>` +
       keys.map((k) => `<th>${labels[k]}</th>`).join("") +
@@ -718,13 +826,13 @@
             if (v == null) return `<td class="heat-empty">—</td>`;
             let intensity;
             if (k === "headcount") {
-              intensity = (Math.log10(Math.max(v, 1)) - Math.log10(1000)) / (Math.log10(2.1e6) - Math.log10(1000));
+              intensity =
+                (Math.log10(Math.max(v, 1)) - Math.log10(1000)) / (Math.log10(2.1e6) - Math.log10(1000));
             } else {
               intensity = (v - norms[k].min) / norms[k].span;
             }
             intensity = Math.min(1, Math.max(0.08, intensity));
-            const isEbay = m.id === "ebay";
-            return `<td class="heat-cell${isEbay ? " is-ebay" : ""}" style="--heat:${intensity}">${formatMetricValue(
+            return `<td class="heat-cell${m.id === "ebay" ? " is-ebay" : ""}" style="--heat:${intensity}">${formatMetricValue(
               k,
               v,
               metricEstFlag(m, k)

@@ -18,6 +18,11 @@
     ),
     statMarkets: L("覆盖国家/地区", "Countries & regions"),
     statCats: L("福利维度", "Benefit topics"),
+    chartCoverageTitle: L("矩阵维度覆盖度", "Matrix topic depth by market"),
+    chartCoverageSub: L(
+      "各市场在本看板中已收录的<strong>法定福利条目</strong>数量（越多表示矩阵行越满）。",
+      "Count of <strong>statutory benefit topics</strong> captured per market in this desk."
+    ),
     searchPh: L("搜索国家/地区、类别、关键词…", "Search country/region, category, keyword…"),
     filterMarket: L("全部国家/地区", "All countries & regions"),
     filterCat: L("全部类别", "All categories"),
@@ -118,6 +123,8 @@
     setText("ui-countries-h2", t(UI.countriesH2));
     setText("ui-countries-sub", t(UI.countriesSub));
     setText("ui-categories-h2", t(UI.categoriesH2));
+    setText("ui-chart-coverage-title", t(UI.chartCoverageTitle));
+    setText("ui-chart-coverage-sub", t(UI.chartCoverageSub));
     setText("ui-sources-h2", t(UI.sourcesH2));
     setText("ui-foot", t(UI.foot));
     setText("ui-hub-index", t(UI.hubIndex));
@@ -134,6 +141,7 @@
     });
     if (typeof global.fillBenefitFilters === "function") global.fillBenefitFilters();
     if (typeof global.renderBenefitStats === "function") global.renderBenefitStats();
+    if (typeof global.renderBenefitInsightCharts === "function") global.renderBenefitInsightCharts();
     if (typeof global.renderBenefitSources === "function") global.renderBenefitSources();
     if (typeof global.renderPolicySpotlight === "function") global.renderPolicySpotlight();
     if (typeof global.applyBenefitViews === "function") global.applyBenefitViews();
