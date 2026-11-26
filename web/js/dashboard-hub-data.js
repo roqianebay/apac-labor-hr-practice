@@ -55,18 +55,19 @@ window.DASH_HUB_BOARDS = [
   {
     id: "market-intel",
     hubRow: 1,
+    badgeAccent: "apac",
     badge: L("亚太 · 市场与竞品", "APAC · market & peers"),
     title: L("eBay APAC Market &amp; Competitor Monitor", "eBay APAC Market &amp; Competitor Monitor"),
     pitch: L(
-      "<strong>2026 市场数据</strong> · 亚太 GMV/跨境、SpeedPAK/eIS、<strong>eBay vs Shopee/Temu/亚马逊</strong> 区域竞品与人才信号。",
-      "<strong>2026 market data</strong> · APAC GMV/cross-border, SpeedPAK/eIS, <strong>eBay vs Shopee/Temu/Amazon</strong> peers & talent."
+      "<strong>年报与可点击公开来源</strong> · 亚太跨境、SpeedPAK/eIS、<strong>eBay vs Shopee/Temu/亚马逊</strong> 区域竞品与人才信号。",
+      "<strong>Annual report & linked public sources</strong> · APAC CB, SpeedPAK/eIS, <strong>eBay vs Shopee/Temu/Amazon</strong> peers & talent."
     ),
     bullets: [
-      L("2026 全球/亚太 GMV 与跨境 KPI 快照", "2026 global/APAC GMV & cross-border KPI snapshot"),
+      L("KPI 链至 IR / SEC / Statista", "KPIs link to IR / SEC / Statista"),
       L("亚太招聘 / 裁员 / HR 视角分栏", "APAC hiring, layoffs & HR lens tabs"),
       L("竞争对手汇总 · 多图对比", "Competitor summary · multi-chart compare")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/ebay-market-intel/?v=20261126-2026",
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/ebay-market-intel/?v=20261126-sourced",
     ext: true
   },
   {

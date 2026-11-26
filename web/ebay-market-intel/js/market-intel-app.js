@@ -13,6 +13,20 @@
       .replace(/"/g, "&quot;");
   }
 
+  function sourcesLinkHtml(sources) {
+    if (!sources || !sources.length) return "";
+    return (
+      `<p class="card-sources">` +
+      sources
+        .map(
+          (r) =>
+            `<a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">${t(r.title)} <span aria-hidden="true">↗</span></a>`
+        )
+        .join(" · ") +
+      `</p>`
+    );
+  }
+
   /** @param {HTMLElement|null} host @param {{name:string,value:number,color?:string,highlight?:boolean,est?:boolean,suffix?:string}[]} rows */
   function renderSimpleBarChart(host, rows, opts = {}) {
     if (!host || !rows.length) {
@@ -43,12 +57,12 @@
   }
 
   function kpiCardHtml(k) {
-    const est = k.estimate ? " is-estimate" : "";
     return (
-      `<article class="kpi-card${est}">` +
+      `<article class="kpi-card">` +
       `<div class="kpi-value">${esc(k.value)}</div>` +
       `<div class="kpi-label">${t(k.label)}</div>` +
       `<div class="kpi-hint">${t(k.hint)}</div>` +
+      sourcesLinkHtml(k.sources) +
       `</article>`
     );
   }
@@ -100,6 +114,7 @@
           `<article class="apac-insight-card">` +
           `<h3>${t(card.title)}</h3>` +
           `<p>${t(card.body)}</p>` +
+          sourcesLinkHtml(card.sources) +
           `</article>`
       )
       .join("");
@@ -145,7 +160,11 @@
           `<section class="tl-year">` +
           `<h3 class="tl-year-label">${y.year}</h3>` +
           `<div class="tl-events">${(y.events || [])
-            .map((e) => `<div class="tl-event"><span class="tl-q">${esc(e.q)}</span><p>${t(e.text)}</p></div>`)
+            .map(
+              (e) =>
+                `<div class="tl-event"><span class="tl-q">${esc(e.q)}</span>` +
+                `<div class="tl-body"><p>${t(e.text)}</p>${sourcesLinkHtml(e.sources)}</div></div>`
+            )
             .join("")}</div>` +
           `</section>`
       )
@@ -185,9 +204,9 @@
         value: k.chartNum,
         apac: false,
         highlight: k.id === "gmv",
-        est: !!k.estimate || k.id === "buyers",
+        est: k.id === "xb" || k.id === "xb-share",
         suffix: kpiChartSuffix(k),
-        color: k.estimate ? "#64748b" : "#14b8a6"
+        color: "#14b8a6"
       }));
     renderSimpleBarChart(host, rows);
   }
@@ -394,6 +413,114 @@
 
   let compFilter = "";
   let chartMetric = "apacIndex";
+  let compMarketFilter = "CN";
+
+  function compRefLinks(sources) {
+    if (!sources || !sources.length) return "—";
+    return sources
+      .map(
+        (r) =>
+          `<a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">${t(r.title)} <span aria-hidden="true">↗</span></a>`
+      )
+      .join(" · ");
+  }
+
+  function renderCompMarketChips() {
+    const host = document.getElementById("compMarketChipBar");
+    if (!host) return;
+    const markets = global.MI_COMP_MARKETS || [];
+    host.innerHTML = markets
+      .map((m) => {
+        const active = m.code === compMarketFilter ? " active" : "";
+        return `<button type="button" class="metric-chip${active}" data-comp-market="${m.code}">${m.flag} ${t(m.label)}</button>`;
+      })
+      .join("");
+  }
+
+  function renderCompBenchmarks() {
+    const head = document.getElementById("compBenchHead");
+    const body = document.getElementById("compBenchBody");
+    const chartHost = document.getElementById("compBenchChart");
+    const U = LL().UI;
+    if (!head || !body) return;
+    const rows = (global.MI_APAC_COMP_BENCHMARKS || []).filter((r) => r.code === compMarketFilter);
+    head.innerHTML =
+      `<tr>` +
+      `<th>${t(U.compThCompany)}</th>` +
+      `<th>${t(U.compThMarket)}</th>` +
+      `<th>${t(U.compThRole)}</th>` +
+      `<th>${t(U.compThBase)}</th>` +
+      `<th>${t(U.compThEq)}</th>` +
+      `<th>${t(U.compThTotal)}</th>` +
+      `<th>${t(U.compThTrend)}</th>` +
+      `<th>${t(U.compThSource)}</th>` +
+      `</tr>`;
+    body.innerHTML = rows
+      .sort((a, b) => (b.highlight ? 0 : 1) - (a.highlight ? 0 : 1) || b.total - a.total)
+      .map(
+        (r) =>
+          `<tr class="${r.highlight ? "row-ebay" : ""}">` +
+          `<td>${t(r.company)}</td>` +
+          `<td>${r.flag} ${t(r.market)}</td>` +
+          `<td>${t(r.role)}</td>` +
+          `<td>${r.base}</td>` +
+          `<td>${r.equity}</td>` +
+          `<td><strong>${r.total}</strong></td>` +
+          `<td>${t(r.trend)}</td>` +
+          `<td class="comp-ref-cell">${compRefLinks(r.sources)}</td>` +
+          `</tr>`
+      )
+      .join("");
+    if (chartHost) {
+      const bars = [...rows]
+        .sort((a, b) => b.total - a.total)
+        .map((r) => ({
+          name: t(r.company),
+          value: r.total,
+          highlight: !!r.highlight,
+          suffix: "k",
+          color: r.highlight ? "#14b8a6" : "#64748b"
+        }));
+      renderSimpleBarChart(chartHost, bars);
+    }
+  }
+
+  function renderJobSalaries() {
+    const head = document.getElementById("roleSalaryHead");
+    const body = document.getElementById("roleSalaryBody");
+    const U = LL().UI;
+    if (!head || !body) return;
+    const rows = (global.MI_APAC_JOB_SALARIES || []).filter((r) => r.code === compMarketFilter);
+    head.innerHTML =
+      `<tr>` +
+      `<th>${t(U.compThCompany)}</th>` +
+      `<th>${t(U.compThMarket)}</th>` +
+      `<th>${t(U.roleThTitle)}</th>` +
+      `<th>${t(U.roleThSalary)}</th>` +
+      `<th>${t(U.roleThPosted)}</th>` +
+      `<th>${t(U.compThSource)}</th>` +
+      `</tr>`;
+    body.innerHTML = rows
+      .sort((a, b) => (b.highlight ? 0 : 1) - (a.highlight ? 0 : 1))
+      .map(
+        (r) =>
+          `<tr class="${r.highlight ? "row-ebay" : ""}">` +
+          `<td>${t(r.company)}</td>` +
+          `<td>${t(r.market)}</td>` +
+          `<td>${t(r.title)}</td>` +
+          `<td>${t(r.salary)}</td>` +
+          `<td>${t(r.posted)}</td>` +
+          `<td class="comp-ref-cell">${compRefLinks(r.sources)}</td>` +
+          `</tr>`
+      )
+      .join("");
+  }
+
+  function renderCompHr() {
+    renderCompMarketChips();
+    renderCompBenchmarks();
+    renderJobSalaries();
+  }
 
   function getComp(id) {
     return (global.MI_COMPETITORS || []).find((c) => c.id === id);
@@ -628,11 +755,15 @@
     const sizeHost = document.getElementById("marketSizeGrid");
     if (sizeHost) {
       sizeHost.innerHTML = (global.MI_MARKET_SIZE || [])
-        .map(
-          (s) =>
+        .map((s) => {
+          const link = s.url
+            ? `<a class="size-open" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${t(LL().UI.openRefs)} ↗</a>`
+            : "";
+          return (
             `<article class="size-card"><div class="size-label">${t(s.label)}</div>` +
-            `<div class="size-value">${t(s.value)}</div><div class="size-trend">${t(s.trend)}</div></article>`
-        )
+            `<div class="size-value">${t(s.value)}</div><div class="size-trend">${t(s.trend)}</div>${link}</article>`
+          );
+        })
         .join("");
     }
     const vc = document.getElementById("valueChain");
@@ -712,6 +843,7 @@
       `<div class="profile-block"><strong>${t(U.profileBizModel)}</strong><p>${t(p.businessModel)}</p></div>` +
       `<div class="profile-block"><strong>${t(U.profileShare)}</strong><p>${t(p.marketShare)}</p></div>` +
       (milestones ? `<div class="profile-block"><strong>${t(U.profileMilestones)}</strong><ol class="milestone-list">${milestones}</ol></div>` : "") +
+      sourcesLinkHtml((global.MI_COMPETITORS || []).find((c) => c.id === id)?.refs) +
       `</div>`
     );
   }
@@ -856,7 +988,10 @@
     const host = document.getElementById("marketContextGrid");
     if (!host) return;
     host.innerHTML = (global.MI_MARKET_CONTEXT || [])
-      .map((x) => `<article class="context-card"><h3>${t(x.title)}</h3><p>${t(x.body)}</p></article>`)
+      .map(
+        (x) =>
+          `<article class="context-card"><h3>${t(x.title)}</h3><p>${t(x.body)}</p>${sourcesLinkHtml(x.sources)}</article>`
+      )
       .join("");
   }
 
@@ -1005,6 +1140,10 @@
     setTextHtml("ui-value-chain-title", U.valueChainTitle);
     setTextHtml("ui-taxonomy-title", U.taxonomyTitle);
     setTextHtml("ui-market-size-title", U.marketSizeTitle);
+    setTextHtml("ui-comp-bench-title", U.compBenchTitle);
+    setTextHtml("ui-comp-bench-note", U.compBenchNote);
+    setTextHtml("ui-role-salary-title", U.roleSalaryTitle);
+    setTextHtml("ui-role-salary-note", U.roleSalaryNote);
     setTextHtml("ui-table-toggle-label", U.tableToggleLabel);
 
     const ph = document.getElementById("compFilter");
@@ -1043,6 +1182,7 @@
     renderHiring();
     renderLayoffs();
     renderHrbp();
+    renderCompHr();
     renderSources();
   }
 
@@ -1066,10 +1206,17 @@
       renderCompetitors();
     });
     document.querySelector(".container")?.addEventListener("click", (e) => {
-      const btn = e.target.closest(".metric-chip[data-metric]");
-      if (!btn) return;
-      chartMetric = btn.dataset.metric;
-      renderCompareCharts();
+      const metricBtn = e.target.closest(".metric-chip[data-metric]");
+      if (metricBtn) {
+        chartMetric = metricBtn.dataset.metric;
+        renderCompareCharts();
+        return;
+      }
+      const mktBtn = e.target.closest(".metric-chip[data-comp-market]");
+      if (mktBtn) {
+        compMarketFilter = mktBtn.dataset.compMarket || "CN";
+        renderCompHr();
+      }
     });
     const tableToggle = document.getElementById("profileTableToggle");
     if (tableToggle) {

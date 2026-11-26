@@ -36,7 +36,7 @@
     .hub-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
     .hub-footer a { color: var(--accent-light); }
   </style>
-  <link rel="stylesheet" href="css/market-intel.css?v=20261126-apac-tab" />
+  <link rel="stylesheet" href="css/market-intel.css?v=20261126-comp-hr" />
 </head>
 <body>
   <header class="header">
@@ -119,6 +119,24 @@
           <div id="valueChain" class="vc-grid"></div>
           <h3 class="section-mini-h3" id="ui-taxonomy-title"></h3>
           <div id="taxonomyHost"></div>
+          <h3 class="section-mini-h3" id="ui-comp-bench-title"></h3>
+          <p class="sub section-mini-sub" id="ui-comp-bench-note"></p>
+          <div class="metric-chip-bar" id="compMarketChipBar" role="toolbar"></div>
+          <div class="table-wrap">
+            <table class="comp-bench-table">
+              <thead id="compBenchHead"></thead>
+              <tbody id="compBenchBody"></tbody>
+            </table>
+          </div>
+          <div id="compBenchChart" class="bar-chart compare-chart comp-bench-chart"></div>
+          <h3 class="section-mini-h3" id="ui-role-salary-title"></h3>
+          <p class="sub section-mini-sub" id="ui-role-salary-note"></p>
+          <div class="table-wrap">
+            <table class="comp-bench-table">
+              <thead id="roleSalaryHead"></thead>
+              <tbody id="roleSalaryBody"></tbody>
+            </table>
+          </div>
           <div id="hrbpSections" class="hrbp-sections"></div>
         </div>
       </article>
@@ -373,11 +391,12 @@
     </nav>
   </footer>
 
-  <script src="js/market-intel-data.js?v=20261126-apac-tab"></script>
-  <script src="js/market-intel-profiles.js?v=20261126-apac-tab"></script>
-  <script src="js/market-intel-hrbp.js?v=20261126-apac-tab"></script>
-  <script src="js/market-intel-talent.js?v=20261126-apac-tab"></script>
-  <script src="js/market-intel-lang.js?v=20261126-apac-tab"></script>
-  <script src="js/market-intel-app.js?v=20261126-apac-tab"></script>
+  <script src="js/market-intel-data.js?v=20261126-comp-hr"></script>
+  <script src="js/market-intel-profiles.js?v=20261126-comp-hr"></script>
+  <script src="js/market-intel-hrbp.js?v=20261126-comp-hr"></script>
+  <script src="js/market-intel-talent.js?v=20261126-comp-hr"></script>
+  <script src="js/market-intel-comp.js?v=20261126-comp-hr"></script>
+  <script src="js/market-intel-lang.js?v=20261126-comp-hr"></script>
+  <script src="js/market-intel-app.js?v=20261126-comp-hr"></script>
 </body>
 </html>

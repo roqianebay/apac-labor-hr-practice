@@ -13,11 +13,11 @@
       color: "#14b8a6",
       headcount: 12300,
       headcountEst: false,
-      gmvBn: 83.5,
-      gmvEst: true,
-      revenueBn: 11.8,
-      revenueEst: true,
-      growthPct: 8,
+      gmvBn: 79.6,
+      gmvEst: false,
+      revenueBn: 11.1,
+      revenueEst: false,
+      growthPct: 7,
       growthEst: false,
       strength: 68,
       threat: 0,
@@ -438,21 +438,25 @@
     }
   ];
 
+  /** External references only — no internal market-size estimates */
   window.MI_MARKET_SIZE = [
     {
-      label: L("亚太零售电商（2026）", "APAC retail e-commerce (2026)"),
-      value: L("~$2.8T+ 量级（估）", "~$2.8T+ scale (est.)"),
-      trend: L("增速仍领先全球；直播与社交电商加深", "Still faster than global; live & social commerce deepen")
+      label: L("eBay 披露", "eBay disclosures"),
+      value: L("年报 · 10-K · 业绩会", "Annual report · 10-K · earnings"),
+      trend: L("GMV · 营收 · 买家", "GMV · revenue · buyers"),
+      url: "https://investors.ebayinc.com/"
     },
     {
-      label: L("亚太跨境 B2C（2026）", "APAC cross-border B2C (2026)"),
-      value: L("~$400B+ 量级（估）", "~$400B+ scale (est.)"),
-      trend: L("小包关税变动下供应链再分配", "Supply chains reshuffle under parcel-duty rules")
+      label: L("跨境最近一单调查", "Latest cross-border order survey"),
+      value: L("Statista / IPC", "Statista / IPC"),
+      trend: L("非 GMV；受访者口径", "Not GMV; respondent-based"),
+      url: "https://www.statista.com/statistics/878623/digital-retailers-digital-buyers-cross-border-digital-purchases/"
     },
     {
-      label: L("东南亚电商 GMV（2026）", "SEA e-commerce GMV (2026)"),
-      value: L("~$155B 量级（估）", "~$155B scale (est.)"),
-      trend: L("超本地平台主导；Temu/TikTok 补贴战续", "Hyper-local leads; Temu/TikTok subsidy fight continues")
+      label: L("跨境渗透图表", "Cross-border penetration chart"),
+      value: L("Statista", "Statista"),
+      trend: L("公开图表与说明", "Public chart & notes"),
+      url: "https://www.statista.com/chart/36522/global-cross-border-e-commerce-market-penetration-by-company/"
     }
   ];
 })();

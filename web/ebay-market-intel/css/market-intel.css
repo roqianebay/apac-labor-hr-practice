@@ -49,6 +49,26 @@
 .kpi-value { font-size: 1.65rem; font-weight: 700; color: var(--mi-gold); }
 .kpi-label { font-size: 0.78rem; color: var(--text); margin-top: 0.25rem; font-weight: 600; }
 .kpi-hint { font-size: 0.68rem; color: var(--text-muted); margin-top: 0.35rem; }
+.card-sources {
+  font-size: 0.7rem;
+  margin-top: 0.45rem;
+  line-height: 1.45;
+}
+.card-sources a {
+  color: var(--mi-accent-light);
+  text-decoration: none;
+}
+.card-sources a:hover { text-decoration: underline; }
+.tl-body { flex: 1; min-width: 0; }
+.tl-body .card-sources { margin-top: 0.35rem; }
+.size-open {
+  display: inline-block;
+  margin-top: 0.45rem;
+  font-size: 0.72rem;
+  color: var(--mi-accent-light);
+  text-decoration: none;
+}
+.size-open:hover { text-decoration: underline; }
 .kpi-card.is-apac {
   border-color: rgba(20, 184, 166, 0.45);
   background: linear-gradient(145deg, rgba(20, 184, 166, 0.08), var(--surface));
@@ -525,6 +545,35 @@ table.heatmap-table .sticky-col { text-align: left; position: sticky; left: 0; b
 .table-toggle { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; cursor: pointer; }
 .section-mini-h3 { font-size: 0.88rem; color: var(--mi-accent-light); margin: 1rem 0 0.5rem; }
 .section-mini-h3:first-child { margin-top: 0; }
+.section-mini-sub { margin: 0 0 0.65rem; font-size: 0.78rem; color: var(--text-muted); }
+
+.comp-bench-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+.comp-bench-table th,
+.comp-bench-table td {
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+.comp-bench-table th {
+  background: var(--surface-2);
+  color: var(--mi-accent-light);
+  font-weight: 600;
+}
+.comp-bench-table tr.row-ebay td {
+  background: rgba(20, 184, 166, 0.08);
+}
+.comp-ref-cell a {
+  color: var(--mi-accent-light);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.comp-ref-cell a:hover { text-decoration: underline; }
+.comp-bench-chart { margin: 0.85rem 0 1.25rem; }
 
 .size-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.65rem; margin-bottom: 0.5rem; }
 .size-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.75rem; }

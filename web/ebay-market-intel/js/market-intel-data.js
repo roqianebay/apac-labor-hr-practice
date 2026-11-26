@@ -2,60 +2,70 @@ function L(zh, en) {
   return { zh, en };
 }
 
-window.MI_DATA_VERSION = "2026-11-26 · 2026 market data";
+window.MI_DATA_VERSION = "2026-11-26 · disclosed sources";
 
-/**
- * KPI cards — row 1 = disclosed / company commentary; row 2 = secondary (incl. forward est.).
- * APAC $ GMV / % share not shown: eBay does not disclose regional GMV (see MI_APAC_GMV_NOTE).
- */
+/** @type {Array<{id:string, value:string, label:L, hint:L, chartNum?:number, row?:number, sources?:{title:L,url:string}[]}>} */
 window.MI_EBAY_KPIS = [
   {
+    id: "gmv",
+    value: "$79.6B",
+    chartNum: 79.6,
+    row: 1,
+    label: L("全球 GMV（FY2025）", "Global GMV (FY2025)"),
+    hint: L("年报披露；含运费与税费", "Annual report; incl. shipping & tax"),
+    sources: [
+      { title: L("eBay 投资者关系", "eBay Investor Relations"), url: "https://investors.ebayinc.com/" },
+      { title: L("SEC 10-K", "SEC 10-K"), url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001065088" }
+    ]
+  },
+  {
     id: "intl",
-    value: "52%",
-    chartNum: 52,
+    value: "51%",
+    chartNum: 51,
     row: 1,
     label: L("GMV 来自美国以外", "GMV outside U.S."),
-    hint: L("年报 / 业绩会披露口径", "Annual report / earnings disclosure")
+    hint: L("年报 / 业绩材料", "Annual report / earnings materials"),
+    sources: [{ title: L("eBay 投资者关系", "eBay Investor Relations"), url: "https://investors.ebayinc.com/" }]
   },
   {
     id: "xb",
     value: "~20%",
     chartNum: 20,
     row: 1,
-    label: L("全球跨境 GMV 占比", "Global cross-border GMV share"),
-    hint: L("管理层公开表述", "Management commentary")
+    label: L("跨境 GMV 占比", "Cross-border GMV share"),
+    hint: L("管理层公开表述（非精确会计分录）", "Management commentary (not a precise GAAP line item)"),
+    sources: [{ title: L("eBay 投资者关系", "eBay Investor Relations"), url: "https://investors.ebayinc.com/" }]
   },
   {
     id: "buyers",
-    value: "~138M",
-    chartNum: 138,
-    row: 1,
-    label: L("活跃买家（约）", "Active buyers (approx.)"),
-    hint: L("投资者关系披露（滚动更新）", "Investor relations disclosure (rolling)")
+    value: "135M",
+    chartNum: 135,
+    row: 2,
+    label: L("活跃买家", "Active buyers"),
+    hint: L("FY2025 年报", "FY2025 annual report"),
+    sources: [{ title: L("SEC 10-K", "SEC 10-K"), url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001065088" }]
   },
   {
     id: "countries",
     value: "190+",
     row: 2,
     label: L("可送达市场", "Ship-to markets"),
-    hint: L("含国际物流托管方案", "Incl. managed intl. shipping")
+    hint: L("国际物流与站点覆盖（官网）", "International shipping & sites (corporate site)"),
+    sources: [{ title: L("eBay 全球业务", "eBay global business"), url: "https://www.ebayinc.com/company/" }]
   },
   {
     id: "xb-share",
     value: "5%",
     chartNum: 5,
     row: 2,
-    label: L("全球跨境「最近一单」份额", "Latest cross-border order share"),
-    hint: L("Statista / IPC 调查；非 eBay GMV", "Statista / IPC survey; not eBay GMV")
-  },
-  {
-    id: "gmv",
-    value: "~$83.5B",
-    chartNum: 83.5,
-    row: 2,
-    estimate: true,
-    label: L("2026 全球 GMV（估）", "2026 global GMV (est.)"),
-    hint: L("衔接已披露 FY2025 ~$79.6B + 管理层增速指引", "Bridges disclosed FY2025 ~$79.6B + growth guidepath")
+    label: L("跨境「最近一单」份额", "Latest cross-border order share"),
+    hint: L("第三方调查；<strong>非 eBay GMV</strong>", "Third-party survey; <strong>not eBay GMV</strong>"),
+    sources: [
+      {
+        title: L("Statista 调查原文", "Statista survey source"),
+        url: "https://www.statista.com/statistics/878623/digital-retailers-digital-buyers-cross-border-digital-purchases/"
+      }
+    ]
   }
 ];
 
@@ -93,13 +103,21 @@ window.MI_APAC_FOCUS = {
 window.MI_APAC_CB_INSIGHTS = [
   {
     title: L("亚太跨境在学什么", "What APAC cross-border means here"),
+    sources: [
+      { title: L("eBay International Shipping", "eBay International Shipping"), url: "https://www.ebay.com/help/selling/shipping-items/setting-shipping-options/international-shipping-program?id=4646" },
+      { title: L("Statista 跨境调查", "Statista cross-border survey"), url: "https://www.statista.com/statistics/878623/digital-retailers-digital-buyers-cross-border-digital-purchases/" }
+    ],
     body: L(
       "不仅是「中国卖全球」，也包括<strong>澳日买家</strong>在美欧日库存中淘宝、<strong>东南亚</strong>消费者使用 Amazon/Temu/本地应用对中国件下单。eBay 差异化在<strong>C2C 长尾 + 托管关税</strong>。",
       "Not only “China to world” but <strong>AU/JP buyers</strong> sourcing globally, <strong>SEA</strong> consumers on Amazon/Temu/apps buying from China. eBay wedge: <strong>C2C long-tail + managed duties</strong>."
     )
   },
   {
-    title: L("亚太竞争态势（2025–2026）", "APAC competitive set (2025–26)"),
+    title: L("亚太竞争态势（公开报道）", "APAC competitive set (public reporting)"),
+    sources: [
+      { title: L("Sea 投资者关系", "Sea Limited IR"), url: "https://www.sea.com/investors" },
+      { title: L("阿里巴巴投资者", "Alibaba IR"), url: "https://www.alibabagroup.com/" }
+    ],
     body: L(
       "东南亚<strong>超本地</strong>（Shopee、Lazada、TikTok Shop）抢本地就业与商家；<strong>全托管</strong>（Temu、Shein、速卖通）抢价格与跨境件；亚马逊 FBA 在澳印日强势。",
       "SEA <strong>hyper-local</strong> (Shopee, Lazada, TikTok Shop) for local jobs/merchants; <strong>fully managed</strong> (Temu, SHEIN, AliExpress) on price/parcels; Amazon FBA strong in AU/IN/JP."
@@ -107,6 +125,7 @@ window.MI_APAC_CB_INSIGHTS = [
   },
   {
     title: L("对亚太 HR 的含义", "Implications for APAC HR"),
+    sources: [{ title: L("eBay 公司介绍", "eBay company"), url: "https://www.ebayinc.com/company/" }],
     body: L(
       "编制分布在<strong>新加坡/澳洲区域协调</strong>、<strong>中国技术与卖家支持</strong>、<strong>各国 Trust/CS</strong>；员工常感知「全球裁员新闻」但更应以<strong>亚太 GMV 与跨境项目</strong>讨论优先级。",
       "Roles split across <strong>SG/AU coordination</strong>, <strong>China tech & seller support</strong>, <strong>country trust/CS</strong>; global layoff news ≠ always APAC cuts — anchor talks in <strong>APAC GMV & CB programs</strong>."
@@ -187,18 +206,25 @@ window.MI_TIMELINE = [
   {
     year: 2025,
     events: [
-      { q: "H1", text: L("eBay GMV 约 390 亿美元（半年）；国际收入占比维持约一半。", "eBay ~$39B H1 GMV; ~half revenue non-U.S.") },
+      {
+        q: "H1",
+        text: L("eBay H1 GMV 与业绩见投资者关系季度材料。", "See eBay IR quarterly materials for H1 GMV and results."),
+        sources: [{ title: L("eBay 投资者关系", "eBay IR"), url: "https://investors.ebayinc.com/" }]
+      },
       { q: "H2", text: L("国际运输方案推广至加拿大等；直播电商与收藏品增长。", "Intl. shipping rolls to Canada etc.; live commerce & collectibles growth.") },
-      { q: "调查", text: L("全球跨境最近一单：亚马逊与 Temu 各约 24%，eBay 约 5%（较前几年承压）。", "Global latest cross-border order: Amazon & Temu ~24% each, eBay ~5% (pressure vs prior years).") }
+      {
+        q: "调查",
+        text: L("全球跨境「最近一单」份额见 Statista / IPC 公开调查（非 GMV）。", "Latest cross-border order share per public Statista / IPC survey (not GMV)."),
+        sources: [
+          {
+            title: L("Statista 原文", "Statista source"),
+            url: "https://www.statista.com/statistics/878623/digital-retailers-digital-buyers-cross-border-digital-purchases/"
+          }
+        ]
+      }
     ]
   },
-  {
-    year: 2026,
-    events: [
-      { q: "展望", text: L("监管（关税、平台责任、数据）与物流成本成跨境主变量；爱好者品类与鉴别信任是 eBay 差异化。", "Regulation (duties, platform liability, data) & logistics costs dominate; enthusiast trust is eBay’s wedge.") },
-      { q: "亚太", text: L("中国出口卖家 + 澳日东南亚买家双侧；与本土超本地平台（Shopee、Coupang）竞合。", "China export sellers + AU/JP/SEA buyers; coopetition with hyper-local apps (Shopee, Coupang).") }
-    ]
-  }
+
 ];
 
 /**
@@ -419,8 +445,8 @@ window.MI_COMPETITORS = [
     name: L("eBay（本公司）", "eBay (home company)"),
     badge: L("第三方市场", "3P marketplace"),
     model: L("C2C/B2C 平台 · 无自营库存", "C2C/B2C platform · no 1P inventory"),
-    revenue: L("2026 营收约 <strong>118 亿</strong> 美元（估）；GMV ~<strong>835 亿</strong>", "~<strong>$11.8B</strong> revenue est. 2026; GMV ~<strong>$83.5B</strong>"),
-    trend: L("2026：爱好者品类 + 广告 + 跨境托管；亚太 GMV 占比续升。", "2026: enthusiasts + ads + managed CB; APAC GMV mix still rising."),
+    revenue: L("FY2025 营收约 <strong>111 亿</strong> 美元；GMV <strong>796 亿</strong>（年报）", "FY2025 revenue ~<strong>$11.1B</strong>; GMV <strong>$79.6B</strong> (annual report)"),
+    trend: L("爱好者品类 + 广告 + 跨境托管物流（业绩会 / 年报）", "Enthusiasts + ads + managed intl. shipping (earnings / annual report)"),
     strategy: L("三大支柱：相关体验、可扩展方案、创新体验；AI 与直播。", "Three pillars: relevant experiences, scalable solutions, magical innovations; AI & live."),
     logistics: L("eBay International Shipping、SpeedPAK、端到端关税与退运托管。", "eIS, SpeedPAK, duties/returns managed end-to-end."),
     talent: L("相对克制裁员；投资 AI、信任与安全、产品。", "Relatively disciplined workforce; invest in AI, trust & product."),
@@ -623,7 +649,11 @@ window.MI_SOURCES = [
   { title: L("Statista — cross-border latest order 2025", "Statista — cross-border latest order 2025"), url: "https://www.statista.com/statistics/878623/digital-retailers-digital-buyers-cross-border-digital-purchases/" },
   { title: L("Statista — Temu penetration chart", "Statista — Temu penetration chart"), url: "https://www.statista.com/chart/36522/global-cross-border-e-commerce-market-penetration-by-company/" },
   { title: L("APAC ER News（裁员动态）", "APAC ER News (layoffs)"), url: "https://roqianebay.github.io/apac-ta-employer-monitor/" },
-  { title: L("Talent Employer Policy Monitor", "Talent Employer Policy Monitor"), url: "https://roqianebay.github.io/apac-ta-employer-policy-monitor/" },
+  {
+    title: L("Talent Employer Policy Monitor（薪酬对标）", "Talent Employer Policy Monitor (comp)"),
+    url: "https://roqianebay.github.io/apac-ta-employer-policy-monitor/"
+  },
+  { title: L("Levels.fyi — eBay", "Levels.fyi — eBay"), url: "https://www.levels.fyi/companies/ebay/salaries" },
   { title: L("Amazon IR", "Amazon IR"), url: "https://ir.aboutamazon.com/" },
   { title: L("JD IR", "JD IR"), url: "https://ir.jd.com/" },
   { title: L("Walmart IR", "Walmart IR"), url: "https://stock.walmart.com/" }

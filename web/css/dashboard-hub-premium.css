@@ -337,6 +337,17 @@ body.dash-hub-preview {
   color: #fff;
   border-color: transparent;
 }
+.dash-badge.accent-apac {
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 55%, #2dd4bf 100%);
+  color: #fff;
+  border: 1px solid rgba(252, 211, 77, 0.85);
+  box-shadow: 0 2px 10px rgba(15, 118, 110, 0.45), 0 0 0 1px rgba(252, 211, 77, 0.35);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.dash-hub-premium .dash-card.is-apac-accent::before {
+  background: linear-gradient(90deg, #0f766e, #fbbf24, #14b8a6);
+}
 .dash-badge-corner {
   position: absolute;
   top: 0.65rem;

@@ -11,10 +11,10 @@
       "亚太地区 · 跨境 GMV · 竞品 · 招聘裁员 · HR 对照",
       "Asia-Pacific · cross-border GMV · peers · hiring/layoffs · HR intel"
     ),
-    badge: L("亚太 HR 内部参考", "APAC HR internal reference"),
+    badge: L("公开来源 · 可点击原文", "Public sources · linked"),
     intro: L(
-      "<strong>默认视角：整个亚太地区。</strong>含 <strong>2026 市场数据</strong>（全球/亚太 GMV、跨境、竞品）；招聘裁员与 HR 对话素材。欧美数据仅作背景。<strong>非投资建议</strong>；带「估」为内部估算。快照 <strong>2026-11-26</strong>。",
-      "<strong>Default lens: Asia-Pacific.</strong> Includes <strong>2026 market data</strong> (global/APAC GMV, cross-border, peers), hiring/layoffs & HR talking points. US/EU as background. <strong>Not investment advice</strong>; “est.” = internal. Snapshot <strong>26 Nov 2026</strong>."
+      "<strong>默认视角：整个亚太地区。</strong>数字以 <strong>eBay 年报/10-K、投资者关系、Statista 等可点击原文</strong>为主；未披露项（如分地区 GMV）不展示推算。竞品与定性指数供内部对照。<strong>非投资建议。</strong> 快照 <strong>2026-11-26</strong>。",
+      "<strong>Default lens: Asia-Pacific.</strong> Figures prioritise <strong>clickable sources</strong> (eBay annual report/10-K, IR, Statista, etc.); undisclosed items (e.g. regional GMV) are not modelled. Peer/qualitative indices for internal context. <strong>Not investment advice.</strong> Snapshot <strong>26 Nov 2026</strong>."
     ),
     tabOverview: L("总览", "Overview"),
     tabHr: L("HR 视角", "HR lens"),
@@ -75,8 +75,8 @@
     talentSignal: L("解读", "Read-through"),
     sourcesH2: L("参考来源", "Reference sources"),
     foot: L(
-      "eBay APAC Market & Competitor Monitor · 2026 市场数据 · 内部参考",
-      "eBay APAC Market & Competitor Monitor · 2026 market data · internal reference"
+      "eBay APAC Market & Competitor Monitor · 披露与公开来源 · 内部参考",
+      "eBay APAC Market & Competitor Monitor · disclosures & public sources · internal reference"
     ),
     hubDict: L("Policy Dictionary", "Policy Dictionary"),
     hubErNews: L("ER News", "ER News"),
@@ -86,9 +86,9 @@
     profileFounded: L("成立时间", "Founded"),
     profileHq: L("总部", "Headquarters"),
     profileListing: L("上市/所有制", "Listing / ownership"),
-    profileGmv: L("2026 GMV / 交易规模", "2026 GMV / scale"),
-    profileRevenue: L("2026 营收口径", "2026 revenue basis"),
-    profileGrowth: L("2026 增长", "2026 growth"),
+    profileGmv: L("GMV / 交易规模", "GMV / scale"),
+    profileRevenue: L("营收口径", "Revenue basis"),
+    profileGrowth: L("增长", "Growth"),
     profileHeadcount: L("人员规模", "Headcount"),
     profileHistory: L("发展简史", "Brief history"),
     profileCulture: L("企业文化", "Culture"),
@@ -123,7 +123,8 @@
       "Neutral <strong>business context</strong> by theme for leader/employee conversations — not performance or stock narrative."
     ),
     overviewChartTitle: L("eBay 核心指标", "eBay core metrics"),
-    overviewChartApacNote: L("虚线边框为估算或调查口径；亚太 GMV 金额见「亚太布局」。", "Dashed bars = estimates or survey basis; APAC GMV $ on APAC tab."),
+    overviewChartApacNote: L("条形图与 KPI 一致；虚线边框为调查或非精确披露口径。", "Bars match KPIs; dashed = survey or non-precise disclosure."),
+    marketSizeTitle: L("公开来源（外链）", "Public sources (external links)"),
     apacGmvNoteTitle: L("为何不设「亚太 GMV」数字", "Why there is no APAC GMV $ figure"),
     compChartTitle: L("对 eBay 威胁度排序", "Threat to eBay (ranked)"),
     apacChartTitle: L("亚太布局指数（各国均值）", "APAC footprint index (avg)"),
@@ -153,7 +154,29 @@
     severanceTitle: L("亚太法定/常见补偿模式", "APAC statutory / common severance patterns"),
     valueChainTitle: L("eBay 价值链（与人事触点）", "eBay value chain (HR touchpoints)"),
     taxonomyTitle: L("竞品分类（模式 / 履约 / 用工）", "Peer taxonomy (model / fulfillment / workforce)"),
-    marketSizeTitle: L("市场规模参考", "Market size reference")
+    compBenchTitle: L("APAC 薪酬对标（Senior IC）", "APAC comp benchmarks (Senior IC)"),
+    compBenchNote: L(
+      "总包为<strong>示意</strong>（USD 千/年，含年化股权）；默认中国；请以 JD / offer / Levels.fyi 为准，点击来源核对。",
+      "Total comp is <strong>illustrative</strong> (USD k/yr, equity annualized); default China; verify via JD / offer / Levels.fyi — use source links."
+    ),
+    roleSalaryTitle: L("招聘岗位薪资对比（公开 JD 主题）", "Hiring salary comparison (public JD themes)"),
+    roleSalaryNote: L(
+      "摘录自各公司招聘官网与 TA 市场情报整理的<strong>区间示意</strong>，非 eBay 内部数据；发 offer 前务必核对职级与口径。",
+      "Ranges from careers sites & TA market intel — <strong>illustrative</strong>, not eBay internal data; confirm grade & basis before offers."
+    ),
+    compThCompany: L("公司", "Company"),
+    compThMarket: L("市场", "Market"),
+    compThRole: L("职级 / 方向", "Level / track"),
+    compThBase: L("Base (k USD)", "Base (k USD)"),
+    compThEq: L("Equity (k USD)", "Equity (k USD)"),
+    compThTotal: L("Total (k USD)", "Total (k USD)"),
+    compThTrend: L("趋势", "Trend"),
+    compThSource: L("来源", "Source"),
+    roleThTitle: L("岗位", "Role"),
+    roleThSalary: L("薪资区间（JD/市场）", "Salary band (JD/market)"),
+    roleThPosted: L("时间", "Timing"),
+    compTalentMonitorLink: L("Talent Policy Monitor 薪酬表", "Talent Policy Monitor comp table"),
+    filterAllMarkets: L("全部亚太", "All APAC")
   };
 
   const saved = localStorage.getItem(KEY);

@@ -43,7 +43,9 @@
   function cornerBadgeHtml(b) {
     const label = b.badge ? t(b.badge) : b.primary ? t(UI.primaryBadge) : "";
     if (!label) return "";
-    const cls = b.primary ? "dash-badge dash-badge-corner primary" : "dash-badge dash-badge-corner";
+    let cls = "dash-badge dash-badge-corner";
+    if (b.primary) cls += " primary";
+    else if (b.badgeAccent === "apac") cls += " accent-apac";
     return `<span class="${cls}">${label}</span>`;
   }
 
@@ -53,7 +55,7 @@
     const rel = b.ext ? ' target="_blank" rel="noopener noreferrer"' : "";
     const extMark = b.ext ? ' <span class="dash-ext" aria-hidden="true">↗</span>' : "";
     return `
-      <article class="dash-card card ${b.primary ? "is-primary" : ""}">
+      <article class="dash-card card${b.primary ? " is-primary" : ""}${b.badgeAccent === "apac" ? " is-apac-accent" : ""}">
         ${corner}
         <div class="dash-card-top">
           <div class="dash-card-icon" aria-hidden="true">${iconFor(b)}</div>
