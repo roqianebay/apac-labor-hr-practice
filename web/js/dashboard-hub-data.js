@@ -26,7 +26,7 @@ window.DASH_HUB_UI = {
   navIndex: L("Policy Dictionary", "Policy Dictionary"),
   navLabor: L("流程与劳动法", "Process &amp; law"),
   row1Title: L("核心履职与政策雷达", "Core ER &amp; policy radar"),
-  row1Sub: L("办案流程 · 政府政策 · 市场动态", "Case playbooks · government policy · market intel"),
+  row1Sub: L("四个看板并列 · 办案流程 · 政策 · 市场 · ER 动态", "Four boards in a row · cases · policy · market · ER pulse"),
   row2Title: L("雇主与法定福利监测", "Employer &amp; statutory monitors"),
   row2Sub: L("招聘与雇主计划 · 2026 福利 · 法定底线 · 休假日历", "Hiring &amp; employer plans · 2026 benefits · legal floors · leave calendars"),
   moduleCount: L("政策工具", "Policy tools")
@@ -56,17 +56,17 @@ window.DASH_HUB_BOARDS = [
     id: "market-intel",
     hubRow: 1,
     badge: L("亚太 · 市场与竞品", "APAC · market & peers"),
-    title: L("eBay 亚太市场与竞品监测", "eBay APAC Market & Competitor Monitor"),
+    title: L("eBay APAC Market &amp; Competitor Monitor", "eBay APAC Market &amp; Competitor Monitor"),
     pitch: L(
-      "<strong>亚太默认视角</strong>：亚太 GMV/跨境、SpeedPAK/eIS、<strong>eBay vs Shopee/Temu/亚马逊</strong> 等区域竞品与人才信号。",
-      "<strong>APAC-first lens</strong>: APAC GMV/cross-border, SpeedPAK/eIS, <strong>eBay vs Shopee/Temu/Amazon</strong> regional peers & talent."
+      "<strong>2026 市场数据</strong> · 亚太 GMV/跨境、SpeedPAK/eIS、<strong>eBay vs Shopee/Temu/亚马逊</strong> 区域竞品与人才信号。",
+      "<strong>2026 market data</strong> · APAC GMV/cross-border, SpeedPAK/eIS, <strong>eBay vs Shopee/Temu/Amazon</strong> peers & talent."
     ),
     bullets: [
-      L("总览含亚太 GMV 与跨境要点卡片", "Overview: APAC GMV & cross-border insight cards"),
+      L("2026 全球/亚太 GMV 与跨境 KPI 快照", "2026 global/APAC GMV & cross-border KPI snapshot"),
       L("亚太招聘 / 裁员 / HR 视角分栏", "APAC hiring, layoffs & HR lens tabs"),
-      L("档案图表默认亚太布局指数", "Profile charts default to APAC footprint index")
+      L("竞争对手汇总 · 多图对比", "Competitor summary · multi-chart compare")
     ],
-    href: "https://roqianebay.github.io/apac-labor-hr-practice/ebay-market-intel/?v=20261126-apac",
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/ebay-market-intel/?v=20261126-2026",
     ext: true
   },
   {

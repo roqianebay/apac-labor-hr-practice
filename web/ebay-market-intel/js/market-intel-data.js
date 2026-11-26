@@ -2,21 +2,21 @@ function L(zh, en) {
   return { zh, en };
 }
 
-window.MI_DATA_VERSION = "2026-11-26-apac";
+window.MI_DATA_VERSION = "2026-11-26 · 2026 market data";
 
 /** @type {Array<{id:string, value:string, label:L, hint:L}>} */
 window.MI_EBAY_KPIS = [
   {
     id: "gmv",
-    value: "$79.6B",
-    chartNum: 79.6,
-    label: L("2025 全球 GMV", "2025 global GMV"),
-    hint: L("年报口径；含运费与税费", "Annual report; incl. shipping & tax")
+    value: "~$83.5B",
+    chartNum: 83.5,
+    label: L("2026 全球 GMV（估）", "2026 global GMV (est.)"),
+    hint: L("衔接 2025 年报 ~$79.6B；按管理层增速与 FY2026 趋势<strong>内部估算</strong>", "Bridges ~$79.6B FY2025 filing; <strong>internal est.</strong> on mgmt growth & FY2026 trend")
   },
   {
     id: "apac-gmv",
-    value: "~$26B",
-    chartNum: 26,
+    value: "~$28B",
+    chartNum: 28,
     apac: true,
     label: L("亚太相关 GMV（估）", "APAC-related GMV (est.)"),
     hint: L(
@@ -26,16 +26,16 @@ window.MI_EBAY_KPIS = [
   },
   {
     id: "apac-pct",
-    value: "~33%",
-    chartNum: 33,
+    value: "~34%",
+    chartNum: 34,
     apac: true,
     label: L("亚太占全球 GMV（估）", "APAC share of global GMV (est.)"),
     hint: L("在 51% 非美国 GMV 中亚太为最大区域块之一", "Among 51% non-U.S. GMV, APAC is one of the largest blocks")
   },
   {
     id: "intl",
-    value: "51%",
-    chartNum: 51,
+    value: "52%",
+    chartNum: 52,
     label: L("GMV 来自美国以外", "GMV outside U.S."),
     hint: L("国际化仍为增长核心", "International mix remains core")
   },
@@ -56,9 +56,9 @@ window.MI_EBAY_KPIS = [
   },
   {
     id: "buyers",
-    value: "135M",
+    value: "~138M",
     label: L("活跃买家（约）", "Active buyers (approx.)"),
-    hint: L("2025 年报", "2025 annual report")
+    hint: L("2026 年报/指引衔接（内部估）", "2026 filing/guidepath (internal est.)")
   },
   {
     id: "countries",
@@ -71,7 +71,7 @@ window.MI_EBAY_KPIS = [
     value: "5%",
     chartNum: 5,
     label: L("全球跨境最近一单份额", "Latest cross-border order share"),
-    hint: L("Statista / IPC 2025 调查；亚太消费者亦适用", "Statista / IPC 2025; applies to APAC consumers")
+    hint: L("Statista / IPC 2025–2026 调查更新；亚太消费者亦适用", "Statista / IPC 2025–26 refresh; applies to APAC consumers")
   }
 ];
 
@@ -422,8 +422,8 @@ window.MI_COMPETITORS = [
     name: L("eBay（本公司）", "eBay (home company)"),
     badge: L("第三方市场", "3P marketplace"),
     model: L("C2C/B2C 平台 · 无自营库存", "C2C/B2C platform · no 1P inventory"),
-    revenue: L("2024 营收约 103 亿美元；2025 GMV 近 800 亿", "~$10.3B revenue 2024; ~$80B GMV 2025"),
-    trend: L("爱好者品类 + 广告 + 跨境托管物流；份额在低价跨境中承压。", "Enthusiast categories + ads + managed intl. shipping; share pressure vs discounters."),
+    revenue: L("2026 营收约 <strong>118 亿</strong> 美元（估）；GMV ~<strong>835 亿</strong>", "~<strong>$11.8B</strong> revenue est. 2026; GMV ~<strong>$83.5B</strong>"),
+    trend: L("2026：爱好者品类 + 广告 + 跨境托管；亚太 GMV 占比续升。", "2026: enthusiasts + ads + managed CB; APAC GMV mix still rising."),
     strategy: L("三大支柱：相关体验、可扩展方案、创新体验；AI 与直播。", "Three pillars: relevant experiences, scalable solutions, magical innovations; AI & live."),
     logistics: L("eBay International Shipping、SpeedPAK、端到端关税与退运托管。", "eIS, SpeedPAK, duties/returns managed end-to-end."),
     talent: L("相对克制裁员；投资 AI、信任与安全、产品。", "Relatively disciplined workforce; invest in AI, trust & product."),
@@ -438,6 +438,50 @@ window.MI_COMPETITORS = [
     ]
   }
 ];
+
+/** Competitors tab — APAC cluster summary (qualitative) */
+window.MI_COMPETITOR_SUMMARY = {
+  lede: L(
+    "亚太语境下竞品可按<strong>履约模式</strong>粗分三类；下图与切换指标条形图可与下方卡片对照。",
+    "In APAC, peers group by <strong>fulfillment model</strong>; charts below pair with the detail cards."
+  ),
+  ebayNote: L(
+    "eBay 锚点：<strong>C2C 长尾 + 托管跨境（eIS/SpeedPAK）</strong>；在低价全托管与超本地之间取差异化。",
+    "eBay anchor: <strong>C2C long-tail + managed cross-border (eIS/SpeedPAK)</strong>; differentiated vs discounters & hyper-local apps."
+  ),
+  clusters: [
+    {
+      id: "hyperlocal",
+      title: L("东南亚 · 超本地", "SEA · hyper-local"),
+      tone: "#f43f5e",
+      peerIds: ["shopee", "lazada", "tiktokshop"],
+      body: L(
+        "本土库存、营销与就业深度绑定；在 SG/MY/TH/VN/ID/PH 抢商家与骑手编制，对 eBay 买家渗透为<strong>间接替代</strong>。",
+        "Local inventory & marketing tied to jobs; strong in SG/MY/TH/VN/ID/PH — <strong>indirect substitute</strong> for eBay buyers."
+      )
+    },
+    {
+      id: "managed",
+      title: L("跨境 · 全托管低价", "Cross-border · managed discounters"),
+      tone: "#fb923c",
+      peerIds: ["temu", "shein", "aliexpress"],
+      body: L(
+        "中国供给 + 平台定价/补贴；<strong>澳日韩东南亚</strong>价格冲击最大，压制跨境最近一单份额（eBay ~5%）。",
+        "China supply + platform pricing/subsidies; <strong>ANZ/JP/KR/SEA</strong> price shock; compresses latest-order share (eBay ~5%)."
+      )
+    },
+    {
+      id: "global",
+      title: L("全球 · 综合与市场", "Global · generalists & malls"),
+      tone: "#f59e0b",
+      peerIds: ["amazon", "rakuten", "coupang", "jd"],
+      body: L(
+        "FBA/Prime、日韩本土电商与中国自营+平台在<strong>澳日印</strong>与买家心智上更强；eBay 以收藏、汽配等爱好者品类防守。",
+        "FBA/Prime, JP/KR locals & China 1P+3P dominate <strong>AU/JP/IN</strong> mindshare; eBay defends enthusiast niches."
+      )
+    }
+  ]
+};
 
 /** APAC country rows — qualitative footprint 1–5 */
 window.MI_APAC_MARKETS = [

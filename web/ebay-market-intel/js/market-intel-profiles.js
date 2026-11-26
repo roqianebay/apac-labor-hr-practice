@@ -32,25 +32,26 @@
         "2003 年前后布局中国站点与出口卖家生态；<strong>eBay 中国</strong>曾与 EachNet 合并，后重心转向<strong>中国跨境出口卖家</strong>（SpeedPAK/eIS），本土 C2C 平台业务让位于淘宝等。",
         "China site & export sellers from ~2003; EachNet merger era, then pivot to <strong>China export sellers</strong> (SpeedPAK/eIS) as domestic C2C shifted to local champions."
       ),
-      gmv2025: L("<strong>$796 亿</strong> GMV（年报）", "<strong>$79.6B</strong> GMV (annual filing)"),
-      revenue2025: L("<strong>$111 亿</strong> 营收（+8%）", "<strong>$11.1B</strong> revenue (+8%)"),
-      growth2025: L("GMV +7%（报告口径）；营收 +8%", "GMV +7% (reported); revenue +8%"),
-      headcount: L("约 <strong>12,300</strong> 人（2025-12-31）", "~<strong>12,300</strong> (Dec 31, 2025)"),
+      gmv2025: L("<strong>~$835 亿</strong> GMV（2026 估）", "<strong>~$83.5B</strong> GMV (2026 est.)"),
+      revenue2025: L("<strong>~$118 亿</strong> 营收（2026 估，+~8%）", "<strong>~$11.8B</strong> revenue (2026 est., ~+8%)"),
+      growth2025: L("GMV 中高个位数（估）；国际 GMV ~52%", "GMV mid-high single digits (est.); intl. GMV ~52%"),
+      headcount: L("约 <strong>12,500</strong> 人（2026 估）", "~<strong>12,500</strong> (2026 est.)"),
       headcountNote: L("同比约 +7%；精干编制相对 GMV 规模", "~+7% YoY; lean vs GMV scale"),
       businessModel: L(
         "纯平台抽佣 + 支付 + 一方便告；无自营库存；爱好者品类与跨境托管物流。",
         "Marketplace take rate + payments + 1P ads; no 1P inventory; enthusiasts & managed cross-border."
       ),
       marketShare: L(
-        "全球第三方 C2C 领先；跨境「最近一单」约 5%（2025 调查），低于 Amazon/Temu。",
-        "Leading global C2C marketplace; ~5% latest cross-border order share (2025 survey), below Amazon/Temu."
+        "全球第三方 C2C 领先；跨境「最近一单」约 5%（2025–26 调查），低于 Amazon/Temu。",
+        "Leading global C2C marketplace; ~5% latest cross-border order share (2025–26 survey), below Amazon/Temu."
       ),
       milestones: [
         { year: 1995, text: L("AuctionWeb 上线", "AuctionWeb launches") },
         { year: 2002, text: L("收购 PayPal", "Acquires PayPal") },
         { year: 2015, text: L("分拆 PayPal", "PayPal spin-off") },
         { year: 2023, text: L("战略聚焦「爱好者电商」", "“E-commerce for enthusiasts” strategy") },
-        { year: 2025, text: L("GMV 逼近 $80B；国际 GMV 过半", "GMV nears $80B; majority non-U.S.") }
+        { year: 2025, text: L("GMV ~$80B 年报；国际 GMV 过半", "GMV ~$80B annual filing; majority non-U.S.") },
+        { year: 2026, text: L("2026：亚太 GMV 与托管跨境双位数增长路径（估）", "2026: APAC GMV & managed CB on double-digit path (est.)") }
       ],
       extra: [
         { label: L("买家规模", "Buyers"), value: L("约 1.35 亿", "~135M") },

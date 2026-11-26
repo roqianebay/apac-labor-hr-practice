@@ -6,15 +6,15 @@
   }
 
   const UI = {
-    pageTitle: L("eBay 亚太市场与竞品监测", "eBay APAC Market & Competitor Monitor"),
+    pageTitle: L("eBay APAC Market & Competitor Monitor", "eBay APAC Market & Competitor Monitor"),
     subtitle: L(
       "亚太地区 · 跨境 GMV · 竞品 · 招聘裁员 · HR 对照",
       "Asia-Pacific · cross-border GMV · peers · hiring/layoffs · HR intel"
     ),
     badge: L("亚太 HR 内部参考", "APAC HR internal reference"),
     intro: L(
-      "<strong>默认视角：整个亚太地区。</strong>整理 eBay 亚太 GMV/跨境、区域竞品、招聘裁员与 HR 对话素材；欧美数据仅作背景。<strong>非投资建议</strong>；带「估」为内部估算。快照 <strong>2026-11-26 APAC</strong>。",
-      "<strong>Default lens: Asia-Pacific.</strong> eBay APAC GMV/cross-border, regional peers, hiring/layoffs & HR talking points; US/EU as background. <strong>Not investment advice</strong>; “est.” = internal. Snapshot <strong>26 Nov 2026 APAC</strong>."
+      "<strong>默认视角：整个亚太地区。</strong>含 <strong>2026 市场数据</strong>（全球/亚太 GMV、跨境、竞品）；招聘裁员与 HR 对话素材。欧美数据仅作背景。<strong>非投资建议</strong>；带「估」为内部估算。快照 <strong>2026-11-26</strong>。",
+      "<strong>Default lens: Asia-Pacific.</strong> Includes <strong>2026 market data</strong> (global/APAC GMV, cross-border, peers), hiring/layoffs & HR talking points. US/EU as background. <strong>Not investment advice</strong>; “est.” = internal. Snapshot <strong>26 Nov 2026</strong>."
     ),
     tabOverview: L("总览", "Overview"),
     tabHr: L("HR 视角", "HR lens"),
@@ -44,6 +44,17 @@
     ),
     apacCbPanelTitle: L("亚太跨境竞争与机会", "APAC cross-border competition & opportunity"),
     compFilterPh: L("筛选竞争对手…", "Filter competitors…"),
+    compSummaryTitle: L("亚太竞争对手汇总", "APAC competitor landscape"),
+    compSummaryNote: L("三类竞合关系 · 内部整理", "Three coopetition clusters · internal"),
+    compCompareTitle: L("多指标对比（可切换）", "Multi-metric comparison (switchable)"),
+    compCompareNote: L("默认亚太布局指数；可切威胁度、GMV、增长等。eBay 行高亮。", "Default APAC footprint index; switch threat, GMV, growth, etc. eBay row highlighted."),
+    compDualTitle: L("威胁度 vs 竞争力", "Threat vs strength"),
+    compDualNote: L("0–100 内部指数；不含 eBay 自身。", "0–100 internal index; excludes eBay."),
+    compDualThreat: L("威胁", "Threat"),
+    compDualStrength: L("竞争力", "Strength"),
+    compScatterTitle: L("增长 vs 对 eBay 威胁", "Growth vs threat to eBay"),
+    compHeatmapTitle: L("竞品多指标热力图", "Peer multi-metric heatmap"),
+    compHeatmapNote: L("与「档案与图表」页同一套指标；深色=更高。", "Same metrics as Profiles tab; darker = higher."),
     compThreat: L("对 eBay 威胁度", "Threat to eBay"),
     compStrength: L("综合竞争力", "Overall strength"),
     compModel: L("商业模式", "Business model"),
@@ -64,8 +75,8 @@
     talentSignal: L("解读", "Read-through"),
     sourcesH2: L("参考来源", "Reference sources"),
     foot: L(
-      "eBay Market & Competitor Monitor · 内部参考 · 与 APAC People Policy Dictionary 同仓库部署",
-      "eBay Market & Competitor Monitor · internal reference · deployed with APAC People Policy Dictionary"
+      "eBay APAC Market & Competitor Monitor · 2026 市场数据 · 内部参考",
+      "eBay APAC Market & Competitor Monitor · 2026 market data · internal reference"
     ),
     hubDict: L("Policy Dictionary", "Policy Dictionary"),
     hubErNews: L("ER News", "ER News"),
@@ -75,9 +86,9 @@
     profileFounded: L("成立时间", "Founded"),
     profileHq: L("总部", "Headquarters"),
     profileListing: L("上市/所有制", "Listing / ownership"),
-    profileGmv: L("2025 GMV / 交易规模", "2025 GMV / scale"),
-    profileRevenue: L("2025 营收口径", "2025 revenue basis"),
-    profileGrowth: L("2025 增长", "2025 growth"),
+    profileGmv: L("2026 GMV / 交易规模", "2026 GMV / scale"),
+    profileRevenue: L("2026 营收口径", "2026 revenue basis"),
+    profileGrowth: L("2026 增长", "2026 growth"),
     profileHeadcount: L("人员规模", "Headcount"),
     profileHistory: L("发展简史", "Brief history"),
     profileCulture: L("企业文化", "Culture"),
@@ -95,8 +106,8 @@
     chartEstLegend: L("* = 估计或未披露", "* = estimate or undisclosed"),
     heatmapTitle: L("多指标热力对照", "Multi-metric heatmap"),
     heatmapNote: L(
-      "颜色越深数值越高（人数列为对数）；便于 HRBP 一眼看差异。",
-      "Darker = higher (log scale for headcount); quick HRBP scan."
+      "颜色越深数值越高（人数列为对数）；便于 HR 一眼看差异。",
+      "Darker = higher (log scale for headcount); quick HR scan."
     ),
     scatterTitle: L("增长 vs 对 eBay 威胁（象限图）", "Growth vs threat to eBay (quadrant)"),
     scatterX: L("增长 →", "Growth →"),

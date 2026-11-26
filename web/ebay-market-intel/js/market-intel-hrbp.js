@@ -13,11 +13,11 @@
       color: "#14b8a6",
       headcount: 12300,
       headcountEst: false,
-      gmvBn: 79.6,
-      gmvEst: false,
-      revenueBn: 11.1,
-      revenueEst: false,
-      growthPct: 7,
+      gmvBn: 83.5,
+      gmvEst: true,
+      revenueBn: 11.8,
+      revenueEst: true,
+      growthPct: 8,
       growthEst: false,
       strength: 68,
       threat: 0,
@@ -269,7 +269,7 @@
     }
   ];
 
-  /** Competitor taxonomy for HRBP */
+  /** Competitor taxonomy for HR */
   window.MI_PEER_TAXONOMY = [
     {
       id: "model",
@@ -336,7 +336,7 @@
     {
       id: "biz-101",
       icon: "📊",
-      title: L("业务 101：HRBP 该知道什么", "Business 101 for HRBPs"),
+      title: L("业务 101：HR 该知道什么", "Business 101 for HR"),
       intro: L(
         "eBay 是<strong>资产轻型</strong>的第三方市场——收入来自卖家成交与广告，而非库存。人事工作围绕<strong>全球站点、跨境、信任、AI 产品</strong>展开。",
         "eBay is an <strong>asset-light</strong> 3P marketplace — revenue from seller transactions & ads, not inventory. People work spans <strong>global sites, cross-border, trust, AI product</strong>."
@@ -360,7 +360,7 @@
       id: "segments",
       icon: "🌏",
       title: L("市场与区域分段", "Markets & segments"),
-      intro: L("亚太 HRBP 常遇<strong>跨境出口卖家、本地买家、外包客服</strong>三类人群。", "APAC HRBPs often touch <strong>export sellers, local buyers, vendor CS</strong>."),
+      intro: L("亚太 HR 常遇<strong>跨境出口卖家、本地买家、外包客服</strong>三类人群。", "APAC HR often touch <strong>export sellers, local buyers, vendor CS</strong>."),
       items: [
         {
           title: L("成熟买家市场", "Mature buyer markets"),
@@ -399,7 +399,7 @@
     {
       id: "conversations",
       icon: "💬",
-      title: L("HRBP 对话素材", "Conversation starters"),
+      title: L("HR 对话素材", "Conversation starters"),
       intro: L("与业务负责人沟通时可用的<strong>中立事实句</strong>（非投资建议）。", "Neutral <strong>fact sentences</strong> for leader conversations (not investment advice)."),
       items: [
         {
@@ -440,19 +440,19 @@
 
   window.MI_MARKET_SIZE = [
     {
-      label: L("亚太零售电商", "APAC retail e-commerce"),
-      value: L("~$2.5T+ 量级（估）", "~$2.5T+ scale (est.)"),
-      trend: L("增速领先全球；跨境与直播电商渗透", "Faster than global; CB & live commerce")
+      label: L("亚太零售电商（2026）", "APAC retail e-commerce (2026)"),
+      value: L("~$2.8T+ 量级（估）", "~$2.8T+ scale (est.)"),
+      trend: L("增速仍领先全球；直播与社交电商加深", "Still faster than global; live & social commerce deepen")
     },
     {
-      label: L("亚太跨境 B2C", "APAC cross-border B2C"),
-      value: L("~$350B+ 量级（估）", "~$350B+ scale (est.)"),
-      trend: L("中国出口 + 澳日韩东南亚买家", "China export + ANZ/JP/KR/SEA buyers")
+      label: L("亚太跨境 B2C（2026）", "APAC cross-border B2C (2026)"),
+      value: L("~$400B+ 量级（估）", "~$400B+ scale (est.)"),
+      trend: L("小包关税变动下供应链再分配", "Supply chains reshuffle under parcel-duty rules")
     },
     {
-      label: L("东南亚电商 GMV", "SEA e-commerce GMV"),
-      value: L("~$130B 量级", "~$130B scale"),
-      trend: L("本地化平台主导；Temu/TikTok 渗透", "Local platforms lead; Temu/TikTok ingress")
+      label: L("东南亚电商 GMV（2026）", "SEA e-commerce GMV (2026)"),
+      value: L("~$155B 量级（估）", "~$155B scale (est.)"),
+      trend: L("超本地平台主导；Temu/TikTok 补贴战续", "Hyper-local leads; Temu/TikTok subsidy fight continues")
     }
   ];
 })();

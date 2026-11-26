@@ -172,19 +172,63 @@
     renderSimpleBarChart(host, rows);
   }
 
-  function renderCompetitorStrengthChart() {
-    const host = document.getElementById("competitorStrengthChart");
+  function renderCompetitorSummary() {
+    const summary = global.MI_COMPETITOR_SUMMARY;
+    const ledeEl = document.getElementById("compSummaryLede");
+    const clustersEl = document.getElementById("compSummaryClusters");
+    const ebayEl = document.getElementById("compSummaryEbay");
+    if (!summary || !clustersEl) return;
+    if (ledeEl) ledeEl.innerHTML = t(summary.lede);
+    if (ebayEl) ebayEl.innerHTML = t(summary.ebayNote);
+    clustersEl.innerHTML = (summary.clusters || [])
+      .map((cl) => {
+        const peers = (cl.peerIds || [])
+          .map((id) => {
+            const c = getComp(id);
+            if (!c) return "";
+            return `<span class="comp-peer-pill">${t(c.name)}</span>`;
+          })
+          .join("");
+        return (
+          `<article class="comp-summary-card" style="--cluster:${esc(cl.tone || "#14b8a6")}">` +
+          `<h3>${t(cl.title)}</h3>` +
+          `<p>${t(cl.body)}</p>` +
+          `<div class="comp-peer-pills">${peers}</div>` +
+          `</article>`
+        );
+      })
+      .join("");
+  }
+
+  function renderCompDualMetricChart() {
+    const host = document.getElementById("compDualChart");
+    if (!host) return;
     const rows = [...(global.MI_COMPETITORS || [])]
       .filter((c) => c.id !== "ebay" && c.threat > 0)
-      .sort((a, b) => b.threat - a.threat)
-      .slice(0, 10)
-      .map((c) => ({
-        name: t(c.name),
-        value: c.threat,
-        color: "#f87171",
-        suffix: ""
-      }));
-    renderSimpleBarChart(host, rows);
+      .sort((a, b) => b.threat - a.threat);
+    host.innerHTML = rows
+      .map((c) => {
+        const tPct = Math.min(100, Math.max(0, c.threat));
+        const sPct = Math.min(100, Math.max(0, c.competitiveness));
+        return (
+          `<article class="dual-metric-row">` +
+          `<header class="dual-metric-head">` +
+          `<span class="dual-metric-name">${t(c.name)}</span>` +
+          `<span class="dual-metric-badge">${t(c.badge)}</span>` +
+          `</header>` +
+          `<div class="dual-metric-bars">` +
+          `<div class="dual-bar-line" title="${t(LL().UI.compDualThreat)} ${c.threat}">` +
+          `<span class="dual-bar-label">${t(LL().UI.compDualThreat)}</span>` +
+          `<div class="bar-track bar-track-sm"><span class="bar-fill score-red" style="width:${tPct}%"></span></div>` +
+          `<span class="dual-bar-num">${c.threat}</span></div>` +
+          `<div class="dual-bar-line" title="${t(LL().UI.compDualStrength)} ${c.competitiveness}">` +
+          `<span class="dual-bar-label">${t(LL().UI.compDualStrength)}</span>` +
+          `<div class="bar-track bar-track-sm"><span class="bar-fill score-blue" style="width:${sPct}%"></span></div>` +
+          `<span class="dual-bar-num">${c.competitiveness}</span></div>` +
+          `</div></article>`
+        );
+      })
+      .join("");
   }
 
   function renderApacFootprintChart() {
@@ -387,8 +431,8 @@
     return m[metricId];
   }
 
-  function renderMetricChips() {
-    const host = document.getElementById("metricChipBar");
+  function renderMetricChips(hostId) {
+    const host = document.getElementById(hostId);
     if (!host) return;
     host.innerHTML = (global.MI_CHART_METRIC_DEFS || [])
       .map((d) => {
@@ -398,9 +442,13 @@
       .join("");
   }
 
-  function renderMainMetricChart() {
-    const host = document.getElementById("mainMetricChart");
-    const noteEl = document.getElementById("mainMetricNote");
+  function syncMetricChips() {
+    document.querySelectorAll(".metric-chip[data-metric]").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.metric === chartMetric);
+    });
+  }
+
+  function paintMainMetricChart(host, noteEl) {
     if (!host) return;
     const def = (global.MI_CHART_METRIC_DEFS || []).find((d) => d.id === chartMetric);
     if (noteEl && def) {
@@ -444,8 +492,18 @@
       .join("");
   }
 
-  function renderScatterChart() {
-    const host = document.getElementById("scatterChart");
+  function renderMainMetricCharts() {
+    paintMainMetricChart(
+      document.getElementById("mainMetricChart"),
+      document.getElementById("mainMetricNote")
+    );
+    paintMainMetricChart(
+      document.getElementById("compMainMetricChart"),
+      document.getElementById("compMainMetricNote")
+    );
+  }
+
+  function paintScatterChart(host) {
     if (!host) return;
     const rows = enrichedMetrics().filter((m) => m.growthPct != null && m.threat != null && m.id !== "ebay");
     const ebay = enrichedMetrics().find((m) => m.id === "ebay");
@@ -477,8 +535,12 @@
       `<p class="scatter-caption">${t(LL().UI.scatterCaption)}</p>`;
   }
 
-  function renderMetricHeatmap() {
-    const host = document.getElementById("metricHeatmap");
+  function renderScatterCharts() {
+    paintScatterChart(document.getElementById("scatterChart"));
+    paintScatterChart(document.getElementById("compScatterChart"));
+  }
+
+  function paintMetricHeatmap(host) {
     if (!host) return;
     const keys = ["gmvBn", "revenueBn", "growthPct", "headcount", "apacIndex", "threat"];
     const labels = {
@@ -528,14 +590,18 @@
     host.innerHTML = `<table class="heatmap-table"><thead>${head}</thead><tbody>${body}</tbody></table>`;
   }
 
+  function renderMetricHeatmaps() {
+    paintMetricHeatmap(document.getElementById("metricHeatmap"));
+    paintMetricHeatmap(document.getElementById("compMetricHeatmap"));
+  }
+
   function renderCompareCharts() {
-    renderMetricChips();
-    renderMainMetricChart();
-    renderScatterChart();
-    renderMetricHeatmap();
-    document.querySelectorAll(".metric-chip").forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.metric === chartMetric);
-    });
+    renderMetricChips("metricChipBar");
+    renderMetricChips("compMetricChipBar");
+    renderMainMetricCharts();
+    renderScatterCharts();
+    renderMetricHeatmaps();
+    syncMetricChips();
   }
 
   function renderHrbp() {
@@ -834,6 +900,7 @@
   function applyStaticUi() {
     const U = LL().UI;
     document.title = t(U.pageTitle);
+    setTextHtml("ui-page-h1", U.pageTitle);
     const sub = document.getElementById("ui-subtitle");
     if (sub) sub.textContent = t(U.subtitle);
     const intro = document.getElementById("ui-intro");
@@ -881,7 +948,17 @@
     setTextHtml("ui-apac-region-chart-note", U.apacRegionChartNote);
     setTextHtml("ui-apac-region-chart-title-cb", U.apacRegionChartTitle);
     setTextHtml("ui-apac-region-chart-note-cb", U.apacRegionChartNote);
-    setTextHtml("ui-comp-chart-title", U.compChartTitle);
+    setTextHtml("ui-comp-summary-title", U.compSummaryTitle);
+    setTextHtml("ui-comp-summary-note", U.compSummaryNote);
+    setTextHtml("ui-comp-compare-title", U.compCompareTitle);
+    setTextHtml("ui-comp-compare-note", U.compCompareNote);
+    setTextHtml("ui-comp-dual-title", U.compDualTitle);
+    setTextHtml("ui-comp-dual-note", U.compDualNote);
+    setTextHtml("ui-comp-dual-threat", U.compDualThreat);
+    setTextHtml("ui-comp-dual-strength", U.compDualStrength);
+    setTextHtml("ui-comp-scatter-title", U.compScatterTitle);
+    setTextHtml("ui-comp-heatmap-title", U.compHeatmapTitle);
+    setTextHtml("ui-comp-heatmap-note", U.compHeatmapNote);
     setTextHtml("ui-apac-chart-title", U.apacChartTitle);
     setTextHtml("ui-apac-chart-note", U.apacChartNote);
     setTextHtml("ui-logistics-chart-title", U.logisticsChartTitle);
@@ -931,7 +1008,8 @@
     renderPillars();
     renderTimeline();
     renderCrossBorderBars();
-    renderCompetitorStrengthChart();
+    renderCompetitorSummary();
+    renderCompDualMetricChart();
     renderCompetitors();
     renderCompareCharts();
     renderProfileTable();
@@ -965,8 +1043,8 @@
       compFilter = e.target.value || "";
       renderCompetitors();
     });
-    document.getElementById("metricChipBar")?.addEventListener("click", (e) => {
-      const btn = e.target.closest("[data-metric]");
+    document.querySelector(".container")?.addEventListener("click", (e) => {
+      const btn = e.target.closest(".metric-chip[data-metric]");
       if (!btn) return;
       chartMetric = btn.dataset.metric;
       renderCompareCharts();

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>eBay Market &amp; Competitor Monitor</title>
+  <title>eBay APAC Market &amp; Competitor Monitor</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -36,13 +36,13 @@
     .hub-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
     .hub-footer a { color: var(--accent-light); }
   </style>
-  <link rel="stylesheet" href="css/market-intel.css?v=20261126-apac" />
+  <link rel="stylesheet" href="css/market-intel.css?v=20261126-2026" />
 </head>
 <body>
   <header class="header">
     <div class="header-inner">
       <div class="logo-block">
-        <h1>eBay <span>APAC Market &amp; Competitor</span> Monitor</h1>
+        <h1 id="ui-page-h1">eBay APAC Market &amp; Competitor Monitor</h1>
         <p id="ui-subtitle"></p>
       </div>
       <div class="header-meta">
@@ -188,8 +188,52 @@
 
     <section class="panel" id="panel-competitors">
       <article class="card">
-        <div class="card-header"><h2 id="ui-comp-chart-title"></h2></div>
-        <div class="card-body"><div id="competitorStrengthChart" class="bar-chart compare-chart"></div></div>
+        <div class="card-header">
+          <h2 id="ui-comp-summary-title"></h2>
+          <p class="sub" id="ui-comp-summary-note"></p>
+        </div>
+        <div class="card-body">
+          <p class="comp-summary-lede" id="compSummaryLede"></p>
+          <div id="compSummaryClusters" class="comp-summary-grid"></div>
+          <p class="comp-summary-ebay" id="compSummaryEbay"></p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-comp-compare-title"></h2>
+          <p class="sub" id="ui-comp-compare-note"></p>
+        </div>
+        <div class="card-body">
+          <div class="metric-chip-bar" id="compMetricChipBar" role="toolbar"></div>
+          <p class="chart-note" id="compMainMetricNote"></p>
+          <div id="compMainMetricChart" class="bar-chart compare-chart"></div>
+        </div>
+      </article>
+      <div class="grid-2 chart-duo">
+        <article class="card">
+          <div class="card-header">
+            <h2 id="ui-comp-dual-title"></h2>
+            <p class="sub" id="ui-comp-dual-note"></p>
+          </div>
+          <div class="card-body">
+            <div class="comp-dual-legend">
+              <span class="leg-threat" id="ui-comp-dual-threat"></span>
+              <span class="leg-strength" id="ui-comp-dual-strength"></span>
+            </div>
+            <div id="compDualChart" class="dual-metric-chart"></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-header"><h2 id="ui-comp-scatter-title"></h2></div>
+          <div class="card-body"><div id="compScatterChart"></div></div>
+        </article>
+      </div>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-comp-heatmap-title"></h2>
+          <p class="sub" id="ui-comp-heatmap-note"></p>
+        </div>
+        <div class="card-body table-wrap"><div id="compMetricHeatmap"></div></div>
       </article>
       <div class="comp-toolbar">
         <input type="search" id="compFilter" autocomplete="off" />
@@ -320,11 +364,11 @@
     </nav>
   </footer>
 
-  <script src="js/market-intel-data.js?v=20261126-apac"></script>
-  <script src="js/market-intel-profiles.js?v=20261126-apac"></script>
-  <script src="js/market-intel-hrbp.js?v=20261126-apac"></script>
-  <script src="js/market-intel-talent.js?v=20261126-apac"></script>
-  <script src="js/market-intel-lang.js?v=20261126-apac"></script>
-  <script src="js/market-intel-app.js?v=20261126-apac"></script>
+  <script src="js/market-intel-data.js?v=20261126-2026"></script>
+  <script src="js/market-intel-profiles.js?v=20261126-2026"></script>
+  <script src="js/market-intel-hrbp.js?v=20261126-2026"></script>
+  <script src="js/market-intel-talent.js?v=20261126-2026"></script>
+  <script src="js/market-intel-lang.js?v=20261126-2026"></script>
+  <script src="js/market-intel-app.js?v=20261126-2026"></script>
 </body>
 </html>
