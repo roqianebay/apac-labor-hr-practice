@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>配色对比 · ER 流程 vs 暗色看板</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .compare-wrap { padding: 2rem 0 3rem; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand"><span class="mark"></span><span>配色对比</span></div>
+      <nav class="nav">
+        <a href="er-dashboards.html">Policy Dictionary</a>
+        <a href="index.html#hub">参考 · 流程与劳动法 #hub</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap compare-wrap">
+    <div class="kicker">THEME</div>
+    <h1>看板配色</h1>
+    <p class="lede"><strong>Policy Dictionary</strong> 与 <strong>Leave &amp; Holidays Monitor</strong> 已默认使用与 <a href="index.html#hub">流程与劳动法</a> 一致的暖纸色 + 墨绿强调。其余本仓库看板仍为 ER News 暗色；可用参数预览亮色或切回暗色。</p>
+    <div class="notice"><code>?theme=dark</code> 在词典 / 休假看板上切回暗色；<code>?theme=er-process-draft</code> 在其他看板上预览亮色草稿。外链看板不变。</div>
+    <div class="table-wrap" style="margin-top: 1.5rem; min-width: 0;">
+      <table style="min-width: 640px;">
+        <thead>
+          <tr><th>看板</th><th>暗色</th><th>亮色（流程风）</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="dim">APAC People Policy Dictionary</td>
+            <td><a href="er-dashboards.html?theme=dark">打开</a></td>
+            <td><strong>默认</strong> · <a href="er-dashboards.html">打开</a></td>
+          </tr>
+          <tr>
+            <td class="dim">APAC Leave &amp; Holidays Monitor</td>
+            <td><a href="leave-monitor/index.html?theme=dark">打开</a></td>
+            <td><strong>默认</strong> · <a href="leave-monitor/index.html">打开</a></td>
+          </tr>
+          <tr>
+            <td class="dim">eBay APAC 市场情报</td>
+            <td><strong>默认</strong> · <a href="ebay-market-intel/index.html">打开</a></td>
+            <td><a href="ebay-market-intel/index.html?theme=er-process-draft">预览亮色</a></td>
+          </tr>
+          <tr>
+            <td class="dim">法定福利 Monitor</td>
+            <td><strong>默认</strong> · <a href="benefits-monitor/index.html">打开</a></td>
+            <td><a href="benefits-monitor/index.html?theme=er-process-draft">预览亮色</a></td>
+          </tr>
+          <tr>
+            <td class="dim">雇主福利 Summary</td>
+            <td><strong>默认</strong> · <a href="employer-benefits-summary/index.html">打开</a></td>
+            <td><a href="employer-benefits-summary/index.html?theme=er-process-draft">预览亮色</a></td>
+          </tr>
+          <tr>
+            <td class="dim">流程与劳动法（参考）</td>
+            <td colspan="2"><a href="index.html#hub">index.html#hub（纸色主题）</a></td>
+          </tr>
+          <tr>
+            <td class="dim">外链 · ER News / 政府政策等</td>
+            <td colspan="2"><a href="er-dashboards.html">从词典进入</a> · 独立仓库样式未改</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

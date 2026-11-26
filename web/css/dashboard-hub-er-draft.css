@@ -1,0 +1,146 @@
+/* Draft overrides: Policy Dictionary → ER Process / #hub palette (loads after dashboard-hub-premium.css) */
+
+html.theme-er-process-draft body.dash-hub-page.dash-hub-premium {
+  --hub-ink: #1a2332;
+  --hub-ink-soft: #3d4a5c;
+  --hub-teal: #1e5a4a;
+  --hub-teal-mid: #2a6f5f;
+  --hub-teal-light: #3d9a87;
+  --hub-accent: #b4532a;
+  --hub-accent-light: #c4a35a;
+  --hub-surface: #fffdf8;
+  --hub-surface-2: #f3eee3;
+  --hub-border: #d7cfc0;
+  --hub-bg: #f7f4ee;
+  --hub-panel: linear-gradient(128deg, #f0faf7 0%, #fffdf8 52%, #f8f4ed 100%);
+  --hub-card-shadow: 0 18px 40px rgba(26, 35, 50, 0.08);
+  color: var(--hub-ink);
+  background:
+    radial-gradient(1200px 500px at 10% -10%, #f8e7d4 0%, transparent 55%),
+    radial-gradient(900px 400px at 100% 0%, #dce8e2 0%, transparent 50%),
+    var(--hub-bg) !important;
+}
+
+html.theme-er-process-draft body.dash-hub-premium .dash-main {
+  background: transparent !important;
+}
+
+html.theme-er-process-draft body.dash-hub-premium .topbar {
+  background: rgba(244, 239, 230, 0.92) !important;
+  border-bottom-color: var(--hub-border) !important;
+}
+
+html.theme-er-process-draft body.dash-hub-premium .topbar .brand,
+html.theme-er-process-draft body.dash-hub-premium .topbar .nav a {
+  color: var(--hub-ink-soft) !important;
+}
+
+html.theme-er-process-draft body.dash-hub-premium .topbar .nav a.nav-current {
+  color: var(--hub-accent) !important;
+}
+
+html.theme-er-process-draft body.dash-hub-premium .lang-switch {
+  background: var(--hub-surface) !important;
+  border-color: var(--hub-border) !important;
+}
+
+html.theme-er-process-draft body.dash-hub-premium .lang-switch button.active {
+  background: var(--hub-teal) !important;
+  color: #fff !important;
+}
+
+html.theme-er-process-draft body .dash-hero-panel {
+  border-color: rgba(30, 90, 74, 0.15) !important;
+  box-shadow: var(--hub-card-shadow) !important;
+}
+
+html.theme-er-process-draft body .dash-hero-panel::before {
+  background:
+    radial-gradient(480px 220px at 95% 5%, rgba(61, 154, 135, 0.12), transparent 55%),
+    radial-gradient(360px 180px at 0% 100%, rgba(196, 163, 90, 0.1), transparent 50%) !important;
+}
+
+html.theme-er-process-draft body .dash-kicker {
+  color: var(--hub-accent) !important;
+}
+
+html.theme-er-process-draft body .dash-hero-stat {
+  background: var(--hub-surface) !important;
+  border-color: var(--hub-border) !important;
+}
+
+html.theme-er-process-draft body .dash-hero-stat .val {
+  color: var(--hub-teal) !important;
+}
+
+html.theme-er-process-draft body .dash-notice {
+  background: #fff8ea !important;
+  border-color: var(--hub-border) !important;
+  border-left-color: var(--hub-accent-light) !important;
+}
+
+html.theme-er-process-draft body .dash-section-head h2 {
+  color: var(--hub-ink) !important;
+  font-family: var(--serif, "Iowan Old Style", serif);
+}
+
+html.theme-er-process-draft body .dash-row-band {
+  background: var(--hub-surface) !important;
+  border-color: var(--hub-border) !important;
+}
+
+html.theme-er-process-draft body .dash-row-num {
+  background: linear-gradient(180deg, var(--hub-teal), rgba(30, 90, 74, 0.35)) !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+html.theme-er-process-draft body .dash-hub-premium .dash-card.card,
+html.theme-er-process-draft body .dash-hub-preview .dash-card.card {
+  background: var(--hub-surface) !important;
+  border-color: var(--hub-border) !important;
+  box-shadow: var(--hub-card-shadow) !important;
+}
+
+html.theme-er-process-draft body .dash-card::before {
+  background: linear-gradient(90deg, var(--hub-teal), var(--hub-teal-light)) !important;
+}
+
+html.theme-er-process-draft body .dash-card-top {
+  background: linear-gradient(135deg, rgba(232, 242, 239, 0.9) 0%, rgba(255, 252, 247, 0.4) 100%) !important;
+  border-bottom-color: rgba(30, 90, 74, 0.08) !important;
+}
+
+html.theme-er-process-draft body .dash-card-icon {
+  background: var(--hub-surface) !important;
+  border-color: rgba(30, 90, 74, 0.12) !important;
+  color: var(--hub-teal-mid) !important;
+}
+
+html.theme-er-process-draft body .dash-badge {
+  background: var(--paper-2, #efe9de) !important;
+  border-color: rgba(30, 90, 74, 0.12) !important;
+}
+
+html.theme-er-process-draft body .dash-badge.primary {
+  background: var(--hub-teal) !important;
+  color: #fff !important;
+}
+
+html.theme-er-process-draft body .dash-cta {
+  background: linear-gradient(180deg, var(--hub-teal-mid), var(--hub-teal)) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(30, 90, 74, 0.22) !important;
+}
+
+html.theme-er-process-draft body .dash-list li::before {
+  background: var(--hub-teal) !important;
+}
+
+html.theme-er-process-draft body .dash-card.is-primary {
+  border-color: rgba(30, 90, 74, 0.32) !important;
+}
+
+html.theme-er-process-draft body.dash-hub-page .dash-card.is-primary {
+  background: linear-gradient(165deg, #f0faf7 0%, var(--hub-surface) 55%) !important;
+}
