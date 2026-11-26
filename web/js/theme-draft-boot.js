@@ -29,7 +29,7 @@
     document.head.appendChild(el);
   }
 
-  var v = "20261126-light-default";
+  var v = "20261126-apac-badge";
   addCss(cssBase + "theme-er-process-draft.css?v=" + v);
 
   window.addEventListener("DOMContentLoaded", function () {

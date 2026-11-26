@@ -117,14 +117,26 @@ html.theme-er-process-draft body .dash-card-icon {
   color: var(--hub-teal-mid) !important;
 }
 
-html.theme-er-process-draft body .dash-badge {
+html.theme-er-process-draft body .dash-badge:not(.accent-apac):not(.primary) {
   background: var(--paper-2, #efe9de) !important;
   border-color: rgba(30, 90, 74, 0.12) !important;
+  color: var(--hub-teal-mid) !important;
 }
 
 html.theme-er-process-draft body .dash-badge.primary {
   background: var(--hub-teal) !important;
   color: #fff !important;
+}
+
+html.theme-er-process-draft body .dash-badge.accent-apac {
+  background: linear-gradient(135deg, #f0faf7 0%, #e3f2ec 55%, #fff8ee 100%) !important;
+  color: #1e5a4a !important;
+  border: 1px solid rgba(196, 163, 90, 0.55) !important;
+  box-shadow: 0 1px 6px rgba(30, 90, 74, 0.1) !important;
+}
+
+html.theme-er-process-draft body .dash-card.is-apac-accent::before {
+  background: linear-gradient(90deg, #3d9a87, #c4a35a, #2a6f5f) !important;
 }
 
 html.theme-er-process-draft body .dash-cta {
