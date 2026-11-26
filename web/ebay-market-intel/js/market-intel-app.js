@@ -1442,6 +1442,9 @@
   function activateTab(tab) {
     document.querySelectorAll(".tab-btn").forEach((b) => b.classList.toggle("active", b.dataset.tab === tab));
     document.querySelectorAll(".panel").forEach((p) => p.classList.toggle("active", p.id === "panel-" + tab));
+    requestAnimationFrame(() => {
+      global.ApacCharts?.resizeAll?.();
+    });
   }
 
   function bindUi() {
@@ -1478,6 +1481,21 @@
     }
   }
 
+  function bootMarketIntel() {
+    const go = () => {
+      renderAll();
+      const resize = () => global.ApacCharts?.resizeAll?.();
+      requestAnimationFrame(() => requestAnimationFrame(resize));
+    };
+    const preload = global.ApacCharts?.ensureEcharts;
+    if (typeof preload === "function") preload().finally(go);
+    else go();
+  }
+
   bindUi();
-  renderAll();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootMarketIntel, { once: true });
+  } else {
+    bootMarketIntel();
+  }
 })(window);

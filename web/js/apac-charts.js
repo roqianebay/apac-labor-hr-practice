@@ -38,6 +38,10 @@
 
   function dispose(host) {
     if (!host) return;
+    if (host._apacChartRo) {
+      host._apacChartRo.disconnect();
+      host._apacChartRo = null;
+    }
     const idx = registry.findIndex((r) => r.host === host);
     if (idx >= 0) {
       registry[idx].chart.dispose();
@@ -80,10 +84,48 @@
     };
   }
 
+  function scheduleChartResize(chart, host) {
+    if (!chart || !host) return;
+    const run = () => {
+      try {
+        if (host.isConnected && chart && !chart.isDisposed()) chart.resize();
+      } catch (_) {
+        /* ignore dispose race */
+      }
+    };
+    requestAnimationFrame(() => {
+      run();
+      requestAnimationFrame(run);
+    });
+  }
+
+  function resizeAll() {
+    registry.forEach(({ chart, host }) => {
+      try {
+        if (host.isConnected && chart && !chart.isDisposed()) chart.resize();
+      } catch (_) {
+        /* ignore */
+      }
+    });
+  }
+
+  function watchHostResize(host, chart) {
+    if (!host || !chart || typeof global.ResizeObserver !== "function") return;
+    if (host._apacChartRo) {
+      host._apacChartRo.disconnect();
+    }
+    const ro = new ResizeObserver(() => {
+      if (host.offsetWidth > 0 && chart && !chart.isDisposed()) chart.resize();
+    });
+    ro.observe(host);
+    host._apacChartRo = ro;
+  }
+
   function initChart(host, ec) {
     dispose(host);
     const chart = ec.init(host, undefined, { renderer: "canvas" });
     registry.push({ host, chart });
+    watchHostResize(host, chart);
     return chart;
   }
 
@@ -199,6 +241,7 @@
             }
           ]
         });
+        scheduleChartResize(chart, host);
         return true;
       })
       .catch(() => false);
@@ -285,6 +328,7 @@
             }
           ]
         });
+        scheduleChartResize(chart, host);
         return true;
       })
       .catch(() => false);
@@ -375,6 +419,7 @@
             }
           ]
         });
+        scheduleChartResize(chart, host);
         return true;
       })
       .catch(() => false);
@@ -415,6 +460,7 @@
             }
           ]
         });
+        scheduleChartResize(chart, host);
         return true;
       })
       .catch(() => false);
@@ -430,6 +476,24 @@
     }, 120);
   }
   global.addEventListener("resize", onResize);
+  global.addEventListener(
+    "load",
+    () => {
+      requestAnimationFrame(() => resizeAll());
+    },
+    { once: true }
+  );
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+        ensureEcharts().finally(() => requestAnimationFrame(() => resizeAll()));
+      },
+      { once: true }
+    );
+  } else {
+    ensureEcharts().finally(() => requestAnimationFrame(() => resizeAll()));
+  }
 
   global.ApacCharts = {
     ensureEcharts,
@@ -440,6 +504,8 @@
     renderHeatmap,
     renderRadar,
     dispose,
+    resizeAll,
+    scheduleChartResize,
     readTheme
   };
 })(typeof window !== "undefined" ? window : globalThis);

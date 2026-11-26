@@ -118,6 +118,7 @@
     document.querySelectorAll(".panel").forEach((p) => p.classList.remove("active"));
     btn.classList.add("active");
     document.getElementById("panel-" + tab)?.classList.add("active");
+    requestAnimationFrame(() => global.ApacCharts?.resizeAll?.());
   }
 
   function goToCountry(code) {
@@ -603,6 +604,7 @@
         document.querySelectorAll(".panel").forEach((p) => p.classList.remove("active"));
         btn.classList.add("active");
         document.getElementById("panel-" + btn.dataset.tab)?.classList.add("active");
+        requestAnimationFrame(() => global.ApacCharts?.resizeAll?.());
       });
     });
 

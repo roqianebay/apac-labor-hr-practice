@@ -118,6 +118,7 @@
     document.querySelectorAll(".panel").forEach((p) => p.classList.remove("active"));
     btn.classList.add("active");
     document.getElementById("panel-" + tab)?.classList.add("active");
+    requestAnimationFrame(() => global.ApacCharts?.resizeAll?.());
   }
 
   function goToCountry(code) {
@@ -406,7 +407,9 @@
         color: "#a5b4fc"
       }))
       .sort((a, b) => b.value - a.value);
-    global.ApacCharts.renderBar(host, rows, { height: 280 });
+    global.ApacCharts.ensureEcharts().then(() =>
+      global.ApacCharts.renderBar(host, rows, { height: 280 }).then(() => global.ApacCharts.resizeAll())
+    );
   }
   global.renderEmployerInsightCharts = renderEmployerInsightCharts;
 
@@ -645,6 +648,7 @@
         document.querySelectorAll(".panel").forEach((p) => p.classList.remove("active"));
         btn.classList.add("active");
         document.getElementById("panel-" + btn.dataset.tab)?.classList.add("active");
+        requestAnimationFrame(() => global.ApacCharts?.resizeAll?.());
       });
     });
 

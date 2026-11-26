@@ -212,5 +212,14 @@
     if (typeof global.applyMarketIntelUi === "function") global.applyMarketIntelUi();
   }
 
-  global.MarketIntelLang = { UI, t, get lang() { return state.lang; }, setLang };
+  function initLang() {
+    document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
+    document.querySelectorAll("#lang-switch button").forEach((b) => {
+      b.classList.toggle("active", b.dataset.lang === state.lang);
+    });
+  }
+
+  initLang();
+
+  global.MarketIntelLang = { UI, t, get lang() { return state.lang; }, setLang, initLang };
 })(window);
