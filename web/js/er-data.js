@@ -24,8 +24,8 @@ window.ER_UI = {
   chipFloor: L("法定底线 ≠ 公司政策", "Statute ≠ company policy"),
   chipCounsel: L("个案仍需当地律师复核", "Local counsel for live cases"),
   notice: L(
-    "本站为 HR/ER 对照工具，不构成法律意见。奖、企业协议、集体合同、工作规则和地方法院口径可能严于或细于下表。处理真实个案请同时核对合同与现行官方文本。",
-    "This is an HR/ER comparison tool, not legal advice. Awards, enterprise agreements, collective contracts, work rules and local courts may be stricter or more detailed than the table. For live cases, check the contract and current official texts."
+    "HR/ER 内部对照，非法律意见；当地规则或严于下表 — 个案以合同与官方文本为准。",
+    "HR/ER desk only, not legal advice — local rules may exceed this table; verify contract and official sources for live cases."
   ),
   sourcesH2: L("官方法规与权威来源", "Official law and authority links"),
   sourcesSub: L(
