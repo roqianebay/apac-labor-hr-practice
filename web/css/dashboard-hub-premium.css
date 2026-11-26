@@ -59,16 +59,22 @@ body.dash-hub-preview {
   color: var(--hub-ink) !important;
 }
 .dash-hub-premium .lang-switch,
-.dash-hub-preview .lang-switch {
+.dash-hub-preview .lang-switch,
+.dash-hub-premium .theme-switch,
+.dash-hub-preview .theme-switch {
   background: var(--hub-surface-2);
   border-color: var(--hub-border);
 }
 .dash-hub-premium .lang-switch button,
-.dash-hub-preview .lang-switch button {
+.dash-hub-preview .lang-switch button,
+.dash-hub-premium .theme-switch button,
+.dash-hub-preview .theme-switch button {
   color: var(--hub-ink-soft);
 }
 .dash-hub-premium .lang-switch button.active,
-.dash-hub-preview .lang-switch button.active {
+.dash-hub-preview .lang-switch button.active,
+.dash-hub-premium .theme-switch button.active,
+.dash-hub-preview .theme-switch button.active {
   background: var(--hub-accent);
   color: #fff !important;
 }

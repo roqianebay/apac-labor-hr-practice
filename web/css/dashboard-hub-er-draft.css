@@ -39,14 +39,21 @@ html.theme-er-process-draft body.dash-hub-premium .topbar .nav a.nav-current {
   color: var(--hub-accent) !important;
 }
 
-html.theme-er-process-draft body.dash-hub-premium .lang-switch {
+html.theme-er-process-draft body.dash-hub-premium .lang-switch,
+html.theme-er-process-draft body.dash-hub-premium .theme-switch {
   background: var(--hub-surface) !important;
   border-color: var(--hub-border) !important;
 }
 
-html.theme-er-process-draft body.dash-hub-premium .lang-switch button.active {
+html.theme-er-process-draft body.dash-hub-premium .lang-switch button.active,
+html.theme-er-process-draft body.dash-hub-premium .theme-switch button.active {
   background: var(--hub-teal) !important;
   color: #fff !important;
+}
+
+html.theme-er-process-draft body.dash-hub-premium .theme-switch {
+  background: var(--hub-surface) !important;
+  border-color: var(--hub-border) !important;
 }
 
 html.theme-er-process-draft body .dash-hero-panel {

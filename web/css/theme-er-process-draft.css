@@ -58,9 +58,19 @@ html.theme-er-process-draft body .lang-switch button {
   color: var(--text-muted);
 }
 
-html.theme-er-process-draft body .lang-switch button.active {
+html.theme-er-process-draft body .lang-switch button.active,
+html.theme-er-process-draft body .theme-switch button.active {
   background: var(--accent) !important;
   color: #fff !important;
+}
+
+html.theme-er-process-draft body .theme-switch {
+  border: 1px solid var(--border);
+  background: var(--surface) !important;
+}
+
+html.theme-er-process-draft body .theme-switch button {
+  color: var(--text-muted);
 }
 
 html.theme-er-process-draft body .tab-btn {

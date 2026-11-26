@@ -45,9 +45,15 @@ body {
   border-color: var(--border) !important;
 }
 
-.lang-switch button.active {
+.lang-switch button.active,
+.theme-switch button.active {
   background: var(--accent) !important;
   color: #fff !important;
+}
+
+.theme-switch {
+  background: var(--surface-2) !important;
+  border: 1px solid var(--border) !important;
 }
 
 .tab-btn {
