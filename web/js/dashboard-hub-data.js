@@ -32,12 +32,13 @@ window.DASH_HUB_UI = {
   moduleCount: L("政策工具", "Policy tools")
 };
 
-/** @type {Array<{id:string,hubRow?:1|2,title:L,pitch:L,bullets:L[],href:string,primary?:boolean,ext?:boolean}>} */
+/** @type {Array<{id:string,hubRow?:1|2,title:L,pitch:L,bullets:L[],href:string,badge?:L,primary?:boolean,ext?:boolean}>} */
 window.DASH_HUB_BOARDS = [
   {
     id: "labor",
     hubRow: 1,
     primary: true,
+    badge: L("核心 · 流程与法规", "Core · process & law"),
     title: L("APAC ER Process &amp; Labor Law", "APAC ER Process &amp; Labor Law"),
     pitch: L(
       "裁员、绩效解除、试用期、违纪等<strong>办案流程与法定底线</strong>的主看板。",
@@ -52,8 +53,26 @@ window.DASH_HUB_BOARDS = [
     ext: false
   },
   {
+    id: "market-intel",
+    hubRow: 1,
+    badge: L("亚太 · 市场与竞品", "APAC · market & peers"),
+    title: L("eBay 亚太市场与竞品监测", "eBay APAC Market & Competitor Monitor"),
+    pitch: L(
+      "<strong>亚太默认视角</strong>：亚太 GMV/跨境、SpeedPAK/eIS、<strong>eBay vs Shopee/Temu/亚马逊</strong> 等区域竞品与人才信号。",
+      "<strong>APAC-first lens</strong>: APAC GMV/cross-border, SpeedPAK/eIS, <strong>eBay vs Shopee/Temu/Amazon</strong> regional peers & talent."
+    ),
+    bullets: [
+      L("总览含亚太 GMV 与跨境要点卡片", "Overview: APAC GMV & cross-border insight cards"),
+      L("亚太招聘 / 裁员 / HR 视角分栏", "APAC hiring, layoffs & HR lens tabs"),
+      L("档案图表默认亚太布局指数", "Profile charts default to APAC footprint index")
+    ],
+    href: "https://roqianebay.github.io/apac-labor-hr-practice/ebay-market-intel/?v=20261126-apac",
+    ext: true
+  },
+  {
     id: "gov",
     hubRow: 1,
+    badge: L("政策 · 政府监测", "Policy · government radar"),
     title: L("APAC Government Policy Monitor", "APAC Government Policy Monitor"),
     pitch: L(
       "各国<strong>劳动、就业与移民政策</strong>变动追踪（政府来源导向）。",
@@ -70,6 +89,7 @@ window.DASH_HUB_BOARDS = [
   {
     id: "ernews",
     hubRow: 1,
+    badge: L("动态 · 裁员与补偿", "Pulse · layoffs & severance"),
     title: L("APAC ER News Update", "APAC ER News Update"),
     pitch: L(
       "亚太<strong>裁员、组织优化与补偿</strong>动态；500 强外企与知名企业档案。",
@@ -86,6 +106,7 @@ window.DASH_HUB_BOARDS = [
   {
     id: "talent",
     hubRow: 2,
+    badge: L("招聘 · 雇主与薪酬", "Hiring · employers & comp"),
     title: L("Talent Employer Policy Monitor", "Talent Employer Policy Monitor"),
     pitch: L(
       "互联网<strong>扩招 · 开放职位 · 中国市场</strong>；薪酬对标与竞品矩阵（裁员见 ER News）。",
@@ -102,6 +123,7 @@ window.DASH_HUB_BOARDS = [
   {
     id: "employer-benefits",
     hubRow: 2,
+    badge: L("福利 · 雇主计划", "Benefits · employer plans"),
     title: L("APAC Employer Benefits Summary", "APAC Employer Benefits Summary"),
     pitch: L(
       "2026 Benefit Summary：<strong>8 个亚太市场</strong>雇主医疗、休假、收入保障与差旅对照。",
@@ -118,6 +140,7 @@ window.DASH_HUB_BOARDS = [
   {
     id: "benefits",
     hubRow: 2,
+    badge: L("法定 · 福利对照", "Statutory · benefits matrix"),
     title: L("APAC Statutory Benefits Monitor", "APAC Statutory Benefits Monitor"),
     pitch: L(
       "14 个亚太市场<strong>法定福利</strong>：年假、病假、产假、社保、医保、加班等对照。",
@@ -134,6 +157,7 @@ window.DASH_HUB_BOARDS = [
   {
     id: "leave",
     hubRow: 2,
+    badge: L("休假 · 日历与详表", "Leave · calendars & detail"),
     title: L("APAC Leave &amp; Holidays Monitor", "APAC Leave &amp; Holidays Monitor"),
     pitch: L(
       "法定公休 · 年假 · 病假及各类休假<strong>分国分栏详表</strong>。",

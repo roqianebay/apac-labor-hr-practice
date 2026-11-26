@@ -10,6 +10,8 @@
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg>',
     ernews:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h6"/></svg>',
+    "market-intel":
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 20V10l4-3 4 3v10"/><path d="M12 20V6l4-3 4 3v14"/><path d="M8 17h2M16 14h2"/></svg>',
     talent:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 18V6l8-3 8 3v12"/><path d="M12 9v3"/></svg>',
     "employer-benefits":
@@ -38,19 +40,26 @@
     return ICONS[board.id] || ICONS.default;
   }
 
+  function cornerBadgeHtml(b) {
+    const label = b.badge ? t(b.badge) : b.primary ? t(UI.primaryBadge) : "";
+    if (!label) return "";
+    const cls = b.primary ? "dash-badge dash-badge-corner primary" : "dash-badge dash-badge-corner";
+    return `<span class="${cls}">${label}</span>`;
+  }
+
   function boardCardHtml(b) {
     const bullets = b.bullets.map((x) => `<li>${t(x)}</li>`).join("");
-    const primary = b.primary ? `<span class="dash-badge primary">${t(UI.primaryBadge)}</span>` : "";
+    const corner = cornerBadgeHtml(b);
     const rel = b.ext ? ' target="_blank" rel="noopener noreferrer"' : "";
     const extMark = b.ext ? ' <span class="dash-ext" aria-hidden="true">↗</span>' : "";
     return `
       <article class="dash-card card ${b.primary ? "is-primary" : ""}">
+        ${corner}
         <div class="dash-card-top">
           <div class="dash-card-icon" aria-hidden="true">${iconFor(b)}</div>
         </div>
         <header class="dash-card-head">
           <h3>${t(b.title)}${extMark}</h3>
-          ${primary}
         </header>
         <p class="dash-pitch">${t(b.pitch)}</p>
         <ul class="dash-list">${bullets}</ul>

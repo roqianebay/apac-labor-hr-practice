@@ -328,12 +328,24 @@ body.dash-hub-preview {
   border-radius: 999px;
   background: var(--paper-2);
   color: var(--hub-ink-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(30, 90, 74, 0.12);
 }
 .dash-badge.primary {
   background: var(--hub-teal);
   color: #fff;
+  border-color: transparent;
+}
+.dash-badge-corner {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 2;
+  max-width: calc(100% - 4.5rem);
+  text-align: right;
+  line-height: 1.25;
+  box-shadow: 0 1px 4px rgba(30, 90, 74, 0.12);
 }
 
 .dash-pitch {

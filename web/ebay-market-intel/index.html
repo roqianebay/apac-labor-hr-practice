@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eBay Market &amp; Competitor Monitor</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1419; --surface: #1a2332; --surface-2: #243044; --border: #2d3a4f;
+      --text: #e8edf4; --text-muted: #8b9cb3; --accent: #14b8a6; --accent-light: #5eead4;
+      --radius: 10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "DM Sans", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
+    .header { border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; position: sticky; top: 0; z-index: 50; }
+    .header-inner { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+    .logo-block h1 { font-size: 1.35rem; font-weight: 700; }
+    .logo-block p { color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem; }
+    .header-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .badge { font-size: 0.75rem; padding: 0.35rem 0.75rem; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-muted); }
+    .lang-switch { display: flex; gap: 4px; border: 1px solid var(--border); border-radius: 999px; padding: 2px; background: var(--surface-2); }
+    .lang-switch button { border: 0; background: transparent; color: var(--text-muted); font: inherit; font-size: 0.75rem; padding: 0.35rem 0.65rem; border-radius: 999px; cursor: pointer; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
+    .intro-banner { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; font-size: 0.84rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .tab-btn { border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); padding: 0.5rem 1rem; border-radius: 999px; cursor: pointer; font: inherit; font-size: 0.85rem; }
+    .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #042f2e; font-weight: 600; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; }
+    .card-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
+    .card-header h2 { font-size: 1rem; }
+    .table-wrap { overflow: auto; max-height: 72vh; }
+    .footer { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--text-muted); }
+    .hub-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
+    .hub-footer a { color: var(--accent-light); }
+  </style>
+  <link rel="stylesheet" href="css/market-intel.css?v=20261126-apac" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo-block">
+        <h1>eBay <span>APAC Market &amp; Competitor</span> Monitor</h1>
+        <p id="ui-subtitle"></p>
+      </div>
+      <div class="header-meta">
+        <div class="lang-switch" id="lang-switch" role="group">
+          <button type="button" data-lang="zh">中文</button>
+          <button type="button" data-lang="en" class="active">EN</button>
+        </div>
+        <span class="badge live" id="ui-live"></span>
+        <span class="badge" id="ui-data-version"></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="intro-banner" id="ui-intro"></div>
+
+    <nav class="tabs" aria-label="Sections">
+      <button type="button" class="tab-btn active" data-tab="overview" id="ui-tab-overview"></button>
+      <button type="button" class="tab-btn" data-tab="profiles" id="ui-tab-profiles"></button>
+      <button type="button" class="tab-btn" data-tab="competitors" id="ui-tab-competitors"></button>
+      <button type="button" class="tab-btn" data-tab="crossborder" id="ui-tab-crossborder"></button>
+      <button type="button" class="tab-btn" data-tab="apac" id="ui-tab-apac"></button>
+      <button type="button" class="tab-btn" data-tab="logistics" id="ui-tab-logistics"></button>
+      <button type="button" class="tab-btn" data-tab="hiring" id="ui-tab-hiring"></button>
+      <button type="button" class="tab-btn" data-tab="layoffs" id="ui-tab-layoffs"></button>
+      <button type="button" class="tab-btn" data-tab="hr" id="ui-tab-hr"></button>
+      <button type="button" class="tab-btn" data-tab="sources" id="ui-tab-sources"></button>
+    </nav>
+
+    <section class="panel active" id="panel-overview">
+      <aside class="apac-focus" id="apacFocusBlock" aria-labelledby="ui-apac-focus-title">
+        <h2 id="ui-apac-focus-title" class="apac-focus-title"></h2>
+        <div id="apacFocusBody" class="apac-focus-body"></div>
+      </aside>
+      <div id="kpiGrid" class="kpi-grid" aria-label="eBay KPIs"></div>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-apac-cb-title"></h2>
+        </div>
+        <div class="card-body">
+          <div id="apacCbInsights" class="apac-insights-grid"></div>
+        </div>
+      </article>
+      <div id="marketContextGrid" class="context-grid" aria-label="Market context"></div>
+      <div class="positioning">
+        <h3 id="ui-positioning-title"></h3>
+        <p id="ui-positioning-body"></p>
+      </div>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-overview-chart-title"></h2>
+          <p class="sub" id="ui-overview-chart-apac-note"></p>
+        </div>
+        <div class="card-body"><div id="overviewKpiChart" class="bar-chart compare-chart"></div></div>
+      </article>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-apac-region-chart-title"></h2>
+          <p class="sub" id="ui-apac-region-chart-note"></p>
+        </div>
+        <div class="card-body"><div id="apacRegionChart" class="bar-chart compare-chart"></div></div>
+      </article>
+      <div class="grid-2">
+        <article class="card">
+          <div class="card-header">
+            <h2 id="ui-overview-strategy"></h2>
+          </div>
+          <div class="card-body">
+            <div id="pillarGrid" class="pillar-grid"></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-header">
+            <h2 id="ui-overview-timeline"></h2>
+          </div>
+          <div class="card-body">
+            <div id="timelineHost"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-hr">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-hr-title"></h2>
+          <p class="sub" id="ui-hr-lede"></p>
+        </div>
+        <div class="card-body">
+          <h3 class="section-mini-h3" id="ui-market-size-title"></h3>
+          <div id="marketSizeGrid" class="size-grid"></div>
+          <h3 class="section-mini-h3" id="ui-value-chain-title"></h3>
+          <div id="valueChain" class="vc-grid"></div>
+          <h3 class="section-mini-h3" id="ui-taxonomy-title"></h3>
+          <div id="taxonomyHost"></div>
+          <div id="hrbpSections" class="hrbp-sections"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel" id="panel-profiles">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-chart-board-title"></h2>
+        </div>
+        <div class="card-body">
+          <div class="metric-chip-bar" id="metricChipBar" role="toolbar"></div>
+          <p class="chart-note" id="mainMetricNote"></p>
+          <div id="mainMetricChart" class="bar-chart compare-chart"></div>
+        </div>
+      </article>
+      <div class="grid-2 chart-duo">
+        <article class="card">
+          <div class="card-header"><h2 id="ui-scatter-title"></h2></div>
+          <div class="card-body"><div id="scatterChart"></div></div>
+        </article>
+        <article class="card">
+          <div class="card-header">
+            <h2 id="ui-heatmap-title"></h2>
+            <p class="sub" id="ui-heatmap-note"></p>
+          </div>
+          <div class="card-body table-wrap"><div id="metricHeatmap"></div></div>
+        </article>
+      </div>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-profile-table-title"></h2>
+          <p class="sub" id="ui-profile-table-note"></p>
+          <label class="table-toggle"><input type="checkbox" id="profileTableToggle" /> <span id="ui-table-toggle-label"></span></label>
+        </div>
+        <div class="card-body table-wrap" id="profileTableWrap" hidden>
+          <table class="profile-table">
+            <thead id="profileTableHead"></thead>
+            <tbody id="profileTableBody"></tbody>
+          </table>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-header"><h2 id="ui-profile-dossier-title"></h2></div>
+        <div class="card-body profile-dossier-list" id="profileDossierList"></div>
+      </article>
+    </section>
+
+    <section class="panel" id="panel-competitors">
+      <article class="card">
+        <div class="card-header"><h2 id="ui-comp-chart-title"></h2></div>
+        <div class="card-body"><div id="competitorStrengthChart" class="bar-chart compare-chart"></div></div>
+      </article>
+      <div class="comp-toolbar">
+        <input type="search" id="compFilter" autocomplete="off" />
+      </div>
+      <div id="compGrid" class="comp-grid"></div>
+    </section>
+
+    <section class="panel" id="panel-crossborder">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-apac-cb-panel-title"></h2>
+        </div>
+        <div class="card-body">
+          <div id="apacCbPanelInsights" class="apac-insights-grid"></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-apac-region-chart-title-cb"></h2>
+          <p class="sub" id="ui-apac-region-chart-note-cb"></p>
+        </div>
+        <div class="card-body"><div id="apacRegionChartCb" class="bar-chart compare-chart"></div></div>
+      </article>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-bar-title"></h2>
+          <p class="sub" id="ui-bar-note"></p>
+        </div>
+        <div class="card-body">
+          <div id="barChart" class="bar-chart"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel" id="panel-apac">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-apac-chart-title"></h2>
+          <p class="sub" id="ui-apac-chart-note"></p>
+        </div>
+        <div class="card-body"><div id="apacFootprintChart" class="bar-chart compare-chart"></div></div>
+      </article>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-apac-title"></h2>
+          <p class="sub" id="ui-apac-note"></p>
+        </div>
+        <div class="card-body table-wrap">
+          <table class="apac-table">
+            <thead id="apacHead"></thead>
+            <tbody id="apacBody"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel" id="panel-logistics">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-logistics-chart-title"></h2>
+          <p class="sub" id="ui-logistics-chart-note"></p>
+        </div>
+        <div class="card-body"><div id="logisticsScoreChart"></div></div>
+      </article>
+      <article class="card">
+        <div class="card-header"><h2 id="ui-logistics-title"></h2></div>
+        <div class="card-body">
+          <div id="logisticsPanel" class="log-grid"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel" id="panel-hiring">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-hiring-title"></h2>
+          <p class="sub" id="ui-hiring-note"></p>
+        </div>
+        <div class="card-body"><div id="hiringMarketChart" class="bar-chart compare-chart"></div></div>
+      </article>
+      <h3 class="section-mini-h3" id="ui-hiring-list-title"></h3>
+      <div id="hiringPanel" class="hiring-grid"></div>
+    </section>
+
+    <section class="panel" id="panel-layoffs">
+      <div class="grid-2 chart-duo">
+        <article class="card">
+          <div class="card-header">
+            <h2 id="ui-layoff-scale-title"></h2>
+            <p class="sub" id="ui-layoff-scale-note"></p>
+          </div>
+          <div class="card-body"><div id="layoffScaleChart" class="bar-chart compare-chart"></div></div>
+        </article>
+        <article class="card">
+          <div class="card-header"><h2 id="ui-layoff-reason-title"></h2></div>
+          <div class="card-body"><div id="layoffReasonChart" class="bar-chart"></div></div>
+        </article>
+      </div>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-layoff-events-title"></h2>
+          <p class="sub" id="ui-layoff-events-note"></p>
+        </div>
+        <div class="card-body"><div id="layoffEventsList"></div></div>
+      </article>
+      <article class="card">
+        <div class="card-header"><h2 id="ui-severance-title"></h2></div>
+        <div class="card-body"><div id="severancePanel" class="severance-grid"></div></div>
+      </article>
+    </section>
+
+    <section class="panel" id="panel-sources">
+      <article class="card">
+        <div class="card-header"><h2 id="ui-sources-h2"></h2></div>
+        <div class="card-body">
+          <ul id="sourcesList" class="sources-list"></ul>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p id="ui-foot"></p>
+    <nav class="hub-footer" aria-label="Related">
+      <a href="../er-dashboards.html">APAC People Policy Dictionary</a>
+      <a href="https://roqianebay.github.io/apac-ta-employer-monitor/" target="_blank" rel="noopener noreferrer">APAC ER News</a>
+      <a href="https://roqianebay.github.io/apac-ta-employer-policy-monitor/" target="_blank" rel="noopener noreferrer">Talent Employer Policy Monitor</a>
+    </nav>
+  </footer>
+
+  <script src="js/market-intel-data.js?v=20261126-apac"></script>
+  <script src="js/market-intel-profiles.js?v=20261126-apac"></script>
+  <script src="js/market-intel-hrbp.js?v=20261126-apac"></script>
+  <script src="js/market-intel-talent.js?v=20261126-apac"></script>
+  <script src="js/market-intel-lang.js?v=20261126-apac"></script>
+  <script src="js/market-intel-app.js?v=20261126-apac"></script>
+</body>
+</html>
