@@ -42,26 +42,42 @@
       .join("");
   }
 
-  function orderedKpis() {
-    const all = global.MI_EBAY_KPIS || [];
-    const apac = all.filter((k) => k.apac);
-    const rest = all.filter((k) => !k.apac);
-    return [...apac, ...rest];
+  function kpiCardHtml(k) {
+    const est = k.estimate ? " is-estimate" : "";
+    return (
+      `<article class="kpi-card${est}">` +
+      `<div class="kpi-value">${esc(k.value)}</div>` +
+      `<div class="kpi-label">${t(k.label)}</div>` +
+      `<div class="kpi-hint">${t(k.hint)}</div>` +
+      `</article>`
+    );
   }
 
   function renderKpis() {
     const host = document.getElementById("kpiGrid");
     if (!host) return;
-    host.innerHTML = orderedKpis()
-      .map(
-        (k) =>
-          `<article class="kpi-card${k.apac ? " is-apac" : ""}">` +
-          `<div class="kpi-value">${esc(k.value)}</div>` +
-          `<div class="kpi-label">${t(k.label)}</div>` +
-          `<div class="kpi-hint">${t(k.hint)}</div>` +
-          `</article>`
-      )
-      .join("");
+    const all = global.MI_EBAY_KPIS || [];
+    const row1 = all.filter((k) => (k.row || 1) === 1);
+    const row2 = all.filter((k) => k.row === 2);
+    host.innerHTML =
+      `<div class="kpi-grid-row">${row1.map(kpiCardHtml).join("")}</div>` +
+      (row2.length ? `<div class="kpi-grid-row kpi-grid-row--secondary">${row2.map(kpiCardHtml).join("")}</div>` : "");
+  }
+
+  function orderedKpis() {
+    const all = global.MI_EBAY_KPIS || [];
+    const row1 = all.filter((k) => (k.row || 1) === 1);
+    const row2 = all.filter((k) => k.row === 2);
+    return [...row1, ...row2];
+  }
+
+  function renderApacGmvNote() {
+    const note = global.MI_APAC_GMV_NOTE;
+    const body = document.getElementById("apacGmvNoteBody");
+    const instead = document.getElementById("apacGmvNoteInstead");
+    if (!note || !body) return;
+    body.innerHTML = t(note.body);
+    if (instead) instead.innerHTML = t(note.instead);
   }
 
   function renderApacFocus() {
@@ -150,8 +166,12 @@
   }
 
   function kpiChartSuffix(k) {
-    if (k.id === "gmv" || k.id === "apac-gmv") return "B";
-    if (k.chartNum != null && (String(k.value).includes("%") || k.id.includes("pct") || k.id === "intl" || k.id === "xb" || k.id === "apac-xb" || k.id === "xb-share"))
+    if (k.id === "gmv") return "B";
+    if (k.id === "buyers") return "M";
+    if (
+      k.chartNum != null &&
+      (String(k.value).includes("%") || k.id === "intl" || k.id === "xb" || k.id === "xb-share")
+    )
       return "%";
     return "";
   }
@@ -163,11 +183,11 @@
       .map((k) => ({
         name: t(k.label),
         value: k.chartNum,
-        apac: !!k.apac,
-        highlight: k.id === "apac-gmv",
-        est: !!k.apac && k.id !== "intl",
+        apac: false,
+        highlight: k.id === "gmv",
+        est: !!k.estimate || k.id === "buyers",
         suffix: kpiChartSuffix(k),
-        color: k.apac ? "#14b8a6" : "#64748b"
+        color: k.estimate ? "#64748b" : "#14b8a6"
       }));
     renderSimpleBarChart(host, rows);
   }
@@ -942,6 +962,7 @@
     setTextHtml("ui-overview-chart-title", U.overviewChartTitle);
     setTextHtml("ui-overview-chart-apac-note", U.overviewChartApacNote);
     setTextHtml("ui-apac-focus-title", U.apacFocusTitle);
+    setTextHtml("ui-apac-gmv-note-title", U.apacGmvNoteTitle);
     setTextHtml("ui-apac-cb-title", U.apacCbTitle);
     setTextHtml("ui-apac-cb-panel-title", U.apacCbPanelTitle);
     setTextHtml("ui-apac-region-chart-title", U.apacRegionChartTitle);
@@ -998,6 +1019,7 @@
   function renderAll() {
     applyStaticUi();
     renderApacFocus();
+    renderApacGmvNote();
     renderKpis();
     renderApacCbInsights("apacCbInsights");
     renderApacCbInsights("apacCbPanelInsights");

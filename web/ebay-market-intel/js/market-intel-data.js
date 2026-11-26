@@ -4,65 +4,39 @@ function L(zh, en) {
 
 window.MI_DATA_VERSION = "2026-11-26 · 2026 market data";
 
-/** @type {Array<{id:string, value:string, label:L, hint:L}>} */
+/**
+ * KPI cards — row 1 = disclosed / company commentary; row 2 = secondary (incl. forward est.).
+ * APAC $ GMV / % share not shown: eBay does not disclose regional GMV (see MI_APAC_GMV_NOTE).
+ */
 window.MI_EBAY_KPIS = [
-  {
-    id: "gmv",
-    value: "~$83.5B",
-    chartNum: 83.5,
-    label: L("2026 全球 GMV（估）", "2026 global GMV (est.)"),
-    hint: L("衔接 2025 年报 ~$79.6B；按管理层增速与 FY2026 趋势<strong>内部估算</strong>", "Bridges ~$79.6B FY2025 filing; <strong>internal est.</strong> on mgmt growth & FY2026 trend")
-  },
-  {
-    id: "apac-gmv",
-    value: "~$28B",
-    chartNum: 28,
-    apac: true,
-    label: L("亚太相关 GMV（估）", "APAC-related GMV (est.)"),
-    hint: L(
-      "公司未单独披露；综合澳/日/韩/东南亚买家与中国出口卖家等<strong>内部估算</strong>。",
-      "Not separately disclosed; <strong>internal est.</strong> from AU/JP/KR/SEA buyers & China export sellers."
-    )
-  },
-  {
-    id: "apac-pct",
-    value: "~34%",
-    chartNum: 34,
-    apac: true,
-    label: L("亚太占全球 GMV（估）", "APAC share of global GMV (est.)"),
-    hint: L("在 51% 非美国 GMV 中亚太为最大区域块之一", "Among 51% non-U.S. GMV, APAC is one of the largest blocks")
-  },
   {
     id: "intl",
     value: "52%",
     chartNum: 52,
+    row: 1,
     label: L("GMV 来自美国以外", "GMV outside U.S."),
-    hint: L("国际化仍为增长核心", "International mix remains core")
+    hint: L("年报 / 业绩会披露口径", "Annual report / earnings disclosure")
   },
   {
     id: "xb",
     value: "~20%",
     chartNum: 20,
+    row: 1,
     label: L("全球跨境 GMV 占比", "Global cross-border GMV share"),
     hint: L("管理层公开表述", "Management commentary")
   },
   {
-    id: "apac-xb",
-    value: "~9%",
-    chartNum: 9,
-    apac: true,
-    label: L("亚太跨境 GMV 占比（估）", "APAC cross-border GMV share (est.)"),
-    hint: L("中国出口经 SpeedPAK/eIS + 澳日东南亚买家跨境", "CN export via SpeedPAK/eIS + AU/JP/SEA buyer imports")
-  },
-  {
     id: "buyers",
     value: "~138M",
+    chartNum: 138,
+    row: 1,
     label: L("活跃买家（约）", "Active buyers (approx.)"),
-    hint: L("2026 年报/指引衔接（内部估）", "2026 filing/guidepath (internal est.)")
+    hint: L("投资者关系披露（滚动更新）", "Investor relations disclosure (rolling)")
   },
   {
     id: "countries",
     value: "190+",
+    row: 2,
     label: L("可送达市场", "Ship-to markets"),
     hint: L("含国际物流托管方案", "Incl. managed intl. shipping")
   },
@@ -70,10 +44,33 @@ window.MI_EBAY_KPIS = [
     id: "xb-share",
     value: "5%",
     chartNum: 5,
-    label: L("全球跨境最近一单份额", "Latest cross-border order share"),
-    hint: L("Statista / IPC 2025–2026 调查更新；亚太消费者亦适用", "Statista / IPC 2025–26 refresh; applies to APAC consumers")
+    row: 2,
+    label: L("全球跨境「最近一单」份额", "Latest cross-border order share"),
+    hint: L("Statista / IPC 调查；非 eBay GMV", "Statista / IPC survey; not eBay GMV")
+  },
+  {
+    id: "gmv",
+    value: "~$83.5B",
+    chartNum: 83.5,
+    row: 2,
+    estimate: true,
+    label: L("2026 全球 GMV（估）", "2026 global GMV (est.)"),
+    hint: L("衔接已披露 FY2025 ~$79.6B + 管理层增速指引", "Bridges disclosed FY2025 ~$79.6B + growth guidepath")
   }
 ];
+
+/** Shown on APAC tab — why we do not publish APAC GMV $ on this board */
+window.MI_APAC_GMV_NOTE = {
+  title: L("亚太 GMV 未单独披露", "APAC GMV not separately disclosed"),
+  body: L(
+    "eBay <strong>不按国家/地区公布 GMV 金额</strong>。本看板总览<strong>不展示</strong>「亚太 GMV ~$26B / 占 33% / 跨境 9%」等内部推算——缺乏可审计依据，易误导业务与 HR 对话。",
+    "eBay <strong>does not publish GMV by country/region</strong>. This board <strong>does not show</strong> internal figures like “APAC GMV ~$26B / 33% share / 9% CB” — not auditably sourced and can mislead HR conversations."
+  ),
+  instead: L(
+    "请参考：<strong>国际 GMV 占比</strong>、<strong>跨境占比（管理层）</strong>、下方<strong>各国布局定性矩阵</strong>与 SpeedPAK/eIS 公开材料。",
+    "Use instead: <strong>non-U.S. GMV mix</strong>, <strong>cross-border % (management)</strong>, the <strong>qualitative footprint matrix</strong> below, and public SpeedPAK/eIS materials."
+  )
+};
 
 /** APAC-first brief for overview & cross-border tabs */
 window.MI_APAC_FOCUS = {

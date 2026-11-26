@@ -36,7 +36,7 @@
     .hub-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
     .hub-footer a { color: var(--accent-light); }
   </style>
-  <link rel="stylesheet" href="css/market-intel.css?v=20261126-2026" />
+  <link rel="stylesheet" href="css/market-intel.css?v=20261126-apac-tab" />
 </head>
 <body>
   <header class="header">
@@ -73,38 +73,19 @@
     </nav>
 
     <section class="panel active" id="panel-overview">
-      <aside class="apac-focus" id="apacFocusBlock" aria-labelledby="ui-apac-focus-title">
-        <h2 id="ui-apac-focus-title" class="apac-focus-title"></h2>
-        <div id="apacFocusBody" class="apac-focus-body"></div>
-      </aside>
-      <div id="kpiGrid" class="kpi-grid" aria-label="eBay KPIs"></div>
-      <article class="card">
-        <div class="card-header">
-          <h2 id="ui-apac-cb-title"></h2>
-        </div>
-        <div class="card-body">
-          <div id="apacCbInsights" class="apac-insights-grid"></div>
-        </div>
-      </article>
-      <div id="marketContextGrid" class="context-grid" aria-label="Market context"></div>
-      <div class="positioning">
-        <h3 id="ui-positioning-title"></h3>
-        <p id="ui-positioning-body"></p>
-      </div>
-      <article class="card">
+      <article class="card overview-chart-first">
         <div class="card-header">
           <h2 id="ui-overview-chart-title"></h2>
           <p class="sub" id="ui-overview-chart-apac-note"></p>
         </div>
         <div class="card-body"><div id="overviewKpiChart" class="bar-chart compare-chart"></div></div>
       </article>
-      <article class="card">
-        <div class="card-header">
-          <h2 id="ui-apac-region-chart-title"></h2>
-          <p class="sub" id="ui-apac-region-chart-note"></p>
-        </div>
-        <div class="card-body"><div id="apacRegionChart" class="bar-chart compare-chart"></div></div>
-      </article>
+      <div id="kpiGrid" class="kpi-grid" aria-label="eBay KPIs"></div>
+      <div id="marketContextGrid" class="context-grid" aria-label="Market context"></div>
+      <div class="positioning">
+        <h3 id="ui-positioning-title"></h3>
+        <p id="ui-positioning-body"></p>
+      </div>
       <div class="grid-2">
         <article class="card">
           <div class="card-header">
@@ -269,6 +250,34 @@
     </section>
 
     <section class="panel" id="panel-apac">
+      <aside class="apac-focus" id="apacFocusBlock" aria-labelledby="ui-apac-focus-title">
+        <h2 id="ui-apac-focus-title" class="apac-focus-title"></h2>
+        <div id="apacFocusBody" class="apac-focus-body"></div>
+      </aside>
+      <article class="card apac-note-card">
+        <div class="card-header">
+          <h2 id="ui-apac-gmv-note-title"></h2>
+        </div>
+        <div class="card-body">
+          <p id="apacGmvNoteBody" class="apac-gmv-note-body"></p>
+          <p id="apacGmvNoteInstead" class="apac-gmv-note-instead"></p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-apac-cb-title"></h2>
+        </div>
+        <div class="card-body">
+          <div id="apacCbInsights" class="apac-insights-grid"></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-apac-region-chart-title"></h2>
+          <p class="sub" id="ui-apac-region-chart-note"></p>
+        </div>
+        <div class="card-body"><div id="apacRegionChart" class="bar-chart compare-chart"></div></div>
+      </article>
       <article class="card">
         <div class="card-header">
           <h2 id="ui-apac-chart-title"></h2>
@@ -364,11 +373,11 @@
     </nav>
   </footer>
 
-  <script src="js/market-intel-data.js?v=20261126-2026"></script>
-  <script src="js/market-intel-profiles.js?v=20261126-2026"></script>
-  <script src="js/market-intel-hrbp.js?v=20261126-2026"></script>
-  <script src="js/market-intel-talent.js?v=20261126-2026"></script>
-  <script src="js/market-intel-lang.js?v=20261126-2026"></script>
-  <script src="js/market-intel-app.js?v=20261126-2026"></script>
+  <script src="js/market-intel-data.js?v=20261126-apac-tab"></script>
+  <script src="js/market-intel-profiles.js?v=20261126-apac-tab"></script>
+  <script src="js/market-intel-hrbp.js?v=20261126-apac-tab"></script>
+  <script src="js/market-intel-talent.js?v=20261126-apac-tab"></script>
+  <script src="js/market-intel-lang.js?v=20261126-apac-tab"></script>
+  <script src="js/market-intel-app.js?v=20261126-apac-tab"></script>
 </body>
 </html>

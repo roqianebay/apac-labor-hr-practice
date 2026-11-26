@@ -12,11 +12,33 @@
 .badge.live { color: var(--mi-accent-light); border-color: rgba(20, 184, 166, 0.35); }
 .lang-switch button.active { background: var(--mi-accent); }
 
+.overview-chart-first {
+  margin-bottom: 1rem;
+}
+
 .kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   margin-bottom: 1.25rem;
+}
+.kpi-grid-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+.kpi-grid-row--secondary .kpi-card.is-estimate {
+  border-color: var(--border);
+  background: var(--surface);
+  box-shadow: none;
+}
+.kpi-grid-row--secondary .kpi-card.is-estimate .kpi-value {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+@media (max-width: 768px) {
+  .kpi-grid-row { grid-template-columns: 1fr; }
 }
 .kpi-card {
   background: var(--surface);
@@ -44,6 +66,20 @@
 .apac-focus-title { font-size: 1rem; color: var(--mi-accent-light); margin-bottom: 0.5rem; }
 .apac-focus-headline { font-size: 0.95rem; color: var(--text); margin-bottom: 0.45rem; line-height: 1.45; }
 .apac-focus-lede { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.65rem; }
+.apac-gmv-note-body,
+.apac-gmv-note-instead {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.apac-gmv-note-instead {
+  margin-top: 0.65rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+}
+.apac-note-card { margin-bottom: 1rem; }
+
 .apac-focus-list {
   margin: 0;
   padding-left: 1.15rem;

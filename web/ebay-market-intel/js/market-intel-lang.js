@@ -123,7 +123,8 @@
       "Neutral <strong>business context</strong> by theme for leader/employee conversations — not performance or stock narrative."
     ),
     overviewChartTitle: L("eBay 核心指标", "eBay core metrics"),
-    overviewChartApacNote: L("高亮为亚太相关或内部估算指标。", "Highlighted rows are APAC-related or internal estimates."),
+    overviewChartApacNote: L("虚线边框为估算或调查口径；亚太 GMV 金额见「亚太布局」。", "Dashed bars = estimates or survey basis; APAC GMV $ on APAC tab."),
+    apacGmvNoteTitle: L("为何不设「亚太 GMV」数字", "Why there is no APAC GMV $ figure"),
     compChartTitle: L("对 eBay 威胁度排序", "Threat to eBay (ranked)"),
     apacChartTitle: L("亚太布局指数（各国均值）", "APAC footprint index (avg)"),
     apacChartNote: L("与下方矩阵对照；数值越高布局越强。", "Pairs with matrix below; higher = stronger footprint."),
