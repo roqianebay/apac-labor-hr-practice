@@ -3,26 +3,29 @@
 .dash-hub-page.dash-hub-premium,
 .dash-hub-page.dash-hub-preview {
   font-family: "DM Sans", var(--sans);
-  --hub-ink: #1a2332;
-  --hub-ink-soft: #56657a;
-  --hub-teal: #1e5a4a;
-  --hub-teal-mid: #2a6f5f;
-  --hub-teal-light: #3d9a87;
-  --hub-sage: #f0f6f3;
-  --hub-sage-deep: #e6f0eb;
-  --hub-ivory: #fcfbf8;
-  --hub-warm: #f8f4ed;
-  --hub-panel: linear-gradient(128deg, var(--hub-sage) 0%, var(--hub-ivory) 52%, var(--hub-warm) 100%);
+  --hub-ink: #e8edf4;
+  --hub-ink-soft: #8b9cb3;
+  --hub-teal: #14b8a6;
+  --hub-teal-mid: #2dd4bf;
+  --hub-teal-light: #5eead4;
+  --hub-accent: #c2410c;
+  --hub-accent-light: #fb923c;
+  --hub-surface: #1a2332;
+  --hub-surface-2: #243044;
+  --hub-border: #2d3a4f;
+  --hub-bg: #0f1419;
+  --hub-panel: linear-gradient(128deg, #243044 0%, #1a2332 55%, #151d28 100%);
   --hub-radius: 16px;
-  --hub-card-shadow: 0 2px 4px rgba(26, 35, 50, 0.04), 0 12px 32px rgba(26, 35, 50, 0.07);
+  --hub-card-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
 }
 
 body.dash-hub-premium,
 body.dash-hub-preview {
+  color: var(--hub-ink);
   background:
-    radial-gradient(ellipse 100% 60% at 50% -10%, rgba(30, 90, 74, 0.05), transparent 50%),
-    radial-gradient(ellipse 70% 50% at 100% 20%, rgba(196, 163, 90, 0.04), transparent 45%),
-    linear-gradient(180deg, #ffffff 0%, var(--hub-ivory) 28%, #f4f8f6 100%);
+    radial-gradient(ellipse 80% 50% at 100% 0%, rgba(251, 146, 60, 0.07), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 0% 0%, rgba(59, 130, 246, 0.05), transparent 45%),
+    var(--hub-bg);
   min-height: 100vh;
 }
 
@@ -31,8 +34,8 @@ body.dash-hub-preview {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.4) 12%,
-    rgba(240, 246, 243, 0.35) 100%
+    rgba(26, 35, 50, 0.35) 12%,
+    rgba(15, 20, 25, 0.5) 100%
   );
   border-radius: 0 0 24px 24px;
   margin-bottom: 1.5rem;
@@ -41,8 +44,33 @@ body.dash-hub-preview {
 
 .dash-hub-premium .topbar,
 .dash-hub-preview .topbar {
-  background: rgba(255, 253, 248, 0.94);
-  border-bottom-color: rgba(12, 18, 32, 0.08);
+  background: linear-gradient(135deg, #1a0a08 0%, #2a1a14 45%, #0f1419 100%);
+  border-bottom-color: var(--hub-border);
+}
+
+.dash-hub-premium .topbar .brand,
+.dash-hub-premium .topbar .nav a,
+.dash-hub-preview .topbar .brand,
+.dash-hub-preview .topbar .nav a {
+  color: var(--hub-ink-soft) !important;
+}
+.dash-hub-premium .topbar .nav a:hover,
+.dash-hub-preview .topbar .nav a:hover {
+  color: var(--hub-ink) !important;
+}
+.dash-hub-premium .lang-switch,
+.dash-hub-preview .lang-switch {
+  background: var(--hub-surface-2);
+  border-color: var(--hub-border);
+}
+.dash-hub-premium .lang-switch button,
+.dash-hub-preview .lang-switch button {
+  color: var(--hub-ink-soft);
+}
+.dash-hub-premium .lang-switch button.active,
+.dash-hub-preview .lang-switch button.active {
+  background: var(--hub-accent);
+  color: #fff !important;
 }
 
 .dash-hub-premium main.wrap,
@@ -80,7 +108,7 @@ body.dash-hub-preview {
   background: var(--hub-panel);
   color: var(--hub-ink);
   box-shadow: var(--hub-card-shadow);
-  border: 1px solid rgba(30, 90, 74, 0.12);
+  border: 1px solid var(--hub-border);
 }
 
 .dash-hero-panel::before {
@@ -88,8 +116,8 @@ body.dash-hub-preview {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(480px 220px at 95% 5%, rgba(61, 154, 135, 0.12), transparent 55%),
-    radial-gradient(360px 180px at 0% 100%, rgba(196, 163, 90, 0.1), transparent 50%);
+    radial-gradient(480px 220px at 95% 5%, rgba(251, 146, 60, 0.1), transparent 55%),
+    radial-gradient(360px 180px at 0% 100%, rgba(59, 130, 246, 0.06), transparent 50%);
   pointer-events: none;
 }
 
@@ -102,7 +130,7 @@ body.dash-hub-preview {
 }
 
 .dash-kicker {
-  color: var(--hub-teal-mid) !important;
+  color: var(--hub-accent-light) !important;
   letter-spacing: 0.2em;
   font-size: 0.68rem;
   font-weight: 700;
@@ -134,15 +162,15 @@ body.dash-hub-preview {
   min-width: 5.5rem;
   padding: 1rem 1.25rem;
   border-radius: 14px;
-  background: rgba(255, 252, 247, 0.92);
-  border: 1px solid rgba(30, 90, 74, 0.14);
-  box-shadow: 0 4px 14px rgba(30, 90, 74, 0.08);
+  background: var(--hub-surface);
+  border: 1px solid var(--hub-border);
+  box-shadow: var(--hub-card-shadow);
 }
 .dash-hero-stat .val {
   font-family: "Instrument Sans", var(--sans);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--hub-teal);
+  color: var(--hub-accent-light);
   line-height: 1;
 }
 .dash-hero-stat .lbl {
@@ -159,9 +187,9 @@ body.dash-hub-preview {
   padding: 0.85rem 1.1rem;
   border-radius: 12px;
   font-size: 0.84rem;
-  background: rgba(255, 252, 247, 0.9);
-  border: 1px solid rgba(30, 90, 74, 0.12);
-  border-left: 4px solid var(--hub-teal-mid);
+  background: var(--hub-surface);
+  border: 1px solid var(--hub-border);
+  border-left: 4px solid var(--hub-accent);
   color: var(--hub-ink-soft);
 }
 
@@ -175,6 +203,7 @@ body.dash-hub-preview {
   font-weight: 700;
   margin: 0 0 0.3rem;
   letter-spacing: -0.02em;
+  color: var(--hub-ink);
 }
 .dash-section-head .sub {
   margin: 0 0 1.25rem;
@@ -186,8 +215,8 @@ body.dash-hub-preview {
   margin-bottom: 1.5rem;
   padding: 1.2rem 1.25rem 1.35rem;
   border-radius: var(--hub-radius);
-  background: linear-gradient(180deg, #ffffff 0%, rgba(248, 251, 249, 0.98) 100%);
-  border: 1px solid rgba(30, 90, 74, 0.08);
+  background: var(--hub-surface);
+  border: 1px solid var(--hub-border);
   box-shadow: var(--hub-card-shadow);
 }
 
@@ -197,7 +226,7 @@ body.dash-hub-preview {
   gap: 0.85rem;
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(12, 18, 32, 0.08);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
 }
 
 .dash-row-num {
@@ -206,7 +235,7 @@ body.dash-hub-preview {
   font-weight: 700;
   line-height: 1;
   color: transparent;
-  background: linear-gradient(180deg, var(--hub-teal), rgba(30, 90, 74, 0.35));
+  background: linear-gradient(180deg, var(--hub-accent-light), rgba(194, 65, 12, 0.4));
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -250,9 +279,9 @@ body.dash-hub-preview {
   padding: 0 0 1rem !important;
   min-height: 100%;
   border-radius: 14px !important;
-  background: linear-gradient(180deg, #ffffff 0%, #faf8f4 100%) !important;
-  border: 1px solid rgba(30, 90, 74, 0.1) !important;
-  box-shadow: 0 1px 2px rgba(26, 35, 50, 0.04) !important;
+  background: var(--hub-surface) !important;
+  border: 1px solid var(--hub-border) !important;
+  box-shadow: var(--hub-card-shadow) !important;
   overflow: hidden;
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s;
 }
@@ -264,14 +293,14 @@ body.dash-hub-preview {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--hub-teal), var(--hub-teal-light));
+  background: linear-gradient(90deg, var(--hub-accent), var(--hub-accent-light));
 }
 
 .dash-hub-premium .dash-card:hover,
 .dash-hub-preview .dash-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(12, 18, 32, 0.08), 0 24px 48px rgba(12, 18, 32, 0.1) !important;
-  border-color: rgba(30, 90, 74, 0.22) !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45) !important;
+  border-color: rgba(251, 146, 60, 0.35) !important;
 }
 
 .dash-card-top {
@@ -279,8 +308,8 @@ body.dash-hub-preview {
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 1.1rem 0.65rem;
-  background: linear-gradient(135deg, rgba(232, 242, 239, 0.9) 0%, rgba(255, 252, 247, 0.4) 100%);
-  border-bottom: 1px solid rgba(30, 90, 74, 0.08);
+  background: var(--hub-surface-2);
+  border-bottom: 1px solid var(--hub-border);
 }
 
 .dash-card-icon {
@@ -290,10 +319,10 @@ body.dash-hub-preview {
   display: grid;
   place-items: center;
   border-radius: 12px;
-  background: var(--hub-ivory);
-  border: 1px solid rgba(30, 90, 74, 0.12);
-  box-shadow: 0 2px 8px rgba(30, 90, 74, 0.08);
-  color: var(--hub-teal-mid);
+  background: var(--hub-bg);
+  border: 1px solid var(--hub-border);
+  box-shadow: none;
+  color: var(--hub-accent-light);
 }
 .dash-card-icon svg {
   width: 1.35rem;
@@ -326,22 +355,22 @@ body.dash-hub-preview {
   font-weight: 700;
   padding: 0.28rem 0.55rem;
   border-radius: 999px;
-  background: var(--paper-2);
+  background: var(--hub-surface-2);
   color: var(--hub-ink-soft);
   text-transform: none;
   letter-spacing: 0.02em;
-  border: 1px solid rgba(30, 90, 74, 0.12);
+  border: 1px solid var(--hub-border);
 }
 .dash-badge.primary {
-  background: var(--hub-teal);
+  background: var(--hub-accent);
   color: #fff;
   border-color: transparent;
 }
 .dash-badge.accent-apac {
-  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 55%, #2dd4bf 100%);
+  background: linear-gradient(135deg, #1a3d38 0%, #0f766e 55%, #14b8a6 100%);
   color: #fff;
-  border: 1px solid rgba(252, 211, 77, 0.85);
-  box-shadow: 0 2px 10px rgba(15, 118, 110, 0.45), 0 0 0 1px rgba(252, 211, 77, 0.35);
+  border: 1px solid rgba(251, 146, 60, 0.45);
+  box-shadow: 0 2px 10px rgba(20, 184, 166, 0.25);
   font-weight: 700;
   letter-spacing: 0.03em;
 }
@@ -387,8 +416,8 @@ body.dash-hub-preview {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--hub-teal);
-  opacity: 0.55;
+  background: var(--hub-accent-light);
+  opacity: 0.85;
 }
 
 .dash-cta {
@@ -399,7 +428,7 @@ body.dash-hub-preview {
   margin: 0.35rem 1.1rem 0;
   padding: 0.55rem 1rem;
   border-radius: 10px;
-  background: linear-gradient(180deg, var(--hub-teal-mid), var(--hub-teal)) !important;
+  background: var(--hub-accent) !important;
   color: #fff !important;
   font-weight: 600;
   font-size: 0.78rem;
@@ -407,7 +436,7 @@ body.dash-hub-preview {
   width: calc(100% - 2.2rem);
   box-sizing: border-box;
   transition: filter 0.15s ease, transform 0.15s ease;
-  box-shadow: 0 2px 8px rgba(30, 90, 74, 0.22);
+  box-shadow: 0 4px 16px rgba(194, 65, 12, 0.35);
 }
 .dash-cta:hover {
   filter: brightness(1.06);
@@ -419,10 +448,15 @@ body.dash-hub-preview {
 }
 
 .dash-card.is-primary {
-  border: 1px solid rgba(30, 90, 74, 0.32) !important;
+  border: 1px solid rgba(94, 234, 212, 0.28) !important;
+}
+
+.dash-hub-premium .footer.wrap,
+.dash-hub-preview .footer.wrap {
+  color: var(--hub-ink-soft);
 }
 .dash-card.is-primary .dash-card-top {
-  background: linear-gradient(135deg, rgba(61, 154, 135, 0.18) 0%, rgba(255, 252, 247, 0.5) 100%);
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.2) 0%, rgba(22, 32, 48, 0.5) 100%);
 }
 
 .dash-hub-premium h1,
@@ -433,6 +467,6 @@ body.dash-hub-preview {
 .dash-hub-premium .topbar .nav a.nav-current,
 .dash-hub-preview .topbar .nav a.nav-current {
   text-decoration: none;
-  color: var(--hub-teal) !important;
+  color: var(--hub-accent-light) !important;
   font-weight: 600;
 }

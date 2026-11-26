@@ -44,9 +44,9 @@
   padding: 1rem 1.1rem;
   min-height: 100%;
 }
-.dash-card.is-primary {
-  border: 2px solid var(--accent-2);
-  background: linear-gradient(165deg, #f0faf7 0%, var(--card) 55%);
+.dash-hub-page.dash-hub-premium .dash-card.is-primary {
+  border: 2px solid rgba(251, 146, 60, 0.4);
+  background: linear-gradient(165deg, rgba(251, 146, 60, 0.08) 0%, #1a2332 55%);
 }
 .dash-card-head {
   display: flex;

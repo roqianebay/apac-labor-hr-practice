@@ -1,8 +1,13 @@
 :root {
-  --mi-accent: #0d9488;
-  --mi-accent-light: #0f766e;
-  --mi-gold: #b45309;
-  --mi-danger: #dc2626;
+  --mi-accent: #14b8a6;
+  --mi-accent-light: #5eead4;
+  --mi-gold: #f59e0b;
+  --mi-gold-deep: #fb923c;
+  --mi-danger: #f87171;
+}
+
+.header {
+  background: linear-gradient(135deg, #0c1422 0%, #123d42 42%, #0f1419 100%);
 }
 .logo-block h1 span { color: var(--mi-accent-light); }
 .badge.live { color: var(--mi-accent-light); border-color: rgba(20, 184, 166, 0.35); }
@@ -41,8 +46,13 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
 }
-.kpi-value { font-size: 1.65rem; font-weight: 700; color: var(--mi-gold); }
+.kpi-value {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--mi-gold);
+}
 .kpi-label { font-size: 0.78rem; color: var(--text); margin-top: 0.25rem; font-weight: 600; }
 .kpi-hint { font-size: 0.68rem; color: var(--text-muted); margin-top: 0.35rem; }
 .card-sources {
@@ -73,13 +83,13 @@
 .kpi-card.is-apac .kpi-value { color: var(--mi-accent-light); }
 
 .apac-focus {
-  background: linear-gradient(135deg, rgba(13, 148, 136, 0.1), rgba(255, 255, 255, 0.85));
-  border: 1px solid rgba(13, 148, 136, 0.28);
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.14), rgba(15, 23, 35, 0.85));
+  border: 1px solid rgba(94, 234, 212, 0.22);
   border-radius: var(--radius);
   padding: 1rem 1.2rem;
   margin-bottom: 1.1rem;
 }
-.apac-focus-title { font-size: 1rem; color: var(--mi-accent-light); margin-bottom: 0.5rem; }
+.apac-focus-title { font-size: 1rem; color: var(--mi-accent-light); margin-bottom: 0.5rem; font-weight: 600; }
 .apac-focus-headline { font-size: 0.95rem; color: var(--text); margin-bottom: 0.45rem; line-height: 1.45; }
 .apac-focus-lede { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.65rem; }
 .apac-gmv-note-body,

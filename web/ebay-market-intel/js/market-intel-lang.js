@@ -19,6 +19,7 @@
     tabOverview: L("总览", "Overview"),
     tabHr: L("HR 视角", "HR lens"),
     tabHiring: L("亚太招聘", "APAC hiring"),
+    tabCompensation: L("薪酬信息", "Compensation"),
     tabLayoffs: L("裁员动态", "Layoffs"),
     tabProfiles: L("档案与图表", "Profiles & charts"),
     tabCompetitors: L("竞争对手", "Competitors"),
@@ -154,6 +155,11 @@
     severanceTitle: L("亚太法定/常见补偿模式", "APAC statutory / common severance patterns"),
     valueChainTitle: L("eBay 价值链（与人事触点）", "eBay value chain (HR touchpoints)"),
     taxonomyTitle: L("竞品分类（模式 / 履约 / 用工）", "Peer taxonomy (model / fulfillment / workforce)"),
+    compTabTitle: L("亚太薪酬信息", "APAC compensation intelligence"),
+    compTabLede: L(
+      "Senior IC 总包对标与公开 JD 薪资区间；默认中国市场，可用芯片切换亚太市场。<strong>示意数据</strong>，发 offer 前请以 JD / Levels.fyi / 律师或 TA 复核为准。",
+      "Senior IC total comp benchmarks & public JD salary bands; default China — use chips for other APAC markets. <strong>Illustrative</strong>; confirm via JD / Levels.fyi / TA or counsel before offers."
+    ),
     compBenchTitle: L("APAC 薪酬对标（Senior IC）", "APAC comp benchmarks (Senior IC)"),
     compBenchNote: L(
       "总包为<strong>示意</strong>（USD 千/年，含年化股权）；默认中国；请以 JD / offer / Levels.fyi 为准，点击来源核对。",

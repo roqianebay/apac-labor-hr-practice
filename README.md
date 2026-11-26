@@ -17,6 +17,9 @@ cd web
 python -m http.server 8768
 ```
 
+浏览器打开：**http://localhost:8768/er-dashboards.html?v=20261126-er-news-tone**  
+从 Policy Dictionary 点「进入看板」走同仓相对路径。样式未变时请 `Ctrl+F5` 硬刷新。
+
 ## 发布
 
 ```powershell

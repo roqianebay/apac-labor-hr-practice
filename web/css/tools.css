@@ -1,29 +1,29 @@
 #tools-section {
   font-family: "DM Sans", system-ui, sans-serif;
-  background: #f2f7f5;
-  color: #1a2332;
+  background: #0f1419;
+  color: #e8edf4;
   line-height: 1.55;
-  border-top: 3px solid #1e5a4a;
+  border-top: 3px solid rgba(194, 65, 12, 0.5);
   margin-top: 2rem;
 }
 
     #tools-section {
-      --bg: #f2f7f5;
-      --surface: #ffffff;
-      --surface-2: #e9f1ee;
-      --border: #c5d4ce;
-      --text: #1a2332;
-      --muted: #4f6275;
-      --accent: #0d9488;
-      --accent-2: #0f766e;
-      --warn: #b45309;
-      --danger: #dc2626;
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface-2: #243044;
+      --border: #2d3a4f;
+      --text: #e8edf4;
+      --muted: #8b9cb3;
+      --accent: #c2410c;
+      --accent-2: #fb923c;
+      --warn: #f59e0b;
+      --danger: #ef4444;
       --radius: 10px;
     }
     #tools-section * { box-sizing: border-box; }
     #tools-section { font-family: "DM Sans", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; min-height: 100vh; }
     .er14-tools-head {
-      background: linear-gradient(120deg, #ecf7f4 0%, #f5faf8 60%);
+      background: linear-gradient(135deg, #1a0a08 0%, #2a1a14 45%, #0f1419 100%);
       border-bottom: 1px solid var(--border);
       padding: 1.4rem 2rem;
       position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);
@@ -32,10 +32,10 @@
     h1 { font-size: 1.3rem; } h1 span { color: var(--accent-2); }
     #tools-section .er14-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.25rem; }
     .badge { font-size: 0.72rem; padding: 0.3rem 0.65rem; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
-    .badge.phase { border-color: rgba(45,212,191,0.4); color: var(--accent-2); }
+    .badge.phase { border-color: rgba(251, 146, 60, 0.4); color: var(--accent-2); }
     .er14-container { max-width: 1440px; margin: 0 auto; padding: 1.25rem 2rem 3rem; }
     .er14-banner {
-      background: rgba(13,148,136,0.08); border: 1px solid rgba(45,212,191,0.25);
+      background: rgba(239, 68, 68, 0.06); border: 1px solid rgba(239, 68, 68, 0.25);
       border-radius: var(--radius); padding: 1rem 1.2rem; font-size: 0.84rem; color: var(--muted); margin-bottom: 1.25rem;
     }
   .er14-banner strong { color: var(--text); }
@@ -51,7 +51,7 @@
     #tools-section th, #tools-section td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; text-align: left; }
     #tools-section th { background: var(--surface-2); position: sticky; top: 0; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); }
     th.country-col { min-width: 118px; }
-    tr.dim-row td:first-child { font-weight: 600; color: var(--accent-2); background: rgba(13,148,136,0.06); position: sticky; left: 0; z-index: 1; }
+    tr.dim-row td:first-child { font-weight: 600; color: var(--accent-2); background: rgba(194, 65, 12, 0.06); position: sticky; left: 0; z-index: 1; }
     .risk-high { color: #fca5a5; font-weight: 600; }
     .risk-mid { color: #fcd34d; }
     .risk-low { color: #86efac; }
@@ -64,7 +64,7 @@
     .er14-country-card li { padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
     .er14-country-card li strong { color: var(--text); display: inline-block; min-width: 7.5rem; }
     .refs { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.3rem; }
-    .refs a { font-size: 0.76rem; color: #0f766e; text-decoration: none; }
+    .refs a { font-size: 0.76rem; color: #fb923c; text-decoration: none; }
     .refs a:hover { text-decoration: underline; }
     .er14-case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 900px) { .er14-case-grid { grid-template-columns: 1fr; } }
@@ -85,16 +85,15 @@
     @media (max-width: 800px) { .er14-check-grid { grid-template-columns: 1fr; } }
     .er14-check-grid ul { margin-left: 1.1rem; }
     .er14-check-grid li { margin-bottom: 0.25rem; }
-    .er14-hub-links a { color: #0f766e; margin-right: 0.75rem; font-size: 0.8rem; }
+    .er14-hub-links a { color: #fb923c; margin-right: 0.75rem; font-size: 0.8rem; }
     .er14-plain-intro { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; line-height: 1.55; }
     .er14-phase-block { background: var(--surface-2); border-radius: 8px; padding: 0.85rem; margin-bottom: 0.65rem; border-left: 3px solid var(--accent); }
     .er14-phase-head { font-size: 0.88rem; margin-bottom: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
     .er14-phase-days { font-size: 0.72rem; color: var(--muted); font-family: "JetBrains Mono", monospace; }
-    .er14-role-tag { font-size: 0.68rem; padding: 0.15rem 0.45rem; border-radius: 4px; background: rgba(13,148,136,0.2); color: var(--accent-2); }
+    .er14-role-tag { font-size: 0.68rem; padding: 0.15rem 0.45rem; border-radius: 4px; background: rgba(194, 65, 12, 0.2); color: var(--accent-2); }
     .er14-warn-box { font-size: 0.78rem; color: #fcd34d; margin-top: 0.4rem; padding: 0.4rem 0.5rem; background: rgba(245,158,11,0.08); border-radius: 6px; }
     .er14-legal-hint { font-size: 0.78rem; color: #fca5a5; margin-top: 0.35rem; }
     .er14-country-addon { margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border); }
     .er14-big-list { margin-left: 1.2rem; font-size: 0.85rem; color: var(--muted); }
     .er14-big-list li { margin-bottom: 0.35rem; }
     .er14-tab.highlight { border-color: var(--accent-2); }
-  

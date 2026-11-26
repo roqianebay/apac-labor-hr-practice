@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f2f7f5; --surface: #ffffff; --surface-2: #e9f1ee; --border: #c5d4ce;
-      --text: #1a2332; --text-muted: #4f6275; --accent: #0d9488; --accent-light: #0f766e;
+      --bg: #0f1419; --surface: #1a2332; --surface-2: #243044; --border: #2d3a4f;
+      --text: #e8edf4; --text-muted: #8b9cb3; --accent: #14b8a6; --accent-light: #5eead4;
       --radius: 10px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,7 +25,7 @@
     .intro-banner { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; font-size: 0.84rem; color: var(--text-muted); margin-bottom: 1rem; }
     .tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
     .tab-btn { border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); padding: 0.5rem 1rem; border-radius: 999px; cursor: pointer; font: inherit; font-size: 0.85rem; }
-    .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+    .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #042f2e; font-weight: 600; }
     .panel { display: none; }
     .panel.active { display: block; }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; }
@@ -36,8 +36,8 @@
     .hub-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
     .hub-footer a { color: var(--accent-light); }
   </style>
-  <link rel="stylesheet" href="../css/monitor-light-shell.css?v=20261126-light" />
-  <link rel="stylesheet" href="css/market-intel.css?v=20261126-light" />
+  <link rel="stylesheet" href="../css/monitor-business-dark.css?v=20261126-er-news-tone" />
+  <link rel="stylesheet" href="css/market-intel.css?v=20261126-er-news-tone" />
 </head>
 <body>
   <header class="header">
@@ -68,6 +68,7 @@
       <button type="button" class="tab-btn" data-tab="apac" id="ui-tab-apac"></button>
       <button type="button" class="tab-btn" data-tab="logistics" id="ui-tab-logistics"></button>
       <button type="button" class="tab-btn" data-tab="hiring" id="ui-tab-hiring"></button>
+      <button type="button" class="tab-btn" data-tab="compensation" id="ui-tab-compensation"></button>
       <button type="button" class="tab-btn" data-tab="layoffs" id="ui-tab-layoffs"></button>
       <button type="button" class="tab-btn" data-tab="hr" id="ui-tab-hr"></button>
       <button type="button" class="tab-btn" data-tab="sources" id="ui-tab-sources"></button>
@@ -120,24 +121,6 @@
           <div id="valueChain" class="vc-grid"></div>
           <h3 class="section-mini-h3" id="ui-taxonomy-title"></h3>
           <div id="taxonomyHost"></div>
-          <h3 class="section-mini-h3" id="ui-comp-bench-title"></h3>
-          <p class="sub section-mini-sub" id="ui-comp-bench-note"></p>
-          <div class="metric-chip-bar" id="compMarketChipBar" role="toolbar"></div>
-          <div class="table-wrap">
-            <table class="comp-bench-table">
-              <thead id="compBenchHead"></thead>
-              <tbody id="compBenchBody"></tbody>
-            </table>
-          </div>
-          <div id="compBenchChart" class="bar-chart compare-chart comp-bench-chart"></div>
-          <h3 class="section-mini-h3" id="ui-role-salary-title"></h3>
-          <p class="sub section-mini-sub" id="ui-role-salary-note"></p>
-          <div class="table-wrap">
-            <table class="comp-bench-table">
-              <thead id="roleSalaryHead"></thead>
-              <tbody id="roleSalaryBody"></tbody>
-            </table>
-          </div>
           <div id="hrbpSections" class="hrbp-sections"></div>
         </div>
       </article>
@@ -346,6 +329,35 @@
       <div id="hiringPanel" class="hiring-grid"></div>
     </section>
 
+    <section class="panel" id="panel-compensation">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="ui-comp-tab-title"></h2>
+          <p class="sub" id="ui-comp-tab-lede"></p>
+        </div>
+        <div class="card-body">
+          <h3 class="section-mini-h3" id="ui-comp-bench-title"></h3>
+          <p class="sub section-mini-sub" id="ui-comp-bench-note"></p>
+          <div class="metric-chip-bar" id="compMarketChipBar" role="toolbar"></div>
+          <div class="table-wrap">
+            <table class="comp-bench-table">
+              <thead id="compBenchHead"></thead>
+              <tbody id="compBenchBody"></tbody>
+            </table>
+          </div>
+          <div id="compBenchChart" class="bar-chart compare-chart comp-bench-chart"></div>
+          <h3 class="section-mini-h3" id="ui-role-salary-title"></h3>
+          <p class="sub section-mini-sub" id="ui-role-salary-note"></p>
+          <div class="table-wrap">
+            <table class="comp-bench-table">
+              <thead id="roleSalaryHead"></thead>
+              <tbody id="roleSalaryBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+    </section>
+
     <section class="panel" id="panel-layoffs">
       <div class="grid-2 chart-duo">
         <article class="card">
@@ -392,12 +404,12 @@
     </nav>
   </footer>
 
-  <script src="js/market-intel-data.js?v=20261126-comp-hr"></script>
-  <script src="js/market-intel-profiles.js?v=20261126-comp-hr"></script>
-  <script src="js/market-intel-hrbp.js?v=20261126-comp-hr"></script>
-  <script src="js/market-intel-talent.js?v=20261126-comp-hr"></script>
-  <script src="js/market-intel-comp.js?v=20261126-comp-hr"></script>
-  <script src="js/market-intel-lang.js?v=20261126-comp-hr"></script>
-  <script src="js/market-intel-app.js?v=20261126-comp-hr"></script>
+  <script src="js/market-intel-data.js?v=20261126-comp-tab"></script>
+  <script src="js/market-intel-profiles.js?v=20261126-comp-tab"></script>
+  <script src="js/market-intel-hrbp.js?v=20261126-comp-tab"></script>
+  <script src="js/market-intel-talent.js?v=20261126-comp-tab"></script>
+  <script src="js/market-intel-comp.js?v=20261126-comp-tab"></script>
+  <script src="js/market-intel-lang.js?v=20261126-comp-tab"></script>
+  <script src="js/market-intel-app.js?v=20261126-comp-tab"></script>
 </body>
 </html>

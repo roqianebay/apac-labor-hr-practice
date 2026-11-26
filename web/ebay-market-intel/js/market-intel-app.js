@@ -1074,6 +1074,7 @@
       "ui-tab-apac": U.tabApac,
       "ui-tab-logistics": U.tabLogistics,
       "ui-tab-hiring": U.tabHiring,
+      "ui-tab-compensation": U.tabCompensation,
       "ui-tab-layoffs": U.tabLayoffs,
       "ui-tab-hr": U.tabHr,
       "ui-tab-sources": U.tabSources,
@@ -1140,6 +1141,8 @@
     setTextHtml("ui-value-chain-title", U.valueChainTitle);
     setTextHtml("ui-taxonomy-title", U.taxonomyTitle);
     setTextHtml("ui-market-size-title", U.marketSizeTitle);
+    setTextHtml("ui-comp-tab-title", U.compTabTitle);
+    setTextHtml("ui-comp-tab-lede", U.compTabLede);
     setTextHtml("ui-comp-bench-title", U.compBenchTitle);
     setTextHtml("ui-comp-bench-note", U.compBenchNote);
     setTextHtml("ui-role-salary-title", U.roleSalaryTitle);
